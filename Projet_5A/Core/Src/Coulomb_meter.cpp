@@ -7,6 +7,7 @@
 
 // ###########		INCLUDE		###############
 #include "Coulomb_meter.h"
+#include "stm32l4xx_hal_i2c.h"
 #include <string>
 #include <sstream>
 
@@ -30,6 +31,8 @@ const uint16_t TAB_PRESCALER_M[8] {1,4,16,64,256,1024,4096,4096};
 #define MAX_VAL_ALCC		0x03
 // #define MAX_VAL_Prescaler	0x07 //not used because set in the code, see DEFAULT_Prescaler
 #define MAX_VAL_PowerDown	0x01
+
+#define TIMEOUT				0xFFFF
 
 // ########### 		CLASS		###############
 //CONSTRUCTORS
@@ -68,7 +71,7 @@ Coulomb_meter::Coulomb_meter(I2C_HandleTypeDef hi2c, uint8_t ADCmode, uint8_t AL
 	if (err != ""){
 		stringstream stream;
 		string mes;
-		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Erreur in creating the coulomb_meter object :" << err << "bad value";
+		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in creating the coulomb_meter object :" << err << "bad value";
 		stream >> mes;
 		throw (mes);
 	}
@@ -79,4 +82,20 @@ Coulomb_meter::Coulomb_meter(I2C_HandleTypeDef hi2c, uint8_t ADCmode, uint8_t AL
 		// Then we address the register we want to write or read
 		// Finally we send the data (if write mode)
 		// Stop signal il SDA=>1 when SCK is at 1
+	init();
+}
+
+bool Coulomb_meter::init(){
+	// we want to write so the last bit of address is 0
+	uint8_t num_register = 0x01; //Correspond to the control register
+	// Construction of the register Control
+	uint8_t val = (ADCmode << OFFSET_ADCmode) | (ALCC << OFFSET_ALCC) | (Prescaler_M << OFFSET_Prescaler) | (PowerDown << OFFSET_PowerDown);
+	uint8_t pData[2] {num_register,val};
+	if (HAL_I2C_Master_Transmit(&hi2c,address,pData,1,TIMEOUT) != HAL_OK){
+		stringstream stream;
+		string mes;
+		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in initializing the device with the I2C bus";
+		stream >> mes;
+		throw (mes);
+	}
 }

@@ -83,6 +83,7 @@ LTC2944_AnalogVal_Typedef;
 class Coulomb_meter{
 	private:
 	// VARS
+		uint8_t address = LTC2944_Slave7bitsAdr;
 		I2C_HandleTypeDef hi2c;
 		LTC2944_AnalogVal_Typedef values = {0.0,0.0,25.0};
 		float R_sense 		= DEF_R_SENSE;
@@ -93,6 +94,7 @@ class Coulomb_meter{
 		uint8_t ALCC;  				//see Control_ALCCConfigure_.. values
 		uint8_t PowerDown; 			//see Control_Control_PowerDown_.. values
 	// FUNCTIONS
+		bool init();
 	public:
 	// VARS
 
@@ -157,7 +159,7 @@ class Coulomb_meter{
 #define Control_ADCMode_Bits 						(0x3<<6)
 #define Control_ADCMode_Continuous 					(0x3<<6)
 #define Control_ADCMode_Scan10sec 					(0x2<<6)
-#define Control_ADCMode_Manual						(0x01<<6)
+#define Control_ADCMode_Manual						(0x1<<6)
 #define Control_ADCMode_Sleep 						(0x0<<6)  // reset Value
 
 #define Control_PrescaleM_Bits 						(0x7<<3)
