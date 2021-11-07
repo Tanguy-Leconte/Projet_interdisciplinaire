@@ -69,7 +69,6 @@
 #define LTC2944_Slave7bitsAdr (0x64<<1)  //@slave I2C LTC2944
 // HARDWARE CHOICE
 #define DEF_R_SENSE				0.006
-#define DEF_M					1024
 
 // ###########		STRUCTURE	###############
 typedef struct
@@ -87,11 +86,11 @@ class Coulomb_meter{
 		I2C_HandleTypeDef hi2c;
 		LTC2944_AnalogVal_Typedef values = {0.0,0.0,25.0};
 		float R_sense 		= DEF_R_SENSE;
-		float M				= DEF_M;
+		float Prescaler_M;
 		float SOC_mAh;
-		char ADCmode; 				// see Control_ADCMode_.. values
-		char ALCC;  				//see Control_ALCCConfigure_.. values
-		char PowerDown; 			//see Control_Control_PowerDown_.. values
+		uint8_t ADCmode; 				// see Control_ADCMode_.. values
+		uint8_t ALCC;  				//see Control_ALCCConfigure_.. values
+		uint8_t PowerDown; 			//see Control_Control_PowerDown_.. values
 	// FUNCTIONS
 	public:
 	// VARS
@@ -99,11 +98,14 @@ class Coulomb_meter{
 	//CONSTRUCTORS
 		/*
 		 * @brief configure the LTC2944 at the starting and
-		 * @param  hi2c a structure with an I2C instance configured, ADCmode : 0x0-0x3, ALCC : 0x0-0x3 (define the alert configuration), PowerDown : 0x0-0x1 (define the shutdown of the analog circuit to reduce the current consumption)
+		 * @param  	hi2c a structure that define the I2C module, that part must be configured,
+		 * 			ADCmode : 0x0-0x3,
+		 * 			ALCC : 0x0-0x3 (define the alert configuration),
+		 * 			PowerDown : 0x0-0x1 (define the shutdown of the analog circuit to reduce the current consumption)
 		 * @retval None
 		 */
 		Coulomb_meter(I2C_HandleTypeDef hi2c);
-		Coulomb_meter(I2C_HandleTypeDef hi2c, char ADCmode, char ALCC, char PowerDown);
+		Coulomb_meter(I2C_HandleTypeDef hi2c, uint8_t ADCmode, uint8_t ALCC, uint8_t PowerDown);
 	// FUNCTIONS
 		/**
 		  * @brief Set the desired initial SOC in mAh
