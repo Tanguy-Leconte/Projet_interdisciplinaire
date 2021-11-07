@@ -85,12 +85,13 @@ Coulomb_meter::Coulomb_meter(I2C_HandleTypeDef hi2c, uint8_t ADCmode, uint8_t AL
 	init();
 }
 
-bool Coulomb_meter::init(){
+void Coulomb_meter::init(){
 	// we want to write so the last bit of address is 0
 	uint8_t num_register = 0x01; //Correspond to the control register
 	// Construction of the register Control
 	uint8_t val = (ADCmode << OFFSET_ADCmode) | (ALCC << OFFSET_ALCC) | (Prescaler_M << OFFSET_Prescaler) | (PowerDown << OFFSET_PowerDown);
 	uint8_t pData[2] {num_register,val};
+	// Hal I2C handles the ack normally
 	if (HAL_I2C_Master_Transmit(&hi2c,address,pData,1,TIMEOUT) != HAL_OK){
 		stringstream stream;
 		string mes;

@@ -94,7 +94,7 @@ class Coulomb_meter{
 		uint8_t ALCC;  				//see Control_ALCCConfigure_.. values
 		uint8_t PowerDown; 			//see Control_Control_PowerDown_.. values
 	// FUNCTIONS
-		bool init();
+		void init();
 	public:
 	// VARS
 
