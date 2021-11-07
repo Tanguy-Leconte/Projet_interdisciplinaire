@@ -86,9 +86,10 @@ class Coulomb_meter{
 		I2C_HandleTypeDef hi2c;
 		LTC2944_AnalogVal_Typedef values = {0.0,0.0,25.0};
 		float R_sense 		= DEF_R_SENSE;
-		float Prescaler_M;
+		float M_value;
 		float SOC_mAh;
-		uint8_t ADCmode; 				// see Control_ADCMode_.. values
+		uint8_t Prescaler_M;		// see the tab between Prescaler_M and the M_value
+		uint8_t ADCmode; 			// see Control_ADCMode_.. values
 		uint8_t ALCC;  				//see Control_ALCCConfigure_.. values
 		uint8_t PowerDown; 			//see Control_Control_PowerDown_.. values
 	// FUNCTIONS
