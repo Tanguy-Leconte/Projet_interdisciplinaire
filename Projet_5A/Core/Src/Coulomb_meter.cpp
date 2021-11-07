@@ -74,4 +74,9 @@ Coulomb_meter::Coulomb_meter(I2C_HandleTypeDef hi2c, uint8_t ADCmode, uint8_t AL
 	}
 
 	// Initialize the communication with the module and right the control register
+		// SDA and SLK must be high at the beginning, then SDA => 0 => start signal
+		// Then we send the 7bits of the address and the last bit is R/W (1=Read)
+		// Then we address the register we want to write or read
+		// Finally we send the data (if write mode)
+		// Stop signal il SDA=>1 when SCK is at 1
 }
