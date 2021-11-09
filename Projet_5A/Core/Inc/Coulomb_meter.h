@@ -69,6 +69,8 @@
 #define LTC2944_Slave7bitsAdr (0x64<<1)  //@slave I2C LTC2944
 // HARDWARE CHOICE
 #define DEF_R_SENSE				0.006
+// Step between each value for the LTC2944 => 34µAh
+#define STEP_ACCUMULATED_CHARGE	0.034	// in mAh
 
 // ###########		STRUCTURE	###############
 typedef struct
@@ -121,7 +123,7 @@ class Coulomb_meter{
 		  * @param  none
 		  * @retval Effective SOC value
 		*/
-		float Get_SOC_mAh(void);
+		float Get_SOC_mAh();
 		/**
   		  * @brief get the actual analog values
 		  * La fonction retourne l'ensemble des 3 valeurs analogiques.

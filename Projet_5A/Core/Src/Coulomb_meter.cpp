@@ -87,16 +87,83 @@ Coulomb_meter::Coulomb_meter(I2C_HandleTypeDef hi2c, uint8_t ADCmode, uint8_t AL
 
 void Coulomb_meter::init(){
 	// we want to write so the last bit of address is 0
-	uint8_t num_register = 0x01; //Correspond to the control register
+	uint8_t num_register = B_Control; //Correspond to the control register
 	// Construction of the register Control
-	uint8_t val = (ADCmode << OFFSET_ADCmode) | (ALCC << OFFSET_ALCC) | (Prescaler_M << OFFSET_Prescaler) | (PowerDown << OFFSET_PowerDown);
-	uint8_t pData[2] {num_register,val};
+	uint8_t reg = (ADCmode << OFFSET_ADCmode) | (ALCC << OFFSET_ALCC) | (Prescaler_M << OFFSET_Prescaler) | (PowerDown << OFFSET_PowerDown);
 	// Hal I2C handles the ack normally
-	if (HAL_I2C_Master_Transmit(&hi2c,address,pData,1,TIMEOUT) != HAL_OK){
+	if (HAL_I2C_Mem_Write(&hi2c,address,(uint16_t)num_register,1,&reg,1,TIMEOUT) != HAL_OK){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in initializing the device with the I2C bus";
 		stream >> mes;
 		throw (mes);
 	}
+}
+
+/**
+  * @brief Set the desired initial SOC in mAh
+  * @param  SOC value in mAh
+  * @retval Effective SOC value (regarding truncature effects)
+*/
+void Coulomb_meter::Set_SOC_mAh(float SOC_mAh){
+	Coulomb_meter::SOC_mAh=SOC_mAh;
+}
+
+/**
+  * @brief get the actual SOC in the device
+  * @param  none
+  * @retval Effective SOC value
+  */
+float Coulomb_meter::Get_SOC_mAh(){
+	SOC_mAh=0;
+	uint8_t* pData = new uint8_t;
+	// Get MSB
+	if (HAL_I2C_Mem_Read(&hi2c,address,C_AccumulateChargeMSB,1,pData,1,TIMEOUT) != HAL_OK){
+		stringstream stream;
+		string mes;
+		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting the accumulated charge (MSB) with the I2C bus";
+		stream >> mes;
+		throw (mes);
+	}else{
+		SOC_mAh += (*pData)*(float)STEP_ACCUMULATED_CHARGE*256;
+	}
+	// Get LSB
+	if (HAL_I2C_Mem_Read(&hi2c,address,D_AccumulateChargeLSB,1,pData,1,TIMEOUT) != HAL_OK){
+		stringstream stream;
+		string mes;
+		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting the accumulated charge (LSB) with the I2C bus";
+		stream >> mes;
+		throw (mes);
+	}else{
+		SOC_mAh += (*pData)*STEP_ACCUMULATED_CHARGE;
+	}
+	return SOC_mAh;
+}
+
+/**
+  * @brief get the actual analog values
+  * La fonction retourne l'ensemble des 3 valeurs analogiques.
+  * Le LTC est supposé avoir été lancé auparavant.
+  * La conversion dure approximativement 33ms pour le voltage 4.5ms pour le courant
+  * et la température.
+  * Soit un lancement est opéré toutes les 50ms (pour être tranquille) puis le résultat est mesuré
+  * Soit on met le circuit en mode automatique continue.
+  * Il n'y  a pas de flag de fin de conversion.
+
+  * @param  none
+  * @retval Structure LTC2944_AnalogVal_Typedef
+  */
+LTC2944_AnalogVal_Typedef Coulomb_meter::Get_AnalogVal(){
+	uint8_t* pData = new uint8_t;
+	// Get Voltage_MSB
+	if (HAL_I2C_Mem_Read(&hi2c,address,I_Voltage_MSB,1,pData,1,TIMEOUT) != HAL_OK){
+		stringstream stream;
+		string mes;
+		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting I_Voltage_MSB with the I2C bus";
+		stream >> mes;
+		throw (mes);
+	}else{
+		values.Voltage_V += (*pData)*STEP_ACCUMULATED_CHARGE;
+	}
+	return values;
 }
