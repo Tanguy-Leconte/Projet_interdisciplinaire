@@ -32,13 +32,19 @@ const uint16_t TAB_PRESCALER_M[8] {1,4,16,64,256,1024,4096,4096};
 // #define MAX_VAL_Prescaler	0x07 //not used because set in the code, see DEFAULT_Prescaler
 #define MAX_VAL_PowerDown	0x01
 
-#define TIMEOUT				0xFFFF
+#define TIMEOUT				5000
 
 extern I2C_HandleTypeDef hi2c1;
 
 // ########### FONCTIONS TEST ################
 void Test_coulomb_meter(){
 	Coulomb_meter Explorateur(hi2c1);
+	LTC2944_AnalogVal_Typedef values;
+
+	while(1){
+		values = Explorateur.Get_AnalogVal();
+		HAL_Delay(1000);
+	}
 }
 
 // ########### 		CLASS		###############

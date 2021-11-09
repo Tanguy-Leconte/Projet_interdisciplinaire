@@ -66,7 +66,7 @@
 #include "stm32l4xx_hal.h"
 
 // ########### 		DEFINE		###############
-#define LTC2944_Slave7bitsAdr (0x64<<1)  //@slave I2C LTC2944
+#define LTC2944_Slave7bitsAdr 	(0x64<<1)  //@slave I2C LTC2944
 // HARDWARE CHOICE
 #define DEF_R_SENSE				0.006
 // Step between each value for the LTC2944 => 34µAh

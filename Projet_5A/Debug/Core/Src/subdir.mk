@@ -7,7 +7,6 @@
 C_SRCS += \
 ../Core/Src/I2C.c \
 ../Core/Src/encoder.c \
-../Core/Src/main.c \
 ../Core/Src/pwm.c \
 ../Core/Src/stm32l4xx_hal_msp.c \
 ../Core/Src/stm32l4xx_it.c \
@@ -16,12 +15,12 @@ C_SRCS += \
 ../Core/Src/system_stm32l4xx.c 
 
 CPP_SRCS += \
-../Core/Src/Coulomb_meter.cpp 
+../Core/Src/Coulomb_meter.cpp \
+../Core/Src/main.cpp 
 
 C_DEPS += \
 ./Core/Src/I2C.d \
 ./Core/Src/encoder.d \
-./Core/Src/main.d \
 ./Core/Src/pwm.d \
 ./Core/Src/stm32l4xx_hal_msp.d \
 ./Core/Src/stm32l4xx_it.d \
@@ -42,7 +41,8 @@ OBJS += \
 ./Core/Src/system_stm32l4xx.o 
 
 CPP_DEPS += \
-./Core/Src/Coulomb_meter.d 
+./Core/Src/Coulomb_meter.d \
+./Core/Src/main.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
