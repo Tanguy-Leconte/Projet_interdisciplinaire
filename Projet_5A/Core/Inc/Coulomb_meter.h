@@ -71,6 +71,19 @@
 #define DEF_R_SENSE				0.006
 // Step between each value for the LTC2944 => 34µAh
 #define STEP_ACCUMULATED_CHARGE	0.034	// in mAh
+//#### VOLTAGE #####
+// FSR ADC 16-bits LTC294
+#define FSR_ADC_VOLTAGE			70.8	// in V
+#define STEP_ADC_VOLTAGE		0xffff	//
+// TODO : Verify the current value, if it's wrong shift the value 4 times to the left => >>4
+//#### CURRENT #####
+#define FSR_ADC_CURRENT			64		// in mV
+#define STEP_ADC_CURRENT		0x7fff	//
+//#### TEMPERATURE #####
+//TODO : Verify the measure
+#define FSR_ADC_TEMP			510		// in K
+#define STEP_ADC_TEMP			0xffff	//
+
 
 // ###########		STRUCTURE	###############
 typedef struct
