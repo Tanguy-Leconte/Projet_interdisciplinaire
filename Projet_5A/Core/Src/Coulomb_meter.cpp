@@ -34,6 +34,13 @@ const uint16_t TAB_PRESCALER_M[8] {1,4,16,64,256,1024,4096,4096};
 
 #define TIMEOUT				0xFFFF
 
+extern I2C_HandleTypeDef hi2c1;
+
+// ########### FONCTIONS TEST ################
+void Test_coulomb_meter(){
+	Coulomb_meter Explorateur(hi2c1);
+}
+
 // ########### 		CLASS		###############
 //CONSTRUCTORS
 	/*
