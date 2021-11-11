@@ -15,6 +15,7 @@ C_SRCS += \
 ../Core/Src/system_stm32l4xx.c 
 
 CPP_SRCS += \
+../Core/Src/Boost.cpp \
 ../Core/Src/Coulomb_meter.cpp \
 ../Core/Src/main.cpp 
 
@@ -29,6 +30,7 @@ C_DEPS += \
 ./Core/Src/system_stm32l4xx.d 
 
 OBJS += \
+./Core/Src/Boost.o \
 ./Core/Src/Coulomb_meter.o \
 ./Core/Src/I2C.o \
 ./Core/Src/encoder.o \
@@ -41,6 +43,7 @@ OBJS += \
 ./Core/Src/system_stm32l4xx.o 
 
 CPP_DEPS += \
+./Core/Src/Boost.d \
 ./Core/Src/Coulomb_meter.d \
 ./Core/Src/main.d 
 

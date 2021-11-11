@@ -1,3 +1,4 @@
+"./Core/Src/Boost.o"
 "./Core/Src/Coulomb_meter.o"
 "./Core/Src/I2C.o"
 "./Core/Src/encoder.o"
