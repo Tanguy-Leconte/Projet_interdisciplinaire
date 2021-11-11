@@ -7,7 +7,6 @@
 C_SRCS += \
 ../Core/Src/I2C.c \
 ../Core/Src/encoder.c \
-../Core/Src/main.c \
 ../Core/Src/pwm.c \
 ../Core/Src/stm32l4xx_hal_msp.c \
 ../Core/Src/stm32l4xx_it.c \
@@ -22,7 +21,6 @@ CPP_SRCS += \
 C_DEPS += \
 ./Core/Src/I2C.d \
 ./Core/Src/encoder.d \
-./Core/Src/main.d \
 ./Core/Src/pwm.d \
 ./Core/Src/stm32l4xx_hal_msp.d \
 ./Core/Src/stm32l4xx_it.d \

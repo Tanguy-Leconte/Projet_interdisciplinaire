@@ -241,3 +241,71 @@ LTC2944_AnalogVal_Typedef Coulomb_meter::Get_AnalogVal(){
 
 	return values;
 }
+
+/**
+  * @brief set the device in lowpower mode (no measure), analog part disable
+  * @param  none
+  * @retval none
+  */
+void Coulomb_meter::Set_LowPowerMode(){
+	uint8_t reg = 0;
+	// we read the actual value of the control register to change the Power shutdown bit
+	if (HAL_I2C_Mem_Read(&hi2c,address_r,B_Control,1,&reg,1,TIMEOUT) != HAL_OK){
+		stringstream stream;
+		string mes;
+		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting B_Control with the I2C bus";
+		stream >> mes;
+		throw (mes);
+	}
+
+	// We change the power shutdown bit to 1 => shuts down the analog part of the device
+	if ((reg & 0x1) == 1){
+		// The analog part is already off
+		return;
+	}else{
+		reg |= 0x1;
+	}
+
+	// Hal I2C handles the ack normally
+	if (HAL_I2C_Mem_Write(&hi2c,address_w,B_Control,1,&reg,1,TIMEOUT) != HAL_OK){
+		stringstream stream;
+		string mes;
+		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in writing the control register of the device with the I2C bus";
+		stream >> mes;
+		throw (mes);
+	}
+}
+
+/**
+  * @brief set device in normal mode (analog part enable)
+  * @param  none
+  * @retval none
+  */
+void Coulomb_meter::Set_NormalMode(){
+	uint8_t reg = 0;
+	// we read the actual value of the control register to change the Power shutdown bit
+	if (HAL_I2C_Mem_Read(&hi2c,address_r,B_Control,1,&reg,1,TIMEOUT) != HAL_OK){
+		stringstream stream;
+		string mes;
+		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting B_Control with the I2C bus";
+		stream >> mes;
+		throw (mes);
+	}
+
+	// We change the power shutdown bit to 0 => enables the analog part of the device
+	if ((reg & 0x1) == 0){
+		// The analog part is already on
+		return;
+	}else{
+		reg &= 0xfe;
+	}
+
+	// Hal I2C handles the ack normally
+	if (HAL_I2C_Mem_Write(&hi2c,address_w,B_Control,1,&reg,1,TIMEOUT) != HAL_OK){
+		stringstream stream;
+		string mes;
+		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in writing the control register of the device with the I2C bus";
+		stream >> mes;
+		throw (mes);
+	}
+}

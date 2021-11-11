@@ -7,43 +7,43 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   1 .text         00026c8c  08000190  08000190  00010190  2**4
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       00004a50  08026e20  08026e20  00036e20  2**3
+  2 .rodata       00004ac8  08026e20  08026e20  00036e20  2**3
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .ARM.extab    00000138  0802b870  0802b870  0003b870  2**2
+  3 .ARM.extab    00000138  0802b8e8  0802b8e8  0003b8e8  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  4 .ARM          00000108  0802b9a8  0802b9a8  0003b9a8  2**2
+  4 .ARM          00000108  0802ba20  0802ba20  0003ba20  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  5 .preinit_array 00000000  0802bab0  0802bab0  000402d4  2**0
+  5 .preinit_array 00000000  0802bb28  0802bb28  000402d4  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .init_array   0000001c  0802bab0  0802bab0  0003bab0  2**2
+  6 .init_array   0000001c  0802bb28  0802bb28  0003bb28  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  7 .fini_array   00000004  0802bacc  0802bacc  0003bacc  2**2
+  7 .fini_array   00000004  0802bb44  0802bb44  0003bb44  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  8 .data         000002d4  20000000  0802bad0  00040000  2**3
+  8 .data         000002d4  20000000  0802bb48  00040000  2**3
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          000011a0  200002d4  0802bda4  000402d4  2**2
+  9 .bss          000011a0  200002d4  0802be1c  000402d4  2**2
                   ALLOC
- 10 ._user_heap_stack 00000604  20001474  0802bda4  00041474  2**0
+ 10 ._user_heap_stack 00000604  20001474  0802be1c  00041474  2**0
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  000402d4  2**0
                   CONTENTS, READONLY
- 12 .debug_info   00012971  00000000  00000000  00040304  2**0
+ 12 .debug_info   00012a88  00000000  00000000  00040304  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 00002628  00000000  00000000  00052c75  2**0
+ 13 .debug_abbrev 00002667  00000000  00000000  00052d8c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 00000a60  00000000  00000000  000552a0  2**3
+ 14 .debug_aranges 00000a70  00000000  00000000  000553f8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_ranges 00000a58  00000000  00000000  00055d00  2**3
+ 15 .debug_ranges 00000ac8  00000000  00000000  00055e68  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  0002928d  00000000  00000000  00056758  2**0
+ 16 .debug_macro  0002928d  00000000  00000000  00056930  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0000cf77  00000000  00000000  0007f9e5  2**0
+ 17 .debug_line   0000d0e7  00000000  00000000  0007fbbd  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000f0d29  00000000  00000000  0008c95c  2**0
+ 18 .debug_str    000f0d29  00000000  00000000  0008cca4  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000053  00000000  00000000  0017d685  2**0
+ 19 .comment      00000053  00000000  00000000  0017d9cd  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00019228  00000000  00000000  0017d6d8  2**2
+ 20 .debug_frame  00019280  00000000  00000000  0017da20  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -1460,8 +1460,8 @@ Disassembly of section .text:
  8001120:	e7df      	b.n	80010e2 <get_eit_entry+0x4e>
  8001122:	bf00      	nop
  8001124:	00000000 	.word	0x00000000
- 8001128:	0802bab0 	.word	0x0802bab0
- 800112c:	0802b9a8 	.word	0x0802b9a8
+ 8001128:	0802bb28 	.word	0x0802bb28
+ 800112c:	0802ba20 	.word	0x0802ba20
 
 08001130 <restore_non_core_regs>:
  8001130:	6803      	ldr	r3, [r0, #0]
@@ -2993,7 +2993,7 @@ Coulomb_meter::Coulomb_meter(I2C_HandleTypeDef hi2c, uint8_t ADCmode, uint8_t AL
  8001f72:	701a      	strb	r2, [r3, #0]
  8001f74:	1d3b      	adds	r3, r7, #4
  8001f76:	681b      	ldr	r3, [r3, #0]
- 8001f78:	22c9      	movs	r2, #201	; 0xc9
+ 8001f78:	22c8      	movs	r2, #200	; 0xc8
  8001f7a:	705a      	strb	r2, [r3, #1]
  8001f7c:	1d3b      	adds	r3, r7, #4
  8001f7e:	681b      	ldr	r3, [r3, #0]
@@ -3225,7 +3225,7 @@ Coulomb_meter::Coulomb_meter(I2C_HandleTypeDef hi2c, uint8_t ADCmode, uint8_t AL
  8002180:	08026e20 	.word	0x08026e20
  8002184:	08026e24 	.word	0x08026e24
  8002188:	08026e2c 	.word	0x08026e2c
- 800218c:	08027054 	.word	0x08027054
+ 800218c:	080270cc 	.word	0x080270cc
  8002190:	08026e34 	.word	0x08026e34
  8002194:	08026e40 	.word	0x08026e40
  8002198:	08026e48 	.word	0x08026e48
@@ -3233,7 +3233,7 @@ Coulomb_meter::Coulomb_meter(I2C_HandleTypeDef hi2c, uint8_t ADCmode, uint8_t AL
  80021a0:	08026e74 	.word	0x08026e74
  80021a4:	08026ea4 	.word	0x08026ea4
  80021a8:	0801777d 	.word	0x0801777d
- 80021ac:	08027064 	.word	0x08027064
+ 80021ac:	080270dc 	.word	0x080270dc
 
 080021b0 <_ZN13Coulomb_meter4initEv>:
 
@@ -3369,7 +3369,7 @@ void Coulomb_meter::init(){
  80022d8:	08026e68 	.word	0x08026e68
  80022dc:	08026eb0 	.word	0x08026eb0
  80022e0:	0801777d 	.word	0x0801777d
- 80022e4:	08027064 	.word	0x08027064
+ 80022e4:	080270dc 	.word	0x080270dc
 
 080022e8 <_ZN13Coulomb_meter13Get_AnalogValEv>:
   * Il n'y  a pas de flag de fin de conversion.
@@ -3746,7 +3746,7 @@ LTC2944_AnalogVal_Typedef Coulomb_meter::Get_AnalogVal(){
  8002650:	08026e68 	.word	0x08026e68
  8002654:	08026f70 	.word	0x08026f70
  8002658:	0801777d 	.word	0x0801777d
- 800265c:	08027064 	.word	0x08027064
+ 800265c:	080270dc 	.word	0x080270dc
  8002660:	477fff00 	.word	0x477fff00
  8002664:	08026fa4 	.word	0x08026fa4
  8002668:	42800000 	.word	0x42800000
@@ -4066,7 +4066,7 @@ LTC2944_AnalogVal_Typedef Coulomb_meter::Get_AnalogVal(){
  800297c:	08026e68 	.word	0x08026e68
  8002980:	08026fd8 	.word	0x08026fd8
  8002984:	0801777d 	.word	0x0801777d
- 8002988:	08027064 	.word	0x08027064
+ 8002988:	080270dc 	.word	0x080270dc
  800298c:	08027010 	.word	0x08027010
  8002990:	477fff00 	.word	0x477fff00
  8002994:	43ff0000 	.word	0x43ff0000
@@ -5224,7 +5224,7 @@ LoopForever:
   ldr   sp, =_estack    /* Set stack pointer */
  8002efc:	20018000 	.word	0x20018000
 	ldr	r3, =_sidata
- 8002f00:	0802bad0 	.word	0x0802bad0
+ 8002f00:	0802bb48 	.word	0x0802bb48
 	ldr	r0, =_sdata
  8002f04:	20000000 	.word	0x20000000
 	ldr	r3, =_edata
@@ -8867,7 +8867,7 @@ HAL_StatusTypeDef HAL_RCC_OscConfig(RCC_OscInitTypeDef  *RCC_OscInitStruct)
  80043a8:	e011      	b.n	80043ce <HAL_RCC_OscConfig+0x2ba>
  80043aa:	bf00      	nop
  80043ac:	40021000 	.word	0x40021000
- 80043b0:	080270a4 	.word	0x080270a4
+ 80043b0:	0802711c 	.word	0x0802711c
  80043b4:	20000008 	.word	0x20000008
  80043b8:	2000000c 	.word	0x2000000c
         {
@@ -10125,7 +10125,7 @@ HAL_StatusTypeDef HAL_RCC_ClockConfig(RCC_ClkInitTypeDef  *RCC_ClkInitStruct, ui
  8004a8e:	bf00      	nop
  8004a90:	40022000 	.word	0x40022000
  8004a94:	40021000 	.word	0x40021000
- 8004a98:	080270a4 	.word	0x080270a4
+ 8004a98:	0802711c 	.word	0x0802711c
  8004a9c:	20000008 	.word	0x20000008
  8004aa0:	2000000c 	.word	0x2000000c
 
@@ -10330,7 +10330,7 @@ uint32_t HAL_RCC_GetSysClockFreq(void)
  8004ba8:	4770      	bx	lr
  8004baa:	bf00      	nop
  8004bac:	40021000 	.word	0x40021000
- 8004bb0:	080270b4 	.word	0x080270b4
+ 8004bb0:	0802712c 	.word	0x0802712c
  8004bb4:	00f42400 	.word	0x00f42400
  8004bb8:	007a1200 	.word	0x007a1200
 
@@ -12319,7 +12319,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800563c:	f000 fd45 	bl	80060ca <_ZNSt9type_infoD1Ev>
  8005640:	4620      	mov	r0, r4
  8005642:	bd10      	pop	{r4, pc}
- 8005644:	0802711c 	.word	0x0802711c
+ 8005644:	08027194 	.word	0x08027194
 
 08005648 <_ZN10__cxxabiv117__class_type_infoD0Ev>:
  8005648:	b510      	push	{r4, lr}
@@ -12651,8 +12651,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8005902:	e7e7      	b.n	80058d4 <__cxa_type_match+0x80>
  8005904:	4607      	mov	r7, r0
  8005906:	e7f0      	b.n	80058ea <__cxa_type_match+0x96>
- 8005908:	08027140 	.word	0x08027140
- 800590c:	08027148 	.word	0x08027148
+ 8005908:	080271b8 	.word	0x080271b8
+ 800590c:	080271c0 	.word	0x080271c0
 
 08005910 <__cxa_begin_cleanup>:
  8005910:	b510      	push	{r4, lr}
@@ -13360,7 +13360,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8005fd4:	f7ff fb2e 	bl	8005634 <_ZN10__cxxabiv117__class_type_infoD1Ev>
  8005fd8:	4620      	mov	r0, r4
  8005fda:	bd10      	pop	{r4, pc}
- 8005fdc:	080271d0 	.word	0x080271d0
+ 8005fdc:	08027248 	.word	0x08027248
 
 08005fe0 <_ZN10__cxxabiv120__si_class_type_infoD0Ev>:
  8005fe0:	b510      	push	{r4, lr}
@@ -13648,7 +13648,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8006244:	2200      	movs	r2, #0
  8006246:	f018 b811 	b.w	801e26c <_ZNSt6locale5facet18_S_create_c_localeERPiPKcS1_>
  800624a:	bf00      	nop
- 800624c:	08027209 	.word	0x08027209
+ 800624c:	08027281 	.word	0x08027281
  8006250:	2000036c 	.word	0x2000036c
 
 08006254 <_ZNSt6locale5facet15_S_get_c_localeEv>:
@@ -13664,7 +13664,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
 08006268 <_ZNSt6locale5facet13_S_get_c_nameEv>:
  8006268:	4800      	ldr	r0, [pc, #0]	; (800626c <_ZNSt6locale5facet13_S_get_c_nameEv+0x4>)
  800626a:	4770      	bx	lr
- 800626c:	08027209 	.word	0x08027209
+ 800626c:	08027281 	.word	0x08027281
 
 08006270 <_ZNSt6locale5_ImplD1Ev>:
  8006270:	b538      	push	{r3, r4, r5, lr}
@@ -13909,7 +13909,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80064b4:	e7b6      	b.n	8006424 <_ZNSt6locale5_Impl16_M_install_facetEPKNS_2idEPKNS_5facetE+0xc0>
  80064b6:	e8bd 8ff8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, sl, fp, pc}
  80064ba:	bf00      	nop
- 80064bc:	08027228 	.word	0x08027228
+ 80064bc:	080272a0 	.word	0x080272a0
 
 080064c0 <_ZNSt6locale5_Impl16_M_install_cacheEPKNS_5facetEj>:
  80064c0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
@@ -13969,7 +13969,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8006546:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
  800654a:	bf00      	nop
  800654c:	20000360 	.word	0x20000360
- 8006550:	08027228 	.word	0x08027228
+ 8006550:	080272a0 	.word	0x080272a0
 
 08006554 <_ZN12_GLOBAL__N_116get_locale_mutexEv>:
  8006554:	b510      	push	{r4, lr}
@@ -14286,38 +14286,38 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80068c8:	200010ec 	.word	0x200010ec
  80068cc:	2000142c 	.word	0x2000142c
  80068d0:	2000047c 	.word	0x2000047c
- 80068d4:	08027330 	.word	0x08027330
+ 80068d4:	080273a8 	.word	0x080273a8
  80068d8:	20000398 	.word	0x20000398
  80068dc:	20001314 	.word	0x20001314
  80068e0:	200011dc 	.word	0x200011dc
- 80068e4:	08029040 	.word	0x08029040
+ 80068e4:	080290b8 	.word	0x080290b8
  80068e8:	200013b0 	.word	0x200013b0
  80068ec:	200011ec 	.word	0x200011ec
- 80068f0:	0802907c 	.word	0x0802907c
+ 80068f0:	080290f4 	.word	0x080290f4
  80068f4:	200013ac 	.word	0x200013ac
  80068f8:	20001104 	.word	0x20001104
  80068fc:	20001308 	.word	0x20001308
  8006900:	2000079c 	.word	0x2000079c
- 8006904:	080272c8 	.word	0x080272c8
+ 8006904:	08027340 	.word	0x08027340
  8006908:	2000043c 	.word	0x2000043c
  800690c:	20001324 	.word	0x20001324
- 8006910:	080272b8 	.word	0x080272b8
+ 8006910:	08027330 	.word	0x08027330
  8006914:	20000448 	.word	0x20000448
  8006918:	20001320 	.word	0x20001320
  800691c:	200003e0 	.word	0x200003e0
- 8006920:	08028200 	.word	0x08028200
+ 8006920:	08028278 	.word	0x08028278
  8006924:	2000131c 	.word	0x2000131c
  8006928:	200003f0 	.word	0x200003f0
- 800692c:	08028218 	.word	0x08028218
+ 800692c:	08028290 	.word	0x08028290
  8006930:	20001318 	.word	0x20001318
- 8006934:	080290ac 	.word	0x080290ac
+ 8006934:	08029124 	.word	0x08029124
  8006938:	20000400 	.word	0x20000400
  800693c:	200013a8 	.word	0x200013a8
  8006940:	200003b0 	.word	0x200003b0
- 8006944:	08028230 	.word	0x08028230
+ 8006944:	080282a8 	.word	0x080282a8
  8006948:	20001310 	.word	0x20001310
  800694c:	200003c0 	.word	0x200003c0
- 8006950:	080291ac 	.word	0x080291ac
+ 8006950:	08029224 	.word	0x08029224
  8006954:	200013a4 	.word	0x200013a4
  8006958:	20000378 	.word	0x20000378
  800695c:	2000130c 	.word	0x2000130c
@@ -14326,21 +14326,21 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8006968:	200010f8 	.word	0x200010f8
  800696c:	20001430 	.word	0x20001430
  8006970:	200004e4 	.word	0x200004e4
- 8006974:	08027340 	.word	0x08027340
+ 8006974:	080273b8 	.word	0x080273b8
  8006978:	200003a4 	.word	0x200003a4
  800697c:	20001354 	.word	0x20001354
  8006980:	200011e4 	.word	0x200011e4
- 8006984:	0802993c 	.word	0x0802993c
+ 8006984:	080299b4 	.word	0x080299b4
  8006988:	20001410 	.word	0x20001410
  800698c:	200011f4 	.word	0x200011f4
- 8006990:	08029978 	.word	0x08029978
+ 8006990:	080299f0 	.word	0x080299f0
  8006994:	2000140c 	.word	0x2000140c
  8006998:	20001110 	.word	0x20001110
  800699c:	20001348 	.word	0x20001348
- 80069a0:	080272e8 	.word	0x080272e8
+ 80069a0:	08027360 	.word	0x08027360
  80069a4:	20000454 	.word	0x20000454
  80069a8:	20001364 	.word	0x20001364
- 80069ac:	080272d8 	.word	0x080272d8
+ 80069ac:	08027350 	.word	0x08027350
  80069b0:	20000460 	.word	0x20000460
  80069b4:	200007e0 	.word	0x200007e0
  80069b8:	20000824 	.word	0x20000824
@@ -14508,33 +14508,33 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8006b98:	20000460 	.word	0x20000460
  8006b9c:	20001360 	.word	0x20001360
  8006ba0:	200003e8 	.word	0x200003e8
- 8006ba4:	08028cd8 	.word	0x08028cd8
+ 8006ba4:	08028d50 	.word	0x08028d50
  8006ba8:	2000135c 	.word	0x2000135c
  8006bac:	200003f8 	.word	0x200003f8
- 8006bb0:	08028cf0 	.word	0x08028cf0
+ 8006bb0:	08028d68 	.word	0x08028d68
  8006bb4:	20001358 	.word	0x20001358
- 8006bb8:	080299a8 	.word	0x080299a8
+ 8006bb8:	08029a20 	.word	0x08029a20
  8006bbc:	20000414 	.word	0x20000414
  8006bc0:	20001408 	.word	0x20001408
  8006bc4:	200003b8 	.word	0x200003b8
- 8006bc8:	08028d08 	.word	0x08028d08
+ 8006bc8:	08028d80 	.word	0x08028d80
  8006bcc:	20001350 	.word	0x20001350
  8006bd0:	200003c8 	.word	0x200003c8
- 8006bd4:	08029aa8 	.word	0x08029aa8
+ 8006bd4:	08029b20 	.word	0x08029b20
  8006bd8:	20001404 	.word	0x20001404
  8006bdc:	20000388 	.word	0x20000388
  8006be0:	2000134c 	.word	0x2000134c
  8006be4:	200003d0 	.word	0x200003d0
- 8006be8:	08027680 	.word	0x08027680
+ 8006be8:	080276f8 	.word	0x080276f8
  8006bec:	2000120c 	.word	0x2000120c
  8006bf0:	200003d8 	.word	0x200003d8
- 8006bf4:	08027628 	.word	0x08027628
+ 8006bf4:	080276a0 	.word	0x080276a0
  8006bf8:	20001204 	.word	0x20001204
  8006bfc:	2000046c 	.word	0x2000046c
- 8006c00:	08027654 	.word	0x08027654
+ 8006c00:	080276cc 	.word	0x080276cc
  8006c04:	20001208 	.word	0x20001208
  8006c08:	20000474 	.word	0x20000474
- 8006c0c:	080275fc 	.word	0x080275fc
+ 8006c0c:	08027674 	.word	0x08027674
  8006c10:	20001200 	.word	0x20001200
  8006c14:	2000079c 	.word	0x2000079c
  8006c18:	2000047c 	.word	0x2000047c
@@ -14620,7 +14620,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8006cdc:	f7ff fa98 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  8006ce0:	4620      	mov	r0, r4
  8006ce2:	bd10      	pop	{r4, pc}
- 8006ce4:	080272b8 	.word	0x080272b8
+ 8006ce4:	08027330 	.word	0x08027330
 
 08006ce8 <_ZNSt18__moneypunct_cacheIcLb1EED0Ev>:
  8006ce8:	b510      	push	{r4, lr}
@@ -14655,7 +14655,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8006d2c:	f7ff fa70 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  8006d30:	4620      	mov	r0, r4
  8006d32:	bd10      	pop	{r4, pc}
- 8006d34:	080272c8 	.word	0x080272c8
+ 8006d34:	08027340 	.word	0x08027340
 
 08006d38 <_ZNSt18__moneypunct_cacheIcLb0EED0Ev>:
  8006d38:	b510      	push	{r4, lr}
@@ -14690,7 +14690,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8006d7c:	f7ff fa48 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  8006d80:	4620      	mov	r0, r4
  8006d82:	bd10      	pop	{r4, pc}
- 8006d84:	080272d8 	.word	0x080272d8
+ 8006d84:	08027350 	.word	0x08027350
 
 08006d88 <_ZNSt18__moneypunct_cacheIwLb1EED0Ev>:
  8006d88:	b510      	push	{r4, lr}
@@ -14725,7 +14725,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8006dcc:	f7ff fa20 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  8006dd0:	4620      	mov	r0, r4
  8006dd2:	bd10      	pop	{r4, pc}
- 8006dd4:	080272e8 	.word	0x080272e8
+ 8006dd4:	08027360 	.word	0x08027360
 
 08006dd8 <_ZNSt18__moneypunct_cacheIwLb0EED0Ev>:
  8006dd8:	b510      	push	{r4, lr}
@@ -14786,9 +14786,9 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8006e5c:	f882 1038 	strb.w	r1, [r2, #56]	; 0x38
  8006e60:	d1f7      	bne.n	8006e52 <_ZNSt10moneypunctIcLb1EE24_M_initialize_moneypunctEPiPKc+0x66>
  8006e62:	bd38      	pop	{r3, r4, r5, pc}
- 8006e64:	080272b8 	.word	0x080272b8
- 8006e68:	0802b42d 	.word	0x0802b42d
- 8006e6c:	0802a148 	.word	0x0802a148
+ 8006e64:	08027330 	.word	0x08027330
+ 8006e68:	0802b4a5 	.word	0x0802b4a5
+ 8006e6c:	0802a1c0 	.word	0x0802a1c0
  8006e70:	20000024 	.word	0x20000024
 
 08006e74 <_ZNSt10moneypunctIcLb0EE24_M_initialize_moneypunctEPiPKc>:
@@ -14840,9 +14840,9 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8006ee4:	f882 1038 	strb.w	r1, [r2, #56]	; 0x38
  8006ee8:	d1f7      	bne.n	8006eda <_ZNSt10moneypunctIcLb0EE24_M_initialize_moneypunctEPiPKc+0x66>
  8006eea:	bd38      	pop	{r3, r4, r5, pc}
- 8006eec:	080272c8 	.word	0x080272c8
- 8006ef0:	0802b42d 	.word	0x0802b42d
- 8006ef4:	0802a148 	.word	0x0802a148
+ 8006eec:	08027340 	.word	0x08027340
+ 8006ef0:	0802b4a5 	.word	0x0802b4a5
+ 8006ef4:	0802a1c0 	.word	0x0802a1c0
  8006ef8:	20000024 	.word	0x20000024
 
 08006efc <_ZNSt10moneypunctIcLb1EED1Ev>:
@@ -14859,7 +14859,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8006f10:	f7ff f97e 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  8006f14:	4620      	mov	r0, r4
  8006f16:	bd10      	pop	{r4, pc}
- 8006f18:	080290cc 	.word	0x080290cc
+ 8006f18:	08029144 	.word	0x08029144
 
 08006f1c <_ZNSt10moneypunctIcLb1EED0Ev>:
  8006f1c:	b510      	push	{r4, lr}
@@ -14885,7 +14885,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8006f44:	f7ff f964 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  8006f48:	4620      	mov	r0, r4
  8006f4a:	bd10      	pop	{r4, pc}
- 8006f4c:	08029100 	.word	0x08029100
+ 8006f4c:	08029178 	.word	0x08029178
 
 08006f50 <_ZNSt10moneypunctIcLb0EED0Ev>:
  8006f50:	b510      	push	{r4, lr}
@@ -14946,10 +14946,10 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8006fda:	4299      	cmp	r1, r3
  8006fdc:	d1f9      	bne.n	8006fd2 <_ZNSt10moneypunctIwLb1EE24_M_initialize_moneypunctEPiPKc+0x6e>
  8006fde:	bd38      	pop	{r3, r4, r5, pc}
- 8006fe0:	080272d8 	.word	0x080272d8
- 8006fe4:	0802b780 	.word	0x0802b780
- 8006fe8:	0802b42d 	.word	0x0802b42d
- 8006fec:	0802a148 	.word	0x0802a148
+ 8006fe0:	08027350 	.word	0x08027350
+ 8006fe4:	0802b7f8 	.word	0x0802b7f8
+ 8006fe8:	0802b4a5 	.word	0x0802b4a5
+ 8006fec:	0802a1c0 	.word	0x0802a1c0
  8006ff0:	20000024 	.word	0x20000024
 
 08006ff4 <_ZNSt10moneypunctIwLb0EE24_M_initialize_moneypunctEPiPKc>:
@@ -15001,10 +15001,10 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800706a:	4299      	cmp	r1, r3
  800706c:	d1f9      	bne.n	8007062 <_ZNSt10moneypunctIwLb0EE24_M_initialize_moneypunctEPiPKc+0x6e>
  800706e:	bd38      	pop	{r3, r4, r5, pc}
- 8007070:	080272e8 	.word	0x080272e8
- 8007074:	0802b780 	.word	0x0802b780
- 8007078:	0802b42d 	.word	0x0802b42d
- 800707c:	0802a148 	.word	0x0802a148
+ 8007070:	08027360 	.word	0x08027360
+ 8007074:	0802b7f8 	.word	0x0802b7f8
+ 8007078:	0802b4a5 	.word	0x0802b4a5
+ 800707c:	0802a1c0 	.word	0x0802a1c0
  8007080:	20000024 	.word	0x20000024
 
 08007084 <_ZNSt10moneypunctIwLb1EED1Ev>:
@@ -15021,7 +15021,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8007098:	f7ff f8ba 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  800709c:	4620      	mov	r0, r4
  800709e:	bd10      	pop	{r4, pc}
- 80070a0:	080299c8 	.word	0x080299c8
+ 80070a0:	08029a40 	.word	0x08029a40
 
 080070a4 <_ZNSt10moneypunctIwLb1EED0Ev>:
  80070a4:	b510      	push	{r4, lr}
@@ -15047,7 +15047,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80070cc:	f7ff f8a0 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  80070d0:	4620      	mov	r0, r4
  80070d2:	bd10      	pop	{r4, pc}
- 80070d4:	080299fc 	.word	0x080299fc
+ 80070d4:	08029a74 	.word	0x08029a74
 
 080070d8 <_ZNSt10moneypunctIwLb0EED0Ev>:
  80070d8:	b510      	push	{r4, lr}
@@ -15079,7 +15079,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8007114:	f7ff f87c 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  8007118:	4620      	mov	r0, r4
  800711a:	bd10      	pop	{r4, pc}
- 800711c:	08027330 	.word	0x08027330
+ 800711c:	080273a8 	.word	0x080273a8
 
 08007120 <_ZNSt16__numpunct_cacheIcED0Ev>:
  8007120:	b510      	push	{r4, lr}
@@ -15111,7 +15111,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800715c:	f7ff f858 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  8007160:	4620      	mov	r0, r4
  8007162:	bd10      	pop	{r4, pc}
- 8007164:	08027340 	.word	0x08027340
+ 8007164:	080273b8 	.word	0x080273b8
 
 08007168 <_ZNSt16__numpunct_cacheIwED0Ev>:
  8007168:	b510      	push	{r4, lr}
@@ -15181,12 +15181,12 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80071fa:	621a      	str	r2, [r3, #32]
  80071fc:	bd38      	pop	{r3, r4, r5, pc}
  80071fe:	bf00      	nop
- 8007200:	08027330 	.word	0x08027330
- 8007204:	0802b42d 	.word	0x0802b42d
+ 8007200:	080273a8 	.word	0x080273a8
+ 8007204:	0802b4a5 	.word	0x0802b4a5
  8007208:	20000020 	.word	0x20000020
  800720c:	2000001c 	.word	0x2000001c
- 8007210:	080272f0 	.word	0x080272f0
- 8007214:	080272f5 	.word	0x080272f5
+ 8007210:	08027368 	.word	0x08027368
+ 8007214:	0802736d 	.word	0x0802736d
 
 08007218 <_ZNSt8numpunctIcED1Ev>:
  8007218:	4b06      	ldr	r3, [pc, #24]	; (8007234 <_ZNSt8numpunctIcED1Ev+0x1c>)
@@ -15202,7 +15202,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800722c:	f7fe fff0 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  8007230:	4620      	mov	r0, r4
  8007232:	bd10      	pop	{r4, pc}
- 8007234:	0802901c 	.word	0x0802901c
+ 8007234:	08029094 	.word	0x08029094
 
 08007238 <_ZNSt8numpunctIcED0Ev>:
  8007238:	b510      	push	{r4, lr}
@@ -15267,12 +15267,12 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80072ca:	2205      	movs	r2, #5
  80072cc:	621a      	str	r2, [r3, #32]
  80072ce:	bd38      	pop	{r3, r4, r5, pc}
- 80072d0:	08027340 	.word	0x08027340
- 80072d4:	0802b42d 	.word	0x0802b42d
+ 80072d0:	080273b8 	.word	0x080273b8
+ 80072d4:	0802b4a5 	.word	0x0802b4a5
  80072d8:	20000020 	.word	0x20000020
  80072dc:	2000001c 	.word	0x2000001c
- 80072e0:	080272fc 	.word	0x080272fc
- 80072e4:	08027310 	.word	0x08027310
+ 80072e0:	08027374 	.word	0x08027374
+ 80072e4:	08027388 	.word	0x08027388
 
 080072e8 <_ZNSt8numpunctIwED1Ev>:
  80072e8:	4b06      	ldr	r3, [pc, #24]	; (8007304 <_ZNSt8numpunctIwED1Ev+0x1c>)
@@ -15288,7 +15288,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80072fc:	f7fe ff88 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  8007300:	4620      	mov	r0, r4
  8007302:	bd10      	pop	{r4, pc}
- 8007304:	08029918 	.word	0x08029918
+ 8007304:	08029990 	.word	0x08029990
 
 08007308 <_ZNSt8numpunctIwED0Ev>:
  8007308:	b510      	push	{r4, lr}
@@ -15758,7 +15758,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8007712:	3503      	adds	r5, #3
  8007714:	6025      	str	r5, [r4, #0]
  8007716:	bd38      	pop	{r3, r4, r5, pc}
- 8007718:	08027418 	.word	0x08027418
+ 8007718:	08027490 	.word	0x08027490
 
 0800771c <_ZNSt12_GLOBAL__N_17ucs4_inIcEENSt12codecvt_base6resultERNS_5rangeIKT_Lb1EEERNS3_IDiLb1EEEmSt12codecvt_mode>:
  800771c:	b570      	push	{r4, r5, r6, lr}
@@ -16001,7 +16001,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800792a:	2000      	movs	r0, #0
  800792c:	4770      	bx	lr
  800792e:	bf00      	nop
- 8007930:	08027348 	.word	0x08027348
+ 8007930:	080273c0 	.word	0x080273c0
 
 08007934 <_ZNKSt7codecvtIDsDu10_mbstate_tE6do_outERS0_PKDsS4_RS4_PDuS6_RS6_>:
  8007934:	b573      	push	{r0, r1, r4, r5, r6, lr}
@@ -16114,7 +16114,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8007a2c:	f7fe fbf0 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  8007a30:	4620      	mov	r0, r4
  8007a32:	bd10      	pop	{r4, pc}
- 8007a34:	08027370 	.word	0x08027370
+ 8007a34:	080273e8 	.word	0x080273e8
 
 08007a38 <_ZNSt7codecvtIDsc10_mbstate_tED0Ev>:
  8007a38:	b510      	push	{r4, lr}
@@ -16134,7 +16134,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8007a54:	f7fe fbdc 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  8007a58:	4620      	mov	r0, r4
  8007a5a:	bd10      	pop	{r4, pc}
- 8007a5c:	0802739c 	.word	0x0802739c
+ 8007a5c:	08027414 	.word	0x08027414
 
 08007a60 <_ZNSt7codecvtIDic10_mbstate_tED0Ev>:
  8007a60:	b510      	push	{r4, lr}
@@ -16154,7 +16154,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8007a7c:	f7fe fbc8 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  8007a80:	4620      	mov	r0, r4
  8007a82:	bd10      	pop	{r4, pc}
- 8007a84:	080273c8 	.word	0x080273c8
+ 8007a84:	08027440 	.word	0x08027440
 
 08007a88 <_ZNSt7codecvtIDsDu10_mbstate_tED0Ev>:
  8007a88:	b510      	push	{r4, lr}
@@ -16174,7 +16174,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8007aa4:	f7fe fbb4 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  8007aa8:	4620      	mov	r0, r4
  8007aaa:	bd10      	pop	{r4, pc}
- 8007aac:	080273f4 	.word	0x080273f4
+ 8007aac:	0802746c 	.word	0x0802746c
 
 08007ab0 <_ZNSt7codecvtIDiDu10_mbstate_tED0Ev>:
  8007ab0:	b510      	push	{r4, lr}
@@ -16606,13 +16606,13 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8007ec0:	20001278 	.word	0x20001278
  8007ec4:	20001284 	.word	0x20001284
  8007ec8:	20001258 	.word	0x20001258
- 8007ecc:	0802917c 	.word	0x0802917c
+ 8007ecc:	080291f4 	.word	0x080291f4
  8007ed0:	200013bc 	.word	0x200013bc
  8007ed4:	20001268 	.word	0x20001268
- 8007ed8:	08029194 	.word	0x08029194
+ 8007ed8:	0802920c 	.word	0x0802920c
  8007edc:	200013b8 	.word	0x200013b8
  8007ee0:	20001248 	.word	0x20001248
- 8007ee4:	080291c0 	.word	0x080291c0
+ 8007ee4:	08029238 	.word	0x08029238
  8007ee8:	200013a0 	.word	0x200013a0
  8007eec:	20001210 	.word	0x20001210
  8007ef0:	2000139c 	.word	0x2000139c
@@ -16624,13 +16624,13 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8007f08:	2000129c 	.word	0x2000129c
  8007f0c:	20001420 	.word	0x20001420
  8007f10:	20001260 	.word	0x20001260
- 8007f14:	08029a78 	.word	0x08029a78
+ 8007f14:	08029af0 	.word	0x08029af0
  8007f18:	2000141c 	.word	0x2000141c
  8007f1c:	20001270 	.word	0x20001270
- 8007f20:	08029a90 	.word	0x08029a90
+ 8007f20:	08029b08 	.word	0x08029b08
  8007f24:	20001418 	.word	0x20001418
  8007f28:	20001250 	.word	0x20001250
- 8007f2c:	08029abc 	.word	0x08029abc
+ 8007f2c:	08029b34 	.word	0x08029b34
  8007f30:	20001400 	.word	0x20001400
  8007f34:	20001220 	.word	0x20001220
  8007f38:	200013fc 	.word	0x200013fc
@@ -17229,7 +17229,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8008462:	4620      	mov	r0, r4
  8008464:	bd10      	pop	{r4, pc}
  8008466:	bf00      	nop
- 8008468:	08027cf4 	.word	0x08027cf4
+ 8008468:	08027d6c 	.word	0x08027d6c
 
 0800846c <_ZNSt13__facet_shims12_GLOBAL__N_113numpunct_shimIcED0Ev>:
  800846c:	b510      	push	{r4, lr}
@@ -17258,7 +17258,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800849c:	f7fe fd2e 	bl	8006efc <_ZNSt10moneypunctIcLb1EED1Ev>
  80084a0:	4620      	mov	r0, r4
  80084a2:	bd10      	pop	{r4, pc}
- 80084a4:	08027e20 	.word	0x08027e20
+ 80084a4:	08027e98 	.word	0x08027e98
 
 080084a8 <_ZNSt13__facet_shims12_GLOBAL__N_115moneypunct_shimIcLb1EED0Ev>:
  80084a8:	b510      	push	{r4, lr}
@@ -17287,7 +17287,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80084d8:	f7fe fd2a 	bl	8006f30 <_ZNSt10moneypunctIcLb0EED1Ev>
  80084dc:	4620      	mov	r0, r4
  80084de:	bd10      	pop	{r4, pc}
- 80084e0:	08027dec 	.word	0x08027dec
+ 80084e0:	08027e64 	.word	0x08027e64
 
 080084e4 <_ZNSt13__facet_shims12_GLOBAL__N_115moneypunct_shimIcLb0EED0Ev>:
  80084e4:	b510      	push	{r4, lr}
@@ -17309,7 +17309,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8008508:	f008 ffe2 	bl	80114d0 <_ZNSt8messagesIcED1Ev>
  800850c:	4620      	mov	r0, r4
  800850e:	bd10      	pop	{r4, pc}
- 8008510:	08027cbc 	.word	0x08027cbc
+ 8008510:	08027d34 	.word	0x08027d34
 
 08008514 <_ZNSt13__facet_shims12_GLOBAL__N_113messages_shimIcED0Ev>:
  8008514:	b510      	push	{r4, lr}
@@ -17336,7 +17336,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8008542:	4620      	mov	r0, r4
  8008544:	bd10      	pop	{r4, pc}
  8008546:	bf00      	nop
- 8008548:	08027d18 	.word	0x08027d18
+ 8008548:	08027d90 	.word	0x08027d90
 
 0800854c <_ZNSt13__facet_shims12_GLOBAL__N_113numpunct_shimIwED0Ev>:
  800854c:	b510      	push	{r4, lr}
@@ -17365,7 +17365,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800857c:	f7fe fd82 	bl	8007084 <_ZNSt10moneypunctIwLb1EED1Ev>
  8008580:	4620      	mov	r0, r4
  8008582:	bd10      	pop	{r4, pc}
- 8008584:	08027e88 	.word	0x08027e88
+ 8008584:	08027f00 	.word	0x08027f00
 
 08008588 <_ZNSt13__facet_shims12_GLOBAL__N_115moneypunct_shimIwLb1EED0Ev>:
  8008588:	b510      	push	{r4, lr}
@@ -17394,7 +17394,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80085b8:	f7fe fd7e 	bl	80070b8 <_ZNSt10moneypunctIwLb0EED1Ev>
  80085bc:	4620      	mov	r0, r4
  80085be:	bd10      	pop	{r4, pc}
- 80085c0:	08027e54 	.word	0x08027e54
+ 80085c0:	08027ecc 	.word	0x08027ecc
 
 080085c4 <_ZNSt13__facet_shims12_GLOBAL__N_115moneypunct_shimIwLb0EED0Ev>:
  80085c4:	b510      	push	{r4, lr}
@@ -17416,7 +17416,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80085e8:	f00f fd4e 	bl	8018088 <_ZNSt8messagesIwED1Ev>
  80085ec:	4620      	mov	r0, r4
  80085ee:	bd10      	pop	{r4, pc}
- 80085f0:	08027cd8 	.word	0x08027cd8
+ 80085f0:	08027d50 	.word	0x08027d50
 
 080085f4 <_ZNSt13__facet_shims12_GLOBAL__N_113messages_shimIwED0Ev>:
  80085f4:	b510      	push	{r4, lr}
@@ -17438,7 +17438,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8008618:	f008 ff72 	bl	8011500 <_ZNSt7collateIcED1Ev>
  800861c:	4620      	mov	r0, r4
  800861e:	bd10      	pop	{r4, pc}
- 8008620:	08027c84 	.word	0x08027c84
+ 8008620:	08027cfc 	.word	0x08027cfc
 
 08008624 <_ZNSt13__facet_shims12_GLOBAL__N_112collate_shimIcED0Ev>:
  8008624:	b510      	push	{r4, lr}
@@ -17460,7 +17460,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8008648:	f008 fe4e 	bl	80112e8 <_ZNSt9money_getIcSt19istreambuf_iteratorIcSt11char_traitsIcEEED1Ev>
  800864c:	4620      	mov	r0, r4
  800864e:	bd10      	pop	{r4, pc}
- 8008650:	08027d8c 	.word	0x08027d8c
+ 8008650:	08027e04 	.word	0x08027e04
 
 08008654 <_ZNSt13__facet_shims12_GLOBAL__N_114money_get_shimIcED0Ev>:
  8008654:	b510      	push	{r4, lr}
@@ -17482,7 +17482,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8008678:	f008 fe40 	bl	80112fc <_ZNSt9money_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEED1Ev>
  800867c:	4620      	mov	r0, r4
  800867e:	bd10      	pop	{r4, pc}
- 8008680:	08027dbc 	.word	0x08027dbc
+ 8008680:	08027e34 	.word	0x08027e34
 
 08008684 <_ZNSt13__facet_shims12_GLOBAL__N_114money_put_shimIcED0Ev>:
  8008684:	b510      	push	{r4, lr}
@@ -17504,7 +17504,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80086a8:	f00f fd06 	bl	80180b8 <_ZNSt7collateIwED1Ev>
  80086ac:	4620      	mov	r0, r4
  80086ae:	bd10      	pop	{r4, pc}
- 80086b0:	08027ca0 	.word	0x08027ca0
+ 80086b0:	08027d18 	.word	0x08027d18
 
 080086b4 <_ZNSt13__facet_shims12_GLOBAL__N_112collate_shimIwED0Ev>:
  80086b4:	b510      	push	{r4, lr}
@@ -17526,7 +17526,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80086d8:	f00f fbe2 	bl	8017ea0 <_ZNSt9money_getIwSt19istreambuf_iteratorIwSt11char_traitsIwEEED1Ev>
  80086dc:	4620      	mov	r0, r4
  80086de:	bd10      	pop	{r4, pc}
- 80086e0:	08027da4 	.word	0x08027da4
+ 80086e0:	08027e1c 	.word	0x08027e1c
 
 080086e4 <_ZNSt13__facet_shims12_GLOBAL__N_114money_get_shimIwED0Ev>:
  80086e4:	b510      	push	{r4, lr}
@@ -17548,7 +17548,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8008708:	f00f fbd4 	bl	8017eb4 <_ZNSt9money_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEED1Ev>
  800870c:	4620      	mov	r0, r4
  800870e:	bd10      	pop	{r4, pc}
- 8008710:	08027dd4 	.word	0x08027dd4
+ 8008710:	08027e4c 	.word	0x08027e4c
 
 08008714 <_ZNSt13__facet_shims12_GLOBAL__N_114money_put_shimIwED0Ev>:
  8008714:	b510      	push	{r4, lr}
@@ -17570,7 +17570,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8008738:	f008 fe12 	bl	8011360 <_ZNSt8time_getIcSt19istreambuf_iteratorIcSt11char_traitsIcEEED1Ev>
  800873c:	4620      	mov	r0, r4
  800873e:	bd10      	pop	{r4, pc}
- 8008740:	08027d3c 	.word	0x08027d3c
+ 8008740:	08027db4 	.word	0x08027db4
 
 08008744 <_ZNSt13__facet_shims12_GLOBAL__N_113time_get_shimIcED0Ev>:
  8008744:	b510      	push	{r4, lr}
@@ -17592,7 +17592,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8008768:	f00f fbd6 	bl	8017f18 <_ZNSt8time_getIwSt19istreambuf_iteratorIwSt11char_traitsIwEEED1Ev>
  800876c:	4620      	mov	r0, r4
  800876e:	bd10      	pop	{r4, pc}
- 8008770:	08027d64 	.word	0x08027d64
+ 8008770:	08027ddc 	.word	0x08027ddc
 
 08008774 <_ZNSt13__facet_shims12_GLOBAL__N_113time_get_shimIwED0Ev>:
  8008774:	b510      	push	{r4, lr}
@@ -18483,41 +18483,41 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8009006:	f04f 0000 	mov.w	r0, #0
  800900a:	f004 fdc0 	bl	800db8e <_ZNSt13__facet_shims23__moneypunct_fill_cacheIwLb1EEEvSt17integral_constantIbLb1EEPKNSt6locale5facetEPSt18__moneypunct_cacheIT_XT0_EE>
  800900e:	e68f      	b.n	8008d30 <_ZNKSt6locale5facet11_M_cow_shimEPKNS_2idE+0x18>
- 8009010:	08027708 	.word	0x08027708
- 8009014:	0802720c 	.word	0x0802720c
+ 8009010:	08027780 	.word	0x08027780
+ 8009014:	08027284 	.word	0x08027284
  8009018:	200013b4 	.word	0x200013b4
- 800901c:	08027330 	.word	0x08027330
- 8009020:	08027cf4 	.word	0x08027cf4
+ 800901c:	080273a8 	.word	0x080273a8
+ 8009020:	08027d6c 	.word	0x08027d6c
  8009024:	20001398 	.word	0x20001398
- 8009028:	08027c84 	.word	0x08027c84
+ 8009028:	08027cfc 	.word	0x08027cfc
  800902c:	200013a0 	.word	0x200013a0
- 8009030:	08027d3c 	.word	0x08027d3c
+ 8009030:	08027db4 	.word	0x08027db4
  8009034:	200013bc 	.word	0x200013bc
- 8009038:	08027d8c 	.word	0x08027d8c
+ 8009038:	08027e04 	.word	0x08027e04
  800903c:	200013b8 	.word	0x200013b8
- 8009040:	08027dbc 	.word	0x08027dbc
+ 8009040:	08027e34 	.word	0x08027e34
  8009044:	200013c0 	.word	0x200013c0
- 8009048:	080272b8 	.word	0x080272b8
- 800904c:	08027e20 	.word	0x08027e20
+ 8009048:	08027330 	.word	0x08027330
+ 800904c:	08027e98 	.word	0x08027e98
  8009050:	200013c4 	.word	0x200013c4
- 8009054:	080272c8 	.word	0x080272c8
- 8009058:	08027dec 	.word	0x08027dec
+ 8009054:	08027340 	.word	0x08027340
+ 8009058:	08027e64 	.word	0x08027e64
  800905c:	2000139c 	.word	0x2000139c
- 8009060:	08027cbc 	.word	0x08027cbc
+ 8009060:	08027d34 	.word	0x08027d34
  8009064:	20001414 	.word	0x20001414
- 8009068:	08027340 	.word	0x08027340
- 800906c:	08027d18 	.word	0x08027d18
+ 8009068:	080273b8 	.word	0x080273b8
+ 800906c:	08027d90 	.word	0x08027d90
  8009070:	200013f8 	.word	0x200013f8
- 8009074:	08027ca0 	.word	0x08027ca0
+ 8009074:	08027d18 	.word	0x08027d18
  8009078:	20001400 	.word	0x20001400
- 800907c:	08027d64 	.word	0x08027d64
+ 800907c:	08027ddc 	.word	0x08027ddc
  8009080:	2000141c 	.word	0x2000141c
- 8009084:	08027da4 	.word	0x08027da4
+ 8009084:	08027e1c 	.word	0x08027e1c
  8009088:	20001418 	.word	0x20001418
- 800908c:	08027dd4 	.word	0x08027dd4
+ 800908c:	08027e4c 	.word	0x08027e4c
  8009090:	20001420 	.word	0x20001420
- 8009094:	080272d8 	.word	0x080272d8
- 8009098:	08027e88 	.word	0x08027e88
+ 8009094:	08027350 	.word	0x08027350
+ 8009098:	08027f00 	.word	0x08027f00
  800909c:	4b21      	ldr	r3, [pc, #132]	; (8009124 <_ZNKSt6locale5facet11_M_cow_shimEPKNS_2idE+0x40c>)
  800909e:	429c      	cmp	r4, r3
  80090a0:	d12d      	bne.n	80090fe <_ZNKSt6locale5facet11_M_cow_shimEPKNS_2idE+0x3e6>
@@ -18572,11 +18572,11 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800911e:	4806      	ldr	r0, [pc, #24]	; (8009138 <_ZNKSt6locale5facet11_M_cow_shimEPKNS_2idE+0x420>)
  8009120:	f007 fe94 	bl	8010e4c <_ZSt19__throw_logic_errorPKc>
  8009124:	20001424 	.word	0x20001424
- 8009128:	080272e8 	.word	0x080272e8
- 800912c:	08027e54 	.word	0x08027e54
+ 8009128:	08027360 	.word	0x08027360
+ 800912c:	08027ecc 	.word	0x08027ecc
  8009130:	200013fc 	.word	0x200013fc
- 8009134:	08027cd8 	.word	0x08027cd8
- 8009138:	080276a4 	.word	0x080276a4
+ 8009134:	08027d50 	.word	0x08027d50
+ 8009138:	0802771c 	.word	0x0802771c
 
 0800913c <_ZNKSt13__facet_shims12__any_stringcvSbIT_St11char_traitsIS1_ESaIS1_EEIcEEv>:
  800913c:	698b      	ldr	r3, [r1, #24]
@@ -18592,7 +18592,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8009156:	b002      	add	sp, #8
  8009158:	bd10      	pop	{r4, pc}
  800915a:	bf00      	nop
- 800915c:	080276d1 	.word	0x080276d1
+ 800915c:	08027749 	.word	0x08027749
 
 08009160 <_ZNKSt13__facet_shims12_GLOBAL__N_112collate_shimIcE12do_transformEPKcS4_>:
  8009160:	b510      	push	{r4, lr}
@@ -18895,7 +18895,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8009446:	b002      	add	sp, #8
  8009448:	bd10      	pop	{r4, pc}
  800944a:	bf00      	nop
- 800944c:	080276d1 	.word	0x080276d1
+ 800944c:	08027749 	.word	0x08027749
 
 08009450 <_ZNKSt13__facet_shims12_GLOBAL__N_112collate_shimIwE12do_transformEPKwS4_>:
  8009450:	b510      	push	{r4, lr}
@@ -19214,7 +19214,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800974c:	4801      	ldr	r0, [pc, #4]	; (8009754 <_ZNKSs8_M_checkEjPKc+0x1c>)
  800974e:	f007 fb83 	bl	8010e58 <_ZSt24__throw_out_of_range_fmtPKcz>
  8009752:	bd08      	pop	{r3, pc}
- 8009754:	08027eb4 	.word	0x08027eb4
+ 8009754:	08027f2c 	.word	0x08027f2c
 
 08009758 <_ZNKSs15_M_check_lengthEjjPKc>:
  8009758:	6800      	ldr	r0, [r0, #0]
@@ -19314,7 +19314,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8009814:	f7ff ffbb 	bl	800978e <_ZNSs7_M_copyEPcPKcj>
  8009818:	4620      	mov	r0, r4
  800981a:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
- 800981c:	08027eeb 	.word	0x08027eeb
+ 800981c:	08027f63 	.word	0x08027f63
 
 08009820 <_ZNSs4swapERSs>:
  8009820:	6803      	ldr	r3, [r0, #0]
@@ -19400,7 +19400,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80098d4:	6082      	str	r2, [r0, #8]
  80098d6:	bd10      	pop	{r4, pc}
  80098d8:	3ffffffc 	.word	0x3ffffffc
- 80098dc:	08027efe 	.word	0x08027efe
+ 80098dc:	08027f76 	.word	0x08027f76
 
 080098e0 <_ZNSs12_S_constructEjcRKSaIcE>:
  80098e0:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
@@ -19598,7 +19598,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8009a90:	f7ff ff7a 	bl	8009988 <_ZNSs9_M_mutateEjjj>
  8009a94:	4620      	mov	r0, r4
  8009a96:	bd70      	pop	{r4, r5, r6, pc}
- 8009a98:	08027f16 	.word	0x08027f16
+ 8009a98:	08027f8e 	.word	0x08027f8e
 
 08009a9c <_ZNSs14_M_replace_auxEjjjc>:
  8009a9c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
@@ -19623,7 +19623,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8009ac8:	f7ff fe79 	bl	80097be <_ZNSs9_M_assignEPcjc>
  8009acc:	4628      	mov	r0, r5
  8009ace:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
- 8009ad0:	08027f2a 	.word	0x08027f2a
+ 8009ad0:	08027fa2 	.word	0x08027fa2
 
 08009ad4 <_ZNSs6assignEjc>:
  8009ad4:	b513      	push	{r0, r1, r4, lr}
@@ -19652,7 +19652,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8009b04:	f7ff ffca 	bl	8009a9c <_ZNSs14_M_replace_auxEjjjc>
  8009b08:	b002      	add	sp, #8
  8009b0a:	bd70      	pop	{r4, r5, r6, pc}
- 8009b0c:	08027f47 	.word	0x08027f47
+ 8009b0c:	08027fbf 	.word	0x08027fbf
 
 08009b10 <_ZNSs6insertEN9__gnu_cxx17__normal_iteratorIPcSsEEc>:
  8009b10:	b537      	push	{r0, r1, r2, r4, r5, lr}
@@ -19736,7 +19736,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8009bc0:	f7ff fdf1 	bl	80097a6 <_ZNSs7_M_moveEPcPKcj>
  8009bc4:	e7f1      	b.n	8009baa <_ZNSs6assignEPKcj+0x52>
  8009bc6:	bf00      	nop
- 8009bc8:	08027f5c 	.word	0x08027f5c
+ 8009bc8:	08027fd4 	.word	0x08027fd4
 
 08009bcc <_ZNSs4_Rep10_M_refcopyEv>:
  8009bcc:	4b03      	ldr	r3, [pc, #12]	; (8009bdc <_ZNSs4_Rep10_M_refcopyEv+0x10>)
@@ -19879,7 +19879,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8009d0e:	440d      	add	r5, r1
  8009d10:	e7e7      	b.n	8009ce2 <_ZNSs6appendEPKcj+0x3e>
  8009d12:	bf00      	nop
- 8009d14:	08027f71 	.word	0x08027f71
+ 8009d14:	08027fe9 	.word	0x08027fe9
 
 08009d18 <_ZNSs6appendEjc>:
  8009d18:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
@@ -19916,7 +19916,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8009d66:	4620      	mov	r0, r4
  8009d68:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
  8009d6a:	bf00      	nop
- 8009d6c:	08027f71 	.word	0x08027f71
+ 8009d6c:	08027fe9 	.word	0x08027fe9
 
 08009d70 <_ZNSs6resizeEjc>:
  8009d70:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
@@ -19942,7 +19942,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8009da0:	4628      	mov	r0, r5
  8009da2:	f7ff fe63 	bl	8009a6c <_ZNSs5eraseEjj>
  8009da6:	e7f6      	b.n	8009d96 <_ZNSs6resizeEjc+0x26>
- 8009da8:	08027f86 	.word	0x08027f86
+ 8009da8:	08027ffe 	.word	0x08027ffe
 
 08009dac <_ZNSs6resizeEj>:
  8009dac:	b508      	push	{r3, lr}
@@ -20027,7 +20027,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8009e5e:	4f02      	ldr	r7, [pc, #8]	; (8009e68 <_ZNSs12_S_constructIPKcEEPcT_S3_RKSaIcESt20forward_iterator_tag+0x48>)
  8009e60:	e7f7      	b.n	8009e52 <_ZNSs12_S_constructIPKcEEPcT_S3_RKSaIcESt20forward_iterator_tag+0x32>
  8009e62:	bf00      	nop
- 8009e64:	08027f9b 	.word	0x08027f9b
+ 8009e64:	08028013 	.word	0x08028013
  8009e68:	200012cc 	.word	0x200012cc
 
 08009e6c <_ZNSsC1EPKcRKSaIcE>:
@@ -20098,7 +20098,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8009ef0:	4801      	ldr	r0, [pc, #4]	; (8009ef8 <_ZNKSbIwSt11char_traitsIwESaIwEE8_M_checkEjPKc+0x1c>)
  8009ef2:	f006 ffb1 	bl	8010e58 <_ZSt24__throw_out_of_range_fmtPKcz>
  8009ef6:	bd08      	pop	{r3, pc}
- 8009ef8:	08027eb4 	.word	0x08027eb4
+ 8009ef8:	08027f2c 	.word	0x08027f2c
 
 08009efc <_ZNKSbIwSt11char_traitsIwESaIwEE15_M_check_lengthEjjPKc>:
  8009efc:	6800      	ldr	r0, [r0, #0]
@@ -20200,7 +20200,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8009fc2:	4620      	mov	r0, r4
  8009fc4:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
  8009fc6:	bf00      	nop
- 8009fc8:	08027eeb 	.word	0x08027eeb
+ 8009fc8:	08027f63 	.word	0x08027f63
 
 08009fcc <_ZNSbIwSt11char_traitsIwESaIwEE4swapERS2_>:
  8009fcc:	6803      	ldr	r3, [r0, #0]
@@ -20269,7 +20269,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800a05e:	6044      	str	r4, [r0, #4]
  800a060:	6082      	str	r2, [r0, #8]
  800a062:	bd10      	pop	{r4, pc}
- 800a064:	08027efe 	.word	0x08027efe
+ 800a064:	08027f76 	.word	0x08027f76
  800a068:	0ffffffe 	.word	0x0ffffffe
 
 0800a06c <_ZNSbIwSt11char_traitsIwESaIwEE12_S_constructEjwRKS1_>:
@@ -20442,7 +20442,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800a1e8:	f7ff ff7e 	bl	800a0e8 <_ZNSbIwSt11char_traitsIwESaIwEE9_M_mutateEjjj>
  800a1ec:	4620      	mov	r0, r4
  800a1ee:	bd70      	pop	{r4, r5, r6, pc}
- 800a1f0:	08027f16 	.word	0x08027f16
+ 800a1f0:	08027f8e 	.word	0x08027f8e
 
 0800a1f4 <_ZNSbIwSt11char_traitsIwESaIwEE14_M_replace_auxEjjjw>:
  800a1f4:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
@@ -20467,7 +20467,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800a220:	f7ff fea0 	bl	8009f64 <_ZNSbIwSt11char_traitsIwESaIwEE9_M_assignEPwjw>
  800a224:	4628      	mov	r0, r5
  800a226:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
- 800a228:	08027f2a 	.word	0x08027f2a
+ 800a228:	08027fa2 	.word	0x08027fa2
 
 0800a22c <_ZNSbIwSt11char_traitsIwESaIwEE6assignEjw>:
  800a22c:	b513      	push	{r0, r1, r4, lr}
@@ -20496,7 +20496,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800a25c:	f7ff ffca 	bl	800a1f4 <_ZNSbIwSt11char_traitsIwESaIwEE14_M_replace_auxEjjjw>
  800a260:	b002      	add	sp, #8
  800a262:	bd70      	pop	{r4, r5, r6, pc}
- 800a264:	08027f47 	.word	0x08027f47
+ 800a264:	08027fbf 	.word	0x08027fbf
 
 0800a268 <_ZNSbIwSt11char_traitsIwESaIwEE15_M_replace_safeEjjPKwj>:
  800a268:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
@@ -20562,7 +20562,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800a2f8:	4638      	mov	r0, r7
  800a2fa:	f7ff fe27 	bl	8009f4c <_ZNSbIwSt11char_traitsIwESaIwEE7_M_moveEPwPKwj>
  800a2fe:	e7f1      	b.n	800a2e4 <_ZNSbIwSt11char_traitsIwESaIwEE6assignEPKwj+0x58>
- 800a300:	08027f5c 	.word	0x08027f5c
+ 800a300:	08027fd4 	.word	0x08027fd4
 
 0800a304 <_ZNSbIwSt11char_traitsIwESaIwEE4_Rep10_M_refcopyEv>:
  800a304:	4b03      	ldr	r3, [pc, #12]	; (800a314 <_ZNSbIwSt11char_traitsIwESaIwEE4_Rep10_M_refcopyEv+0x10>)
@@ -20705,7 +20705,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800a44a:	1bed      	subs	r5, r5, r7
  800a44c:	440d      	add	r5, r1
  800a44e:	e7e6      	b.n	800a41e <_ZNSbIwSt11char_traitsIwESaIwEE6appendEPKwj+0x3e>
- 800a450:	08027f71 	.word	0x08027f71
+ 800a450:	08027fe9 	.word	0x08027fe9
 
 0800a454 <_ZNSbIwSt11char_traitsIwESaIwEE6appendEjw>:
  800a454:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
@@ -20741,7 +20741,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800a4a0:	f7ff fdaa 	bl	8009ff8 <_ZNSbIwSt11char_traitsIwESaIwEE4_Rep26_M_set_length_and_sharableEj>
  800a4a4:	4620      	mov	r0, r4
  800a4a6:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
- 800a4a8:	08027f71 	.word	0x08027f71
+ 800a4a8:	08027fe9 	.word	0x08027fe9
 
 0800a4ac <_ZNSbIwSt11char_traitsIwESaIwEE6resizeEjw>:
  800a4ac:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
@@ -20767,7 +20767,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800a4dc:	4628      	mov	r0, r5
  800a4de:	f7ff fe71 	bl	800a1c4 <_ZNSbIwSt11char_traitsIwESaIwEE5eraseEjj>
  800a4e2:	e7f6      	b.n	800a4d2 <_ZNSbIwSt11char_traitsIwESaIwEE6resizeEjw+0x26>
- 800a4e4:	08027f86 	.word	0x08027f86
+ 800a4e4:	08027ffe 	.word	0x08027ffe
 
 0800a4e8 <_ZNSbIwSt11char_traitsIwESaIwEE6resizeEj>:
  800a4e8:	b508      	push	{r3, lr}
@@ -20851,7 +20851,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800a596:	f006 fc59 	bl	8010e4c <_ZSt19__throw_logic_errorPKc>
  800a59a:	f8df 8008 	ldr.w	r8, [pc, #8]	; 800a5a4 <_ZNSbIwSt11char_traitsIwESaIwEE12_S_constructIPKwEEPwT_S7_RKS1_St20forward_iterator_tag+0x48>
  800a59e:	e7f6      	b.n	800a58e <_ZNSbIwSt11char_traitsIwESaIwEE12_S_constructIPKwEEPwT_S7_RKS1_St20forward_iterator_tag+0x32>
- 800a5a0:	08027f9b 	.word	0x08027f9b
+ 800a5a0:	08028013 	.word	0x08028013
  800a5a4:	200012dc 	.word	0x200012dc
 
 0800a5a8 <_ZNSbIwSt11char_traitsIwESaIwEEC1EPKwRKS1_>:
@@ -20923,7 +20923,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800a630:	f7fb fdee 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  800a634:	4620      	mov	r0, r4
  800a636:	bd10      	pop	{r4, pc}
- 800a638:	08028028 	.word	0x08028028
+ 800a638:	080280a0 	.word	0x080280a0
 
 0800a63c <_ZNSt5ctypeIcED0Ev>:
  800a63c:	b510      	push	{r4, lr}
@@ -20969,8 +20969,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800a68c:	f7fb fdc0 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  800a690:	4620      	mov	r0, r4
  800a692:	bd10      	pop	{r4, pc}
- 800a694:	08028058 	.word	0x08028058
- 800a698:	080298d8 	.word	0x080298d8
+ 800a694:	080280d0 	.word	0x080280d0
+ 800a698:	08029950 	.word	0x08029950
 
 0800a69c <_ZNSt5ctypeIwED0Ev>:
  800a69c:	b510      	push	{r4, lr}
@@ -21030,7 +21030,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800a714:	f000 f98a 	bl	800aa2c <_ZNSt5ctypeIwE19_M_initialize_ctypeEv>
  800a718:	4620      	mov	r0, r4
  800a71a:	bd10      	pop	{r4, pc}
- 800a71c:	08028058 	.word	0x08028058
+ 800a71c:	080280d0 	.word	0x080280d0
 
 0800a720 <_ZNSt5ctypeIcEC1EPKcbj>:
  800a720:	b538      	push	{r3, r4, r5, lr}
@@ -21063,8 +21063,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800a766:	4620      	mov	r0, r4
  800a768:	bd38      	pop	{r3, r4, r5, pc}
  800a76a:	bf00      	nop
- 800a76c:	08028028 	.word	0x08028028
- 800a770:	0802a810 	.word	0x0802a810
+ 800a76c:	080280a0 	.word	0x080280a0
+ 800a770:	0802a888 	.word	0x0802a888
 
 0800a774 <_ZNKSt5ctypeIcE10do_toupperEc>:
  800a774:	6983      	ldr	r3, [r0, #24]
@@ -21169,17 +21169,17 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800a83e:	480b      	ldr	r0, [pc, #44]	; (800a86c <_ZNKSt5ctypeIwE19_M_convert_to_wmaskEc+0x98>)
  800a840:	e7e8      	b.n	800a814 <_ZNKSt5ctypeIwE19_M_convert_to_wmaskEc+0x40>
  800a842:	4770      	bx	lr
- 800a844:	080280b4 	.word	0x080280b4
- 800a848:	0802aa7f 	.word	0x0802aa7f
- 800a84c:	08028096 	.word	0x08028096
- 800a850:	0802809c 	.word	0x0802809c
- 800a854:	080280a2 	.word	0x080280a2
- 800a858:	080280a8 	.word	0x080280a8
- 800a85c:	080280b5 	.word	0x080280b5
- 800a860:	080280ae 	.word	0x080280ae
- 800a864:	080280bb 	.word	0x080280bb
- 800a868:	080280c1 	.word	0x080280c1
- 800a86c:	08028090 	.word	0x08028090
+ 800a844:	0802812c 	.word	0x0802812c
+ 800a848:	0802aaf7 	.word	0x0802aaf7
+ 800a84c:	0802810e 	.word	0x0802810e
+ 800a850:	08028114 	.word	0x08028114
+ 800a854:	0802811a 	.word	0x0802811a
+ 800a858:	08028120 	.word	0x08028120
+ 800a85c:	0802812d 	.word	0x0802812d
+ 800a860:	08028126 	.word	0x08028126
+ 800a864:	08028133 	.word	0x08028133
+ 800a868:	08028139 	.word	0x08028139
+ 800a86c:	08028108 	.word	0x08028108
 
 0800a870 <_ZNKSt5ctypeIwE10do_toupperEw>:
  800a870:	4608      	mov	r0, r1
@@ -21558,7 +21558,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800ab90:	f7fb fb3e 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  800ab94:	4620      	mov	r0, r4
  800ab96:	bd10      	pop	{r4, pc}
- 800ab98:	08028200 	.word	0x08028200
+ 800ab98:	08028278 	.word	0x08028278
 
 0800ab9c <_ZNSt7__cxx119money_getIcSt19istreambuf_iteratorIcSt11char_traitsIcEEED0Ev>:
  800ab9c:	b510      	push	{r4, lr}
@@ -21578,7 +21578,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800abb8:	f7fb fb2a 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  800abbc:	4620      	mov	r0, r4
  800abbe:	bd10      	pop	{r4, pc}
- 800abc0:	08028218 	.word	0x08028218
+ 800abc0:	08028290 	.word	0x08028290
 
 0800abc4 <_ZNSt7__cxx119money_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEED0Ev>:
  800abc4:	b510      	push	{r4, lr}
@@ -21598,7 +21598,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800abe0:	f7fb fb16 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  800abe4:	4620      	mov	r0, r4
  800abe6:	bd10      	pop	{r4, pc}
- 800abe8:	08028230 	.word	0x08028230
+ 800abe8:	080282a8 	.word	0x080282a8
 
 0800abec <_ZNSt7__cxx118time_getIcSt19istreambuf_iteratorIcSt11char_traitsIcEEED0Ev>:
  800abec:	b510      	push	{r4, lr}
@@ -21620,7 +21620,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800ac10:	f7fb fafe 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  800ac14:	4620      	mov	r0, r4
  800ac16:	bd10      	pop	{r4, pc}
- 800ac18:	080281e4 	.word	0x080281e4
+ 800ac18:	0802825c 	.word	0x0802825c
 
 0800ac1c <_ZNSt7__cxx118messagesIcED0Ev>:
  800ac1c:	b510      	push	{r4, lr}
@@ -21642,7 +21642,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800ac40:	f7fb fae6 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  800ac44:	4620      	mov	r0, r4
  800ac46:	bd10      	pop	{r4, pc}
- 800ac48:	0802813c 	.word	0x0802813c
+ 800ac48:	080281b4 	.word	0x080281b4
 
 0800ac4c <_ZNSt7__cxx117collateIcED0Ev>:
  800ac4c:	b510      	push	{r4, lr}
@@ -21936,7 +21936,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800aeca:	4770      	bx	lr
  800aecc:	4604      	mov	r4, r0
  800aece:	e7e7      	b.n	800aea0 <_ZSt16__convert_from_vRKPiPciPKcz+0x3c>
- 800aed0:	080280c7 	.word	0x080280c7
+ 800aed0:	0802813f 	.word	0x0802813f
 
 0800aed4 <_ZNKSt5ctypeIcE7toupperEc>:
  800aed4:	6803      	ldr	r3, [r0, #0]
@@ -22023,7 +22023,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800af76:	4620      	mov	r0, r4
  800af78:	bd10      	pop	{r4, pc}
  800af7a:	bf00      	nop
- 800af7c:	080281b0 	.word	0x080281b0
+ 800af7c:	08028228 	.word	0x08028228
 
 0800af80 <_ZNKSt7__cxx1110moneypunctIcLb0EE13decimal_pointEv>:
  800af80:	6803      	ldr	r3, [r0, #0]
@@ -22107,7 +22107,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800affa:	4620      	mov	r0, r4
  800affc:	bd10      	pop	{r4, pc}
  800affe:	bf00      	nop
- 800b000:	0802817c 	.word	0x0802817c
+ 800b000:	080281f4 	.word	0x080281f4
 
 0800b004 <_ZNKSt7__cxx1110moneypunctIcLb1EE13decimal_pointEv>:
  800b004:	6803      	ldr	r3, [r0, #0]
@@ -22287,7 +22287,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800b150:	f013 fc42 	bl	801e9d8 <_ZNSt7__cxx118numpunctIcE22_M_initialize_numpunctEPi>
  800b154:	4620      	mov	r0, r4
  800b156:	bd10      	pop	{r4, pc}
- 800b158:	08028158 	.word	0x08028158
+ 800b158:	080281d0 	.word	0x080281d0
 
 0800b15c <_ZNKSt7__cxx118numpunctIcE13decimal_pointEv>:
  800b15c:	6803      	ldr	r3, [r0, #0]
@@ -22475,7 +22475,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800b2c6:	4620      	mov	r0, r4
  800b2c8:	bd10      	pop	{r4, pc}
  800b2ca:	bf00      	nop
- 800b2cc:	080281e4 	.word	0x080281e4
+ 800b2cc:	0802825c 	.word	0x0802825c
 
 0800b2d0 <_ZNKSt7__cxx118messagesIcE4openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6locale>:
  800b2d0:	6803      	ldr	r3, [r0, #0]
@@ -22515,7 +22515,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800b30a:	4620      	mov	r0, r4
  800b30c:	bd10      	pop	{r4, pc}
  800b30e:	bf00      	nop
- 800b310:	0802813c 	.word	0x0802813c
+ 800b310:	080281b4 	.word	0x080281b4
 
 0800b314 <_ZNKSt7__cxx117collateIcE7compareEPKcS3_S3_S3_>:
  800b314:	b410      	push	{r4}
@@ -22568,7 +22568,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800b38a:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
  800b38e:	bf00      	nop
  800b390:	20001320 	.word	0x20001320
- 800b394:	080272b8 	.word	0x080272b8
+ 800b394:	08027330 	.word	0x08027330
 
 0800b398 <_ZNSt19istreambuf_iteratorIcSt11char_traitsIcEEppEv>:
  800b398:	b510      	push	{r4, lr}
@@ -22614,7 +22614,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800b406:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
  800b40a:	bf00      	nop
  800b40c:	20001324 	.word	0x20001324
- 800b410:	080272c8 	.word	0x080272c8
+ 800b410:	08027340 	.word	0x08027340
 
 0800b414 <_ZSt7__writeIcESt19ostreambuf_iteratorIT_St11char_traitsIS1_EES4_PKS1_i>:
  800b414:	b5f7      	push	{r0, r1, r2, r4, r5, r6, r7, lr}
@@ -23174,7 +23174,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800b9b4:	f7ff fe61 	bl	800b67a <_ZNKSt7__cxx119money_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE9_M_insertILb0EEES4_S4_RSt8ios_basecRKNS_12basic_stringIcS3_SaIcEEE>
  800b9b8:	e7e3      	b.n	800b982 <_ZNKSt7__cxx119money_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE6do_putES4_bRSt8ios_basece+0xd6>
  800b9ba:	bf00      	nop
- 800b9bc:	080280c9 	.word	0x080280c9
+ 800b9bc:	08028141 	.word	0x08028141
 
 0800b9c0 <_ZNKSt7__cxx119money_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE6do_putES4_bRSt8ios_basecRKNS_12basic_stringIcS3_SaIcEEE>:
  800b9c0:	b5f0      	push	{r4, r5, r6, r7, lr}
@@ -23228,7 +23228,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800ba40:	f858 0026 	ldr.w	r0, [r8, r6, lsl #2]
  800ba44:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
  800ba48:	20001314 	.word	0x20001314
- 800ba4c:	08027330 	.word	0x08027330
+ 800ba4c:	080273a8 	.word	0x080273a8
 
 0800ba50 <_ZNKSt19istreambuf_iteratorIcSt11char_traitsIcEE6_M_getEv>:
  800ba50:	b510      	push	{r4, lr}
@@ -24121,9 +24121,9 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800c3a2:	e896 0003 	ldmia.w	r6, {r0, r1}
  800c3a6:	e888 0003 	stmia.w	r8, {r0, r1}
  800c3aa:	e5f7      	b.n	800bf9c <_ZNKSt7__cxx118time_getIcSt19istreambuf_iteratorIcSt11char_traitsIcEEE21_M_extract_via_formatES4_S4_RSt8ios_baseRSt12_Ios_IostateP2tmPKc+0x174>
- 800c3ac:	080280d8 	.word	0x080280d8
- 800c3b0:	080280de 	.word	0x080280de
- 800c3b4:	080280e7 	.word	0x080280e7
+ 800c3ac:	08028150 	.word	0x08028150
+ 800c3b0:	08028156 	.word	0x08028156
+ 800c3b4:	0802815f 	.word	0x0802815f
  800c3b8:	20000028 	.word	0x20000028
  800c3bc:	4630      	mov	r0, r6
  800c3be:	f7ff fb47 	bl	800ba50 <_ZNKSt19istreambuf_iteratorIcSt11char_traitsIcEE6_M_getEv>
@@ -26002,7 +26002,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800d5f2:	4620      	mov	r0, r4
  800d5f4:	bd10      	pop	{r4, pc}
  800d5f6:	bf00      	nop
- 800d5f8:	08028a44 	.word	0x08028a44
+ 800d5f8:	08028abc 	.word	0x08028abc
 
 0800d5fc <_ZNSt13__facet_shims12_GLOBAL__N_113numpunct_shimIcED0Ev>:
  800d5fc:	b510      	push	{r4, lr}
@@ -26031,7 +26031,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800d62c:	f011 f8dc 	bl	801e7e8 <_ZNSt7__cxx1110moneypunctIcLb1EED1Ev>
  800d630:	4620      	mov	r0, r4
  800d632:	bd10      	pop	{r4, pc}
- 800d634:	08028b78 	.word	0x08028b78
+ 800d634:	08028bf0 	.word	0x08028bf0
 
 0800d638 <_ZNSt13__facet_shims12_GLOBAL__N_115moneypunct_shimIcLb1EED0Ev>:
  800d638:	b510      	push	{r4, lr}
@@ -26060,7 +26060,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800d668:	f011 f8d8 	bl	801e81c <_ZNSt7__cxx1110moneypunctIcLb0EED1Ev>
  800d66c:	4620      	mov	r0, r4
  800d66e:	bd10      	pop	{r4, pc}
- 800d670:	08028b44 	.word	0x08028b44
+ 800d670:	08028bbc 	.word	0x08028bbc
 
 0800d674 <_ZNSt13__facet_shims12_GLOBAL__N_115moneypunct_shimIcLb0EED0Ev>:
  800d674:	b510      	push	{r4, lr}
@@ -26082,7 +26082,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800d698:	f7fd fab2 	bl	800ac00 <_ZNSt7__cxx118messagesIcED1Ev>
  800d69c:	4620      	mov	r0, r4
  800d69e:	bd10      	pop	{r4, pc}
- 800d6a0:	08028a0c 	.word	0x08028a0c
+ 800d6a0:	08028a84 	.word	0x08028a84
 
 0800d6a4 <_ZNSt13__facet_shims12_GLOBAL__N_113messages_shimIcED0Ev>:
  800d6a4:	b510      	push	{r4, lr}
@@ -26109,7 +26109,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800d6d2:	4620      	mov	r0, r4
  800d6d4:	bd10      	pop	{r4, pc}
  800d6d6:	bf00      	nop
- 800d6d8:	08028a68 	.word	0x08028a68
+ 800d6d8:	08028ae0 	.word	0x08028ae0
 
 0800d6dc <_ZNSt13__facet_shims12_GLOBAL__N_113numpunct_shimIwED0Ev>:
  800d6dc:	b510      	push	{r4, lr}
@@ -26138,7 +26138,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800d70c:	f011 f930 	bl	801e970 <_ZNSt7__cxx1110moneypunctIwLb1EED1Ev>
  800d710:	4620      	mov	r0, r4
  800d712:	bd10      	pop	{r4, pc}
- 800d714:	08028be0 	.word	0x08028be0
+ 800d714:	08028c58 	.word	0x08028c58
 
 0800d718 <_ZNSt13__facet_shims12_GLOBAL__N_115moneypunct_shimIwLb1EED0Ev>:
  800d718:	b510      	push	{r4, lr}
@@ -26167,7 +26167,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800d748:	f011 f92c 	bl	801e9a4 <_ZNSt7__cxx1110moneypunctIwLb0EED1Ev>
  800d74c:	4620      	mov	r0, r4
  800d74e:	bd10      	pop	{r4, pc}
- 800d750:	08028bac 	.word	0x08028bac
+ 800d750:	08028c24 	.word	0x08028c24
 
 0800d754 <_ZNSt13__facet_shims12_GLOBAL__N_115moneypunct_shimIwLb0EED0Ev>:
  800d754:	b510      	push	{r4, lr}
@@ -26189,7 +26189,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800d778:	f001 f952 	bl	800ea20 <_ZNSt7__cxx118messagesIwED1Ev>
  800d77c:	4620      	mov	r0, r4
  800d77e:	bd10      	pop	{r4, pc}
- 800d780:	08028a28 	.word	0x08028a28
+ 800d780:	08028aa0 	.word	0x08028aa0
 
 0800d784 <_ZNSt13__facet_shims12_GLOBAL__N_113messages_shimIwED0Ev>:
  800d784:	b510      	push	{r4, lr}
@@ -26211,7 +26211,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800d7a8:	f7fd fa42 	bl	800ac30 <_ZNSt7__cxx117collateIcED1Ev>
  800d7ac:	4620      	mov	r0, r4
  800d7ae:	bd10      	pop	{r4, pc}
- 800d7b0:	080289d4 	.word	0x080289d4
+ 800d7b0:	08028a4c 	.word	0x08028a4c
 
 0800d7b4 <_ZNSt13__facet_shims12_GLOBAL__N_112collate_shimIcED0Ev>:
  800d7b4:	b510      	push	{r4, lr}
@@ -26233,7 +26233,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800d7d8:	f7fd f9d6 	bl	800ab88 <_ZNSt7__cxx119money_getIcSt19istreambuf_iteratorIcSt11char_traitsIcEEED1Ev>
  800d7dc:	4620      	mov	r0, r4
  800d7de:	bd10      	pop	{r4, pc}
- 800d7e0:	08028ae4 	.word	0x08028ae4
+ 800d7e0:	08028b5c 	.word	0x08028b5c
 
 0800d7e4 <_ZNSt13__facet_shims12_GLOBAL__N_114money_get_shimIcED0Ev>:
  800d7e4:	b510      	push	{r4, lr}
@@ -26255,7 +26255,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800d808:	f7fd f9d2 	bl	800abb0 <_ZNSt7__cxx119money_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEED1Ev>
  800d80c:	4620      	mov	r0, r4
  800d80e:	bd10      	pop	{r4, pc}
- 800d810:	08028b14 	.word	0x08028b14
+ 800d810:	08028b8c 	.word	0x08028b8c
 
 0800d814 <_ZNSt13__facet_shims12_GLOBAL__N_114money_put_shimIcED0Ev>:
  800d814:	b510      	push	{r4, lr}
@@ -26277,7 +26277,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800d838:	f001 f90a 	bl	800ea50 <_ZNSt7__cxx117collateIwED1Ev>
  800d83c:	4620      	mov	r0, r4
  800d83e:	bd10      	pop	{r4, pc}
- 800d840:	080289f0 	.word	0x080289f0
+ 800d840:	08028a68 	.word	0x08028a68
 
 0800d844 <_ZNSt13__facet_shims12_GLOBAL__N_112collate_shimIwED0Ev>:
  800d844:	b510      	push	{r4, lr}
@@ -26299,7 +26299,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800d868:	f001 f89e 	bl	800e9a8 <_ZNSt7__cxx119money_getIwSt19istreambuf_iteratorIwSt11char_traitsIwEEED1Ev>
  800d86c:	4620      	mov	r0, r4
  800d86e:	bd10      	pop	{r4, pc}
- 800d870:	08028afc 	.word	0x08028afc
+ 800d870:	08028b74 	.word	0x08028b74
 
 0800d874 <_ZNSt13__facet_shims12_GLOBAL__N_114money_get_shimIwED0Ev>:
  800d874:	b510      	push	{r4, lr}
@@ -26321,7 +26321,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800d898:	f001 f89a 	bl	800e9d0 <_ZNSt7__cxx119money_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEED1Ev>
  800d89c:	4620      	mov	r0, r4
  800d89e:	bd10      	pop	{r4, pc}
- 800d8a0:	08028b2c 	.word	0x08028b2c
+ 800d8a0:	08028ba4 	.word	0x08028ba4
 
 0800d8a4 <_ZNSt13__facet_shims12_GLOBAL__N_114money_put_shimIwED0Ev>:
  800d8a4:	b510      	push	{r4, lr}
@@ -26343,7 +26343,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800d8c8:	f7fd f986 	bl	800abd8 <_ZNSt7__cxx118time_getIcSt19istreambuf_iteratorIcSt11char_traitsIcEEED1Ev>
  800d8cc:	4620      	mov	r0, r4
  800d8ce:	bd10      	pop	{r4, pc}
- 800d8d0:	08028a8c 	.word	0x08028a8c
+ 800d8d0:	08028b04 	.word	0x08028b04
 
 0800d8d4 <_ZNSt13__facet_shims12_GLOBAL__N_113time_get_shimIcED0Ev>:
  800d8d4:	b510      	push	{r4, lr}
@@ -26365,7 +26365,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800d8f8:	f001 f87e 	bl	800e9f8 <_ZNSt7__cxx118time_getIwSt19istreambuf_iteratorIwSt11char_traitsIwEEED1Ev>
  800d8fc:	4620      	mov	r0, r4
  800d8fe:	bd10      	pop	{r4, pc}
- 800d900:	08028ab8 	.word	0x08028ab8
+ 800d900:	08028b30 	.word	0x08028b30
 
 0800d904 <_ZNSt13__facet_shims12_GLOBAL__N_113time_get_shimIwED0Ev>:
  800d904:	b510      	push	{r4, lr}
@@ -27254,41 +27254,41 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800e196:	f04f 0000 	mov.w	r0, #0
  800e19a:	f7fa fc33 	bl	8008a04 <_ZNSt13__facet_shims23__moneypunct_fill_cacheIwLb1EEEvSt17integral_constantIbLb0EEPKNSt6locale5facetEPSt18__moneypunct_cacheIT_XT0_EE>
  800e19e:	e68f      	b.n	800dec0 <_ZNKSt6locale5facet11_M_sso_shimEPKNS_2idE+0x18>
- 800e1a0:	08027708 	.word	0x08027708
- 800e1a4:	0802720c 	.word	0x0802720c
+ 800e1a0:	08027780 	.word	0x08027780
+ 800e1a4:	08027284 	.word	0x08027284
  800e1a8:	20001314 	.word	0x20001314
- 800e1ac:	08027330 	.word	0x08027330
- 800e1b0:	08028a44 	.word	0x08028a44
+ 800e1ac:	080273a8 	.word	0x080273a8
+ 800e1b0:	08028abc 	.word	0x08028abc
  800e1b4:	20001308 	.word	0x20001308
- 800e1b8:	080289d4 	.word	0x080289d4
+ 800e1b8:	08028a4c 	.word	0x08028a4c
  800e1bc:	20001310 	.word	0x20001310
- 800e1c0:	08028a8c 	.word	0x08028a8c
+ 800e1c0:	08028b04 	.word	0x08028b04
  800e1c4:	2000131c 	.word	0x2000131c
- 800e1c8:	08028ae4 	.word	0x08028ae4
+ 800e1c8:	08028b5c 	.word	0x08028b5c
  800e1cc:	20001318 	.word	0x20001318
- 800e1d0:	08028b14 	.word	0x08028b14
+ 800e1d0:	08028b8c 	.word	0x08028b8c
  800e1d4:	20001320 	.word	0x20001320
- 800e1d8:	080272b8 	.word	0x080272b8
- 800e1dc:	08028b78 	.word	0x08028b78
+ 800e1d8:	08027330 	.word	0x08027330
+ 800e1dc:	08028bf0 	.word	0x08028bf0
  800e1e0:	20001324 	.word	0x20001324
- 800e1e4:	080272c8 	.word	0x080272c8
- 800e1e8:	08028b44 	.word	0x08028b44
+ 800e1e4:	08027340 	.word	0x08027340
+ 800e1e8:	08028bbc 	.word	0x08028bbc
  800e1ec:	2000130c 	.word	0x2000130c
- 800e1f0:	08028a0c 	.word	0x08028a0c
+ 800e1f0:	08028a84 	.word	0x08028a84
  800e1f4:	20001354 	.word	0x20001354
- 800e1f8:	08027340 	.word	0x08027340
- 800e1fc:	08028a68 	.word	0x08028a68
+ 800e1f8:	080273b8 	.word	0x080273b8
+ 800e1fc:	08028ae0 	.word	0x08028ae0
  800e200:	20001348 	.word	0x20001348
- 800e204:	080289f0 	.word	0x080289f0
+ 800e204:	08028a68 	.word	0x08028a68
  800e208:	20001350 	.word	0x20001350
- 800e20c:	08028ab8 	.word	0x08028ab8
+ 800e20c:	08028b30 	.word	0x08028b30
  800e210:	2000135c 	.word	0x2000135c
- 800e214:	08028afc 	.word	0x08028afc
+ 800e214:	08028b74 	.word	0x08028b74
  800e218:	20001358 	.word	0x20001358
- 800e21c:	08028b2c 	.word	0x08028b2c
+ 800e21c:	08028ba4 	.word	0x08028ba4
  800e220:	20001360 	.word	0x20001360
- 800e224:	080272d8 	.word	0x080272d8
- 800e228:	08028be0 	.word	0x08028be0
+ 800e224:	08027350 	.word	0x08027350
+ 800e228:	08028c58 	.word	0x08028c58
  800e22c:	4b21      	ldr	r3, [pc, #132]	; (800e2b4 <_ZNKSt6locale5facet11_M_sso_shimEPKNS_2idE+0x40c>)
  800e22e:	429c      	cmp	r4, r3
  800e230:	d12d      	bne.n	800e28e <_ZNKSt6locale5facet11_M_sso_shimEPKNS_2idE+0x3e6>
@@ -27343,11 +27343,11 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800e2ae:	4806      	ldr	r0, [pc, #24]	; (800e2c8 <_ZNKSt6locale5facet11_M_sso_shimEPKNS_2idE+0x420>)
  800e2b0:	f002 fdcc 	bl	8010e4c <_ZSt19__throw_logic_errorPKc>
  800e2b4:	20001364 	.word	0x20001364
- 800e2b8:	080272e8 	.word	0x080272e8
- 800e2bc:	08028bac 	.word	0x08028bac
+ 800e2b8:	08027360 	.word	0x08027360
+ 800e2bc:	08028c24 	.word	0x08028c24
  800e2c0:	2000134c 	.word	0x2000134c
- 800e2c4:	08028a28 	.word	0x08028a28
- 800e2c8:	080276a4 	.word	0x080276a4
+ 800e2c4:	08028aa0 	.word	0x08028aa0
+ 800e2c8:	0802771c 	.word	0x0802771c
 
 0800e2cc <_ZNKSt13__facet_shims12__any_stringcvNSt7__cxx1112basic_stringIT_St11char_traitsIS3_ESaIS3_EEEB5cxx11IcEEv>:
  800e2cc:	698b      	ldr	r3, [r1, #24]
@@ -27361,7 +27361,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800e2e2:	4620      	mov	r0, r4
  800e2e4:	bd10      	pop	{r4, pc}
  800e2e6:	bf00      	nop
- 800e2e8:	080276d1 	.word	0x080276d1
+ 800e2e8:	08027749 	.word	0x08027749
 
 0800e2ec <_ZNSt13__facet_shims11__money_putIcEESt19ostreambuf_iteratorIT_St11char_traitsIS2_EESt17integral_constantIbLb1EEPKNSt6locale5facetES5_bRSt8ios_baseS2_ePKNS_12__any_stringE>:
  800e2ec:	b082      	sub	sp, #8
@@ -27668,7 +27668,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800e5de:	4620      	mov	r0, r4
  800e5e0:	bd38      	pop	{r3, r4, r5, pc}
  800e5e2:	bf00      	nop
- 800e5e4:	080276d1 	.word	0x080276d1
+ 800e5e4:	08027749 	.word	0x08027749
 
 0800e5e8 <_ZNSt13__facet_shims11__money_putIwEESt19ostreambuf_iteratorIT_St11char_traitsIS2_EESt17integral_constantIbLb1EEPKNSt6locale5facetES5_bRSt8ios_baseS2_ePKNS_12__any_stringE>:
  800e5e8:	b082      	sub	sp, #8
@@ -28096,7 +28096,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800e9b0:	f7f7 fc2e 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  800e9b4:	4620      	mov	r0, r4
  800e9b6:	bd10      	pop	{r4, pc}
- 800e9b8:	08028cd8 	.word	0x08028cd8
+ 800e9b8:	08028d50 	.word	0x08028d50
 
 0800e9bc <_ZNSt7__cxx119money_getIwSt19istreambuf_iteratorIwSt11char_traitsIwEEED0Ev>:
  800e9bc:	b510      	push	{r4, lr}
@@ -28116,7 +28116,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800e9d8:	f7f7 fc1a 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  800e9dc:	4620      	mov	r0, r4
  800e9de:	bd10      	pop	{r4, pc}
- 800e9e0:	08028cf0 	.word	0x08028cf0
+ 800e9e0:	08028d68 	.word	0x08028d68
 
 0800e9e4 <_ZNSt7__cxx119money_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEED0Ev>:
  800e9e4:	b510      	push	{r4, lr}
@@ -28136,7 +28136,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800ea00:	f7f7 fc06 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  800ea04:	4620      	mov	r0, r4
  800ea06:	bd10      	pop	{r4, pc}
- 800ea08:	08028d08 	.word	0x08028d08
+ 800ea08:	08028d80 	.word	0x08028d80
 
 0800ea0c <_ZNSt7__cxx118time_getIwSt19istreambuf_iteratorIwSt11char_traitsIwEEED0Ev>:
  800ea0c:	b510      	push	{r4, lr}
@@ -28158,7 +28158,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800ea30:	f7f7 fbee 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  800ea34:	4620      	mov	r0, r4
  800ea36:	bd10      	pop	{r4, pc}
- 800ea38:	08028cbc 	.word	0x08028cbc
+ 800ea38:	08028d34 	.word	0x08028d34
 
 0800ea3c <_ZNSt7__cxx118messagesIwED0Ev>:
  800ea3c:	b510      	push	{r4, lr}
@@ -28180,7 +28180,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800ea60:	f7f7 fbd6 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  800ea64:	4620      	mov	r0, r4
  800ea66:	bd10      	pop	{r4, pc}
- 800ea68:	08028c14 	.word	0x08028c14
+ 800ea68:	08028c8c 	.word	0x08028c8c
 
 0800ea6c <_ZNSt7__cxx117collateIwED0Ev>:
  800ea6c:	b510      	push	{r4, lr}
@@ -28470,7 +28470,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800ecee:	4620      	mov	r0, r4
  800ecf0:	bd10      	pop	{r4, pc}
  800ecf2:	bf00      	nop
- 800ecf4:	08028c88 	.word	0x08028c88
+ 800ecf4:	08028d00 	.word	0x08028d00
 
 0800ecf8 <_ZNKSt7__cxx1110moneypunctIwLb0EE13decimal_pointEv>:
  800ecf8:	6803      	ldr	r3, [r0, #0]
@@ -28554,7 +28554,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800ed72:	4620      	mov	r0, r4
  800ed74:	bd10      	pop	{r4, pc}
  800ed76:	bf00      	nop
- 800ed78:	08028c54 	.word	0x08028c54
+ 800ed78:	08028ccc 	.word	0x08028ccc
 
 0800ed7c <_ZNKSt7__cxx1110moneypunctIwLb1EE13decimal_pointEv>:
  800ed7c:	6803      	ldr	r3, [r0, #0]
@@ -28734,7 +28734,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800eec4:	f00f fdf0 	bl	801eaa8 <_ZNSt7__cxx118numpunctIwE22_M_initialize_numpunctEPi>
  800eec8:	4620      	mov	r0, r4
  800eeca:	bd10      	pop	{r4, pc}
- 800eecc:	08028c30 	.word	0x08028c30
+ 800eecc:	08028ca8 	.word	0x08028ca8
 
 0800eed0 <_ZNKSt7__cxx118numpunctIwE13decimal_pointEv>:
  800eed0:	6803      	ldr	r3, [r0, #0]
@@ -28922,7 +28922,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800f03a:	4620      	mov	r0, r4
  800f03c:	bd10      	pop	{r4, pc}
  800f03e:	bf00      	nop
- 800f040:	08028cbc 	.word	0x08028cbc
+ 800f040:	08028d34 	.word	0x08028d34
 
 0800f044 <_ZNKSt7__cxx118messagesIwE4openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6locale>:
  800f044:	6803      	ldr	r3, [r0, #0]
@@ -28962,7 +28962,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800f07e:	4620      	mov	r0, r4
  800f080:	bd10      	pop	{r4, pc}
  800f082:	bf00      	nop
- 800f084:	08028c14 	.word	0x08028c14
+ 800f084:	08028c8c 	.word	0x08028c8c
 
 0800f088 <_ZNKSt7__cxx117collateIwE7compareEPKwS3_S3_S3_>:
  800f088:	b410      	push	{r4}
@@ -29024,7 +29024,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800f10c:	f858 0026 	ldr.w	r0, [r8, r6, lsl #2]
  800f110:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
  800f114:	20001360 	.word	0x20001360
- 800f118:	080272d8 	.word	0x080272d8
+ 800f118:	08027350 	.word	0x08027350
 
 0800f11c <_ZNSt19istreambuf_iteratorIwSt11char_traitsIwEEppEv>:
  800f11c:	b510      	push	{r4, lr}
@@ -29076,7 +29076,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800f190:	f858 0026 	ldr.w	r0, [r8, r6, lsl #2]
  800f194:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
  800f198:	20001364 	.word	0x20001364
- 800f19c:	080272e8 	.word	0x080272e8
+ 800f19c:	08027360 	.word	0x08027360
 
 0800f1a0 <_ZSt7__writeIwESt19ostreambuf_iteratorIT_St11char_traitsIS1_EES4_PKS1_i>:
  800f1a0:	b5f7      	push	{r0, r1, r2, r4, r5, r6, r7, lr}
@@ -29619,7 +29619,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800f70a:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
  800f70e:	f7ff fe73 	bl	800f3f8 <_ZNKSt7__cxx119money_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE9_M_insertILb0EEES4_S4_RSt8ios_basewRKNS_12basic_stringIwS3_SaIwEEE>
  800f712:	e7ed      	b.n	800f6f0 <_ZNKSt7__cxx119money_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE6do_putES4_bRSt8ios_basewe+0xd4>
- 800f714:	080280c9 	.word	0x080280c9
+ 800f714:	08028141 	.word	0x08028141
 
 0800f718 <_ZNKSt7__cxx119money_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE6do_putES4_bRSt8ios_basewRKNS_12basic_stringIwS3_SaIwEEE>:
  800f718:	b5f0      	push	{r4, r5, r6, r7, lr}
@@ -29673,7 +29673,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  800f79c:	f858 0026 	ldr.w	r0, [r8, r6, lsl #2]
  800f7a0:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
  800f7a4:	20001354 	.word	0x20001354
- 800f7a8:	08027340 	.word	0x08027340
+ 800f7a8:	080273b8 	.word	0x080273b8
 
 0800f7ac <_ZNKSt21__ctype_abstract_baseIwE6narrowEwc>:
  800f7ac:	6803      	ldr	r3, [r0, #0]
@@ -30590,9 +30590,9 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8010130:	f47f adee 	bne.w	800fd10 <_ZNKSt7__cxx118time_getIwSt19istreambuf_iteratorIwSt11char_traitsIwEEE21_M_extract_via_formatES4_S4_RSt8ios_baseRSt12_Ios_IostateP2tmPKw+0x170>
  8010134:	e7be      	b.n	80100b4 <_ZNKSt7__cxx118time_getIwSt19istreambuf_iteratorIwSt11char_traitsIwEEE21_M_extract_via_formatES4_S4_RSt8ios_baseRSt12_Ios_IostateP2tmPKw+0x514>
  8010136:	bf00      	nop
- 8010138:	080280d8 	.word	0x080280d8
- 801013c:	080280de 	.word	0x080280de
- 8010140:	080280e7 	.word	0x080280e7
+ 8010138:	08028150 	.word	0x08028150
+ 801013c:	08028156 	.word	0x08028156
+ 8010140:	0802815f 	.word	0x0802815f
  8010144:	20000060 	.word	0x20000060
  8010148:	9b10      	ldr	r3, [sp, #64]	; 0x40
  801014a:	f043 0304 	orr.w	r3, r3, #4
@@ -31909,7 +31909,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8010ea0:	f000 f8d0 	bl	8011044 <_ZNSt8ios_baseD1Ev>
  8010ea4:	4620      	mov	r0, r4
  8010ea6:	bd10      	pop	{r4, pc}
- 8010ea8:	08028f50 	.word	0x08028f50
+ 8010ea8:	08028fc8 	.word	0x08028fc8
 
 08010eac <_ZNSt9basic_iosIcSt11char_traitsIcEED0Ev>:
  8010eac:	b510      	push	{r4, lr}
@@ -31934,7 +31934,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8010ed4:	f00e f8aa 	bl	801f02c <_ZSt19__throw_ios_failurePKc>
  8010ed8:	bd08      	pop	{r3, pc}
  8010eda:	bf00      	nop
- 8010edc:	08028f37 	.word	0x08028f37
+ 8010edc:	08028faf 	.word	0x08028faf
 
 08010ee0 <_ZNSt9basic_iosIcSt11char_traitsIcEE8setstateESt12_Ios_Iostate>:
  8010ee0:	b508      	push	{r3, lr}
@@ -31990,7 +31990,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8010f50:	f8a4 3074 	strh.w	r3, [r4, #116]	; 0x74
  8010f54:	4620      	mov	r0, r4
  8010f56:	bd10      	pop	{r4, pc}
- 8010f58:	08028f50 	.word	0x08028f50
+ 8010f58:	08028fc8 	.word	0x08028fc8
 
 08010f5c <_ZNSt9basic_iosIcSt11char_traitsIcEE15_M_cache_localeERKSt6locale>:
  8010f5c:	b538      	push	{r3, r4, r5, lr}
@@ -32059,7 +32059,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8010ffe:	4620      	mov	r0, r4
  8011000:	bd10      	pop	{r4, pc}
  8011002:	bf00      	nop
- 8011004:	08028fa4 	.word	0x08028fa4
+ 8011004:	0802901c 	.word	0x0802901c
 
 08011008 <_ZNSt8ios_base17_M_call_callbacksENS_5eventE>:
  8011008:	b570      	push	{r4, r5, r6, lr}
@@ -32114,7 +32114,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8011070:	f7f5 f946 	bl	8006300 <_ZNSt6localeD1Ev>
  8011074:	4620      	mov	r0, r4
  8011076:	bd10      	pop	{r4, pc}
- 8011078:	08028fa4 	.word	0x08028fa4
+ 8011078:	0802901c 	.word	0x0802901c
 
 0801107c <_ZNSt8ios_baseD0Ev>:
  801107c:	b510      	push	{r4, lr}
@@ -32140,7 +32140,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80110a6:	4620      	mov	r0, r4
  80110a8:	bd10      	pop	{r4, pc}
  80110aa:	bf00      	nop
- 80110ac:	08028fc0 	.word	0x08028fc0
+ 80110ac:	08029038 	.word	0x08029038
 
 080110b0 <_ZTv0_n12_NSiD1Ev>:
  80110b0:	f8d0 c000 	ldr.w	ip, [r0]
@@ -32190,8 +32190,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8011112:	2308      	movs	r3, #8
  8011114:	e7ef      	b.n	80110f6 <_ZNSiD4Ev+0x12>
  8011116:	bf00      	nop
- 8011118:	08028fc0 	.word	0x08028fc0
- 801111c:	08028fd4 	.word	0x08028fd4
+ 8011118:	08029038 	.word	0x08029038
+ 801111c:	0802904c 	.word	0x0802904c
 
 08011120 <_ZNSiD2Ev>:
  8011120:	460a      	mov	r2, r1
@@ -32231,7 +32231,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8011168:	f7ff ff16 	bl	8010f98 <_ZNSt9basic_iosIcSt11char_traitsIcEE4initEPSt15basic_streambufIcS1_E>
  801116c:	4620      	mov	r0, r4
  801116e:	bd38      	pop	{r3, r4, r5, pc}
- 8011170:	08028fc0 	.word	0x08028fc0
+ 8011170:	08029038 	.word	0x08029038
 
 08011174 <_ZNSi6sentryC1ERSib>:
  8011174:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
@@ -32423,7 +32423,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80112f0:	f7f4 ff8e 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  80112f4:	4620      	mov	r0, r4
  80112f6:	bd10      	pop	{r4, pc}
- 80112f8:	0802917c 	.word	0x0802917c
+ 80112f8:	080291f4 	.word	0x080291f4
 
 080112fc <_ZNSt9money_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEED1Ev>:
  80112fc:	b510      	push	{r4, lr}
@@ -32433,7 +32433,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8011304:	f7f4 ff84 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  8011308:	4620      	mov	r0, r4
  801130a:	bd10      	pop	{r4, pc}
- 801130c:	08029194 	.word	0x08029194
+ 801130c:	0802920c 	.word	0x0802920c
 
 08011310 <_ZNSt7num_getIcSt19istreambuf_iteratorIcSt11char_traitsIcEEED1Ev>:
  8011310:	b510      	push	{r4, lr}
@@ -32443,7 +32443,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8011318:	f7f4 ff7a 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  801131c:	4620      	mov	r0, r4
  801131e:	bd10      	pop	{r4, pc}
- 8011320:	08029040 	.word	0x08029040
+ 8011320:	080290b8 	.word	0x080290b8
 
 08011324 <_ZNSt7num_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEED1Ev>:
  8011324:	b510      	push	{r4, lr}
@@ -32453,7 +32453,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801132c:	f7f4 ff70 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  8011330:	4620      	mov	r0, r4
  8011332:	bd10      	pop	{r4, pc}
- 8011334:	0802907c 	.word	0x0802907c
+ 8011334:	080290f4 	.word	0x080290f4
 
 08011338 <_ZNSt17__timepunct_cacheIcED1Ev>:
  8011338:	b510      	push	{r4, lr}
@@ -32463,7 +32463,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8011340:	f7f4 ff66 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  8011344:	4620      	mov	r0, r4
  8011346:	bd10      	pop	{r4, pc}
- 8011348:	080290ac 	.word	0x080290ac
+ 8011348:	08029124 	.word	0x08029124
 
 0801134c <_ZNSt8time_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEED1Ev>:
  801134c:	b510      	push	{r4, lr}
@@ -32473,7 +32473,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8011354:	f7f4 ff5c 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  8011358:	4620      	mov	r0, r4
  801135a:	bd10      	pop	{r4, pc}
- 801135c:	080291ac 	.word	0x080291ac
+ 801135c:	08029224 	.word	0x08029224
 
 08011360 <_ZNSt8time_getIcSt19istreambuf_iteratorIcSt11char_traitsIcEEED1Ev>:
  8011360:	b510      	push	{r4, lr}
@@ -32483,7 +32483,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8011368:	f7f4 ff52 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  801136c:	4620      	mov	r0, r4
  801136e:	bd10      	pop	{r4, pc}
- 8011370:	080291c0 	.word	0x080291c0
+ 8011370:	08029238 	.word	0x08029238
 
 08011374 <_ZNSt9money_getIcSt19istreambuf_iteratorIcSt11char_traitsIcEEED0Ev>:
  8011374:	b510      	push	{r4, lr}
@@ -32680,7 +32680,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80114e0:	f7f4 fe96 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  80114e4:	4620      	mov	r0, r4
  80114e6:	bd10      	pop	{r4, pc}
- 80114e8:	08029134 	.word	0x08029134
+ 80114e8:	080291ac 	.word	0x080291ac
 
 080114ec <_ZNSt8messagesIcED0Ev>:
  80114ec:	b510      	push	{r4, lr}
@@ -32702,7 +32702,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8011510:	f7f4 fe7e 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  8011514:	4620      	mov	r0, r4
  8011516:	bd10      	pop	{r4, pc}
- 8011518:	08029000 	.word	0x08029000
+ 8011518:	08029078 	.word	0x08029078
 
 0801151c <_ZNSt7collateIcED0Ev>:
  801151c:	b510      	push	{r4, lr}
@@ -32738,7 +32738,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8011562:	4620      	mov	r0, r4
  8011564:	bd38      	pop	{r3, r4, r5, pc}
  8011566:	bf00      	nop
- 8011568:	080290bc 	.word	0x080290bc
+ 8011568:	08029134 	.word	0x08029134
 
 0801156c <_ZNSt11__timepunctIcED0Ev>:
  801156c:	b510      	push	{r4, lr}
@@ -32920,7 +32920,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801170a:	4620      	mov	r0, r4
  801170c:	bd10      	pop	{r4, pc}
  801170e:	bf00      	nop
- 8011710:	08029100 	.word	0x08029100
+ 8011710:	08029178 	.word	0x08029178
 
 08011714 <_ZNKSt10moneypunctIcLb0EE13decimal_pointEv>:
  8011714:	6803      	ldr	r3, [r0, #0]
@@ -33004,7 +33004,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801178e:	4620      	mov	r0, r4
  8011790:	bd10      	pop	{r4, pc}
  8011792:	bf00      	nop
- 8011794:	080290cc 	.word	0x080290cc
+ 8011794:	08029144 	.word	0x08029144
 
 08011798 <_ZNKSt10moneypunctIcLb1EE13decimal_pointEv>:
  8011798:	6803      	ldr	r3, [r0, #0]
@@ -33184,7 +33184,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80118e4:	f7f5 fc4a 	bl	800717c <_ZNSt8numpunctIcE22_M_initialize_numpunctEPi>
  80118e8:	4620      	mov	r0, r4
  80118ea:	bd10      	pop	{r4, pc}
- 80118ec:	0802901c 	.word	0x0802901c
+ 80118ec:	08029094 	.word	0x08029094
 
 080118f0 <_ZNKSt8numpunctIcE13decimal_pointEv>:
  80118f0:	6803      	ldr	r3, [r0, #0]
@@ -33260,7 +33260,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801196c:	f00d f932 	bl	801ebd4 <_ZNSt11__timepunctIcE23_M_initialize_timepunctEPi>
  8011970:	4620      	mov	r0, r4
  8011972:	bd10      	pop	{r4, pc}
- 8011974:	080290bc 	.word	0x080290bc
+ 8011974:	08029134 	.word	0x08029134
 
 08011978 <_ZNKSt11__timepunctIcE15_M_date_formatsEPPKc>:
  8011978:	6883      	ldr	r3, [r0, #8]
@@ -33527,7 +33527,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8011b9a:	4620      	mov	r0, r4
  8011b9c:	bd10      	pop	{r4, pc}
  8011b9e:	bf00      	nop
- 8011ba0:	08029134 	.word	0x08029134
+ 8011ba0:	080291ac 	.word	0x080291ac
 
 08011ba4 <_ZNKSt8messagesIcE4openERKSsRKSt6locale>:
  8011ba4:	6803      	ldr	r3, [r0, #0]
@@ -33567,7 +33567,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8011bde:	4620      	mov	r0, r4
  8011be0:	bd10      	pop	{r4, pc}
  8011be2:	bf00      	nop
- 8011be4:	08029000 	.word	0x08029000
+ 8011be4:	08029078 	.word	0x08029078
 
 08011be8 <_ZNKSt7collateIcE7compareEPKcS2_S2_S2_>:
  8011be8:	b410      	push	{r4}
@@ -33606,8 +33606,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8011c2e:	f00b ff45 	bl	801dabc <__cxa_bad_cast>
  8011c32:	bd10      	pop	{r4, pc}
  8011c34:	200012e0 	.word	0x200012e0
- 8011c38:	08027fdc 	.word	0x08027fdc
- 8011c3c:	0802720c 	.word	0x0802720c
+ 8011c38:	08028054 	.word	0x08028054
+ 8011c3c:	08027284 	.word	0x08027284
 
 08011c40 <_ZSt9use_facetISt8numpunctIcEERKT_RKSt6locale>:
  8011c40:	b510      	push	{r4, lr}
@@ -33629,8 +33629,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8011c6a:	f00b ff27 	bl	801dabc <__cxa_bad_cast>
  8011c6e:	bd10      	pop	{r4, pc}
  8011c70:	200013b4 	.word	0x200013b4
- 8011c74:	080292c0 	.word	0x080292c0
- 8011c78:	0802720c 	.word	0x0802720c
+ 8011c74:	08029338 	.word	0x08029338
+ 8011c78:	08027284 	.word	0x08027284
 
 08011c7c <_ZNSt16__numpunct_cacheIcE8_M_cacheERKSt6locale>:
  8011c7c:	e92d 43f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, lr}
@@ -33744,8 +33744,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8011d9e:	f00b fe8d 	bl	801dabc <__cxa_bad_cast>
  8011da2:	bd10      	pop	{r4, pc}
  8011da4:	200013ac 	.word	0x200013ac
- 8011da8:	08029294 	.word	0x08029294
- 8011dac:	0802720c 	.word	0x0802720c
+ 8011da8:	0802930c 	.word	0x0802930c
+ 8011dac:	08027284 	.word	0x08027284
 
 08011db0 <_ZSt9use_facetISt7num_getIcSt19istreambuf_iteratorIcSt11char_traitsIcEEEERKT_RKSt6locale>:
  8011db0:	b510      	push	{r4, lr}
@@ -33767,8 +33767,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8011dda:	f00b fe6f 	bl	801dabc <__cxa_bad_cast>
  8011dde:	bd10      	pop	{r4, pc}
  8011de0:	200013b0 	.word	0x200013b0
- 8011de4:	08029288 	.word	0x08029288
- 8011de8:	0802720c 	.word	0x0802720c
+ 8011de4:	08029300 	.word	0x08029300
+ 8011de8:	08027284 	.word	0x08027284
 
 08011dec <_ZSt9use_facetISt10moneypunctIcLb1EEERKT_RKSt6locale>:
  8011dec:	b510      	push	{r4, lr}
@@ -33790,8 +33790,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8011e16:	f00b fe51 	bl	801dabc <__cxa_bad_cast>
  8011e1a:	bd10      	pop	{r4, pc}
  8011e1c:	200013c0 	.word	0x200013c0
- 8011e20:	08029200 	.word	0x08029200
- 8011e24:	0802720c 	.word	0x0802720c
+ 8011e20:	08029278 	.word	0x08029278
+ 8011e24:	08027284 	.word	0x08027284
 
 08011e28 <_ZNSt18__moneypunct_cacheIcLb1EE8_M_cacheERKSt6locale>:
  8011e28:	e92d 47ff 	stmdb	sp!, {r0, r1, r2, r3, r4, r5, r6, r7, r8, r9, sl, lr}
@@ -33920,8 +33920,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8011f6e:	f00b fda5 	bl	801dabc <__cxa_bad_cast>
  8011f72:	bd10      	pop	{r4, pc}
  8011f74:	200013c4 	.word	0x200013c4
- 8011f78:	080291e0 	.word	0x080291e0
- 8011f7c:	0802720c 	.word	0x0802720c
+ 8011f78:	08029258 	.word	0x08029258
+ 8011f7c:	08027284 	.word	0x08027284
 
 08011f80 <_ZNSt18__moneypunct_cacheIcLb0EE8_M_cacheERKSt6locale>:
  8011f80:	e92d 47ff 	stmdb	sp!, {r0, r1, r2, r3, r4, r5, r6, r7, r8, r9, sl, lr}
@@ -34050,8 +34050,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80120c6:	f00b fcf9 	bl	801dabc <__cxa_bad_cast>
  80120ca:	bd10      	pop	{r4, pc}
  80120cc:	200013a8 	.word	0x200013a8
- 80120d0:	08029220 	.word	0x08029220
- 80120d4:	0802720c 	.word	0x0802720c
+ 80120d0:	08029298 	.word	0x08029298
+ 80120d4:	08027284 	.word	0x08027284
 
 080120d8 <_ZSt9has_facetISt5ctypeIcEEbRKSt6locale>:
  80120d8:	b510      	push	{r4, lr}
@@ -34076,8 +34076,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8012104:	2000      	movs	r0, #0
  8012106:	e7fc      	b.n	8012102 <_ZSt9has_facetISt5ctypeIcEEbRKSt6locale+0x2a>
  8012108:	200012e0 	.word	0x200012e0
- 801210c:	08027fdc 	.word	0x08027fdc
- 8012110:	0802720c 	.word	0x0802720c
+ 801210c:	08028054 	.word	0x08028054
+ 8012110:	08027284 	.word	0x08027284
 
 08012114 <_ZSt9has_facetISt7num_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEEEbRKSt6locale>:
  8012114:	b510      	push	{r4, lr}
@@ -34102,8 +34102,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8012140:	2000      	movs	r0, #0
  8012142:	e7fc      	b.n	801213e <_ZSt9has_facetISt7num_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEEEbRKSt6locale+0x2a>
  8012144:	200013ac 	.word	0x200013ac
- 8012148:	08029294 	.word	0x08029294
- 801214c:	0802720c 	.word	0x0802720c
+ 8012148:	0802930c 	.word	0x0802930c
+ 801214c:	08027284 	.word	0x08027284
 
 08012150 <_ZSt9has_facetISt7num_getIcSt19istreambuf_iteratorIcSt11char_traitsIcEEEEbRKSt6locale>:
  8012150:	b510      	push	{r4, lr}
@@ -34128,8 +34128,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801217c:	2000      	movs	r0, #0
  801217e:	e7fc      	b.n	801217a <_ZSt9has_facetISt7num_getIcSt19istreambuf_iteratorIcSt11char_traitsIcEEEEbRKSt6locale+0x2a>
  8012180:	200013b0 	.word	0x200013b0
- 8012184:	08029288 	.word	0x08029288
- 8012188:	0802720c 	.word	0x0802720c
+ 8012184:	08029300 	.word	0x08029300
+ 8012188:	08027284 	.word	0x08027284
 
 0801218c <_ZSt14__add_groupingIcEPT_S1_S0_PKcjPKS0_S5_>:
  801218c:	e92d 43f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, lr}
@@ -34984,7 +34984,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8012a18:	4628      	mov	r0, r5
  8012a1a:	f7ff fe4f 	bl	80126bc <_ZNKSt9money_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE9_M_insertILb0EEES3_S3_RSt8ios_basecRKSs>
  8012a1e:	e7e3      	b.n	80129e8 <_ZNKSt9money_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE6do_putES3_bRSt8ios_basece+0xe0>
- 8012a20:	080280c9 	.word	0x080280c9
+ 8012a20:	08028141 	.word	0x08028141
 
 08012a24 <_ZNKSt9money_putIcSt19ostreambuf_iteratorIcSt11char_traitsIcEEE6do_putES3_bRSt8ios_basecRKSs>:
  8012a24:	b5f0      	push	{r4, r5, r6, r7, lr}
@@ -36959,9 +36959,9 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8013f16:	e896 0003 	ldmia.w	r6, {r0, r1}
  8013f1a:	e888 0003 	stmia.w	r8, {r0, r1}
  8013f1e:	e5f5      	b.n	8013b0c <_ZNKSt8time_getIcSt19istreambuf_iteratorIcSt11char_traitsIcEEE21_M_extract_via_formatES3_S3_RSt8ios_baseRSt12_Ios_IostateP2tmPKc+0x174>
- 8013f20:	080280d8 	.word	0x080280d8
- 8013f24:	080280de 	.word	0x080280de
- 8013f28:	080280e7 	.word	0x080280e7
+ 8013f20:	08028150 	.word	0x08028150
+ 8013f24:	08028156 	.word	0x08028156
+ 8013f28:	0802815f 	.word	0x0802815f
  8013f2c:	20000028 	.word	0x20000028
  8013f30:	4630      	mov	r0, r6
  8013f32:	f7f7 fd8d 	bl	800ba50 <_ZNKSt19istreambuf_iteratorIcSt11char_traitsIcEE6_M_getEv>
@@ -41114,7 +41114,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80169ca:	4620      	mov	r0, r4
  80169cc:	bd10      	pop	{r4, pc}
  80169ce:	bf00      	nop
- 80169d0:	0802958c 	.word	0x0802958c
+ 80169d0:	08029604 	.word	0x08029604
 
 080169d4 <_ZTv0_n12_NSoD1Ev>:
  80169d4:	f8d0 c000 	ldr.w	ip, [r0]
@@ -41161,8 +41161,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8016a2e:	4a02      	ldr	r2, [pc, #8]	; (8016a38 <_ZNSoD4Ev+0x30>)
  8016a30:	2304      	movs	r3, #4
  8016a32:	e7f2      	b.n	8016a1a <_ZNSoD4Ev+0x12>
- 8016a34:	0802958c 	.word	0x0802958c
- 8016a38:	080295a0 	.word	0x080295a0
+ 8016a34:	08029604 	.word	0x08029604
+ 8016a38:	08029618 	.word	0x08029618
 
 08016a3c <_ZNSoD2Ev>:
  8016a3c:	460a      	mov	r2, r1
@@ -41218,7 +41218,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8016aa4:	f7fa fa78 	bl	8010f98 <_ZNSt9basic_iosIcSt11char_traitsIcEE4initEPSt15basic_streambufIcS1_E>
  8016aa8:	4620      	mov	r0, r4
  8016aaa:	bd38      	pop	{r3, r4, r5, pc}
- 8016aac:	0802958c 	.word	0x0802958c
+ 8016aac:	08029604 	.word	0x08029604
 
 08016ab0 <_ZNSo6sentryC1ERSo>:
  8016ab0:	b538      	push	{r3, r4, r5, lr}
@@ -41491,7 +41491,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8016d2e:	f884 3068 	strb.w	r3, [r4, #104]	; 0x68
  8016d32:	4628      	mov	r0, r5
  8016d34:	f7fa f88a 	bl	8010e4c <_ZSt19__throw_logic_errorPKc>
- 8016d38:	080295c3 	.word	0x080295c3
+ 8016d38:	0802963b 	.word	0x0802963b
 
 08016d3c <_ZN9__gnu_cxx15__concat_size_tEPcjj>:
  8016d3c:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
@@ -41523,7 +41523,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8016d88:	f04f 34ff 	mov.w	r4, #4294967295
  8016d8c:	e7f8      	b.n	8016d80 <_ZN9__gnu_cxx15__concat_size_tEPcjj+0x44>
  8016d8e:	bf00      	nop
- 8016d90:	0802a031 	.word	0x0802a031
+ 8016d90:	0802a0a9 	.word	0x0802a0a9
 
 08016d94 <_ZN9__gnu_cxx15__snprintf_liteEPcjPKcSt9__va_list>:
  8016d94:	3901      	subs	r1, #1
@@ -41619,7 +41619,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8016e64:	f000 fad0 	bl	8017408 <_ZNSt15basic_streambufIcSt11char_traitsIcEED1Ev>
  8016e68:	4620      	mov	r0, r4
  8016e6a:	bd10      	pop	{r4, pc}
- 8016e6c:	08029634 	.word	0x08029634
+ 8016e6c:	080296ac 	.word	0x080296ac
 
 08016e70 <_ZNSt7__cxx1115basic_stringbufIcSt11char_traitsIcESaIcEED0Ev>:
  8016e70:	b510      	push	{r4, lr}
@@ -41647,7 +41647,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8016ea2:	4620      	mov	r0, r4
  8016ea4:	bd38      	pop	{r3, r4, r5, pc}
  8016ea6:	bf00      	nop
- 8016ea8:	08029634 	.word	0x08029634
+ 8016ea8:	080296ac 	.word	0x080296ac
 
 08016eac <_ZNSt7__cxx1115basic_stringbufIcSt11char_traitsIcESaIcEE15_M_update_egptrEv>:
  8016eac:	6943      	ldr	r3, [r0, #20]
@@ -42090,8 +42090,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80172dc:	f7f9 fe5c 	bl	8010f98 <_ZNSt9basic_iosIcSt11char_traitsIcEE4initEPSt15basic_streambufIcS1_E>
  80172e0:	4620      	mov	r0, r4
  80172e2:	bd70      	pop	{r4, r5, r6, pc}
- 80172e4:	080296fc 	.word	0x080296fc
- 80172e8:	0802972c 	.word	0x0802972c
+ 80172e4:	08029774 	.word	0x08029774
+ 80172e8:	080297a4 	.word	0x080297a4
 
 080172ec <_ZNSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEED4Ev>:
  80172ec:	b570      	push	{r4, r5, r6, lr}
@@ -42130,10 +42130,10 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801733a:	4904      	ldr	r1, [pc, #16]	; (801734c <_ZNSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEED4Ev+0x60>)
  801733c:	e7eb      	b.n	8017316 <_ZNSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEED4Ev+0x2a>
  801733e:	bf00      	nop
- 8017340:	0802972c 	.word	0x0802972c
- 8017344:	08029754 	.word	0x08029754
- 8017348:	08029740 	.word	0x08029740
- 801734c:	080296fc 	.word	0x080296fc
+ 8017340:	080297a4 	.word	0x080297a4
+ 8017344:	080297cc 	.word	0x080297cc
+ 8017348:	080297b8 	.word	0x080297b8
+ 801734c:	08029774 	.word	0x08029774
 
 08017350 <_ZNSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEED1Ev>:
  8017350:	2200      	movs	r2, #0
@@ -42245,7 +42245,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8017416:	4620      	mov	r0, r4
  8017418:	bd10      	pop	{r4, pc}
  801741a:	bf00      	nop
- 801741c:	080297f0 	.word	0x080297f0
+ 801741c:	08029868 	.word	0x08029868
 
 08017420 <_ZNSt15basic_streambufIcSt11char_traitsIcEED0Ev>:
  8017420:	b510      	push	{r4, lr}
@@ -42405,7 +42405,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801755c:	f7ef fb8c 	bl	8006c78 <_ZNSt6localeC1Ev>
  8017560:	4620      	mov	r0, r4
  8017562:	bd10      	pop	{r4, pc}
- 8017564:	080297f0 	.word	0x080297f0
+ 8017564:	08029868 	.word	0x08029868
 
 08017568 <_ZNSt15basic_streambufIwSt11char_traitsIwEE6sbumpcEv>:
  8017568:	e9d0 2102 	ldrd	r2, r1, [r0, #8]
@@ -42458,7 +42458,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80175ce:	e8bd 4008 	ldmia.w	sp!, {r3, lr}
  80175d2:	f7ee bce7 	b.w	8005fa4 <_Znwj>
  80175d6:	bf00      	nop
- 80175d8:	08029859 	.word	0x08029859
+ 80175d8:	080298d1 	.word	0x080298d1
 
 080175dc <_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE10_M_disposeEv>:
  80175dc:	f850 3b08 	ldr.w	r3, [r0], #8
@@ -42480,7 +42480,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80175fc:	4801      	ldr	r0, [pc, #4]	; (8017604 <_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE8_M_checkEjPKc+0x18>)
  80175fe:	f7f9 fc2b 	bl	8010e58 <_ZSt24__throw_out_of_range_fmtPKcz>
  8017602:	bd08      	pop	{r3, pc}
- 8017604:	08027eb4 	.word	0x08027eb4
+ 8017604:	08027f2c 	.word	0x08027f2c
 
 08017608 <_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE15_M_check_lengthEjjPKc>:
  8017608:	6840      	ldr	r0, [r0, #4]
@@ -42812,7 +42812,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80178ac:	f7ff ff4a 	bl	8017744 <_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE8_M_eraseEjj>
  80178b0:	e7f1      	b.n	8017896 <_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE5eraseEjj+0x1a>
  80178b2:	bf00      	nop
- 80178b4:	08027f16 	.word	0x08027f16
+ 80178b4:	08027f8e 	.word	0x08027f8e
 
 080178b8 <_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE14_M_replace_auxEjjjc>:
  80178b8:	e92d 41f3 	stmdb	sp!, {r0, r1, r4, r5, r6, r7, r8, lr}
@@ -42866,7 +42866,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801792c:	f7ff fece 	bl	80176cc <_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9_M_mutateEjjPKcj>
  8017930:	e7e5      	b.n	80178fe <_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE14_M_replace_auxEjjjc+0x46>
  8017932:	bf00      	nop
- 8017934:	08027f2a 	.word	0x08027f2a
+ 8017934:	08027fa2 	.word	0x08027fa2
 
 08017938 <_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE6appendEjc>:
  8017938:	b507      	push	{r0, r1, r2, lr}
@@ -42925,7 +42925,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80179a0:	f7ff ff8a 	bl	80178b8 <_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE14_M_replace_auxEjjjc>
  80179a4:	b002      	add	sp, #8
  80179a6:	bd70      	pop	{r4, r5, r6, pc}
- 80179a8:	08027f47 	.word	0x08027f47
+ 80179a8:	08027fbf 	.word	0x08027fbf
 
 080179ac <_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE6insertEN9__gnu_cxx17__normal_iteratorIPKcS4_EEc>:
  80179ac:	b537      	push	{r0, r1, r2, r4, r5, lr}
@@ -43043,7 +43043,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8017aba:	d0d0      	beq.n	8017a5e <_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE10_M_replaceEjjPKcj+0x96>
  8017abc:	e7c8      	b.n	8017a50 <_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE10_M_replaceEjjPKcj+0x88>
  8017abe:	bf00      	nop
- 8017ac0:	08029871 	.word	0x08029871
+ 8017ac0:	080298e9 	.word	0x080298e9
 
 08017ac4 <_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE6assignEPKcj>:
  8017ac4:	b507      	push	{r0, r1, r2, lr}
@@ -43132,7 +43132,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8017b6c:	4620      	mov	r0, r4
  8017b6e:	f7ff ffc6 	bl	8017afe <_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9_M_appendEPKcj>
  8017b72:	bd70      	pop	{r4, r5, r6, pc}
- 8017b74:	08027f71 	.word	0x08027f71
+ 8017b74:	08027fe9 	.word	0x08027fe9
 
 08017b78 <_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE4copyEPcjj>:
  8017b78:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
@@ -43157,7 +43157,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8017ba4:	4620      	mov	r0, r4
  8017ba6:	e8bd 83f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, pc}
  8017baa:	bf00      	nop
- 8017bac:	08027eeb 	.word	0x08027eeb
+ 8017bac:	08027f63 	.word	0x08027f63
 
 08017bb0 <_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE4swapERS4_>:
  8017bb0:	e92d 43f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, lr}
@@ -43314,7 +43314,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8017d0e:	b002      	add	sp, #8
  8017d10:	bd70      	pop	{r4, r5, r6, pc}
  8017d12:	bf00      	nop
- 8017d14:	0802988a 	.word	0x0802988a
+ 8017d14:	08029902 	.word	0x08029902
 
 08017d18 <_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1ERKS4_>:
  8017d18:	b538      	push	{r3, r4, r5, lr}
@@ -43362,7 +43362,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8017d76:	b002      	add	sp, #8
  8017d78:	bd70      	pop	{r4, r5, r6, pc}
  8017d7a:	bf00      	nop
- 8017d7c:	0802988a 	.word	0x0802988a
+ 8017d7c:	08029902 	.word	0x08029902
 
 08017d80 <_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1EPKcRKS3_>:
  8017d80:	b538      	push	{r3, r4, r5, lr}
@@ -43519,7 +43519,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8017ea8:	f7ee f9b2 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  8017eac:	4620      	mov	r0, r4
  8017eae:	bd10      	pop	{r4, pc}
- 8017eb0:	08029a78 	.word	0x08029a78
+ 8017eb0:	08029af0 	.word	0x08029af0
 
 08017eb4 <_ZNSt9money_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEED1Ev>:
  8017eb4:	b510      	push	{r4, lr}
@@ -43529,7 +43529,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8017ebc:	f7ee f9a8 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  8017ec0:	4620      	mov	r0, r4
  8017ec2:	bd10      	pop	{r4, pc}
- 8017ec4:	08029a90 	.word	0x08029a90
+ 8017ec4:	08029b08 	.word	0x08029b08
 
 08017ec8 <_ZNSt7num_getIwSt19istreambuf_iteratorIwSt11char_traitsIwEEED1Ev>:
  8017ec8:	b510      	push	{r4, lr}
@@ -43539,7 +43539,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8017ed0:	f7ee f99e 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  8017ed4:	4620      	mov	r0, r4
  8017ed6:	bd10      	pop	{r4, pc}
- 8017ed8:	0802993c 	.word	0x0802993c
+ 8017ed8:	080299b4 	.word	0x080299b4
 
 08017edc <_ZNSt7num_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEED1Ev>:
  8017edc:	b510      	push	{r4, lr}
@@ -43549,7 +43549,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8017ee4:	f7ee f994 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  8017ee8:	4620      	mov	r0, r4
  8017eea:	bd10      	pop	{r4, pc}
- 8017eec:	08029978 	.word	0x08029978
+ 8017eec:	080299f0 	.word	0x080299f0
 
 08017ef0 <_ZNSt17__timepunct_cacheIwED1Ev>:
  8017ef0:	b510      	push	{r4, lr}
@@ -43559,7 +43559,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8017ef8:	f7ee f98a 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  8017efc:	4620      	mov	r0, r4
  8017efe:	bd10      	pop	{r4, pc}
- 8017f00:	080299a8 	.word	0x080299a8
+ 8017f00:	08029a20 	.word	0x08029a20
 
 08017f04 <_ZNSt8time_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEED1Ev>:
  8017f04:	b510      	push	{r4, lr}
@@ -43569,7 +43569,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8017f0c:	f7ee f980 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  8017f10:	4620      	mov	r0, r4
  8017f12:	bd10      	pop	{r4, pc}
- 8017f14:	08029aa8 	.word	0x08029aa8
+ 8017f14:	08029b20 	.word	0x08029b20
 
 08017f18 <_ZNSt8time_getIwSt19istreambuf_iteratorIwSt11char_traitsIwEEED1Ev>:
  8017f18:	b510      	push	{r4, lr}
@@ -43579,7 +43579,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8017f20:	f7ee f976 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  8017f24:	4620      	mov	r0, r4
  8017f26:	bd10      	pop	{r4, pc}
- 8017f28:	08029abc 	.word	0x08029abc
+ 8017f28:	08029b34 	.word	0x08029b34
 
 08017f2c <_ZNSt9money_getIwSt19istreambuf_iteratorIwSt11char_traitsIwEEED0Ev>:
  8017f2c:	b510      	push	{r4, lr}
@@ -43776,7 +43776,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8018098:	f7ee f8ba 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  801809c:	4620      	mov	r0, r4
  801809e:	bd10      	pop	{r4, pc}
- 80180a0:	08029a30 	.word	0x08029a30
+ 80180a0:	08029aa8 	.word	0x08029aa8
 
 080180a4 <_ZNSt8messagesIwED0Ev>:
  80180a4:	b510      	push	{r4, lr}
@@ -43798,7 +43798,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80180c8:	f7ee f8a2 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  80180cc:	4620      	mov	r0, r4
  80180ce:	bd10      	pop	{r4, pc}
- 80180d0:	080298bc 	.word	0x080298bc
+ 80180d0:	08029934 	.word	0x08029934
 
 080180d4 <_ZNSt7collateIwED0Ev>:
  80180d4:	b510      	push	{r4, lr}
@@ -43834,7 +43834,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801811a:	4620      	mov	r0, r4
  801811c:	bd38      	pop	{r3, r4, r5, pc}
  801811e:	bf00      	nop
- 8018120:	080299b8 	.word	0x080299b8
+ 8018120:	08029a30 	.word	0x08029a30
 
 08018124 <_ZNSt11__timepunctIwED0Ev>:
  8018124:	b510      	push	{r4, lr}
@@ -44022,7 +44022,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80182e2:	4620      	mov	r0, r4
  80182e4:	bd10      	pop	{r4, pc}
  80182e6:	bf00      	nop
- 80182e8:	080299fc 	.word	0x080299fc
+ 80182e8:	08029a74 	.word	0x08029a74
 
 080182ec <_ZNKSt10moneypunctIwLb0EE13decimal_pointEv>:
  80182ec:	6803      	ldr	r3, [r0, #0]
@@ -44106,7 +44106,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8018366:	4620      	mov	r0, r4
  8018368:	bd10      	pop	{r4, pc}
  801836a:	bf00      	nop
- 801836c:	080299c8 	.word	0x080299c8
+ 801836c:	08029a40 	.word	0x08029a40
 
 08018370 <_ZNKSt10moneypunctIwLb1EE13decimal_pointEv>:
  8018370:	6803      	ldr	r3, [r0, #0]
@@ -44286,7 +44286,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80184b8:	f7ee fec8 	bl	800724c <_ZNSt8numpunctIwE22_M_initialize_numpunctEPi>
  80184bc:	4620      	mov	r0, r4
  80184be:	bd10      	pop	{r4, pc}
- 80184c0:	08029918 	.word	0x08029918
+ 80184c0:	08029990 	.word	0x08029990
 
 080184c4 <_ZNKSt8numpunctIwE13decimal_pointEv>:
  80184c4:	6803      	ldr	r3, [r0, #0]
@@ -44343,7 +44343,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8018518:	f006 fc8a 	bl	801ee30 <_ZNSt11__timepunctIwE23_M_initialize_timepunctEPi>
  801851c:	4620      	mov	r0, r4
  801851e:	bd10      	pop	{r4, pc}
- 8018520:	080299b8 	.word	0x080299b8
+ 8018520:	08029a30 	.word	0x08029a30
 
 08018524 <_ZNKSt11__timepunctIwE15_M_date_formatsEPPKw>:
  8018524:	6883      	ldr	r3, [r0, #8]
@@ -44610,7 +44610,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8018746:	4620      	mov	r0, r4
  8018748:	bd10      	pop	{r4, pc}
  801874a:	bf00      	nop
- 801874c:	08029a30 	.word	0x08029a30
+ 801874c:	08029aa8 	.word	0x08029aa8
 
 08018750 <_ZNKSt8messagesIwE4openERKSsRKSt6locale>:
  8018750:	6803      	ldr	r3, [r0, #0]
@@ -44650,7 +44650,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801878a:	4620      	mov	r0, r4
  801878c:	bd10      	pop	{r4, pc}
  801878e:	bf00      	nop
- 8018790:	080298bc 	.word	0x080298bc
+ 8018790:	08029934 	.word	0x08029934
 
 08018794 <_ZNKSt7collateIwE7compareEPKwS2_S2_S2_>:
  8018794:	b410      	push	{r4}
@@ -44689,8 +44689,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80187da:	f005 f96f 	bl	801dabc <__cxa_bad_cast>
  80187de:	bd10      	pop	{r4, pc}
  80187e0:	200012e4 	.word	0x200012e4
- 80187e4:	08027ffc 	.word	0x08027ffc
- 80187e8:	0802720c 	.word	0x0802720c
+ 80187e4:	08028074 	.word	0x08028074
+ 80187e8:	08027284 	.word	0x08027284
 
 080187ec <_ZSt9use_facetISt8numpunctIwEERKT_RKSt6locale>:
  80187ec:	b510      	push	{r4, lr}
@@ -44712,8 +44712,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8018816:	f005 f951 	bl	801dabc <__cxa_bad_cast>
  801881a:	bd10      	pop	{r4, pc}
  801881c:	20001414 	.word	0x20001414
- 8018820:	08029bdc 	.word	0x08029bdc
- 8018824:	0802720c 	.word	0x0802720c
+ 8018820:	08029c54 	.word	0x08029c54
+ 8018824:	08027284 	.word	0x08027284
 
 08018828 <_ZSt9use_facetISt10moneypunctIwLb1EEERKT_RKSt6locale>:
  8018828:	b510      	push	{r4, lr}
@@ -44735,8 +44735,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8018852:	f005 f933 	bl	801dabc <__cxa_bad_cast>
  8018856:	bd10      	pop	{r4, pc}
  8018858:	20001420 	.word	0x20001420
- 801885c:	08029afc 	.word	0x08029afc
- 8018860:	0802720c 	.word	0x0802720c
+ 801885c:	08029b74 	.word	0x08029b74
+ 8018860:	08027284 	.word	0x08027284
 
 08018864 <_ZSt9use_facetISt10moneypunctIwLb0EEERKT_RKSt6locale>:
  8018864:	b510      	push	{r4, lr}
@@ -44758,8 +44758,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801888e:	f005 f915 	bl	801dabc <__cxa_bad_cast>
  8018892:	bd10      	pop	{r4, pc}
  8018894:	20001424 	.word	0x20001424
- 8018898:	08029adc 	.word	0x08029adc
- 801889c:	0802720c 	.word	0x0802720c
+ 8018898:	08029b54 	.word	0x08029b54
+ 801889c:	08027284 	.word	0x08027284
 
 080188a0 <_ZSt9use_facetISt11__timepunctIwEERKT_RKSt6locale>:
  80188a0:	b510      	push	{r4, lr}
@@ -44781,8 +44781,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80188ca:	f005 f8f7 	bl	801dabc <__cxa_bad_cast>
  80188ce:	bd10      	pop	{r4, pc}
  80188d0:	20001408 	.word	0x20001408
- 80188d4:	08029b1c 	.word	0x08029b1c
- 80188d8:	0802720c 	.word	0x0802720c
+ 80188d4:	08029b94 	.word	0x08029b94
+ 80188d8:	08027284 	.word	0x08027284
 
 080188dc <_ZSt14__add_groupingIwEPT_S1_S0_PKcjPKS0_S5_>:
  80188dc:	e92d 43f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, lr}
@@ -45885,7 +45885,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8019434:	f7ff fe5a 	bl	80190ec <_ZNKSt9money_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE9_M_insertILb0EEES3_S3_RSt8ios_basewRKSbIwS2_SaIwEE>
  8019438:	e7ed      	b.n	8019416 <_ZNKSt9money_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE6do_putES3_bRSt8ios_basewe+0xde>
  801943a:	bf00      	nop
- 801943c:	080280c9 	.word	0x080280c9
+ 801943c:	08028141 	.word	0x08028141
 
 08019440 <_ZNKSt9money_putIwSt19ostreambuf_iteratorIwSt11char_traitsIwEEE6do_putES3_bRSt8ios_basewRKSbIwS2_SaIwEE>:
  8019440:	b5f0      	push	{r4, r5, r6, r7, lr}
@@ -47954,9 +47954,9 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801a9dc:	f47f adec 	bne.w	801a5b8 <_ZNKSt8time_getIwSt19istreambuf_iteratorIwSt11char_traitsIwEEE21_M_extract_via_formatES3_S3_RSt8ios_baseRSt12_Ios_IostateP2tmPKw+0x170>
  801a9e0:	e7be      	b.n	801a960 <_ZNKSt8time_getIwSt19istreambuf_iteratorIwSt11char_traitsIwEEE21_M_extract_via_formatES3_S3_RSt8ios_baseRSt12_Ios_IostateP2tmPKw+0x518>
  801a9e2:	bf00      	nop
- 801a9e4:	080280d8 	.word	0x080280d8
- 801a9e8:	080280de 	.word	0x080280de
- 801a9ec:	080280e7 	.word	0x080280e7
+ 801a9e4:	08028150 	.word	0x08028150
+ 801a9e8:	08028156 	.word	0x08028156
+ 801a9ec:	0802815f 	.word	0x0802815f
  801a9f0:	20000060 	.word	0x20000060
  801a9f4:	9b10      	ldr	r3, [sp, #64]	; 0x40
  801a9f6:	f043 0304 	orr.w	r3, r3, #4
@@ -52112,7 +52112,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801d3ae:	e8bd 4008 	ldmia.w	sp!, {r3, lr}
  801d3b2:	0080      	lsls	r0, r0, #2
  801d3b4:	f7e8 bdf6 	b.w	8005fa4 <_Znwj>
- 801d3b8:	08029859 	.word	0x08029859
+ 801d3b8:	080298d1 	.word	0x080298d1
 
 0801d3bc <_ZNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE10_M_disposeEv>:
  801d3bc:	f850 3b08 	ldr.w	r3, [r0], #8
@@ -52134,7 +52134,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801d3dc:	4801      	ldr	r0, [pc, #4]	; (801d3e4 <_ZNKSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE8_M_checkEjPKc+0x18>)
  801d3de:	f7f3 fd3b 	bl	8010e58 <_ZSt24__throw_out_of_range_fmtPKcz>
  801d3e2:	bd08      	pop	{r3, pc}
- 801d3e4:	08027eb4 	.word	0x08027eb4
+ 801d3e4:	08027f2c 	.word	0x08027f2c
 
 0801d3e8 <_ZNKSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE15_M_check_lengthEjjPKc>:
  801d3e8:	6840      	ldr	r0, [r0, #4]
@@ -52444,7 +52444,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801d678:	f7ff ff57 	bl	801d52a <_ZNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE8_M_eraseEjj>
  801d67c:	e7f1      	b.n	801d662 <_ZNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE5eraseEjj+0x1a>
  801d67e:	bf00      	nop
- 801d680:	08027f16 	.word	0x08027f16
+ 801d680:	08027f8e 	.word	0x08027f8e
 
 0801d684 <_ZNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE14_M_replace_auxEjjjw>:
  801d684:	e92d 41f3 	stmdb	sp!, {r0, r1, r4, r5, r6, r7, r8, lr}
@@ -52496,7 +52496,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801d6f8:	4620      	mov	r0, r4
  801d6fa:	f7ff fed9 	bl	801d4b0 <_ZNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE9_M_mutateEjjPKwj>
  801d6fe:	e7e7      	b.n	801d6d0 <_ZNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE14_M_replace_auxEjjjw+0x4c>
- 801d700:	08027f2a 	.word	0x08027f2a
+ 801d700:	08027fa2 	.word	0x08027fa2
 
 0801d704 <_ZNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE6appendEjw>:
  801d704:	b507      	push	{r0, r1, r2, lr}
@@ -52552,7 +52552,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801d768:	f7ff ff8c 	bl	801d684 <_ZNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE14_M_replace_auxEjjjw>
  801d76c:	b002      	add	sp, #8
  801d76e:	bd70      	pop	{r4, r5, r6, pc}
- 801d770:	08027f47 	.word	0x08027f47
+ 801d770:	08027fbf 	.word	0x08027fbf
 
 0801d774 <_ZNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE10_M_replaceEjjPKwj>:
  801d774:	e92d 4ff7 	stmdb	sp!, {r0, r1, r2, r4, r5, r6, r7, r8, r9, sl, fp, lr}
@@ -52656,7 +52656,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801d87a:	d0cb      	beq.n	801d814 <_ZNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE10_M_replaceEjjPKwj+0xa0>
  801d87c:	e7c1      	b.n	801d802 <_ZNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE10_M_replaceEjjPKwj+0x8e>
  801d87e:	bf00      	nop
- 801d880:	08029871 	.word	0x08029871
+ 801d880:	080298e9 	.word	0x080298e9
 
 0801d884 <_ZNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE6assignEPKwj>:
  801d884:	b507      	push	{r0, r1, r2, lr}
@@ -52724,7 +52724,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801d908:	4620      	mov	r0, r4
  801d90a:	f7ff ffc5 	bl	801d898 <_ZNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE9_M_appendEPKwj>
  801d90e:	bd70      	pop	{r4, r5, r6, pc}
- 801d910:	08027f71 	.word	0x08027f71
+ 801d910:	08027fe9 	.word	0x08027fe9
 
 0801d914 <_ZNKSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE4copyEPwjj>:
  801d914:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
@@ -52748,7 +52748,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801d93e:	f7ff fd6c 	bl	801d41a <_ZNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE7_S_copyEPwPKwj>
  801d942:	4620      	mov	r0, r4
  801d944:	e8bd 83f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, pc}
- 801d948:	08027eeb 	.word	0x08027eeb
+ 801d948:	08027f63 	.word	0x08027f63
 
 0801d94c <_ZNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEE12_M_constructIPwEEvT_S7_St20forward_iterator_tag>:
  801d94c:	b573      	push	{r0, r1, r4, r5, r6, lr}
@@ -52781,7 +52781,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801d98a:	b002      	add	sp, #8
  801d98c:	bd70      	pop	{r4, r5, r6, pc}
  801d98e:	bf00      	nop
- 801d990:	0802988a 	.word	0x0802988a
+ 801d990:	08029902 	.word	0x08029902
 
 0801d994 <_ZNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEEC1ERKS4_>:
  801d994:	b538      	push	{r3, r4, r5, lr}
@@ -52827,7 +52827,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801d9f2:	b002      	add	sp, #8
  801d9f4:	bd70      	pop	{r4, r5, r6, pc}
  801d9f6:	bf00      	nop
- 801d9f8:	0802988a 	.word	0x0802988a
+ 801d9f8:	08029902 	.word	0x08029902
 
 0801d9fc <_ZdlPv>:
  801d9fc:	f001 bfea 	b.w	801f9d4 <free>
@@ -53082,7 +53082,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801dc0c:	f7e7 fd12 	bl	8005634 <_ZN10__cxxabiv117__class_type_infoD1Ev>
  801dc10:	4620      	mov	r0, r4
  801dc12:	bd10      	pop	{r4, pc}
- 801dc14:	08029eec 	.word	0x08029eec
+ 801dc14:	08029f64 	.word	0x08029f64
 
 0801dc18 <_ZN10__cxxabiv121__vmi_class_type_infoD0Ev>:
  801dc18:	b510      	push	{r4, lr}
@@ -53614,7 +53614,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801e0f6:	4b04      	ldr	r3, [pc, #16]	; (801e108 <_ZSt14__convert_to_vIfEvPKcRT_RSt12_Ios_IostateRKPi+0x98>)
  801e0f8:	e7e0      	b.n	801e0bc <_ZSt14__convert_to_vIfEvPKcRT_RSt12_Ios_IostateRKPi+0x4c>
  801e0fa:	bf00      	nop
- 801e0fc:	080280c7 	.word	0x080280c7
+ 801e0fc:	0802813f 	.word	0x0802813f
  801e100:	7f800000 	.word	0x7f800000
  801e104:	ff800000 	.word	0xff800000
  801e108:	7f7fffff 	.word	0x7f7fffff
@@ -53680,7 +53680,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801e1a8:	4b04      	ldr	r3, [pc, #16]	; (801e1bc <_ZSt14__convert_to_vIdEvPKcRT_RSt12_Ios_IostateRKPi+0xb0>)
  801e1aa:	f04f 32ff 	mov.w	r2, #4294967295
  801e1ae:	e7d8      	b.n	801e162 <_ZSt14__convert_to_vIdEvPKcRT_RSt12_Ios_IostateRKPi+0x56>
- 801e1b0:	080280c7 	.word	0x080280c7
+ 801e1b0:	0802813f 	.word	0x0802813f
  801e1b4:	7ff00000 	.word	0x7ff00000
  801e1b8:	fff00000 	.word	0xfff00000
  801e1bc:	7fefffff 	.word	0x7fefffff
@@ -53744,8 +53744,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801e250:	4b05      	ldr	r3, [pc, #20]	; (801e268 <_ZSt14__convert_to_vIeEvPKcRT_RSt12_Ios_IostateRKPi+0xa8>)
  801e252:	f04f 32ff 	mov.w	r2, #4294967295
  801e256:	e7d7      	b.n	801e208 <_ZSt14__convert_to_vIeEvPKcRT_RSt12_Ios_IostateRKPi+0x48>
- 801e258:	080280c7 	.word	0x080280c7
- 801e25c:	08029f10 	.word	0x08029f10
+ 801e258:	0802813f 	.word	0x0802813f
+ 801e25c:	08029f88 	.word	0x08029f88
  801e260:	7ff00000 	.word	0x7ff00000
  801e264:	fff00000 	.word	0xfff00000
  801e268:	7fefffff 	.word	0x7fefffff
@@ -53763,8 +53763,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801e280:	f7f2 fe06 	bl	8010e90 <_ZSt21__throw_runtime_errorPKc>
  801e284:	bd08      	pop	{r3, pc}
  801e286:	bf00      	nop
- 801e288:	080280c7 	.word	0x080280c7
- 801e28c:	08029f14 	.word	0x08029f14
+ 801e288:	0802813f 	.word	0x0802813f
+ 801e28c:	08029f8c 	.word	0x08029f8c
 
 0801e290 <_ZNSt6locale5facet19_S_destroy_c_localeERPi>:
  801e290:	2300      	movs	r3, #0
@@ -53818,8 +53818,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801e2d8:	f7e7 ff9a 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  801e2dc:	4620      	mov	r0, r4
  801e2de:	bd10      	pop	{r4, pc}
- 801e2e0:	08029fa0 	.word	0x08029fa0
- 801e2e4:	08029150 	.word	0x08029150
+ 801e2e0:	0802a018 	.word	0x0802a018
+ 801e2e4:	080291c8 	.word	0x080291c8
 
 0801e2e8 <_ZNSt7codecvtIcc10_mbstate_tED0Ev>:
  801e2e8:	b510      	push	{r4, lr}
@@ -53843,8 +53843,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801e310:	f7e7 ff7e 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  801e314:	4620      	mov	r0, r4
  801e316:	bd10      	pop	{r4, pc}
- 801e318:	08029fcc 	.word	0x08029fcc
- 801e31c:	08029a4c 	.word	0x08029a4c
+ 801e318:	0802a044 	.word	0x0802a044
+ 801e31c:	08029ac4 	.word	0x08029ac4
 
 0801e320 <_ZNSt7codecvtIwc10_mbstate_tED0Ev>:
  801e320:	b510      	push	{r4, lr}
@@ -53870,7 +53870,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801e34a:	4620      	mov	r0, r4
  801e34c:	bd10      	pop	{r4, pc}
  801e34e:	bf00      	nop
- 801e350:	08029fa0 	.word	0x08029fa0
+ 801e350:	0802a018 	.word	0x0802a018
 
 0801e354 <_ZNSt7codecvtIwc10_mbstate_tEC1Ej>:
  801e354:	3900      	subs	r1, #0
@@ -53886,7 +53886,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801e36a:	4620      	mov	r0, r4
  801e36c:	bd10      	pop	{r4, pc}
  801e36e:	bf00      	nop
- 801e370:	08029fcc 	.word	0x08029fcc
+ 801e370:	0802a044 	.word	0x0802a044
 
 0801e374 <_ZNKSt7codecvtIwc10_mbstate_tE6do_outERS0_PKwS4_RS4_PcS6_RS6_>:
  801e374:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
@@ -54328,9 +54328,9 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801e748:	f882 1038 	strb.w	r1, [r2, #56]	; 0x38
  801e74c:	d1f7      	bne.n	801e73e <_ZNSt7__cxx1110moneypunctIcLb1EE24_M_initialize_moneypunctEPiPKc+0x66>
  801e74e:	bd38      	pop	{r3, r4, r5, pc}
- 801e750:	080272b8 	.word	0x080272b8
- 801e754:	0802b42d 	.word	0x0802b42d
- 801e758:	0802a148 	.word	0x0802a148
+ 801e750:	08027330 	.word	0x08027330
+ 801e754:	0802b4a5 	.word	0x0802b4a5
+ 801e758:	0802a1c0 	.word	0x0802a1c0
  801e75c:	20000024 	.word	0x20000024
 
 0801e760 <_ZNSt7__cxx1110moneypunctIcLb0EE24_M_initialize_moneypunctEPiPKc>:
@@ -54382,9 +54382,9 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801e7d0:	f882 1038 	strb.w	r1, [r2, #56]	; 0x38
  801e7d4:	d1f7      	bne.n	801e7c6 <_ZNSt7__cxx1110moneypunctIcLb0EE24_M_initialize_moneypunctEPiPKc+0x66>
  801e7d6:	bd38      	pop	{r3, r4, r5, pc}
- 801e7d8:	080272c8 	.word	0x080272c8
- 801e7dc:	0802b42d 	.word	0x0802b42d
- 801e7e0:	0802a148 	.word	0x0802a148
+ 801e7d8:	08027340 	.word	0x08027340
+ 801e7dc:	0802b4a5 	.word	0x0802b4a5
+ 801e7e0:	0802a1c0 	.word	0x0802a1c0
  801e7e4:	20000024 	.word	0x20000024
 
 0801e7e8 <_ZNSt7__cxx1110moneypunctIcLb1EED1Ev>:
@@ -54401,7 +54401,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801e7fc:	f7e7 fd08 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  801e800:	4620      	mov	r0, r4
  801e802:	bd10      	pop	{r4, pc}
- 801e804:	0802817c 	.word	0x0802817c
+ 801e804:	080281f4 	.word	0x080281f4
 
 0801e808 <_ZNSt7__cxx1110moneypunctIcLb1EED0Ev>:
  801e808:	b510      	push	{r4, lr}
@@ -54427,7 +54427,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801e830:	f7e7 fcee 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  801e834:	4620      	mov	r0, r4
  801e836:	bd10      	pop	{r4, pc}
- 801e838:	080281b0 	.word	0x080281b0
+ 801e838:	08028228 	.word	0x08028228
 
 0801e83c <_ZNSt7__cxx1110moneypunctIcLb0EED0Ev>:
  801e83c:	b510      	push	{r4, lr}
@@ -54488,10 +54488,10 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801e8c6:	4299      	cmp	r1, r3
  801e8c8:	d1f9      	bne.n	801e8be <_ZNSt7__cxx1110moneypunctIwLb1EE24_M_initialize_moneypunctEPiPKc+0x6e>
  801e8ca:	bd38      	pop	{r3, r4, r5, pc}
- 801e8cc:	080272d8 	.word	0x080272d8
- 801e8d0:	0802b780 	.word	0x0802b780
- 801e8d4:	0802b42d 	.word	0x0802b42d
- 801e8d8:	0802a148 	.word	0x0802a148
+ 801e8cc:	08027350 	.word	0x08027350
+ 801e8d0:	0802b7f8 	.word	0x0802b7f8
+ 801e8d4:	0802b4a5 	.word	0x0802b4a5
+ 801e8d8:	0802a1c0 	.word	0x0802a1c0
  801e8dc:	20000024 	.word	0x20000024
 
 0801e8e0 <_ZNSt7__cxx1110moneypunctIwLb0EE24_M_initialize_moneypunctEPiPKc>:
@@ -54543,10 +54543,10 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801e956:	4299      	cmp	r1, r3
  801e958:	d1f9      	bne.n	801e94e <_ZNSt7__cxx1110moneypunctIwLb0EE24_M_initialize_moneypunctEPiPKc+0x6e>
  801e95a:	bd38      	pop	{r3, r4, r5, pc}
- 801e95c:	080272e8 	.word	0x080272e8
- 801e960:	0802b780 	.word	0x0802b780
- 801e964:	0802b42d 	.word	0x0802b42d
- 801e968:	0802a148 	.word	0x0802a148
+ 801e95c:	08027360 	.word	0x08027360
+ 801e960:	0802b7f8 	.word	0x0802b7f8
+ 801e964:	0802b4a5 	.word	0x0802b4a5
+ 801e968:	0802a1c0 	.word	0x0802a1c0
  801e96c:	20000024 	.word	0x20000024
 
 0801e970 <_ZNSt7__cxx1110moneypunctIwLb1EED1Ev>:
@@ -54563,7 +54563,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801e984:	f7e7 fc44 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  801e988:	4620      	mov	r0, r4
  801e98a:	bd10      	pop	{r4, pc}
- 801e98c:	08028c54 	.word	0x08028c54
+ 801e98c:	08028ccc 	.word	0x08028ccc
 
 0801e990 <_ZNSt7__cxx1110moneypunctIwLb1EED0Ev>:
  801e990:	b510      	push	{r4, lr}
@@ -54589,7 +54589,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801e9b8:	f7e7 fc2a 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  801e9bc:	4620      	mov	r0, r4
  801e9be:	bd10      	pop	{r4, pc}
- 801e9c0:	08028c88 	.word	0x08028c88
+ 801e9c0:	08028d00 	.word	0x08028d00
 
 0801e9c4 <_ZNSt7__cxx1110moneypunctIwLb0EED0Ev>:
  801e9c4:	b510      	push	{r4, lr}
@@ -54659,12 +54659,12 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801ea56:	621a      	str	r2, [r3, #32]
  801ea58:	bd38      	pop	{r3, r4, r5, pc}
  801ea5a:	bf00      	nop
- 801ea5c:	08027330 	.word	0x08027330
- 801ea60:	0802b42d 	.word	0x0802b42d
+ 801ea5c:	080273a8 	.word	0x080273a8
+ 801ea60:	0802b4a5 	.word	0x0802b4a5
  801ea64:	20000020 	.word	0x20000020
  801ea68:	2000001c 	.word	0x2000001c
- 801ea6c:	080272f0 	.word	0x080272f0
- 801ea70:	080272f5 	.word	0x080272f5
+ 801ea6c:	08027368 	.word	0x08027368
+ 801ea70:	0802736d 	.word	0x0802736d
 
 0801ea74 <_ZNSt7__cxx118numpunctIcED1Ev>:
  801ea74:	4b06      	ldr	r3, [pc, #24]	; (801ea90 <_ZNSt7__cxx118numpunctIcED1Ev+0x1c>)
@@ -54680,7 +54680,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801ea88:	f7e7 fbc2 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  801ea8c:	4620      	mov	r0, r4
  801ea8e:	bd10      	pop	{r4, pc}
- 801ea90:	08028158 	.word	0x08028158
+ 801ea90:	080281d0 	.word	0x080281d0
 
 0801ea94 <_ZNSt7__cxx118numpunctIcED0Ev>:
  801ea94:	b510      	push	{r4, lr}
@@ -54745,12 +54745,12 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801eb26:	2205      	movs	r2, #5
  801eb28:	621a      	str	r2, [r3, #32]
  801eb2a:	bd38      	pop	{r3, r4, r5, pc}
- 801eb2c:	08027340 	.word	0x08027340
- 801eb30:	0802b42d 	.word	0x0802b42d
+ 801eb2c:	080273b8 	.word	0x080273b8
+ 801eb30:	0802b4a5 	.word	0x0802b4a5
  801eb34:	20000020 	.word	0x20000020
  801eb38:	2000001c 	.word	0x2000001c
- 801eb3c:	080272fc 	.word	0x080272fc
- 801eb40:	08027310 	.word	0x08027310
+ 801eb3c:	08027374 	.word	0x08027374
+ 801eb40:	08027388 	.word	0x08027388
 
 0801eb44 <_ZNSt7__cxx118numpunctIwED1Ev>:
  801eb44:	4b06      	ldr	r3, [pc, #24]	; (801eb60 <_ZNSt7__cxx118numpunctIwED1Ev+0x1c>)
@@ -54766,7 +54766,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801eb58:	f7e7 fb5a 	bl	8006210 <_ZNSt6locale5facetD1Ev>
  801eb5c:	4620      	mov	r0, r4
  801eb5e:	bd10      	pop	{r4, pc}
- 801eb60:	08028c30 	.word	0x08028c30
+ 801eb60:	08028ca8 	.word	0x08028ca8
 
 0801eb64 <_ZNSt7__cxx118numpunctIwED0Ev>:
  801eb64:	b510      	push	{r4, lr}
@@ -54937,49 +54937,49 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801ed1c:	f8c3 20c0 	str.w	r2, [r3, #192]	; 0xc0
  801ed20:	bd38      	pop	{r3, r4, r5, pc}
  801ed22:	bf00      	nop
- 801ed24:	080290ac 	.word	0x080290ac
- 801ed28:	080280cf 	.word	0x080280cf
- 801ed2c:	0802a14c 	.word	0x0802a14c
- 801ed30:	080280de 	.word	0x080280de
- 801ed34:	0802a14f 	.word	0x0802a14f
- 801ed38:	0802b42d 	.word	0x0802b42d
- 801ed3c:	0802a152 	.word	0x0802a152
- 801ed40:	0802a159 	.word	0x0802a159
- 801ed44:	0802a160 	.word	0x0802a160
- 801ed48:	0802a168 	.word	0x0802a168
- 801ed4c:	0802a172 	.word	0x0802a172
- 801ed50:	0802a17b 	.word	0x0802a17b
- 801ed54:	0802a182 	.word	0x0802a182
- 801ed58:	0802a18b 	.word	0x0802a18b
- 801ed5c:	0802a18f 	.word	0x0802a18f
- 801ed60:	0802a193 	.word	0x0802a193
- 801ed64:	0802a197 	.word	0x0802a197
- 801ed68:	0802a19b 	.word	0x0802a19b
- 801ed6c:	0802a19f 	.word	0x0802a19f
- 801ed70:	0802a1a3 	.word	0x0802a1a3
- 801ed74:	0802a1a7 	.word	0x0802a1a7
- 801ed78:	0802a1c8 	.word	0x0802a1c8
- 801ed7c:	0802a1af 	.word	0x0802a1af
- 801ed80:	0802a1b8 	.word	0x0802a1b8
- 801ed84:	0802a1cd 	.word	0x0802a1cd
- 801ed88:	0802a1be 	.word	0x0802a1be
- 801ed8c:	0802a1d2 	.word	0x0802a1d2
- 801ed90:	0802a1c4 	.word	0x0802a1c4
- 801ed94:	0802a1d9 	.word	0x0802a1d9
- 801ed98:	0802a1e3 	.word	0x0802a1e3
- 801ed9c:	0802a1eb 	.word	0x0802a1eb
- 801eda0:	0802a1f4 	.word	0x0802a1f4
- 801eda4:	0802a1fd 	.word	0x0802a1fd
- 801eda8:	0802a201 	.word	0x0802a201
- 801edac:	0802a205 	.word	0x0802a205
- 801edb0:	0802a209 	.word	0x0802a209
- 801edb4:	0802a20d 	.word	0x0802a20d
- 801edb8:	0802a211 	.word	0x0802a211
- 801edbc:	0802a215 	.word	0x0802a215
- 801edc0:	0802a219 	.word	0x0802a219
- 801edc4:	0802a21d 	.word	0x0802a21d
- 801edc8:	0802a221 	.word	0x0802a221
- 801edcc:	0802a225 	.word	0x0802a225
+ 801ed24:	08029124 	.word	0x08029124
+ 801ed28:	08028147 	.word	0x08028147
+ 801ed2c:	0802a1c4 	.word	0x0802a1c4
+ 801ed30:	08028156 	.word	0x08028156
+ 801ed34:	0802a1c7 	.word	0x0802a1c7
+ 801ed38:	0802b4a5 	.word	0x0802b4a5
+ 801ed3c:	0802a1ca 	.word	0x0802a1ca
+ 801ed40:	0802a1d1 	.word	0x0802a1d1
+ 801ed44:	0802a1d8 	.word	0x0802a1d8
+ 801ed48:	0802a1e0 	.word	0x0802a1e0
+ 801ed4c:	0802a1ea 	.word	0x0802a1ea
+ 801ed50:	0802a1f3 	.word	0x0802a1f3
+ 801ed54:	0802a1fa 	.word	0x0802a1fa
+ 801ed58:	0802a203 	.word	0x0802a203
+ 801ed5c:	0802a207 	.word	0x0802a207
+ 801ed60:	0802a20b 	.word	0x0802a20b
+ 801ed64:	0802a20f 	.word	0x0802a20f
+ 801ed68:	0802a213 	.word	0x0802a213
+ 801ed6c:	0802a217 	.word	0x0802a217
+ 801ed70:	0802a21b 	.word	0x0802a21b
+ 801ed74:	0802a21f 	.word	0x0802a21f
+ 801ed78:	0802a240 	.word	0x0802a240
+ 801ed7c:	0802a227 	.word	0x0802a227
+ 801ed80:	0802a230 	.word	0x0802a230
+ 801ed84:	0802a245 	.word	0x0802a245
+ 801ed88:	0802a236 	.word	0x0802a236
+ 801ed8c:	0802a24a 	.word	0x0802a24a
+ 801ed90:	0802a23c 	.word	0x0802a23c
+ 801ed94:	0802a251 	.word	0x0802a251
+ 801ed98:	0802a25b 	.word	0x0802a25b
+ 801ed9c:	0802a263 	.word	0x0802a263
+ 801eda0:	0802a26c 	.word	0x0802a26c
+ 801eda4:	0802a275 	.word	0x0802a275
+ 801eda8:	0802a279 	.word	0x0802a279
+ 801edac:	0802a27d 	.word	0x0802a27d
+ 801edb0:	0802a281 	.word	0x0802a281
+ 801edb4:	0802a285 	.word	0x0802a285
+ 801edb8:	0802a289 	.word	0x0802a289
+ 801edbc:	0802a28d 	.word	0x0802a28d
+ 801edc0:	0802a291 	.word	0x0802a291
+ 801edc4:	0802a295 	.word	0x0802a295
+ 801edc8:	0802a299 	.word	0x0802a299
+ 801edcc:	0802a29d 	.word	0x0802a29d
 
 0801edd0 <_ZNKSt11__timepunctIwE6_M_putEPwjPKwPK2tm>:
  801edd0:	e92d 41f3 	stmdb	sp!, {r0, r1, r4, r5, r6, r7, r8, lr}
@@ -55142,49 +55142,49 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801ef78:	f8c3 20c0 	str.w	r2, [r3, #192]	; 0xc0
  801ef7c:	bd38      	pop	{r3, r4, r5, pc}
  801ef7e:	bf00      	nop
- 801ef80:	080299a8 	.word	0x080299a8
- 801ef84:	0802a22c 	.word	0x0802a22c
- 801ef88:	0802a274 	.word	0x0802a274
- 801ef8c:	0802a250 	.word	0x0802a250
- 801ef90:	0802a280 	.word	0x0802a280
- 801ef94:	0802b780 	.word	0x0802b780
- 801ef98:	0802a28c 	.word	0x0802a28c
- 801ef9c:	0802a2a8 	.word	0x0802a2a8
- 801efa0:	0802a2c4 	.word	0x0802a2c4
- 801efa4:	0802a2e4 	.word	0x0802a2e4
- 801efa8:	0802a30c 	.word	0x0802a30c
- 801efac:	0802a330 	.word	0x0802a330
- 801efb0:	0802a34c 	.word	0x0802a34c
- 801efb4:	0802a370 	.word	0x0802a370
- 801efb8:	0802a380 	.word	0x0802a380
- 801efbc:	0802a390 	.word	0x0802a390
- 801efc0:	0802a3a0 	.word	0x0802a3a0
- 801efc4:	0802a3b0 	.word	0x0802a3b0
- 801efc8:	0802a3c0 	.word	0x0802a3c0
- 801efcc:	0802a3d0 	.word	0x0802a3d0
- 801efd0:	0802a3e0 	.word	0x0802a3e0
- 801efd4:	0802a464 	.word	0x0802a464
- 801efd8:	0802a400 	.word	0x0802a400
- 801efdc:	0802a424 	.word	0x0802a424
- 801efe0:	0802a478 	.word	0x0802a478
- 801efe4:	0802a43c 	.word	0x0802a43c
- 801efe8:	0802a48c 	.word	0x0802a48c
- 801efec:	0802a454 	.word	0x0802a454
- 801eff0:	0802a4a8 	.word	0x0802a4a8
- 801eff4:	0802a4d0 	.word	0x0802a4d0
- 801eff8:	0802a4f0 	.word	0x0802a4f0
- 801effc:	0802a514 	.word	0x0802a514
- 801f000:	0802a538 	.word	0x0802a538
- 801f004:	0802a548 	.word	0x0802a548
- 801f008:	0802a558 	.word	0x0802a558
- 801f00c:	0802a568 	.word	0x0802a568
- 801f010:	0802a578 	.word	0x0802a578
- 801f014:	0802a588 	.word	0x0802a588
- 801f018:	0802a598 	.word	0x0802a598
- 801f01c:	0802a5a8 	.word	0x0802a5a8
- 801f020:	0802a5b8 	.word	0x0802a5b8
- 801f024:	0802a5c8 	.word	0x0802a5c8
- 801f028:	0802a5d8 	.word	0x0802a5d8
+ 801ef80:	08029a20 	.word	0x08029a20
+ 801ef84:	0802a2a4 	.word	0x0802a2a4
+ 801ef88:	0802a2ec 	.word	0x0802a2ec
+ 801ef8c:	0802a2c8 	.word	0x0802a2c8
+ 801ef90:	0802a2f8 	.word	0x0802a2f8
+ 801ef94:	0802b7f8 	.word	0x0802b7f8
+ 801ef98:	0802a304 	.word	0x0802a304
+ 801ef9c:	0802a320 	.word	0x0802a320
+ 801efa0:	0802a33c 	.word	0x0802a33c
+ 801efa4:	0802a35c 	.word	0x0802a35c
+ 801efa8:	0802a384 	.word	0x0802a384
+ 801efac:	0802a3a8 	.word	0x0802a3a8
+ 801efb0:	0802a3c4 	.word	0x0802a3c4
+ 801efb4:	0802a3e8 	.word	0x0802a3e8
+ 801efb8:	0802a3f8 	.word	0x0802a3f8
+ 801efbc:	0802a408 	.word	0x0802a408
+ 801efc0:	0802a418 	.word	0x0802a418
+ 801efc4:	0802a428 	.word	0x0802a428
+ 801efc8:	0802a438 	.word	0x0802a438
+ 801efcc:	0802a448 	.word	0x0802a448
+ 801efd0:	0802a458 	.word	0x0802a458
+ 801efd4:	0802a4dc 	.word	0x0802a4dc
+ 801efd8:	0802a478 	.word	0x0802a478
+ 801efdc:	0802a49c 	.word	0x0802a49c
+ 801efe0:	0802a4f0 	.word	0x0802a4f0
+ 801efe4:	0802a4b4 	.word	0x0802a4b4
+ 801efe8:	0802a504 	.word	0x0802a504
+ 801efec:	0802a4cc 	.word	0x0802a4cc
+ 801eff0:	0802a520 	.word	0x0802a520
+ 801eff4:	0802a548 	.word	0x0802a548
+ 801eff8:	0802a568 	.word	0x0802a568
+ 801effc:	0802a58c 	.word	0x0802a58c
+ 801f000:	0802a5b0 	.word	0x0802a5b0
+ 801f004:	0802a5c0 	.word	0x0802a5c0
+ 801f008:	0802a5d0 	.word	0x0802a5d0
+ 801f00c:	0802a5e0 	.word	0x0802a5e0
+ 801f010:	0802a5f0 	.word	0x0802a5f0
+ 801f014:	0802a600 	.word	0x0802a600
+ 801f018:	0802a610 	.word	0x0802a610
+ 801f01c:	0802a620 	.word	0x0802a620
+ 801f020:	0802a630 	.word	0x0802a630
+ 801f024:	0802a640 	.word	0x0802a640
+ 801f028:	0802a650 	.word	0x0802a650
 
 0801f02c <_ZSt19__throw_ios_failurePKc>:
  801f02c:	b508      	push	{r3, lr}
@@ -55231,11 +55231,11 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801f08a:	e7e7      	b.n	801f05c <_ZNSdD4Ev+0x28>
  801f08c:	4904      	ldr	r1, [pc, #16]	; (801f0a0 <_ZNSdD4Ev+0x6c>)
  801f08e:	e7e9      	b.n	801f064 <_ZNSdD4Ev+0x30>
- 801f090:	0802a660 	.word	0x0802a660
- 801f094:	0802a688 	.word	0x0802a688
- 801f098:	0802a674 	.word	0x0802a674
- 801f09c:	0802a644 	.word	0x0802a644
- 801f0a0:	0802a63c 	.word	0x0802a63c
+ 801f090:	0802a6d8 	.word	0x0802a6d8
+ 801f094:	0802a700 	.word	0x0802a700
+ 801f098:	0802a6ec 	.word	0x0802a6ec
+ 801f09c:	0802a6bc 	.word	0x0802a6bc
+ 801f0a0:	0802a6b4 	.word	0x0802a6b4
 
 0801f0a4 <_ZNSdD1Ev>:
  801f0a4:	2200      	movs	r2, #0
@@ -55319,18 +55319,18 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801f14e:	4620      	mov	r0, r4
  801f150:	bd38      	pop	{r3, r4, r5, pc}
  801f152:	bf00      	nop
- 801f154:	0802a63c 	.word	0x0802a63c
- 801f158:	0802a660 	.word	0x0802a660
+ 801f154:	0802a6b4 	.word	0x0802a6b4
+ 801f158:	0802a6d8 	.word	0x0802a6d8
 
 0801f15c <_ZNK12_GLOBAL__N_122generic_error_category4nameEv>:
  801f15c:	4800      	ldr	r0, [pc, #0]	; (801f160 <_ZNK12_GLOBAL__N_122generic_error_category4nameEv+0x4>)
  801f15e:	4770      	bx	lr
- 801f160:	0802a6b3 	.word	0x0802a6b3
+ 801f160:	0802a72b 	.word	0x0802a72b
 
 0801f164 <_ZNK12_GLOBAL__N_121system_error_category4nameEv>:
  801f164:	4800      	ldr	r0, [pc, #0]	; (801f168 <_ZNK12_GLOBAL__N_121system_error_category4nameEv+0x4>)
  801f166:	4770      	bx	lr
- 801f168:	0802ac4f 	.word	0x0802ac4f
+ 801f168:	0802acc7 	.word	0x0802acc7
 
 0801f16c <_ZNK12_GLOBAL__N_121system_error_category23default_error_conditionEi>:
  801f16c:	2a74      	cmp	r2, #116	; 0x74
@@ -55574,8 +55574,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801f370:	9803      	ldr	r0, [sp, #12]
  801f372:	e7c3      	b.n	801f2fc <btowc+0xc>
  801f374:	200000a0 	.word	0x200000a0
- 801f378:	0802a798 	.word	0x0802a798
- 801f37c:	0802a7af 	.word	0x0802a7af
+ 801f378:	0802a810 	.word	0x0802a810
+ 801f37c:	0802a827 	.word	0x0802a827
  801f380:	20000104 	.word	0x20000104
 
 0801f384 <__cxa_atexit>:
@@ -55773,9 +55773,9 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801f51e:	bf08      	it	eq
  801f520:	68ec      	ldreq	r4, [r5, #12]
  801f522:	e7da      	b.n	801f4da <_fflush_r+0x22>
- 801f524:	0802a930 	.word	0x0802a930
- 801f528:	0802a950 	.word	0x0802a950
- 801f52c:	0802a910 	.word	0x0802a910
+ 801f524:	0802a9a8 	.word	0x0802a9a8
+ 801f528:	0802a9c8 	.word	0x0802a9c8
+ 801f52c:	0802a988 	.word	0x0802a988
 
 0801f530 <std>:
  801f530:	2300      	movs	r3, #0
@@ -55900,7 +55900,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801f642:	61a3      	str	r3, [r4, #24]
  801f644:	e7d2      	b.n	801f5ec <__sinit+0xc>
  801f646:	bf00      	nop
- 801f648:	0802a970 	.word	0x0802a970
+ 801f648:	0802a9e8 	.word	0x0802a9e8
  801f64c:	0801f579 	.word	0x0801f579
 
 0801f650 <__sfp>:
@@ -55955,7 +55955,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801f6ce:	603b      	str	r3, [r7, #0]
  801f6d0:	e7ee      	b.n	801f6b0 <__sfp+0x60>
  801f6d2:	bf00      	nop
- 801f6d4:	0802a970 	.word	0x0802a970
+ 801f6d4:	0802a9e8 	.word	0x0802a9e8
  801f6d8:	ffff0001 	.word	0xffff0001
 
 0801f6dc <_fwalk_reent>:
@@ -56012,10 +56012,10 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801f74e:	4798      	blx	r3
  801f750:	3601      	adds	r6, #1
  801f752:	e7f2      	b.n	801f73a <__libc_init_array+0x1e>
- 801f754:	0802bab0 	.word	0x0802bab0
- 801f758:	0802bab0 	.word	0x0802bab0
- 801f75c:	0802bab0 	.word	0x0802bab0
- 801f760:	0802bacc 	.word	0x0802bacc
+ 801f754:	0802bb28 	.word	0x0802bb28
+ 801f758:	0802bb28 	.word	0x0802bb28
+ 801f75c:	0802bb28 	.word	0x0802bb28
+ 801f760:	0802bb44 	.word	0x0802bb44
 
 0801f764 <iswctype>:
  801f764:	3901      	subs	r1, #1
@@ -56083,7 +56083,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801f7f6:	4770      	bx	lr
  801f7f8:	2000      	movs	r0, #0
  801f7fa:	4770      	bx	lr
- 801f7fc:	0802a810 	.word	0x0802a810
+ 801f7fc:	0802a888 	.word	0x0802a888
 
 0801f800 <iswprint>:
  801f800:	2100      	movs	r1, #0
@@ -56098,7 +56098,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801f810:	f000 0097 	andls.w	r0, r0, #151	; 0x97
  801f814:	2000      	movhi	r0, #0
  801f816:	4770      	bx	lr
- 801f818:	0802a810 	.word	0x0802a810
+ 801f818:	0802a888 	.word	0x0802a888
 
 0801f81c <iswpunct>:
  801f81c:	2100      	movs	r1, #0
@@ -56113,7 +56113,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801f82c:	f000 0010 	andls.w	r0, r0, #16
  801f830:	2000      	movhi	r0, #0
  801f832:	4770      	bx	lr
- 801f834:	0802a810 	.word	0x0802a810
+ 801f834:	0802a888 	.word	0x0802a888
 
 0801f838 <iswspace>:
  801f838:	2100      	movs	r1, #0
@@ -56128,7 +56128,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801f848:	f000 0008 	andls.w	r0, r0, #8
  801f84c:	2000      	movhi	r0, #0
  801f84e:	4770      	bx	lr
- 801f850:	0802a810 	.word	0x0802a810
+ 801f850:	0802a888 	.word	0x0802a888
 
 0801f854 <iswupper>:
  801f854:	2100      	movs	r1, #0
@@ -56147,7 +56147,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801f86e:	4770      	bx	lr
  801f870:	2000      	movs	r0, #0
  801f872:	4770      	bx	lr
- 801f874:	0802a810 	.word	0x0802a810
+ 801f874:	0802a888 	.word	0x0802a888
 
 0801f878 <iswxdigit>:
  801f878:	f1a0 0330 	sub.w	r3, r0, #48	; 0x30
@@ -56187,9 +56187,9 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801f8c2:	2000      	movs	r0, #0
  801f8c4:	e7ea      	b.n	801f89c <_setlocale_r+0x8>
  801f8c6:	bf00      	nop
- 801f8c8:	080280c7 	.word	0x080280c7
- 801f8cc:	0802a974 	.word	0x0802a974
- 801f8d0:	0802b42d 	.word	0x0802b42d
+ 801f8c8:	0802813f 	.word	0x0802813f
+ 801f8cc:	0802a9ec 	.word	0x0802a9ec
+ 801f8d0:	0802b4a5 	.word	0x0802b4a5
 
 0801f8d4 <__locale_mb_cur_max>:
  801f8d4:	4b01      	ldr	r3, [pc, #4]	; (801f8dc <__locale_mb_cur_max+0x8>)
@@ -56347,7 +56347,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  801fa0c:	bdf0      	pop	{r4, r5, r6, r7, pc}
  801fa0e:	bf00      	nop
  801fa10:	20000104 	.word	0x20000104
- 801fa14:	0802b42d 	.word	0x0802b42d
+ 801fa14:	0802b4a5 	.word	0x0802b4a5
 
 0801fa18 <mbrtowc>:
  801fa18:	b507      	push	{r0, r1, r2, lr}
@@ -57033,87 +57033,87 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  802003a:	4851      	ldr	r0, [pc, #324]	; (8020180 <_strerror_r+0x3c8>)
  802003c:	e755      	b.n	801feea <_strerror_r+0x132>
  802003e:	bf00      	nop
- 8020040:	0802a97c 	.word	0x0802a97c
- 8020044:	0802a986 	.word	0x0802a986
- 8020048:	0802a9a0 	.word	0x0802a9a0
- 802004c:	0802a9b0 	.word	0x0802a9b0
- 8020050:	0802a9c8 	.word	0x0802a9c8
- 8020054:	0802a9d2 	.word	0x0802a9d2
- 8020058:	0802a9ec 	.word	0x0802a9ec
- 802005c:	0802a9fe 	.word	0x0802a9fe
- 8020060:	0802aa10 	.word	0x0802aa10
- 8020064:	0802aa29 	.word	0x0802aa29
- 8020068:	0802aa39 	.word	0x0802aa39
- 802006c:	0802aa45 	.word	0x0802aa45
- 8020070:	0802aa62 	.word	0x0802aa62
- 8020074:	0802aa74 	.word	0x0802aa74
- 8020078:	0802aa85 	.word	0x0802aa85
- 802007c:	0802aa97 	.word	0x0802aa97
- 8020080:	0802aaa3 	.word	0x0802aaa3
- 8020084:	0802aabb 	.word	0x0802aabb
- 8020088:	0802aac7 	.word	0x0802aac7
- 802008c:	0802aad9 	.word	0x0802aad9
- 8020090:	0802aae8 	.word	0x0802aae8
- 8020094:	0802aaf8 	.word	0x0802aaf8
- 8020098:	0802ab05 	.word	0x0802ab05
- 802009c:	0802ab24 	.word	0x0802ab24
- 80200a0:	0802ab33 	.word	0x0802ab33
- 80200a4:	0802ab44 	.word	0x0802ab44
- 80200a8:	0802ab68 	.word	0x0802ab68
- 80200ac:	0802ab86 	.word	0x0802ab86
- 80200b0:	0802aba4 	.word	0x0802aba4
- 80200b4:	0802abc4 	.word	0x0802abc4
- 80200b8:	0802abdb 	.word	0x0802abdb
- 80200bc:	0802abea 	.word	0x0802abea
- 80200c0:	0802abf9 	.word	0x0802abf9
- 80200c4:	0802ac0d 	.word	0x0802ac0d
- 80200c8:	0802ac25 	.word	0x0802ac25
- 80200cc:	0802ac33 	.word	0x0802ac33
- 80200d0:	0802ac40 	.word	0x0802ac40
- 80200d4:	0802ac56 	.word	0x0802ac56
- 80200d8:	0802ac65 	.word	0x0802ac65
- 80200dc:	0802ac71 	.word	0x0802ac71
- 80200e0:	0802aca0 	.word	0x0802aca0
- 80200e4:	0802acb1 	.word	0x0802acb1
- 80200e8:	0802accc 	.word	0x0802accc
- 80200ec:	0802acdf 	.word	0x0802acdf
- 80200f0:	0802acf5 	.word	0x0802acf5
- 80200f4:	0802acfe 	.word	0x0802acfe
- 80200f8:	0802ad15 	.word	0x0802ad15
- 80200fc:	0802ad1d 	.word	0x0802ad1d
- 8020100:	0802ad2a 	.word	0x0802ad2a
- 8020104:	0802ad3f 	.word	0x0802ad3f
- 8020108:	0802ad53 	.word	0x0802ad53
- 802010c:	0802ad6b 	.word	0x0802ad6b
- 8020110:	0802ad7a 	.word	0x0802ad7a
- 8020114:	0802ad8b 	.word	0x0802ad8b
- 8020118:	0802ad9e 	.word	0x0802ad9e
- 802011c:	0802adaa 	.word	0x0802adaa
- 8020120:	0802adc3 	.word	0x0802adc3
- 8020124:	0802add7 	.word	0x0802add7
- 8020128:	0802adf2 	.word	0x0802adf2
- 802012c:	0802ae0a 	.word	0x0802ae0a
- 8020130:	0802ae24 	.word	0x0802ae24
- 8020134:	0802ae2c 	.word	0x0802ae2c
- 8020138:	0802ae5c 	.word	0x0802ae5c
- 802013c:	0802ae7b 	.word	0x0802ae7b
- 8020140:	0802ae9a 	.word	0x0802ae9a
- 8020144:	0802aeb1 	.word	0x0802aeb1
- 8020148:	0802aec4 	.word	0x0802aec4
- 802014c:	0802aedd 	.word	0x0802aedd
- 8020150:	0802aef4 	.word	0x0802aef4
- 8020154:	0802af0a 	.word	0x0802af0a
- 8020158:	0802af2b 	.word	0x0802af2b
- 802015c:	0802af43 	.word	0x0802af43
- 8020160:	0802af5f 	.word	0x0802af5f
- 8020164:	0802af72 	.word	0x0802af72
- 8020168:	0802af88 	.word	0x0802af88
- 802016c:	0802af9c 	.word	0x0802af9c
- 8020170:	0802afbe 	.word	0x0802afbe
- 8020174:	0802afe4 	.word	0x0802afe4
- 8020178:	0802aff5 	.word	0x0802aff5
- 802017c:	0802b42d 	.word	0x0802b42d
- 8020180:	0802b00a 	.word	0x0802b00a
+ 8020040:	0802a9f4 	.word	0x0802a9f4
+ 8020044:	0802a9fe 	.word	0x0802a9fe
+ 8020048:	0802aa18 	.word	0x0802aa18
+ 802004c:	0802aa28 	.word	0x0802aa28
+ 8020050:	0802aa40 	.word	0x0802aa40
+ 8020054:	0802aa4a 	.word	0x0802aa4a
+ 8020058:	0802aa64 	.word	0x0802aa64
+ 802005c:	0802aa76 	.word	0x0802aa76
+ 8020060:	0802aa88 	.word	0x0802aa88
+ 8020064:	0802aaa1 	.word	0x0802aaa1
+ 8020068:	0802aab1 	.word	0x0802aab1
+ 802006c:	0802aabd 	.word	0x0802aabd
+ 8020070:	0802aada 	.word	0x0802aada
+ 8020074:	0802aaec 	.word	0x0802aaec
+ 8020078:	0802aafd 	.word	0x0802aafd
+ 802007c:	0802ab0f 	.word	0x0802ab0f
+ 8020080:	0802ab1b 	.word	0x0802ab1b
+ 8020084:	0802ab33 	.word	0x0802ab33
+ 8020088:	0802ab3f 	.word	0x0802ab3f
+ 802008c:	0802ab51 	.word	0x0802ab51
+ 8020090:	0802ab60 	.word	0x0802ab60
+ 8020094:	0802ab70 	.word	0x0802ab70
+ 8020098:	0802ab7d 	.word	0x0802ab7d
+ 802009c:	0802ab9c 	.word	0x0802ab9c
+ 80200a0:	0802abab 	.word	0x0802abab
+ 80200a4:	0802abbc 	.word	0x0802abbc
+ 80200a8:	0802abe0 	.word	0x0802abe0
+ 80200ac:	0802abfe 	.word	0x0802abfe
+ 80200b0:	0802ac1c 	.word	0x0802ac1c
+ 80200b4:	0802ac3c 	.word	0x0802ac3c
+ 80200b8:	0802ac53 	.word	0x0802ac53
+ 80200bc:	0802ac62 	.word	0x0802ac62
+ 80200c0:	0802ac71 	.word	0x0802ac71
+ 80200c4:	0802ac85 	.word	0x0802ac85
+ 80200c8:	0802ac9d 	.word	0x0802ac9d
+ 80200cc:	0802acab 	.word	0x0802acab
+ 80200d0:	0802acb8 	.word	0x0802acb8
+ 80200d4:	0802acce 	.word	0x0802acce
+ 80200d8:	0802acdd 	.word	0x0802acdd
+ 80200dc:	0802ace9 	.word	0x0802ace9
+ 80200e0:	0802ad18 	.word	0x0802ad18
+ 80200e4:	0802ad29 	.word	0x0802ad29
+ 80200e8:	0802ad44 	.word	0x0802ad44
+ 80200ec:	0802ad57 	.word	0x0802ad57
+ 80200f0:	0802ad6d 	.word	0x0802ad6d
+ 80200f4:	0802ad76 	.word	0x0802ad76
+ 80200f8:	0802ad8d 	.word	0x0802ad8d
+ 80200fc:	0802ad95 	.word	0x0802ad95
+ 8020100:	0802ada2 	.word	0x0802ada2
+ 8020104:	0802adb7 	.word	0x0802adb7
+ 8020108:	0802adcb 	.word	0x0802adcb
+ 802010c:	0802ade3 	.word	0x0802ade3
+ 8020110:	0802adf2 	.word	0x0802adf2
+ 8020114:	0802ae03 	.word	0x0802ae03
+ 8020118:	0802ae16 	.word	0x0802ae16
+ 802011c:	0802ae22 	.word	0x0802ae22
+ 8020120:	0802ae3b 	.word	0x0802ae3b
+ 8020124:	0802ae4f 	.word	0x0802ae4f
+ 8020128:	0802ae6a 	.word	0x0802ae6a
+ 802012c:	0802ae82 	.word	0x0802ae82
+ 8020130:	0802ae9c 	.word	0x0802ae9c
+ 8020134:	0802aea4 	.word	0x0802aea4
+ 8020138:	0802aed4 	.word	0x0802aed4
+ 802013c:	0802aef3 	.word	0x0802aef3
+ 8020140:	0802af12 	.word	0x0802af12
+ 8020144:	0802af29 	.word	0x0802af29
+ 8020148:	0802af3c 	.word	0x0802af3c
+ 802014c:	0802af55 	.word	0x0802af55
+ 8020150:	0802af6c 	.word	0x0802af6c
+ 8020154:	0802af82 	.word	0x0802af82
+ 8020158:	0802afa3 	.word	0x0802afa3
+ 802015c:	0802afbb 	.word	0x0802afbb
+ 8020160:	0802afd7 	.word	0x0802afd7
+ 8020164:	0802afea 	.word	0x0802afea
+ 8020168:	0802b000 	.word	0x0802b000
+ 802016c:	0802b014 	.word	0x0802b014
+ 8020170:	0802b036 	.word	0x0802b036
+ 8020174:	0802b05c 	.word	0x0802b05c
+ 8020178:	0802b06d 	.word	0x0802b06d
+ 802017c:	0802b4a5 	.word	0x0802b4a5
+ 8020180:	0802b082 	.word	0x0802b082
 
 08020184 <strerror>:
  8020184:	4601      	mov	r1, r0
@@ -57597,18 +57597,18 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80206dc:	bfb8      	it	lt
  80206de:	f04f 36ff 	movlt.w	r6, #4294967295
  80206e2:	e7d9      	b.n	8020698 <__strftime+0x43c>
- 80206e4:	0802b0fc 	.word	0x0802b0fc
+ 80206e4:	0802b174 	.word	0x0802b174
  80206e8:	fffff894 	.word	0xfffff894
- 80206ec:	0802b42d 	.word	0x0802b42d
- 80206f0:	0802b021 	.word	0x0802b021
- 80206f4:	0802b019 	.word	0x0802b019
- 80206f8:	0802b012 	.word	0x0802b012
- 80206fc:	0802b637 	.word	0x0802b637
- 8020700:	0802b031 	.word	0x0802b031
- 8020704:	0802b023 	.word	0x0802b023
- 8020708:	0802b027 	.word	0x0802b027
- 802070c:	0802b03a 	.word	0x0802b03a
- 8020710:	0802b036 	.word	0x0802b036
+ 80206ec:	0802b4a5 	.word	0x0802b4a5
+ 80206f0:	0802b099 	.word	0x0802b099
+ 80206f4:	0802b091 	.word	0x0802b091
+ 80206f8:	0802b08a 	.word	0x0802b08a
+ 80206fc:	0802b6af 	.word	0x0802b6af
+ 8020700:	0802b0a9 	.word	0x0802b0a9
+ 8020704:	0802b09b 	.word	0x0802b09b
+ 8020708:	0802b09f 	.word	0x0802b09f
+ 802070c:	0802b0b2 	.word	0x0802b0b2
+ 8020710:	0802b0ae 	.word	0x0802b0ae
  8020714:	fffff895 	.word	0xfffff895
  8020718:	4bb6      	ldr	r3, [pc, #728]	; (80209f4 <__strftime+0x798>)
  802071a:	6969      	ldr	r1, [r5, #20]
@@ -57887,15 +57887,15 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80209f2:	e5e0      	b.n	80205b6 <__strftime+0x35a>
  80209f4:	fffff894 	.word	0xfffff894
  80209f8:	fffff895 	.word	0xfffff895
- 80209fc:	0802b042 	.word	0x0802b042
- 8020a00:	0802b023 	.word	0x0802b023
- 8020a04:	0802b031 	.word	0x0802b031
- 8020a08:	0802b046 	.word	0x0802b046
- 8020a0c:	0802b0fc 	.word	0x0802b0fc
- 8020a10:	0802a810 	.word	0x0802a810
- 8020a14:	0802b055 	.word	0x0802b055
- 8020a18:	0802b04b 	.word	0x0802b04b
- 8020a1c:	0802b050 	.word	0x0802b050
+ 80209fc:	0802b0ba 	.word	0x0802b0ba
+ 8020a00:	0802b09b 	.word	0x0802b09b
+ 8020a04:	0802b0a9 	.word	0x0802b0a9
+ 8020a08:	0802b0be 	.word	0x0802b0be
+ 8020a0c:	0802b174 	.word	0x0802b174
+ 8020a10:	0802a888 	.word	0x0802a888
+ 8020a14:	0802b0cd 	.word	0x0802b0cd
+ 8020a18:	0802b0c3 	.word	0x0802b0c3
+ 8020a1c:	0802b0c8 	.word	0x0802b0c8
  8020a20:	f108 33ff 	add.w	r3, r8, #4294967295
  8020a24:	42a3      	cmp	r3, r4
  8020a26:	f67f ac48 	bls.w	80202ba <__strftime+0x5e>
@@ -58098,8 +58098,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8020c26:	b011      	add	sp, #68	; 0x44
  8020c28:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
  8020c2c:	fffff894 	.word	0xfffff894
- 8020c30:	0802b042 	.word	0x0802b042
- 8020c34:	0802b05f 	.word	0x0802b05f
+ 8020c30:	0802b0ba 	.word	0x0802b0ba
+ 8020c34:	0802b0d7 	.word	0x0802b0d7
  8020c38:	20000270 	.word	0x20000270
 
 08020c3c <strftime>:
@@ -58412,8 +58412,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8020f20:	e785      	b.n	8020e2e <_strtod_l+0x1a6>
  8020f22:	f04f 0c01 	mov.w	ip, #1
  8020f26:	e7f6      	b.n	8020f16 <_strtod_l+0x28e>
- 8020f28:	0802b4a8 	.word	0x0802b4a8
- 8020f2c:	0802b070 	.word	0x0802b070
+ 8020f28:	0802b520 	.word	0x0802b520
+ 8020f2c:	0802b0e8 	.word	0x0802b0e8
  8020f30:	7ff00000 	.word	0x7ff00000
  8020f34:	9b1d      	ldr	r3, [sp, #116]	; 0x74
  8020f36:	1c59      	adds	r1, r3, #1
@@ -58698,13 +58698,13 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8021210:	f04f 0b00 	mov.w	fp, #0
  8021214:	6023      	str	r3, [r4, #0]
  8021216:	e789      	b.n	802112c <_strtod_l+0x4a4>
- 8021218:	0802a1fe 	.word	0x0802a1fe
- 802121c:	0802b084 	.word	0x0802b084
- 8021220:	0802b06b 	.word	0x0802b06b
- 8021224:	0802b807 	.word	0x0802b807
- 8021228:	0802b42d 	.word	0x0802b42d
- 802122c:	0802b540 	.word	0x0802b540
- 8021230:	0802b518 	.word	0x0802b518
+ 8021218:	0802a276 	.word	0x0802a276
+ 802121c:	0802b0fc 	.word	0x0802b0fc
+ 8021220:	0802b0e3 	.word	0x0802b0e3
+ 8021224:	0802b87f 	.word	0x0802b87f
+ 8021228:	0802b4a5 	.word	0x0802b4a5
+ 802122c:	0802b5b8 	.word	0x0802b5b8
+ 8021230:	0802b590 	.word	0x0802b590
  8021234:	7ff00000 	.word	0x7ff00000
  8021238:	7ca00000 	.word	0x7ca00000
  802123c:	7fefffff 	.word	0x7fefffff
@@ -59075,7 +59075,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80215f4:	39500000 	.word	0x39500000
  80215f8:	000fffff 	.word	0x000fffff
  80215fc:	7fefffff 	.word	0x7fefffff
- 8021600:	0802b098 	.word	0x0802b098
+ 8021600:	0802b110 	.word	0x0802b110
  8021604:	4631      	mov	r1, r6
  8021606:	4628      	mov	r0, r5
  8021608:	f002 fc30 	bl	8023e6c <__ratio>
@@ -59379,7 +59379,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8021952:	bf00      	nop
  8021954:	200000a0 	.word	0x200000a0
  8021958:	20000104 	.word	0x20000104
- 802195c:	0802b42d 	.word	0x0802b42d
+ 802195c:	0802b4a5 	.word	0x0802b4a5
  8021960:	7f7fffff 	.word	0x7f7fffff
  8021964:	7fefffff 	.word	0x7fefffff
 
@@ -59479,7 +59479,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8021a56:	230a      	movs	r3, #10
  8021a58:	e7ab      	b.n	80219b2 <_strtoul_l.isra.0+0x4a>
  8021a5a:	bf00      	nop
- 8021a5c:	0802a810 	.word	0x0802a810
+ 8021a5c:	0802a888 	.word	0x0802a888
 
 08021a60 <_strtoul_r>:
  8021a60:	f7ff bf82 	b.w	8021968 <_strtoul_l.isra.0>
@@ -59526,7 +59526,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8021ab2:	bf08      	it	eq
  8021ab4:	3020      	addeq	r0, #32
  8021ab6:	4770      	bx	lr
- 8021ab8:	0802a810 	.word	0x0802a810
+ 8021ab8:	0802a888 	.word	0x0802a888
 
 08021abc <towupper>:
  8021abc:	28fe      	cmp	r0, #254	; 0xfe
@@ -59538,7 +59538,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8021aca:	bf08      	it	eq
  8021acc:	3820      	subeq	r0, #32
  8021ace:	4770      	bx	lr
- 8021ad0:	0802a810 	.word	0x0802a810
+ 8021ad0:	0802a888 	.word	0x0802a888
 
 08021ad4 <__tz_lock>:
  8021ad4:	4801      	ldr	r0, [pc, #4]	; (8021adc <__tz_lock+0x8>)
@@ -59827,17 +59827,17 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8021dba:	723b      	strb	r3, [r7, #8]
  8021dbc:	6178      	str	r0, [r7, #20]
  8021dbe:	e784      	b.n	8021cca <_tzset_unlocked_r+0x1d2>
- 8021dc0:	0802b1f8 	.word	0x0802b1f8
+ 8021dc0:	0802b270 	.word	0x0802b270
  8021dc4:	20001454 	.word	0x20001454
  8021dc8:	2000145c 	.word	0x2000145c
- 8021dcc:	0802a03c 	.word	0x0802a03c
+ 8021dcc:	0802a0b4 	.word	0x0802a0b4
  8021dd0:	20001458 	.word	0x20001458
  8021dd4:	20000270 	.word	0x20000270
  8021dd8:	20001447 	.word	0x20001447
- 8021ddc:	0802b1fb 	.word	0x0802b1fb
- 8021de0:	0802b21e 	.word	0x0802b21e
- 8021de4:	0802b20a 	.word	0x0802b20a
- 8021de8:	0802b21d 	.word	0x0802b21d
+ 8021ddc:	0802b273 	.word	0x0802b273
+ 8021de0:	0802b296 	.word	0x0802b296
+ 8021de4:	0802b282 	.word	0x0802b282
+ 8021de8:	0802b295 	.word	0x0802b295
  8021dec:	2000143c 	.word	0x2000143c
 
 08021df0 <_user_strerror>:
@@ -60432,18 +60432,18 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8022420:	bfb8      	it	lt
  8022422:	f04f 36ff 	movlt.w	r6, #4294967295
  8022426:	e7d9      	b.n	80223dc <__strftime+0x44c>
- 8022428:	0802b0fc 	.word	0x0802b0fc
+ 8022428:	0802b174 	.word	0x0802b174
  802242c:	fffff894 	.word	0xfffff894
- 8022430:	0802b42d 	.word	0x0802b42d
- 8022434:	0802b021 	.word	0x0802b021
- 8022438:	0802b24c 	.word	0x0802b24c
- 802243c:	0802b230 	.word	0x0802b230
- 8022440:	0802b637 	.word	0x0802b637
- 8022444:	0802b2a4 	.word	0x0802b2a4
- 8022448:	0802b26c 	.word	0x0802b26c
- 802244c:	0802b27c 	.word	0x0802b27c
- 8022450:	0802b2c8 	.word	0x0802b2c8
- 8022454:	0802b2b8 	.word	0x0802b2b8
+ 8022430:	0802b4a5 	.word	0x0802b4a5
+ 8022434:	0802b099 	.word	0x0802b099
+ 8022438:	0802b2c4 	.word	0x0802b2c4
+ 802243c:	0802b2a8 	.word	0x0802b2a8
+ 8022440:	0802b6af 	.word	0x0802b6af
+ 8022444:	0802b31c 	.word	0x0802b31c
+ 8022448:	0802b2e4 	.word	0x0802b2e4
+ 802244c:	0802b2f4 	.word	0x0802b2f4
+ 8022450:	0802b340 	.word	0x0802b340
+ 8022454:	0802b330 	.word	0x0802b330
  8022458:	fffff895 	.word	0xfffff895
  802245c:	4bb2      	ldr	r3, [pc, #712]	; (8022728 <__strftime+0x798>)
  802245e:	6969      	ldr	r1, [r5, #20]
@@ -60719,14 +60719,14 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8022726:	e5eb      	b.n	8022300 <__strftime+0x370>
  8022728:	fffff894 	.word	0xfffff894
  802272c:	fffff895 	.word	0xfffff895
- 8022730:	0802b2e8 	.word	0x0802b2e8
- 8022734:	0802b26c 	.word	0x0802b26c
- 8022738:	0802b2a4 	.word	0x0802b2a4
- 802273c:	0802b2f8 	.word	0x0802b2f8
- 8022740:	0802b0fc 	.word	0x0802b0fc
- 8022744:	0802b334 	.word	0x0802b334
- 8022748:	0802b30c 	.word	0x0802b30c
- 802274c:	0802b320 	.word	0x0802b320
+ 8022730:	0802b360 	.word	0x0802b360
+ 8022734:	0802b2e4 	.word	0x0802b2e4
+ 8022738:	0802b31c 	.word	0x0802b31c
+ 802273c:	0802b370 	.word	0x0802b370
+ 8022740:	0802b174 	.word	0x0802b174
+ 8022744:	0802b3ac 	.word	0x0802b3ac
+ 8022748:	0802b384 	.word	0x0802b384
+ 802274c:	0802b398 	.word	0x0802b398
  8022750:	9b03      	ldr	r3, [sp, #12]
  8022752:	42a3      	cmp	r3, r4
  8022754:	f67f ac4d 	bls.w	8021ff2 <__strftime+0x62>
@@ -60930,8 +60930,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  802294e:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
  8022952:	bf00      	nop
  8022954:	fffff894 	.word	0xfffff894
- 8022958:	0802b2e8 	.word	0x0802b2e8
- 802295c:	0802b35c 	.word	0x0802b35c
+ 8022958:	0802b360 	.word	0x0802b360
+ 802295c:	0802b3d4 	.word	0x0802b3d4
  8022960:	20000270 	.word	0x20000270
 
 08022964 <wcsftime>:
@@ -61123,8 +61123,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8022b1c:	e7c8      	b.n	8022ab0 <wctob+0xc>
  8022b1e:	bf00      	nop
  8022b20:	200000a0 	.word	0x200000a0
- 8022b24:	0802a798 	.word	0x0802a798
- 8022b28:	0802b38c 	.word	0x0802b38c
+ 8022b24:	0802a810 	.word	0x0802a810
+ 8022b28:	0802b404 	.word	0x0802b404
  8022b2c:	20000104 	.word	0x20000104
 
 08022b30 <__ascii_wctomb>:
@@ -61237,18 +61237,18 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8022c26:	e7fa      	b.n	8022c1e <_wctype_r+0xd2>
  8022c28:	200c      	movs	r0, #12
  8022c2a:	e7f8      	b.n	8022c1e <_wctype_r+0xd2>
- 8022c2c:	080280bb 	.word	0x080280bb
- 8022c30:	080280a8 	.word	0x080280a8
- 8022c34:	0802b3ec 	.word	0x0802b3ec
- 8022c38:	08028096 	.word	0x08028096
- 8022c3c:	080280b5 	.word	0x080280b5
- 8022c40:	080280c1 	.word	0x080280c1
- 8022c44:	080280a2 	.word	0x080280a2
- 8022c48:	08028090 	.word	0x08028090
- 8022c4c:	080280ae 	.word	0x080280ae
- 8022c50:	0802aa7f 	.word	0x0802aa7f
- 8022c54:	0802809c 	.word	0x0802809c
- 8022c58:	080280b4 	.word	0x080280b4
+ 8022c2c:	08028133 	.word	0x08028133
+ 8022c30:	08028120 	.word	0x08028120
+ 8022c34:	0802b464 	.word	0x0802b464
+ 8022c38:	0802810e 	.word	0x0802810e
+ 8022c3c:	0802812d 	.word	0x0802812d
+ 8022c40:	08028139 	.word	0x08028139
+ 8022c44:	0802811a 	.word	0x0802811a
+ 8022c48:	08028108 	.word	0x08028108
+ 8022c4c:	08028126 	.word	0x08028126
+ 8022c50:	0802aaf7 	.word	0x0802aaf7
+ 8022c54:	08028114 	.word	0x08028114
+ 8022c58:	0802812c 	.word	0x0802812c
 
 08022c5c <wctype>:
  8022c5c:	4b02      	ldr	r3, [pc, #8]	; (8022c68 <wctype+0xc>)
@@ -61337,9 +61337,9 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8022cfc:	e7f3      	b.n	8022ce6 <__assert_func+0x12>
  8022cfe:	bf00      	nop
  8022d00:	200000a0 	.word	0x200000a0
- 8022d04:	0802b3f2 	.word	0x0802b3f2
- 8022d08:	0802b3ff 	.word	0x0802b3ff
- 8022d0c:	0802b42d 	.word	0x0802b42d
+ 8022d04:	0802b46a 	.word	0x0802b46a
+ 8022d08:	0802b477 	.word	0x0802b477
+ 8022d0c:	0802b4a5 	.word	0x0802b4a5
 
 08022d10 <_close_r>:
  8022d10:	b538      	push	{r3, r4, r5, lr}
@@ -61785,9 +61785,9 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8023146:	2750      	movs	r7, #80	; 0x50
  8023148:	e713      	b.n	8022f72 <__gethex+0x12a>
  802314a:	bf00      	nop
- 802314c:	0802b4a8 	.word	0x0802b4a8
- 8023150:	0802b42e 	.word	0x0802b42e
- 8023154:	0802b43f 	.word	0x0802b43f
+ 802314c:	0802b520 	.word	0x0802b520
+ 8023150:	0802b4a6 	.word	0x0802b4a6
+ 8023154:	0802b4b7 	.word	0x0802b4b7
  8023158:	9b15      	ldr	r3, [sp, #84]	; 0x54
  802315a:	2b00      	cmp	r3, #0
  802315c:	d1eb      	bne.n	8023136 <__gethex+0x2ee>
@@ -61931,7 +61931,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80232ca:	42b0      	cmp	r0, r6
  80232cc:	dbe7      	blt.n	802329e <__gethex+0x456>
  80232ce:	e7f0      	b.n	80232b2 <__gethex+0x46a>
- 80232d0:	0802b42e 	.word	0x0802b42e
+ 80232d0:	0802b4a6 	.word	0x0802b4a6
 
 080232d4 <L_shift>:
  80232d4:	f1c2 0208 	rsb	r2, r2, #8
@@ -62186,7 +62186,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8023514:	f000 0007 	andls.w	r0, r0, #7
  8023518:	2000      	movhi	r0, #0
  802351a:	4770      	bx	lr
- 802351c:	0802a810 	.word	0x0802a810
+ 802351c:	0802a888 	.word	0x0802a888
 
 08023520 <iswalpha>:
  8023520:	2100      	movs	r1, #0
@@ -62201,7 +62201,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8023530:	f000 0003 	andls.w	r0, r0, #3
  8023534:	2000      	movhi	r0, #0
  8023536:	4770      	bx	lr
- 8023538:	0802a810 	.word	0x0802a810
+ 8023538:	0802a888 	.word	0x0802a888
 
 0802353c <iswblank>:
  802353c:	2100      	movs	r1, #0
@@ -62224,7 +62224,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  802355e:	2001      	movs	r0, #1
  8023560:	4770      	bx	lr
  8023562:	bf00      	nop
- 8023564:	0802a810 	.word	0x0802a810
+ 8023564:	0802a888 	.word	0x0802a888
 
 08023568 <iswcntrl>:
  8023568:	2100      	movs	r1, #0
@@ -62239,7 +62239,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8023578:	f000 0020 	andls.w	r0, r0, #32
  802357c:	2000      	movhi	r0, #0
  802357e:	4770      	bx	lr
- 8023580:	0802a810 	.word	0x0802a810
+ 8023580:	0802a888 	.word	0x0802a888
 
 08023584 <labs>:
  8023584:	2800      	cmp	r0, #0
@@ -62343,8 +62343,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8023654:	e9c0 3303 	strd	r3, r3, [r0, #12]
  8023658:	e7f7      	b.n	802364a <_Balloc+0x66>
  802365a:	bf00      	nop
- 802365c:	0802a798 	.word	0x0802a798
- 8023660:	0802b4b4 	.word	0x0802b4b4
+ 802365c:	0802a810 	.word	0x0802a810
+ 8023660:	0802b52c 	.word	0x0802b52c
 
 08023664 <_Bfree>:
  8023664:	b570      	push	{r4, r5, r6, lr}
@@ -62372,8 +62372,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8023698:	6021      	str	r1, [r4, #0]
  802369a:	f843 4022 	str.w	r4, [r3, r2, lsl #2]
  802369e:	bd70      	pop	{r4, r5, r6, pc}
- 80236a0:	0802a798 	.word	0x0802a798
- 80236a4:	0802b4b4 	.word	0x0802b4b4
+ 80236a0:	0802a810 	.word	0x0802a810
+ 80236a4:	0802b52c 	.word	0x0802b52c
 
 080236a8 <__multadd>:
  80236a8:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
@@ -62429,8 +62429,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  802372c:	4620      	mov	r0, r4
  802372e:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
  8023732:	bf00      	nop
- 8023734:	0802b42e 	.word	0x0802b42e
- 8023738:	0802b4b4 	.word	0x0802b4b4
+ 8023734:	0802b4a6 	.word	0x0802b4a6
+ 8023738:	0802b52c 	.word	0x0802b52c
 
 0802373c <__s2b>:
  802373c:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
@@ -62491,8 +62491,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80237c0:	f7ff ff72 	bl	80236a8 <__multadd>
  80237c4:	e7ee      	b.n	80237a4 <__s2b+0x68>
  80237c6:	bf00      	nop
- 80237c8:	0802b42e 	.word	0x0802b42e
- 80237cc:	0802b4b4 	.word	0x0802b4b4
+ 80237c8:	0802b4a6 	.word	0x0802b4a6
+ 80237cc:	0802b52c 	.word	0x0802b52c
 
 080237d0 <__hi0bits>:
  80237d0:	0c03      	lsrs	r3, r0, #16
@@ -62586,8 +62586,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  802388e:	6103      	str	r3, [r0, #16]
  8023890:	bd10      	pop	{r4, pc}
  8023892:	bf00      	nop
- 8023894:	0802b42e 	.word	0x0802b42e
- 8023898:	0802b4b4 	.word	0x0802b4b4
+ 8023894:	0802b4a6 	.word	0x0802b4a6
+ 8023898:	0802b52c 	.word	0x0802b52c
 
 0802389c <__multiply>:
  802389c:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
@@ -62707,8 +62707,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80239da:	3f01      	subs	r7, #1
  80239dc:	e7a1      	b.n	8023922 <__multiply+0x86>
  80239de:	bf00      	nop
- 80239e0:	0802b42e 	.word	0x0802b42e
- 80239e4:	0802b4b4 	.word	0x0802b4b4
+ 80239e0:	0802b4a6 	.word	0x0802b4a6
+ 80239e4:	0802b52c 	.word	0x0802b52c
 
 080239e8 <__pow5mult>:
  80239e8:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
@@ -62776,9 +62776,9 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8023a88:	4638      	mov	r0, r7
  8023a8a:	e8bd 83f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, pc}
  8023a8e:	bf00      	nop
- 8023a90:	0802b608 	.word	0x0802b608
- 8023a94:	0802a798 	.word	0x0802a798
- 8023a98:	0802b4b4 	.word	0x0802b4b4
+ 8023a90:	0802b680 	.word	0x0802b680
+ 8023a94:	0802a810 	.word	0x0802a810
+ 8023a98:	0802b52c 	.word	0x0802b52c
 
 08023a9c <__lshift>:
  8023a9c:	e92d 47f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, lr}
@@ -62857,8 +62857,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8023b66:	d8f9      	bhi.n	8023b5c <__lshift+0xc0>
  8023b68:	e7ea      	b.n	8023b40 <__lshift+0xa4>
  8023b6a:	bf00      	nop
- 8023b6c:	0802b42e 	.word	0x0802b42e
- 8023b70:	0802b4b4 	.word	0x0802b4b4
+ 8023b6c:	0802b4a6 	.word	0x0802b4a6
+ 8023b70:	0802b52c 	.word	0x0802b52c
 
 08023b74 <__mcmp>:
  8023b74:	b530      	push	{r4, r5, lr}
@@ -62983,8 +62983,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8023cae:	e7e0      	b.n	8023c72 <__mdiff+0xc6>
  8023cb0:	3e01      	subs	r6, #1
  8023cb2:	e7ea      	b.n	8023c8a <__mdiff+0xde>
- 8023cb4:	0802b42e 	.word	0x0802b42e
- 8023cb8:	0802b4b4 	.word	0x0802b4b4
+ 8023cb4:	0802b4a6 	.word	0x0802b4a6
+ 8023cb8:	0802b52c 	.word	0x0802b52c
 
 08023cbc <__ulp>:
  8023cbc:	b082      	sub	sp, #8
@@ -63140,8 +63140,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8023e5a:	f7ff fcb9 	bl	80237d0 <__hi0bits>
  8023e5e:	ebc0 1042 	rsb	r0, r0, r2, lsl #5
  8023e62:	e7df      	b.n	8023e24 <__d2b+0x70>
- 8023e64:	0802b42e 	.word	0x0802b42e
- 8023e68:	0802b4b4 	.word	0x0802b4b4
+ 8023e64:	0802b4a6 	.word	0x0802b4a6
+ 8023e68:	0802b52c 	.word	0x0802b52c
 
 08023e6c <__ratio>:
  8023e6c:	e92d 4ff7 	stmdb	sp!, {r0, r1, r2, r4, r5, r6, r7, r8, r9, sl, fp, lr}
@@ -63531,11 +63531,11 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8024214:	f000 fba6 	bl	8024964 <_printf_i>
  8024218:	e7eb      	b.n	80241f2 <_svfiprintf_r+0x1c2>
  802421a:	bf00      	nop
- 802421c:	0802b614 	.word	0x0802b614
- 8024220:	0802b61e 	.word	0x0802b61e
+ 802421c:	0802b68c 	.word	0x0802b68c
+ 8024220:	0802b696 	.word	0x0802b696
  8024224:	00000000 	.word	0x00000000
  8024228:	08023f79 	.word	0x08023f79
- 802422c:	0802b61a 	.word	0x0802b61a
+ 802422c:	0802b692 	.word	0x0802b692
 
 08024230 <_sungetc_r>:
  8024230:	b538      	push	{r3, r4, r5, lr}
@@ -63914,8 +63914,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80245be:	e7f9      	b.n	80245b4 <__ssvfiscanf_r+0x2d0>
  80245c0:	08024231 	.word	0x08024231
  80245c4:	080242ab 	.word	0x080242ab
- 80245c8:	0802a810 	.word	0x0802a810
- 80245cc:	0802b61a 	.word	0x0802b61a
+ 80245c8:	0802a888 	.word	0x0802a888
+ 80245cc:	0802b692 	.word	0x0802b692
  80245d0:	00000000 	.word	0x00000000
 
 080245d4 <__sfputc_r>:
@@ -64199,14 +64199,14 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8024860:	f000 f880 	bl	8024964 <_printf_i>
  8024864:	e7e4      	b.n	8024830 <_vfiprintf_r+0x208>
  8024866:	bf00      	nop
- 8024868:	0802a930 	.word	0x0802a930
- 802486c:	0802a950 	.word	0x0802a950
- 8024870:	0802a910 	.word	0x0802a910
- 8024874:	0802b614 	.word	0x0802b614
- 8024878:	0802b61e 	.word	0x0802b61e
+ 8024868:	0802a9a8 	.word	0x0802a9a8
+ 802486c:	0802a9c8 	.word	0x0802a9c8
+ 8024870:	0802a988 	.word	0x0802a988
+ 8024874:	0802b68c 	.word	0x0802b68c
+ 8024878:	0802b696 	.word	0x0802b696
  802487c:	00000000 	.word	0x00000000
  8024880:	08024603 	.word	0x08024603
- 8024884:	0802b61a 	.word	0x0802b61a
+ 8024884:	0802b692 	.word	0x0802b692
 
 08024888 <_printf_common>:
  8024888:	e92d 47f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, lr}
@@ -64542,8 +64542,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8024ba0:	f104 0619 	add.w	r6, r4, #25
  8024ba4:	e7f5      	b.n	8024b92 <_printf_i+0x22e>
  8024ba6:	bf00      	nop
- 8024ba8:	0802a004 	.word	0x0802a004
- 8024bac:	0802b625 	.word	0x0802b625
+ 8024ba8:	0802a07c 	.word	0x0802a07c
+ 8024bac:	0802b69d 	.word	0x0802b69d
 
 08024bb0 <_scanf_chars>:
  8024bb0:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
@@ -64624,7 +64624,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8024c56:	6127      	str	r7, [r4, #16]
  8024c58:	2000      	movs	r0, #0
  8024c5a:	e7cb      	b.n	8024bf4 <_scanf_chars+0x44>
- 8024c5c:	0802a810 	.word	0x0802a810
+ 8024c5c:	0802a888 	.word	0x0802a888
 
 08024c60 <_scanf_i>:
  8024c60:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
@@ -64818,10 +64818,10 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8024e32:	2001      	movs	r0, #1
  8024e34:	e7f2      	b.n	8024e1c <_scanf_i+0x1bc>
  8024e36:	bf00      	nop
- 8024e38:	08027048 	.word	0x08027048
+ 8024e38:	080270c0 	.word	0x080270c0
  8024e3c:	08021a61 	.word	0x08021a61
  8024e40:	080250a5 	.word	0x080250a5
- 8024e44:	0802b64f 	.word	0x0802b64f
+ 8024e44:	0802b6c7 	.word	0x0802b6c7
 
 08024e48 <_read_r>:
  8024e48:	b538      	push	{r3, r4, r5, lr}
@@ -65086,7 +65086,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  802509a:	230a      	movs	r3, #10
  802509c:	e7ad      	b.n	8024ffa <_strtol_l.isra.0+0x5e>
  802509e:	bf00      	nop
- 80250a0:	0802a810 	.word	0x0802a810
+ 80250a0:	0802a888 	.word	0x0802a888
 
 080250a4 <_strtol_r>:
  80250a4:	f7ff bf7a 	b.w	8024f9c <_strtol_l.isra.0>
@@ -65257,7 +65257,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8025254:	2000      	movs	r0, #0
  8025256:	e7bd      	b.n	80251d4 <__tzcalc_limits+0xc4>
  8025258:	00015180 	.word	0x00015180
- 802525c:	0802b654 	.word	0x0802b654
+ 802525c:	0802b6cc 	.word	0x0802b6cc
 
 08025260 <__submore>:
  8025260:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
@@ -65372,9 +65372,9 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8025364:	f04f 37ff 	mov.w	r7, #4294967295
  8025368:	e7ea      	b.n	8025340 <__swbuf_r+0x6c>
  802536a:	bf00      	nop
- 802536c:	0802a930 	.word	0x0802a930
- 8025370:	0802a950 	.word	0x0802a950
- 8025374:	0802a910 	.word	0x0802a910
+ 802536c:	0802a9a8 	.word	0x0802a9a8
+ 8025370:	0802a9c8 	.word	0x0802a9c8
+ 8025374:	0802a988 	.word	0x0802a988
 
 08025378 <wcscmp>:
  8025378:	1f03      	subs	r3, r0, #4
@@ -65511,9 +65511,9 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  802549c:	e7f7      	b.n	802548e <__swsetup_r+0xba>
  802549e:	bf00      	nop
  80254a0:	200000a0 	.word	0x200000a0
- 80254a4:	0802a930 	.word	0x0802a930
- 80254a8:	0802a950 	.word	0x0802a950
- 80254ac:	0802a910 	.word	0x0802a910
+ 80254a4:	0802a9a8 	.word	0x0802a9a8
+ 80254a8:	0802a9c8 	.word	0x0802a9c8
+ 80254ac:	0802a988 	.word	0x0802a988
 
 080254b0 <__env_lock>:
  80254b0:	4801      	ldr	r0, [pc, #4]	; (80254b8 <__env_lock+0x8>)
@@ -65906,7 +65906,7 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  802588c:	932a      	str	r3, [sp, #168]	; 0xa8
  802588e:	e7f2      	b.n	8025876 <_svfwprintf_r+0x27e>
 	...
- 8025898:	0802b738 	.word	0x0802b738
+ 8025898:	0802b7b0 	.word	0x0802b7b0
  802589c:	b101      	cbz	r1, 80258a0 <_svfwprintf_r+0x2a8>
  802589e:	9615      	str	r6, [sp, #84]	; 0x54
  80258a0:	1d2b      	adds	r3, r5, #4
@@ -66225,11 +66225,11 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8025bb8:	e759      	b.n	8025a6e <_svfwprintf_r+0x476>
  8025bba:	bf00      	nop
  8025bbc:	7fefffff 	.word	0x7fefffff
- 8025bc0:	0802b6b4 	.word	0x0802b6b4
- 8025bc4:	0802b6c4 	.word	0x0802b6c4
- 8025bc8:	0802b6e4 	.word	0x0802b6e4
- 8025bcc:	0802b6d4 	.word	0x0802b6d4
- 8025bd0:	0802b7c4 	.word	0x0802b7c4
+ 8025bc0:	0802b72c 	.word	0x0802b72c
+ 8025bc4:	0802b73c 	.word	0x0802b73c
+ 8025bc8:	0802b75c 	.word	0x0802b75c
+ 8025bcc:	0802b74c 	.word	0x0802b74c
+ 8025bd0:	0802b83c 	.word	0x0802b83c
  8025bd4:	b193      	cbz	r3, 8025bfc <_svfwprintf_r+0x604>
  8025bd6:	3402      	adds	r4, #2
  8025bd8:	e757      	b.n	8025a8a <_svfwprintf_r+0x492>
@@ -66559,11 +66559,11 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8025ee0:	f43f af69 	beq.w	8025db6 <_svfwprintf_r+0x7be>
  8025ee4:	3c10      	subs	r4, #16
  8025ee6:	e7e6      	b.n	8025eb6 <_svfwprintf_r+0x8be>
- 8025ee8:	0802b738 	.word	0x0802b738
- 8025eec:	0802b6f4 	.word	0x0802b6f4
- 8025ef0:	0802b784 	.word	0x0802b784
- 8025ef4:	0802b77c 	.word	0x0802b77c
- 8025ef8:	0802b7c4 	.word	0x0802b7c4
+ 8025ee8:	0802b7b0 	.word	0x0802b7b0
+ 8025eec:	0802b76c 	.word	0x0802b76c
+ 8025ef0:	0802b7fc 	.word	0x0802b7fc
+ 8025ef4:	0802b7f4 	.word	0x0802b7f4
+ 8025ef8:	0802b83c 	.word	0x0802b83c
  8025efc:	9c19      	ldr	r4, [sp, #100]	; 0x64
  8025efe:	f344 041d 	sbfx	r4, r4, #0, #30
  8025f02:	42ac      	cmp	r4, r5
@@ -66762,8 +66762,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80260dc:	f04f 0800 	mov.w	r8, #0
  80260e0:	4645      	mov	r5, r8
  80260e2:	e4da      	b.n	8025a9a <_svfwprintf_r+0x4a2>
- 80260e4:	0802b7c4 	.word	0x0802b7c4
- 80260e8:	0802b784 	.word	0x0802b784
+ 80260e4:	0802b83c 	.word	0x0802b83c
+ 80260e8:	0802b7fc 	.word	0x0802b7fc
 
 080260ec <quorem>:
  80260ec:	e92d 4ff7 	stmdb	sp!, {r0, r1, r2, r4, r5, r6, r7, r8, r9, sl, fp, lr}
@@ -67160,15 +67160,15 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  80264f4:	3fc68a28 	.word	0x3fc68a28
  80264f8:	509f79fb 	.word	0x509f79fb
  80264fc:	3fd34413 	.word	0x3fd34413
- 8026500:	0802a798 	.word	0x0802a798
- 8026504:	0802b811 	.word	0x0802b811
+ 8026500:	0802a810 	.word	0x0802a810
+ 8026504:	0802b889 	.word	0x0802b889
  8026508:	7ff00000 	.word	0x7ff00000
- 802650c:	0802b80d 	.word	0x0802b80d
- 8026510:	0802b804 	.word	0x0802b804
- 8026514:	0802b63b 	.word	0x0802b63b
+ 802650c:	0802b885 	.word	0x0802b885
+ 8026510:	0802b87c 	.word	0x0802b87c
+ 8026514:	0802b6b3 	.word	0x0802b6b3
  8026518:	3ff80000 	.word	0x3ff80000
- 802651c:	0802b540 	.word	0x0802b540
- 8026520:	0802b42e 	.word	0x0802b42e
+ 802651c:	0802b5b8 	.word	0x0802b5b8
+ 8026520:	0802b4a6 	.word	0x0802b4a6
  8026524:	6a63      	ldr	r3, [r4, #36]	; 0x24
  8026526:	9a00      	ldr	r2, [sp, #0]
  8026528:	601a      	str	r2, [r3, #0]
@@ -67458,8 +67458,8 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8026844:	f8dd a01c 	ldr.w	sl, [sp, #28]
  8026848:	e04a      	b.n	80268e0 <_dtoa_r+0x6d8>
  802684a:	bf00      	nop
- 802684c:	0802b540 	.word	0x0802b540
- 8026850:	0802b518 	.word	0x0802b518
+ 802684c:	0802b5b8 	.word	0x0802b5b8
+ 8026850:	0802b590 	.word	0x0802b590
  8026854:	3ff00000 	.word	0x3ff00000
  8026858:	40240000 	.word	0x40240000
  802685c:	401c0000 	.word	0x401c0000
@@ -68045,9 +68045,9 @@ static HAL_StatusTypeDef RCCEx_PLLSAI2_Config(RCC_PLLSAI2InitTypeDef *PllSai2, u
  8026dcc:	f7fc fc6c 	bl	80236a8 <__multadd>
  8026dd0:	4683      	mov	fp, r0
  8026dd2:	e7eb      	b.n	8026dac <_dtoa_r+0xba4>
- 8026dd4:	0802b42e 	.word	0x0802b42e
- 8026dd8:	0802b63a 	.word	0x0802b63a
- 8026ddc:	0802b804 	.word	0x0802b804
+ 8026dd4:	0802b4a6 	.word	0x0802b4a6
+ 8026dd8:	0802b6b2 	.word	0x0802b6b2
+ 8026ddc:	0802b87c 	.word	0x0802b87c
 
 08026de0 <_localeconv_r>:
  8026de0:	4800      	ldr	r0, [pc, #0]	; (8026de4 <_localeconv_r+0x4>)

@@ -99,7 +99,7 @@ class Coulomb_meter{
 	private:
 	// VARS
 		uint8_t address_w = LTC2944_Slave7bitsAdr;
-		uint8_t address_r = LTC2944_Slave7bitsAdr | 0x01;
+		uint8_t address_r = LTC2944_Slave7bitsAdr; // | 0x01;
 		I2C_HandleTypeDef hi2c;
 		LTC2944_AnalogVal_Typedef values = {0.0,0.0,25.0};
 		float R_sense 		= DEF_R_SENSE;
