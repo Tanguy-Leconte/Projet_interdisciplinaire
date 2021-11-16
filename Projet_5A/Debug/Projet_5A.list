@@ -4864,102 +4864,102 @@ static void MX_I2C1_Init(void)
 
   /* USER CODE END I2C1_Init 1 */
   hi2c1.Instance = I2C1;
- 8002fec:	4b23      	ldr	r3, [pc, #140]	; (800307c <_ZL12MX_I2C1_Initv+0x94>)
- 8002fee:	4a24      	ldr	r2, [pc, #144]	; (8003080 <_ZL12MX_I2C1_Initv+0x98>)
+ 8002fec:	4b22      	ldr	r3, [pc, #136]	; (8003078 <_ZL12MX_I2C1_Initv+0x90>)
+ 8002fee:	4a23      	ldr	r2, [pc, #140]	; (800307c <_ZL12MX_I2C1_Initv+0x94>)
  8002ff0:	601a      	str	r2, [r3, #0]
-  hi2c1.Init.Timing = 0x00000E14;
- 8002ff2:	4b22      	ldr	r3, [pc, #136]	; (800307c <_ZL12MX_I2C1_Initv+0x94>)
- 8002ff4:	f640 6214 	movw	r2, #3604	; 0xe14
- 8002ff8:	605a      	str	r2, [r3, #4]
+  hi2c1.Init.Timing = 0x90000E14;
+ 8002ff2:	4b21      	ldr	r3, [pc, #132]	; (8003078 <_ZL12MX_I2C1_Initv+0x90>)
+ 8002ff4:	4a22      	ldr	r2, [pc, #136]	; (8003080 <_ZL12MX_I2C1_Initv+0x98>)
+ 8002ff6:	605a      	str	r2, [r3, #4]
   hi2c1.Init.OwnAddress1 = 0;
- 8002ffa:	4b20      	ldr	r3, [pc, #128]	; (800307c <_ZL12MX_I2C1_Initv+0x94>)
- 8002ffc:	2200      	movs	r2, #0
- 8002ffe:	609a      	str	r2, [r3, #8]
+ 8002ff8:	4b1f      	ldr	r3, [pc, #124]	; (8003078 <_ZL12MX_I2C1_Initv+0x90>)
+ 8002ffa:	2200      	movs	r2, #0
+ 8002ffc:	609a      	str	r2, [r3, #8]
   hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
- 8003000:	4b1e      	ldr	r3, [pc, #120]	; (800307c <_ZL12MX_I2C1_Initv+0x94>)
- 8003002:	2201      	movs	r2, #1
- 8003004:	60da      	str	r2, [r3, #12]
+ 8002ffe:	4b1e      	ldr	r3, [pc, #120]	; (8003078 <_ZL12MX_I2C1_Initv+0x90>)
+ 8003000:	2201      	movs	r2, #1
+ 8003002:	60da      	str	r2, [r3, #12]
   hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
- 8003006:	4b1d      	ldr	r3, [pc, #116]	; (800307c <_ZL12MX_I2C1_Initv+0x94>)
- 8003008:	2200      	movs	r2, #0
- 800300a:	611a      	str	r2, [r3, #16]
+ 8003004:	4b1c      	ldr	r3, [pc, #112]	; (8003078 <_ZL12MX_I2C1_Initv+0x90>)
+ 8003006:	2200      	movs	r2, #0
+ 8003008:	611a      	str	r2, [r3, #16]
   hi2c1.Init.OwnAddress2 = 0;
- 800300c:	4b1b      	ldr	r3, [pc, #108]	; (800307c <_ZL12MX_I2C1_Initv+0x94>)
- 800300e:	2200      	movs	r2, #0
- 8003010:	615a      	str	r2, [r3, #20]
+ 800300a:	4b1b      	ldr	r3, [pc, #108]	; (8003078 <_ZL12MX_I2C1_Initv+0x90>)
+ 800300c:	2200      	movs	r2, #0
+ 800300e:	615a      	str	r2, [r3, #20]
   hi2c1.Init.OwnAddress2Masks = I2C_OA2_NOMASK;
- 8003012:	4b1a      	ldr	r3, [pc, #104]	; (800307c <_ZL12MX_I2C1_Initv+0x94>)
- 8003014:	2200      	movs	r2, #0
- 8003016:	619a      	str	r2, [r3, #24]
+ 8003010:	4b19      	ldr	r3, [pc, #100]	; (8003078 <_ZL12MX_I2C1_Initv+0x90>)
+ 8003012:	2200      	movs	r2, #0
+ 8003014:	619a      	str	r2, [r3, #24]
   hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
- 8003018:	4b18      	ldr	r3, [pc, #96]	; (800307c <_ZL12MX_I2C1_Initv+0x94>)
- 800301a:	2200      	movs	r2, #0
- 800301c:	61da      	str	r2, [r3, #28]
+ 8003016:	4b18      	ldr	r3, [pc, #96]	; (8003078 <_ZL12MX_I2C1_Initv+0x90>)
+ 8003018:	2200      	movs	r2, #0
+ 800301a:	61da      	str	r2, [r3, #28]
   hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
- 800301e:	4b17      	ldr	r3, [pc, #92]	; (800307c <_ZL12MX_I2C1_Initv+0x94>)
- 8003020:	2200      	movs	r2, #0
- 8003022:	621a      	str	r2, [r3, #32]
+ 800301c:	4b16      	ldr	r3, [pc, #88]	; (8003078 <_ZL12MX_I2C1_Initv+0x90>)
+ 800301e:	2200      	movs	r2, #0
+ 8003020:	621a      	str	r2, [r3, #32]
   if (HAL_I2C_Init(&hi2c1) != HAL_OK)
- 8003024:	4815      	ldr	r0, [pc, #84]	; (800307c <_ZL12MX_I2C1_Initv+0x94>)
- 8003026:	f000 fd41 	bl	8003aac <HAL_I2C_Init>
- 800302a:	4603      	mov	r3, r0
- 800302c:	2b00      	cmp	r3, #0
- 800302e:	bf14      	ite	ne
- 8003030:	2301      	movne	r3, #1
- 8003032:	2300      	moveq	r3, #0
- 8003034:	b2db      	uxtb	r3, r3
- 8003036:	2b00      	cmp	r3, #0
- 8003038:	d001      	beq.n	800303e <_ZL12MX_I2C1_Initv+0x56>
+ 8003022:	4815      	ldr	r0, [pc, #84]	; (8003078 <_ZL12MX_I2C1_Initv+0x90>)
+ 8003024:	f000 fd42 	bl	8003aac <HAL_I2C_Init>
+ 8003028:	4603      	mov	r3, r0
+ 800302a:	2b00      	cmp	r3, #0
+ 800302c:	bf14      	ite	ne
+ 800302e:	2301      	movne	r3, #1
+ 8003030:	2300      	moveq	r3, #0
+ 8003032:	b2db      	uxtb	r3, r3
+ 8003034:	2b00      	cmp	r3, #0
+ 8003036:	d001      	beq.n	800303c <_ZL12MX_I2C1_Initv+0x54>
   {
     Error_Handler();
- 800303a:	f000 f83b 	bl	80030b4 <Error_Handler>
+ 8003038:	f000 f83c 	bl	80030b4 <Error_Handler>
   }
   /** Configure Analogue filter
   */
   if (HAL_I2CEx_ConfigAnalogFilter(&hi2c1, I2C_ANALOGFILTER_ENABLE) != HAL_OK)
- 800303e:	2100      	movs	r1, #0
- 8003040:	480e      	ldr	r0, [pc, #56]	; (800307c <_ZL12MX_I2C1_Initv+0x94>)
- 8003042:	f001 fa0d 	bl	8004460 <HAL_I2CEx_ConfigAnalogFilter>
- 8003046:	4603      	mov	r3, r0
- 8003048:	2b00      	cmp	r3, #0
- 800304a:	bf14      	ite	ne
- 800304c:	2301      	movne	r3, #1
- 800304e:	2300      	moveq	r3, #0
- 8003050:	b2db      	uxtb	r3, r3
- 8003052:	2b00      	cmp	r3, #0
- 8003054:	d001      	beq.n	800305a <_ZL12MX_I2C1_Initv+0x72>
+ 800303c:	2100      	movs	r1, #0
+ 800303e:	480e      	ldr	r0, [pc, #56]	; (8003078 <_ZL12MX_I2C1_Initv+0x90>)
+ 8003040:	f001 fa0e 	bl	8004460 <HAL_I2CEx_ConfigAnalogFilter>
+ 8003044:	4603      	mov	r3, r0
+ 8003046:	2b00      	cmp	r3, #0
+ 8003048:	bf14      	ite	ne
+ 800304a:	2301      	movne	r3, #1
+ 800304c:	2300      	moveq	r3, #0
+ 800304e:	b2db      	uxtb	r3, r3
+ 8003050:	2b00      	cmp	r3, #0
+ 8003052:	d001      	beq.n	8003058 <_ZL12MX_I2C1_Initv+0x70>
   {
     Error_Handler();
- 8003056:	f000 f82d 	bl	80030b4 <Error_Handler>
+ 8003054:	f000 f82e 	bl	80030b4 <Error_Handler>
   }
   /** Configure Digital filter
   */
   if (HAL_I2CEx_ConfigDigitalFilter(&hi2c1, 0) != HAL_OK)
- 800305a:	2100      	movs	r1, #0
- 800305c:	4807      	ldr	r0, [pc, #28]	; (800307c <_ZL12MX_I2C1_Initv+0x94>)
- 800305e:	f001 fa4a 	bl	80044f6 <HAL_I2CEx_ConfigDigitalFilter>
- 8003062:	4603      	mov	r3, r0
- 8003064:	2b00      	cmp	r3, #0
- 8003066:	bf14      	ite	ne
- 8003068:	2301      	movne	r3, #1
- 800306a:	2300      	moveq	r3, #0
- 800306c:	b2db      	uxtb	r3, r3
- 800306e:	2b00      	cmp	r3, #0
- 8003070:	d001      	beq.n	8003076 <_ZL12MX_I2C1_Initv+0x8e>
+ 8003058:	2100      	movs	r1, #0
+ 800305a:	4807      	ldr	r0, [pc, #28]	; (8003078 <_ZL12MX_I2C1_Initv+0x90>)
+ 800305c:	f001 fa4b 	bl	80044f6 <HAL_I2CEx_ConfigDigitalFilter>
+ 8003060:	4603      	mov	r3, r0
+ 8003062:	2b00      	cmp	r3, #0
+ 8003064:	bf14      	ite	ne
+ 8003066:	2301      	movne	r3, #1
+ 8003068:	2300      	moveq	r3, #0
+ 800306a:	b2db      	uxtb	r3, r3
+ 800306c:	2b00      	cmp	r3, #0
+ 800306e:	d001      	beq.n	8003074 <_ZL12MX_I2C1_Initv+0x8c>
   {
     Error_Handler();
- 8003072:	f000 f81f 	bl	80030b4 <Error_Handler>
+ 8003070:	f000 f820 	bl	80030b4 <Error_Handler>
   }
   /* USER CODE BEGIN I2C1_Init 2 */
 
   /* USER CODE END I2C1_Init 2 */
 
 }
- 8003076:	bf00      	nop
- 8003078:	bd80      	pop	{r7, pc}
- 800307a:	bf00      	nop
- 800307c:	200002f0 	.word	0x200002f0
- 8003080:	40005400 	.word	0x40005400
+ 8003074:	bf00      	nop
+ 8003076:	bd80      	pop	{r7, pc}
+ 8003078:	200002f0 	.word	0x200002f0
+ 800307c:	40005400 	.word	0x40005400
+ 8003080:	90000e14 	.word	0x90000e14
 
 08003084 <_ZL12MX_GPIO_Initv>:
   * @brief GPIO Initialization Function
