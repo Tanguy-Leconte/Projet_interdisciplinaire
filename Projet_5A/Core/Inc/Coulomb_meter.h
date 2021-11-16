@@ -68,9 +68,9 @@
 // ########### 		DEFINE		###############
 #define LTC2944_Slave7bitsAdr 	(0x64<<1)  //@slave I2C LTC2944
 // HARDWARE CHOICE
-#define DEF_R_SENSE				0.006
+#define DEF_R_SENSE				0.012	// in \Omega
 // Step between each value for the LTC2944 => 34µAh
-#define STEP_ACCUMULATED_CHARGE	0.034	// in mAh
+#define STEP_ACCUMULATED_CHARGE	0.34	// in mAh
 //#### VOLTAGE #####
 // FSR ADC 16-bits LTC294
 #define FSR_ADC_VOLTAGE			70.8	// in V
@@ -126,6 +126,10 @@ class Coulomb_meter{
 		Coulomb_meter(I2C_HandleTypeDef hi2c);
 		Coulomb_meter(I2C_HandleTypeDef hi2c, uint8_t ADCmode, uint8_t ALCC, uint8_t PowerDown);
 	// FUNCTIONS
+		/**
+		 * @brief : Get the control register value
+		 */
+		uint8_t Get_Control_Register();
 		/**
 		  * @brief Set the desired initial SOC in mAh
 		  * @param  SOC value in mAh

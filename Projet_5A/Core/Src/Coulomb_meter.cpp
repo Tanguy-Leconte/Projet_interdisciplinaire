@@ -17,9 +17,9 @@ using namespace std;
 // Prescaler bits => the value
 const uint16_t TAB_PRESCALER_M[8] {1,4,16,64,256,1024,4096,4096};
 // INIT OF THE DEVICE
-#define DEFAULT_ADCmode		0x0		// Sleep
+#define DEFAULT_ADCmode		0x3	// Sleep
 #define DEFAULT_ALCC		0x2		// Alerts enable
-#define DEFAULT_Prescaler	0x5		// default prescaler to 1024 (MAX 0X07!!)
+#define DEFAULT_Prescaler	0x7		// default prescaler to 1024 (MAX 0X07 = 4096!!)
 #define DEFAULT_PowerDown	0x0		// The analog part is working
 // Offset in the control register
 #define OFFSET_ADCmode		6
@@ -34,16 +34,27 @@ const uint16_t TAB_PRESCALER_M[8] {1,4,16,64,256,1024,4096,4096};
 
 #define TIMEOUT				5000
 
+#define KELVIN_TO_CELCIUS	(273.15)
+
 extern I2C_HandleTypeDef hi2c1;
 
 // ########### FONCTIONS TEST ################
 void Test_coulomb_meter(){
-	Coulomb_meter Explorateur(hi2c1);
-	LTC2944_AnalogVal_Typedef values;
+	try{
+		Coulomb_meter Explorateur(hi2c1);
+		LTC2944_AnalogVal_Typedef values;
+		float SOC = 3000;	// in mAh
+		Explorateur.Set_SOC_mAh(SOC);
 
-	while(1){
-		values = Explorateur.Get_AnalogVal();
-		HAL_Delay(1000);
+		while(1){
+			values = Explorateur.Get_AnalogVal();
+			HAL_Delay(1000);
+			SOC = Explorateur.Get_SOC_mAh();
+			HAL_Delay(1000);
+		}
+	}catch(string err){
+		// printf(err)
+		while(1){}
 	}
 }
 
@@ -112,6 +123,21 @@ void Coulomb_meter::init(){
 		throw (mes);
 	}
 }
+/**
+ * @brief : Get the control register value
+ */
+uint8_t Coulomb_meter::Get_Control_Register(){
+	uint8_t val=0;
+	// Get Control register
+	if (HAL_I2C_Mem_Read(&hi2c,address_r,B_Control,1,&val,1,TIMEOUT) != HAL_OK){
+		stringstream stream;
+		string mes;
+		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting the B_Control with the I2C bus";
+		stream >> mes;
+		throw (mes);
+	}
+	return val;
+}
 
 /**
   * @brief Set the desired initial SOC in mAh
@@ -120,6 +146,26 @@ void Coulomb_meter::init(){
 */
 void Coulomb_meter::Set_SOC_mAh(float SOC_mAh){
 	Coulomb_meter::SOC_mAh=SOC_mAh;
+	int aux_SOC = (int)(SOC_mAh/STEP_ACCUMULATED_CHARGE);
+	uint8_t* pSOC = new (uint8_t);
+	*pSOC = (aux_SOC & 0xff00)>>8;
+	// Set the MSB for the SOC value
+	if (HAL_I2C_Mem_Write(&hi2c,address_w,C_AccumulateChargeMSB,1,pSOC,1,TIMEOUT) != HAL_OK){
+		stringstream stream;
+		string mes;
+		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in writing in the C_AccumulateChargeMSB register with the I2C bus";
+		stream >> mes;
+		throw (mes);
+	}
+	*pSOC = (aux_SOC & 0xff);
+	// Set the LSB for the SOC value
+	if (HAL_I2C_Mem_Write(&hi2c,address_w,D_AccumulateChargeLSB,1,pSOC,1,TIMEOUT) != HAL_OK){
+		stringstream stream;
+		string mes;
+		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in writing in the D_AccumulateChargeLSB register with the I2C bus";
+		stream >> mes;
+		throw (mes);
+	}
 }
 
 /**
@@ -194,7 +240,7 @@ LTC2944_AnalogVal_Typedef Coulomb_meter::Get_AnalogVal(){
 	values.Voltage_V = FSR_ADC_VOLTAGE*((float)result/(float)STEP_ADC_VOLTAGE);
 	//############# CURRENT ##############
 	// Get Voltage_MSB
-	if (HAL_I2C_Mem_Read(&hi2c,address_r,I_Voltage_MSB,1,pData,1,TIMEOUT) != HAL_OK){
+	if (HAL_I2C_Mem_Read(&hi2c,address_r,O_Current_MSB,1,pData,1,TIMEOUT) != HAL_OK){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting I_Voltage_MSB with the I2C bus";
@@ -204,7 +250,7 @@ LTC2944_AnalogVal_Typedef Coulomb_meter::Get_AnalogVal(){
 		result = (*pData)<<8;
 	}
 	// Get Voltage_LSB
-	if (HAL_I2C_Mem_Read(&hi2c,address_r,J_Voltage_LSB,1,pData,1,TIMEOUT) != HAL_OK){
+	if (HAL_I2C_Mem_Read(&hi2c,address_r,P_Current_MSB,1,pData,1,TIMEOUT) != HAL_OK){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting J_Voltage_LSB with the I2C bus";
@@ -237,7 +283,7 @@ LTC2944_AnalogVal_Typedef Coulomb_meter::Get_AnalogVal(){
 	}else{
 		result |= (*pData);
 	}
-	values.Temperature_Celsius = (float)FSR_ADC_TEMP*((float)result/(float)STEP_ADC_TEMP);
+	values.Temperature_Celsius = ((float)FSR_ADC_TEMP*((float)result/(float)STEP_ADC_TEMP)) - KELVIN_TO_CELCIUS;
 
 	return values;
 }
