@@ -105,7 +105,7 @@ Coulomb_meter::Coulomb_meter(I2C_HandleTypeDef hi2c, uint8_t ADCmode, uint8_t AL
 		// Then we send the 7bits of the address and the last bit is R/W (1=Read)
 		// Then we address the register we want to write or read
 		// Finally we send the data (if write mode)
-		// Stop signal il SDA=>1 when SCK is at 1
+		// Stop signal SDA=>1 when SCK is at 1
 	init();
 }
 
@@ -143,7 +143,7 @@ uint8_t Coulomb_meter::Get_Control_Register(){
   * @brief Set the desired initial SOC in mAh
   * @param  SOC value in mAh
   * @retval Effective SOC value (regarding truncature effects)
-*/
+  */
 void Coulomb_meter::Set_SOC_mAh(float SOC_mAh){
 	Coulomb_meter::SOC_mAh=SOC_mAh;
 	int aux_SOC = (int)(SOC_mAh/STEP_ACCUMULATED_CHARGE);

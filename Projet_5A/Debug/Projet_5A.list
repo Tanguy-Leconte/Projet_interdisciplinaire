@@ -3216,7 +3216,7 @@ Coulomb_meter::Coulomb_meter(I2C_HandleTypeDef hi2c, uint8_t ADCmode, uint8_t AL
 		// Then we send the 7bits of the address and the last bit is R/W (1=Read)
 		// Then we address the register we want to write or read
 		// Finally we send the data (if write mode)
-		// Stop signal il SDA=>1 when SCK is at 1
+		// Stop signal SDA=>1 when SCK is at 1
 	init();
  800216c:	1d3b      	adds	r3, r7, #4
  800216e:	6818      	ldr	r0, [r3, #0]
@@ -3416,7 +3416,7 @@ void Coulomb_meter::init(){
   * @brief Set the desired initial SOC in mAh
   * @param  SOC value in mAh
   * @retval Effective SOC value (regarding truncature effects)
-*/
+  */
 void Coulomb_meter::Set_SOC_mAh(float SOC_mAh){
  8002340:	b590      	push	{r4, r7, lr}
  8002342:	b0c9      	sub	sp, #292	; 0x124
@@ -4867,7 +4867,7 @@ static void MX_I2C1_Init(void)
  8002fec:	4b22      	ldr	r3, [pc, #136]	; (8003078 <_ZL12MX_I2C1_Initv+0x90>)
  8002fee:	4a23      	ldr	r2, [pc, #140]	; (800307c <_ZL12MX_I2C1_Initv+0x94>)
  8002ff0:	601a      	str	r2, [r3, #0]
-  hi2c1.Init.Timing = 0x90000E14;
+  hi2c1.Init.Timing = 0x90000E14; //4 bits MSB => prescaler de l'I2C 0 => 100KHz
  8002ff2:	4b21      	ldr	r3, [pc, #132]	; (8003078 <_ZL12MX_I2C1_Initv+0x90>)
  8002ff4:	4a22      	ldr	r2, [pc, #136]	; (8003080 <_ZL12MX_I2C1_Initv+0x98>)
  8002ff6:	605a      	str	r2, [r3, #4]
