@@ -8,7 +8,6 @@
 
 // ###########		INCLUDE		###############
 #include "Boost.h"
-#include "Coulomb_meter.h"
 #include <string>
 #include <sstream>
 
@@ -20,7 +19,7 @@ using namespace std;
 Boost::Boost(I2C_HandleTypeDef hi2c_charge) : Boost(hi2c_charge, {BOOST_K,BOOST_Ki}) {}
 
 // using the Bilinear transform : p = (2/T)*(z-1)/(z+1)
-Boost::Boost(I2C_HandleTypeDef hi2c_charge, PI corr_val) : Sensor_charge(hi2c_charge),pi_val(corr_val) {
+Boost::Boost(I2C_HandleTypeDef hi2c_charge, PI corr_val) : sensor_charge(hi2c_charge),pi_val(corr_val) {
 	gain.in_actual = ((PERIOD*pi_val.K)+(2*pi_val.Ki))/(PERIOD);
 	gain.in_previous = ((PERIOD*pi_val.K)-(2*pi_val.Ki))/(PERIOD);
 	gain.out_previous = -1.0;
@@ -33,7 +32,7 @@ Boost::Boost(I2C_HandleTypeDef hi2c_charge, PI corr_val) : Sensor_charge(hi2c_ch
  */
 float Boost::Regulate(){
 	// Mesure the voltage
-	corrector.in_actual 	= setpoint - Sensor_charge.Get_AnalogVal().Voltage_V;
+	corrector.in_actual 	= setpoint - sensor_charge.Get_AnalogVal().Voltage_V;
 	corrector.out_actual 	= gain.in_actual * corrector.in_actual + gain.in_previous * corrector.in_previous + gain.out_previous;
 	// actualise the old values
 	corrector.in_previous = corrector.in_actual;
@@ -48,7 +47,7 @@ float Boost::Regulate(){
  * @retval None
  */
 void Boost::MPPT(){
-	LTC2944_AnalogVal_Typedef val = Sensor_charge.Get_AnalogVal();
+	LTC2944_AnalogVal_Typedef val = sensor_charge.Get_AnalogVal();
 	mppt_val.bat_voltage = val.Voltage_V;
 	mppt_val.current_mA = val.Current_mA;
 	// Calculate the power in mW

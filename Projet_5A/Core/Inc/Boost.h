@@ -51,7 +51,7 @@ typedef struct{
 class Boost{
 	private:
 	// VARS
-		Coulomb_meter Sensor_charge;
+		Coulomb_meter sensor_charge;
 		PI pi_val 				= {0,0};	// PI values
 		T_Gain gain				= {0,0,0};	// gain for e(k) and e(k-1)
 		Corr_in_out corrector	= {0,0,0,0};	// in out of the corrector
@@ -97,7 +97,5 @@ class Boost{
 		void Set_setpoint(float order){setpoint = order;};
 
 };
-
-
 
 #endif /* INC_BOOST_H_ */
