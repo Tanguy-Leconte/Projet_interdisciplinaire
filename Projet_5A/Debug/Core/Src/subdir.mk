@@ -18,6 +18,8 @@ C_SRCS += \
 CPP_SRCS += \
 ../Core/Src/Boost.cpp \
 ../Core/Src/Coulomb_meter.cpp \
+../Core/Src/UI.cpp \
+../Core/Src/app.cpp \
 ../Core/Src/main.cpp \
 ../Core/Src/master.cpp 
 
@@ -36,6 +38,8 @@ OBJS += \
 ./Core/Src/Boost.o \
 ./Core/Src/Coulomb_meter.o \
 ./Core/Src/I2C.o \
+./Core/Src/UI.o \
+./Core/Src/app.o \
 ./Core/Src/encoder.o \
 ./Core/Src/main.o \
 ./Core/Src/master.o \
@@ -49,6 +53,8 @@ OBJS += \
 CPP_DEPS += \
 ./Core/Src/Boost.d \
 ./Core/Src/Coulomb_meter.d \
+./Core/Src/UI.d \
+./Core/Src/app.d \
 ./Core/Src/main.d \
 ./Core/Src/master.d 
 
