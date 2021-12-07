@@ -20,7 +20,6 @@ CPP_SRCS += \
 ../Core/Src/Coulomb_meter.cpp \
 ../Core/Src/UI.cpp \
 ../Core/Src/app.cpp \
-../Core/Src/main.cpp \
 ../Core/Src/master.cpp 
 
 C_DEPS += \
@@ -55,7 +54,6 @@ CPP_DEPS += \
 ./Core/Src/Coulomb_meter.d \
 ./Core/Src/UI.d \
 ./Core/Src/app.d \
-./Core/Src/main.d \
 ./Core/Src/master.d 
 
 
