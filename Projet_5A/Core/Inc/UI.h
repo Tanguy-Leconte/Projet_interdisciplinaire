@@ -11,6 +11,7 @@
 // ###########		INCLUDE		###############
 #include "UI.h"
 #include "encoder.h"
+#include "display.h"
 #include <string>
 #include <sstream>
 
@@ -42,6 +43,7 @@ typedef enum{
 // Type Enum with the different values that we can change dynamically
 // We want to display : SOC | voltages | error | power in the battery
 typedef enum {
+	NONE,
 	SOC,
 	CURRENT_BAT,
 	VOLTAGE_BAT,
@@ -55,7 +57,7 @@ typedef enum {
 typedef struct {
 	int num_page	= 0;
 	int num 		= -1;
-	Values val_name;
+	Values val_name = NONE;
 	string val_txt;
 	float val		= 0.0;
 }Sub_Page;
@@ -76,23 +78,30 @@ Page* menu = new Page[NB_PAGE_TOT];
 class UI{
 	private:
 		// VARS
-			// number of the actual page
-			int num_on_page = 0;
+			// /!\ start to 0 like C array
+			int num_on_page = 0;	// number of the actual page
+			int num_on_subpage = 0; // number of the actual subpage
+			int num_tot_subpage = 0;// number of total of subpages of the actual page
 			Action event = NOTHING;
 		// OBJECT
 			theEncoder button;
+			Display display;
 		// FUNCTIONS
 			Action computeButtonAction();
 	public:
 		// VARS
 
 		//CONSTRUCTORS
-			UI();
+			// TODO : DO a generic constructor with all the pin for the encoder and the spi of the display
+			UI(SPI_HandleTypeDef hspi);
 		// FUNCTIONS
 			void init_menu();
+
+			void print_page();
 
 			void handler();
 };
 
+void Test_UI();
 
 #endif /* INC_UI_H_ */

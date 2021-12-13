@@ -12,11 +12,18 @@
 
 using namespace std;
 
+// ########### 		VARS		###############
+extern SPI_HandleTypeDef hspi1;
 // ########### 		DEFINE		###############
+
+//############ 		TEST		###############
+void Test_UI(){
+
+}
 
 // ########### 		CLASS		###############
 // ---- CONSTRUCTORS ------
-UI::UI(){
+UI::UI(SPI_HandleTypeDef hspi):display(hspi){
 	init_menu();
 }
 
@@ -120,6 +127,14 @@ Action UI::computeButtonAction(){
 		return NOTHING;
 	}
 
+
+}
+
+/* @brief 	: This print the actual page and subpage
+ * @args  	: NONE
+ * @retval	: Values on the screen
+ */
+void print_page(){
 
 }
 

@@ -36,6 +36,7 @@ class Display{
 	// VARS
 
 	//CONSTRUCTORS
+		//TODO : more powerful constructor
 		Display(SPI_HandleTypeDef hspi);
 	// FUNCTIONS
 
