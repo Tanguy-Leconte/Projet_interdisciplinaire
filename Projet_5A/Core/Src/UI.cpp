@@ -20,6 +20,10 @@ UI::UI(){
 	init_menu();
 }
 
+/* @brief 	: This function is called at the initialization to construct the different pages of the menu
+ * @args  	: NONE
+ * @retval	: NONE
+ */
 void UI::init_menu(){
 	int c_page = 0;
 	int c_sub_page = 0;
@@ -91,5 +95,63 @@ void UI::init_menu(){
 		c_page++;
 
 
+}
+
+/* @brief 	: This function the action made by the user on the button. Hypth: every action are made one by one and one page after another
+ * @args  	: NONE
+ * @retval	: NONE
+ */
+#define THRESHOLD_FAST_TURN		5
+Action UI::computeButtonAction(){
+	if (button.isButtonPressed()){
+		return CLICK;
+	}
+
+	int nb_turn = button.getNbTurnEncoder();
+	if (nb_turn < -THRESHOLD_FAST_TURN){
+		return FAST_LEFT;
+	}else if (nb_turn < 0){
+		return GO_LEFT;
+	}else if (nb_turn > THRESHOLD_FAST_TURN){
+		return FAST_RIGHT;
+	}else if (nb_turn > 0){
+		return GO_RIGHT;
+	}else{
+		return NOTHING;
+	}
+
+
+}
+
+
+/* @brief 	: This function where all the different task are made to test if there is an interaction with the user
+ * 			This function can be called either periodically or in the while(1) loop
+ * @args  	: NONE
+ * @retval	: NONE
+ */
+void UI::handler(){
+	event = computeButtonAction();
+	switch (event){
+		case (CLICK):
+			break;
+		case (LONG_CLICK):
+			break;
+		case (GO_LEFT):
+			break;
+		case (GO_RIGHT):
+			break;
+		case (FAST_LEFT):
+			break;
+		case (FAST_RIGHT):
+			break;
+		case (NOTHING):
+			break;
+		default:
+			stringstream stream;
+			string mes;
+			stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in the action demanding :" << "bad value";
+			stream >> mes;
+			throw (mes);
+	}
 }
 

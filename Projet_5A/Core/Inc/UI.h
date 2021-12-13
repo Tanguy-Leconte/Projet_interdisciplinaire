@@ -10,6 +10,7 @@
 
 // ###########		INCLUDE		###############
 #include "UI.h"
+#include "encoder.h"
 #include <string>
 #include <sstream>
 
@@ -28,14 +29,15 @@ enum Page_name{
 };
 
 // Type enum representing the action
-enum Action{
+typedef enum{
+	NOTHING,
 	CLICK,
 	LONG_CLICK,
 	GO_LEFT,
 	FAST_LEFT,
 	GO_RIGHT,
 	FAST_RIGHT
-};
+}Action;
 
 // Type Enum with the different values that we can change dynamically
 // We want to display : SOC | voltages | error | power in the battery
@@ -76,8 +78,11 @@ class UI{
 		// VARS
 			// number of the actual page
 			int num_on_page = 0;
+			Action event = NOTHING;
+		// OBJECT
+			theEncoder button;
 		// FUNCTIONS
-
+			Action computeButtonAction();
 	public:
 		// VARS
 
@@ -85,6 +90,8 @@ class UI{
 			UI();
 		// FUNCTIONS
 			void init_menu();
+
+			void handler();
 };
 
 

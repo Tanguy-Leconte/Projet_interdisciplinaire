@@ -16,18 +16,19 @@ using namespace std;
 // ########### 		DEFINE		###############
 #define GPIOEncoder 		GPIOC
 #define EncoderButtonPin 	GPIO_PIN_1
+#define TIM_ENC				TIM3
 // ########### FONCTIONS TEST ################
 
 // ########### 		CLASS		###############
 
 theEncoder::theEncoder(){
 	compteurEncoder = 0;
-	TIM3 -> CNT = 32768;
+	TIM_ENC -> CNT = 32768;
 }
 
 theEncoder::theEncoder(int theValInit){
 	compteurEncoder = theValInit;
-	TIM3 -> CNT = 32768;
+	TIM_ENC -> CNT = 32768;
 }
 
 void theEncoder::computeSensRotation(int newCompteur){
@@ -35,19 +36,22 @@ void theEncoder::computeSensRotation(int newCompteur){
 	if(newCompteur > compteurEncoder){
 		sensRotation = 1;
 	} else if(newCompteur < compteurEncoder){
-		sensRotation = 0;
+		sensRotation = -1;
 	} else {
-		sensRotation = 2;
+		sensRotation = 0;
 	}
 
 }
 
-void theEncoder::changeCompteurEncoder(){
-	int newCompteur = TIM3 -> CNT;
+int theEncoder::getNbTurnEncoder(){
+	int newCompteur = TIM_ENC -> CNT;
 
+	nbOfTurn = newCompteur - compteurEncoder;
 	computeSensRotation(newCompteur);
 
 	compteurEncoder = newCompteur;
+
+	return nbOfTurn*sensRotation;
 }
 
 bool theEncoder::isButtonPressed(){

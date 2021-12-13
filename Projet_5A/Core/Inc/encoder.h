@@ -17,7 +17,8 @@ class theEncoder{
 	// VARS
 	int compteurEncoder;
 	bool buttonPress;		//true = bouton pressé | false = bouton non pressé
-	int sensRotation; 		//2 = ne bouge pas | 1 = dans un sens | 0 = dans l'autre sens
+	int sensRotation; 		//0 = ne bouge pas | 1 = dans un sens | -1 = dans l'autre sens
+	int nbOfTurn;			// Number of turn made between to time
 
 	// FUNCTIONS
 	void computeSensRotation(int newCompteur);
@@ -30,7 +31,7 @@ class theEncoder{
 	theEncoder(int theValInit);
 
 	// FUNCTIONS
-	void changeCompteurEncoder();
+	int getNbTurnEncoder();
 
 	bool isButtonPressed();
 
