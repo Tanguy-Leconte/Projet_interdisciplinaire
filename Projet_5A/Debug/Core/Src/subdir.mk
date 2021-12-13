@@ -6,7 +6,6 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../Core/Src/I2C.c \
-../Core/Src/encoder.c \
 ../Core/Src/main.c \
 ../Core/Src/pwm.c \
 ../Core/Src/stm32l4xx_hal_msp.c \
@@ -20,11 +19,11 @@ CPP_SRCS += \
 ../Core/Src/Coulomb_meter.cpp \
 ../Core/Src/UI.cpp \
 ../Core/Src/app.cpp \
+../Core/Src/encoder.cpp \
 ../Core/Src/master.cpp 
 
 C_DEPS += \
 ./Core/Src/I2C.d \
-./Core/Src/encoder.d \
 ./Core/Src/main.d \
 ./Core/Src/pwm.d \
 ./Core/Src/stm32l4xx_hal_msp.d \
@@ -54,6 +53,7 @@ CPP_DEPS += \
 ./Core/Src/Coulomb_meter.d \
 ./Core/Src/UI.d \
 ./Core/Src/app.d \
+./Core/Src/encoder.d \
 ./Core/Src/master.d 
 
 
