@@ -7,7 +7,6 @@
 C_SRCS += \
 ../Core/Src/I2C.c \
 ../Core/Src/main.c \
-../Core/Src/pwm.c \
 ../Core/Src/stm32l4xx_hal_msp.c \
 ../Core/Src/stm32l4xx_it.c \
 ../Core/Src/syscalls.c \
@@ -19,13 +18,13 @@ CPP_SRCS += \
 ../Core/Src/Coulomb_meter.cpp \
 ../Core/Src/UI.cpp \
 ../Core/Src/app.cpp \
+../Core/Src/display.cpp \
 ../Core/Src/encoder.cpp \
 ../Core/Src/master.cpp 
 
 C_DEPS += \
 ./Core/Src/I2C.d \
 ./Core/Src/main.d \
-./Core/Src/pwm.d \
 ./Core/Src/stm32l4xx_hal_msp.d \
 ./Core/Src/stm32l4xx_it.d \
 ./Core/Src/syscalls.d \
@@ -38,10 +37,10 @@ OBJS += \
 ./Core/Src/I2C.o \
 ./Core/Src/UI.o \
 ./Core/Src/app.o \
+./Core/Src/display.o \
 ./Core/Src/encoder.o \
 ./Core/Src/main.o \
 ./Core/Src/master.o \
-./Core/Src/pwm.o \
 ./Core/Src/stm32l4xx_hal_msp.o \
 ./Core/Src/stm32l4xx_it.o \
 ./Core/Src/syscalls.o \
@@ -53,6 +52,7 @@ CPP_DEPS += \
 ./Core/Src/Coulomb_meter.d \
 ./Core/Src/UI.d \
 ./Core/Src/app.d \
+./Core/Src/display.d \
 ./Core/Src/encoder.d \
 ./Core/Src/master.d 
 
