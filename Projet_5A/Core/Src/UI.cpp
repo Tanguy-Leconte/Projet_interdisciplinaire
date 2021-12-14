@@ -134,8 +134,19 @@ Action UI::computeButtonAction(){
  * @args  	: NONE
  * @retval	: Values on the screen
  */
-void print_page(){
+void UI::print_page(){
+	// Select the right page with the given number in num_on_page and nb_sub_page
+	Page* p_actual_page = &(menu[num_on_page]);
+	num_tot_subpage = p_actual_page->nb_sub_page;
+	Sub_Page* p_actual_subpage = NULL;
+	if (num_tot_subpage > num_on_subpage){
+		p_actual_subpage = &(p_actual_page->sub[num_on_subpage]);
+	}
 
+	// We print the page
+	display.set_cursor(1, 1);
+	// string to char *
+	display.print(p_actual_page->title);
 }
 
 

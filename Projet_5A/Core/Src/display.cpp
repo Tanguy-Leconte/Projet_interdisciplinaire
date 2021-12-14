@@ -9,8 +9,7 @@
 
 // ###########		INCLUDE		###############
 #include "display.h"
-#include <string>
-#include <sstream>
+#include <cstring>
 
 using namespace std;
 
@@ -50,13 +49,25 @@ void Display::write_cmd(uint8_t* cmd){
 	HAL_SPI_Transmit(&hspi,cmd,1,1000);
 }
 
-void Display::lcd_print(unsigned char* string){
-	unsigned char * ptrChaine;
-	ptrChaine=string;
+void Display::print(uint8_t* s){
+	uint8_t* ptrChaine;
+	ptrChaine=s;
 	while(*ptrChaine!=0){
 		write_data(ptrChaine);
 		ptrChaine++;
 	}
+}
+
+void Display::print(string s){
+	//string to char*!!
+    int n = s.length();
+    // declaring character array
+    char char_array[n + 1];
+    // copying the contents of the
+    // string to char array
+    strcpy(char_array, s.c_str());
+
+    print((uint8_t*)char_array);
 }
 
 void Display::set_cursor(int column,int line){

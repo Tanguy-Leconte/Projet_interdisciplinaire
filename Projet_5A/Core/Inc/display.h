@@ -11,6 +11,10 @@
 
 // ###########		INCLUDE		###############
 #include "main.h"
+#include <string>
+#include <sstream>
+
+using namespace std;
 // ########### 		DEFINE		###############
 
 // ########### 		STRUCTURE	###############
@@ -30,8 +34,6 @@ class Display{
 	// FUNCTIONS
 		void write_cmd(uint8_t* cmd);
 		void write_data(uint8_t* data);
-		void lcd_print(unsigned char* string);
-		void set_cursor(int column,int line);
 	public:
 	// VARS
 
@@ -39,6 +41,9 @@ class Display{
 		//TODO : more powerful constructor
 		Display(SPI_HandleTypeDef hspi);
 	// FUNCTIONS
+		void print(uint8_t* s);
+		void print(string s);
+		void set_cursor(int column,int line);
 
 };
 
