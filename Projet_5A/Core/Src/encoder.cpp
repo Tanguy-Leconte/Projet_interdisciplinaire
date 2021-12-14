@@ -14,20 +14,17 @@
 using namespace std;
 
 // ########### 		DEFINE		###############
-#define GPIOEncoder 		GPIOC
-#define EncoderButtonPin 	GPIO_PIN_1
-#define TIM_ENC				TIM3
+
 // ########### FONCTIONS TEST ################
 
 // ########### 		CLASS		###############
 
-theEncoder::theEncoder(){
-	compteurEncoder = 0;
-	TIM_ENC -> CNT = 32768;
-}
+theEncoder::theEncoder(GPIO_TypeDef* GPIOenc, uint16_t ButtonPin, TIM_TypeDef* TIMER):\
+		theEncoder(GPIOenc, ButtonPin, TIMER, 32768){}
 
-theEncoder::theEncoder(int theValInit){
-	compteurEncoder = theValInit;
+theEncoder::theEncoder(GPIO_TypeDef* GPIOenc, uint16_t ButtonPin, TIM_TypeDef* TIMER, int theValInit):\
+		compteurEncoder(theValInit), GPIOEncoder(GPIOenc), EncoderButtonPin(ButtonPin), TIM_ENC(TIMER)\
+{
 	TIM_ENC -> CNT = 32768;
 }
 

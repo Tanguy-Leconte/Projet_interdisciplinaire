@@ -13,7 +13,7 @@
 using namespace std;
 
 // ########### 		VARS		###############
-extern SPI_HandleTypeDef hspi1;
+
 // ########### 		DEFINE		###############
 
 //############ 		TEST		###############
@@ -23,7 +23,7 @@ void Test_UI(){
 
 // ########### 		CLASS		###############
 // ---- CONSTRUCTORS ------
-UI::UI(SPI_HandleTypeDef hspi):display(hspi){
+UI::UI(Display display,theEncoder button):display(display),button(button){
 	init_menu();
 }
 
@@ -133,6 +133,8 @@ Action UI::computeButtonAction(){
  * @retval	: Values on the screen
  */
 void UI::print(){
+	// We clear the screen
+	display.clear();
 	// Select the right page with the given number in num_on_page and nb_sub_page
 	Page* p_actual_page = &(menu[num_on_page]);
 	num_tot_subpage = p_actual_page->nb_sub_page;
@@ -145,6 +147,23 @@ void UI::print(){
 	display.set_cursor(1, 1);
 	// string to char *
 	display.print(p_actual_page->title);
+
+	// We print the number of the page
+	int length_nb = 1;
+	if (p_actual_page->num > 9){
+		length_nb++;
+	}
+	display.set_cursor(1, MAX_CHAR_PER_LINE - length_nb);
+	display.print(p_actual_page->num);
+
+	// print now the subpage
+	if (p_actual_subpage != NULL){
+		display.set_cursor(2, 1);
+		display.print(p_actual_subpage->val_txt);
+		// We now print the value
+		display.set_cursor(2, (p_actual_subpage->val_txt).length() + 1);
+		display.print(p_actual_subpage->val);
+	}
 }
 
 
@@ -183,9 +202,11 @@ void UI::handler(){
 					num_on_subpage = 0;
 				}
 			}
+			// we actualise the data on the screen
+			print();
 			break;
 		case (GO_RIGHT):
-			// Increment
+			// Decrement
 			if (is_Clicked){
 				if (menu[num_on_page].sub->is_val_W){
 					menu[num_on_page].sub->val--;
@@ -202,6 +223,8 @@ void UI::handler(){
 					num_on_subpage = menu[num_on_page].nb_sub_page;
 				}
 			}
+			// we actualise the data on the screen
+			print();
 			break;
 		case (FAST_LEFT):
 			break;
@@ -217,12 +240,5 @@ void UI::handler(){
 			throw (mes);
 	}
 
-	// we actualise the data on the screen
-	print();
 }
 
-/* @brief 	: This function where all the different task are made to test if there is an interaction with the user
- * 			This function can be called either periodically or in the while(1) loop
- * @args  	: NONE
- * @retval	: NONE
- */

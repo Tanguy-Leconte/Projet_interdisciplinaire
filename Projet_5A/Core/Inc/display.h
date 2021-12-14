@@ -12,13 +12,13 @@
 
 
 // ###########		INCLUDE		###############
-#include "main.h"
+#include "stm32l4xx_hal.h"
 #include <string>
-#include <sstream>
 
 using namespace std;
 // ########### 		DEFINE		###############
-
+#define MAX_CHAR_PER_LINE		16
+#define MAX_LINE				2
 // ########### 		STRUCTURE	###############
 
 // ########### 		GLOBAL VARS	###############
@@ -30,10 +30,10 @@ class Display{
 		SPI_HandleTypeDef hspi;
 	// CST
 		// TODO: assign those values in the constructor
-		uint16_t PIN_RS = GPIO_PIN_6;
-		GPIO_TypeDef * PORT_RS = GPIOA;
-		uint16_t PIN_CS = GPIO_PIN_9;
-		GPIO_TypeDef * PORT_CS = GPIOA;
+		uint16_t PIN_RS;
+		GPIO_TypeDef * PORT_RS;
+		uint16_t PIN_CS;
+		GPIO_TypeDef * PORT_CS;
 	// FUNCTIONS
 		void write_cmd(uint8_t* cmd);
 		void write_data(uint8_t* data);
@@ -42,8 +42,10 @@ class Display{
 
 	//CONSTRUCTORS
 		//TODO : more powerful constructor
-		Display(SPI_HandleTypeDef hspi);
+		Display(SPI_HandleTypeDef hspi, uint16_t PIN_RS, GPIO_TypeDef * PORT_RS, uint16_t PIN_CS, GPIO_TypeDef * PORT_CS);
 	// FUNCTIONS
+		// clear the screen
+		void clear();
 		// Use set_cursor before print to select a location
 		void print(uint8_t* s);
 		void print(string s);

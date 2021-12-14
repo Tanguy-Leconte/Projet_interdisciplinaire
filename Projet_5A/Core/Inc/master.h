@@ -11,12 +11,25 @@
 
 // ###########		INCLUDE		###############
 #include "Boost.h"
+#include "UI.h"
 
-// ########### 		DEFINE		###############
+// ########### 		DEFINE/VARS	###############
+	// Main button
+		#define GPIOEncoder 		GPIOC
+		#define EncoderButtonPin 	GPIO_PIN_1
+		#define TIM_ENC				TIM3
+
+	// LCD screen
+		extern SPI_HandleTypeDef hspi1;
+		#define PIN_LCD_RS			GPIO_PIN_6
+  	  	#define PORT_LCD_RS			GPIOA
+		#define PIN_LCD_CS			GPIO_PIN_9
+		#define PORT_LCD_CS			GPIOA
 
 // ########### 		STRUCTURE	###############
 
-// ########### 		GLOBAL VARS	###############
+// ########### 		FUNCTION	###############
+void setup();
 
 // ###########		CLASS		###############
 class Master{

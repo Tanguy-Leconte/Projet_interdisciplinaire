@@ -15,10 +15,14 @@
 class theEncoder{
 	private:
 	// VARS
-	int compteurEncoder;
-	bool buttonPress;		//true = bouton pressé | false = bouton non pressé
-	int sensRotation; 		//0 = ne bouge pas | 1 = dans un sens | -1 = dans l'autre sens
-	int nbOfTurn;			// Number of turn made between to time
+		int compteurEncoder;
+		bool buttonPress;		//true = bouton pressé | false = bouton non pressé
+		int sensRotation; 		//0 = ne bouge pas | 1 = dans un sens | -1 = dans l'autre sens
+		int nbOfTurn;			// Number of turn made between to time
+
+		GPIO_TypeDef* GPIOEncoder;
+		uint16_t EncoderButtonPin;
+		TIM_TypeDef* TIM_ENC;
 
 	// FUNCTIONS
 	void computeSensRotation(int newCompteur);
@@ -27,8 +31,8 @@ class theEncoder{
 	// VARS
 
 	//CONSTRUCTORS
-	theEncoder();
-	theEncoder(int theValInit);
+	theEncoder(GPIO_TypeDef* GPIOenc, uint16_t ButtonPin, TIM_TypeDef* TIMER);
+	theEncoder(GPIO_TypeDef* GPIOenc, uint16_t ButtonPin, TIM_TypeDef* TIMER, int theValInit);
 
 	// FUNCTIONS
 	int getNbTurnEncoder();

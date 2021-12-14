@@ -5,14 +5,19 @@
  *      Author: rapha
  */
 
-#include "Coulomb_meter.h"
+// ########### 		INCLUDE		###############
+#include "app.h"
+#include "master.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+// ########### 	APPLICATION		###############
+
 void My_app(){
-	Test_coulomb_meter();
+	setup();
+
 	while (1)
 	{
 

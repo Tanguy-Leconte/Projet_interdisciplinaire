@@ -10,29 +10,32 @@
 // ###########		INCLUDE		###############
 #include "display.h"
 #include <cstring>
+#include <sstream>
 
 using namespace std;
 
 // ########### 		DEFINE		###############
-uint8_t display[1]	={0x0C};
-uint8_t clear[1]	={0x01};
-uint8_t set[1]		={0x06};
-uint8_t mode[1]		={0x38};
-uint8_t addr[1]		={0xC5};
-uint8_t data_1[1]	={0x59};
+uint8_t cmd_display[1]	={0x0C};
+uint8_t cmd_clear[1]	={0x01};
+uint8_t cmd_set[1]		={0x06};
+uint8_t cmd_mode[1]		={0x38};
+uint8_t cmd_addr[1]		={0xC5};
+uint8_t cmd_data_1[1]	={0x59};
 
 // ########### 		CLASS		###############
 // Initialisation procedure
-Display::Display(SPI_HandleTypeDef hspi):hspi(hspi){
+Display::Display(SPI_HandleTypeDef hspi, uint16_t PIN_RS, GPIO_TypeDef * PORT_RS, uint16_t PIN_CS, GPIO_TypeDef * PORT_CS):\
+		hspi(hspi), PIN_RS(PIN_RS), PORT_RS(PORT_RS), PIN_CS(PIN_CS), PORT_CS(PORT_CS)\
+{
 	HAL_GPIO_WritePin(PORT_CS, PIN_CS, GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(PORT_RS, PIN_RS, GPIO_PIN_RESET);
-	write_cmd(mode);
+	write_cmd(cmd_mode);
 	HAL_Delay(100);
-	write_cmd(display);
+	write_cmd(cmd_display);
 	HAL_Delay(100);
-	write_cmd(clear);
+	write_cmd(cmd_clear);
 	HAL_Delay(100);
-	write_cmd(set);
+	write_cmd(cmd_set);
 	HAL_Delay(100);
 }
 
@@ -47,6 +50,10 @@ void Display::write_data(uint8_t* data){
 void Display::write_cmd(uint8_t* cmd){
 	HAL_GPIO_WritePin(PORT_RS, PIN_RS, GPIO_PIN_RESET);
 	HAL_SPI_Transmit(&hspi,cmd,1,1000);
+}
+
+void Display::clear(){
+	write_cmd(cmd_clear);
 }
 
 void Display::print(uint8_t* s){

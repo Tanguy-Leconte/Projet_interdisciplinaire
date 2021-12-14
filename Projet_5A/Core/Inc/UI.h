@@ -9,7 +9,6 @@
 #define INC_UI_H_
 
 // ###########		INCLUDE		###############
-#include "UI.h"
 #include "encoder.h"
 #include "display.h"
 #include <string>
@@ -78,9 +77,6 @@ typedef struct {
 	Sub_Page* sub;
 }Page;
 
-// array containing the pages of the menu
-Page* menu = new Page[NB_PAGE_TOT];
-
 // ########### 		CLASS		###############
 class UI{
 	private:
@@ -92,9 +88,13 @@ class UI{
 			bool is_Clicked = false;	// inform if we have clicked before
 			Click_level click_level = PAGE;
 			Action event = NOTHING;
+
+			// array containing the pages of the menu
+			Page* menu = new Page[NB_PAGE_TOT];
+
 		// OBJECT
-			theEncoder button;
 			Display display;
+			theEncoder button;
 		// FUNCTIONS
 			Action computeButtonAction();
 	public:
@@ -102,7 +102,12 @@ class UI{
 
 		//CONSTRUCTORS
 			// TODO : DO a generic constructor with all the pin for the encoder and the spi of the display
-			UI(SPI_HandleTypeDef hspi);
+			UI(\
+					//Display
+					Display display,\
+					//button
+					theEncoder button\
+				);
 		// FUNCTIONS
 			void init_menu();
 
