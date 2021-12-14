@@ -24,8 +24,8 @@ uint8_t data_1[1]	={0x59};
 // ########### 		CLASS		###############
 // Initialisation procedure
 Display::Display(SPI_HandleTypeDef hspi):hspi(hspi){
-	HAL_GPIO_WritePin(PORT_INIT, PIN_INIT, GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(PORT_CS, PIN_CS, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(PORT_RS, PIN_RS, GPIO_PIN_RESET);
 	write_cmd(mode);
 	HAL_Delay(100);
 	write_cmd(display);
@@ -37,15 +37,15 @@ Display::Display(SPI_HandleTypeDef hspi):hspi(hspi){
 }
 
 void Display::write_data(uint8_t* data){
-	HAL_GPIO_WritePin(PORT_INIT, PIN_INIT, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(PORT_CS, PIN_CS, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(PORT_CS, PIN_CS, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(PORT_RS, PIN_RS, GPIO_PIN_SET);
 	HAL_SPI_Transmit(&hspi,data,1,1000);
-	HAL_GPIO_WritePin(PORT_INIT, PIN_INIT, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(PORT_CS, PIN_CS, GPIO_PIN_SET);
 }
 
 // Write a command through SPI
 void Display::write_cmd(uint8_t* cmd){
-	HAL_GPIO_WritePin(PORT_CS, PIN_CS, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(PORT_RS, PIN_RS, GPIO_PIN_RESET);
 	HAL_SPI_Transmit(&hspi,cmd,1,1000);
 }
 
