@@ -29,6 +29,12 @@ enum Page_name{
 	ERREUR		= 2
 };
 
+typedef enum{
+	PAGE,
+	SUBPAGE,
+	VALUE
+}Click_level;
+
 // Type enum representing the action
 typedef enum{
 	NOTHING,
@@ -58,6 +64,7 @@ typedef struct {
 	int num_page	= 0;
 	int num 		= -1;
 	Values val_name = NONE;
+	bool is_val_W = false;		// is the value changeable?
 	string val_txt;
 	float val		= 0.0;
 }Sub_Page;
@@ -79,9 +86,11 @@ class UI{
 	private:
 		// VARS
 			// /!\ start to 0 like C array
-			int num_on_page = 0;	// number of the actual page
-			int num_on_subpage = 0; // number of the actual subpage
-			int num_tot_subpage = 0;// number of total of subpages of the actual page
+			int num_on_page = 0;		// number of the actual page
+			int num_on_subpage = 0; 	// number of the actual subpage
+			int num_tot_subpage = 0;	// number of total of subpages of the actual page
+			bool is_Clicked = false;	// inform if we have clicked before
+			Click_level click_level = PAGE;
 			Action event = NOTHING;
 		// OBJECT
 			theEncoder button;
@@ -97,7 +106,7 @@ class UI{
 		// FUNCTIONS
 			void init_menu();
 
-			void print_page();
+			void print();
 
 			void handler();
 };

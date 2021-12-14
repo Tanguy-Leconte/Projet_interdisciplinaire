@@ -126,15 +126,13 @@ Action UI::computeButtonAction(){
 	}else{
 		return NOTHING;
 	}
-
-
 }
 
 /* @brief 	: This print the actual page and subpage
  * @args  	: NONE
  * @retval	: Values on the screen
  */
-void UI::print_page(){
+void UI::print(){
 	// Select the right page with the given number in num_on_page and nb_sub_page
 	Page* p_actual_page = &(menu[num_on_page]);
 	num_tot_subpage = p_actual_page->nb_sub_page;
@@ -155,16 +153,55 @@ void UI::print_page(){
  * @args  	: NONE
  * @retval	: NONE
  */
+// TODO : Next step is to use Click_level to have more pages
+// but it need an implementation of long click to go back to the general menu
 void UI::handler(){
 	event = computeButtonAction();
 	switch (event){
 		case (CLICK):
+			is_Clicked = !is_Clicked; // we toogle the clicked state (focus or not)
 			break;
 		case (LONG_CLICK):
+			// Not implemented
 			break;
+	// TODO : check the direction
 		case (GO_LEFT):
+			// Increment
+			if (is_Clicked){
+				if (menu[num_on_page].sub->is_val_W){
+					menu[num_on_page].sub->val++;
+				}else{
+					is_Clicked = false;
+				}
+			}else{
+				if(num_on_subpage < menu[num_on_page].nb_sub_page - 1){
+					//there is another subpage
+					num_on_subpage++;
+				}else{
+					//we go on the new page
+					num_on_page = (num_on_page + 1)%(num_tot_subpage);
+					num_on_subpage = 0;
+				}
+			}
 			break;
 		case (GO_RIGHT):
+			// Increment
+			if (is_Clicked){
+				if (menu[num_on_page].sub->is_val_W){
+					menu[num_on_page].sub->val--;
+				}else{
+					is_Clicked = false;
+				}
+			}else{
+				if(num_on_subpage > 0){
+					//there is another subpage
+					num_on_subpage--;
+				}else{
+					//we go on the new page
+					num_on_page = (num_on_page - 1)%(num_tot_subpage);
+					num_on_subpage = menu[num_on_page].nb_sub_page;
+				}
+			}
 			break;
 		case (FAST_LEFT):
 			break;
@@ -179,5 +216,13 @@ void UI::handler(){
 			stream >> mes;
 			throw (mes);
 	}
+
+	// we actualise the data on the screen
+	print();
 }
 
+/* @brief 	: This function where all the different task are made to test if there is an interaction with the user
+ * 			This function can be called either periodically or in the while(1) loop
+ * @args  	: NONE
+ * @retval	: NONE
+ */

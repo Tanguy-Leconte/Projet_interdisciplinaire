@@ -66,8 +66,16 @@ void Display::print(string s){
     // copying the contents of the
     // string to char array
     strcpy(char_array, s.c_str());
+    // we print the char*
+    print(char_array);
+}
 
-    print((uint8_t*)char_array);
+void Display::print(int number){
+	// int to string
+	stringstream strs;
+	strs << number;
+	string temp_str = strs.str();
+	print(temp_str);
 }
 
 void Display::set_cursor(int column,int line){

@@ -27,23 +27,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  000402d4  2**0
                   CONTENTS, READONLY
- 12 .debug_info   0001d925  00000000  00000000  00040304  2**0
+ 12 .debug_info   0001d99d  00000000  00000000  00040304  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 0000352e  00000000  00000000  0005dc29  2**0
+ 13 .debug_abbrev 0000352e  00000000  00000000  0005dca1  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 00000f40  00000000  00000000  00061158  2**3
+ 14 .debug_aranges 00000f40  00000000  00000000  000611d0  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_ranges 00000fe8  00000000  00000000  00062098  2**3
+ 15 .debug_ranges 00000fe8  00000000  00000000  00062110  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  00004fc9  00000000  00000000  00063080  2**0
+ 16 .debug_macro  00004fc9  00000000  00000000  000630f8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00013451  00000000  00000000  00068049  2**0
+ 17 .debug_line   00013545  00000000  00000000  000680c1  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000f8654  00000000  00000000  0007b49a  2**0
+ 18 .debug_str    000f868d  00000000  00000000  0007b606  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000053  00000000  00000000  00173aee  2**0
+ 19 .comment      00000053  00000000  00000000  00173c93  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  0001a914  00000000  00000000  00173b44  2**2
+ 20 .debug_frame  0001a914  00000000  00000000  00173ce8  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -4774,11 +4774,11 @@ LTC2944_AnalogVal_Typedef Coulomb_meter::Get_AnalogVal(){
 	...
 
 08002fe8 <_Z41__static_initialization_and_destruction_0ii>:
-			string mes;
-			stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in the action demanding :" << "bad value";
-			stream >> mes;
 			throw (mes);
 	}
+
+	// we actualise the data on the screen
+	print();
 }
  8002fe8:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
  8002fec:	b082      	sub	sp, #8
