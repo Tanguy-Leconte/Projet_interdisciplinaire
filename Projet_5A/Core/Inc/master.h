@@ -12,6 +12,7 @@
 // ###########		INCLUDE		###############
 #include "Boost.h"
 #include "UI.h"
+#include "hash.h"
 
 // ########### 		DEFINE/VARS	###############
 	// Main button
@@ -42,13 +43,15 @@ class Master{
 		UART_HandleTypeDef serial_com;
 	// VARS
 		float soc_max = 0.0; 	// in mAh
+
+		myHash<Values,float> table;
 	// FUNCTIONS
 
 	public:
 	// VARS
 
 	//CONSTRUCTORS
-
+		Master(Coulomb_meter Sensor_charge, Coulomb_meter Sensor_discharge, Boost boost, UART_HandleTypeDef serial_com);
 	// FUNCTIONS
 		void Set_max_SOC (float val);
 

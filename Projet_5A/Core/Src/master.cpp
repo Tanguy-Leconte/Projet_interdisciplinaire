@@ -7,13 +7,12 @@
 #include "master.h"
 
 void setup(){
-	// User interface construction
-		// The button
-		theEncoder button_main(GPIOEncoder, EncoderButtonPin, TIM_ENC);
-		//Display
-		Display screen(hspi1, PIN_LCD_RS, PORT_LCD_RS, PIN_LCD_CS, PORT_LCD_CS);
-		// UI
-		UI ui(screen,button_main);
+
 }
 
 
+Master::Master(Coulomb_meter Sensor_charge, Coulomb_meter Sensor_discharge, Boost boost, UART_HandleTypeDef serial_com):\
+		Sensor_charge(Sensor_charge), Sensor_discharge(Sensor_discharge), boost(boost), serial_com(serial_com), table(NB_OF_DISPLAYED_VALUES)\
+{
+
+}

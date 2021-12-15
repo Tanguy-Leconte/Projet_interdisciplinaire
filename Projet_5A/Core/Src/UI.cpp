@@ -13,12 +13,14 @@
 using namespace std;
 
 // ########### 		VARS		###############
-
+extern UI ui;
 // ########### 		DEFINE		###############
 
 //############ 		TEST		###############
 void Test_UI(){
-
+	while(1){
+		ui.handler();
+	}
 }
 
 // ########### 		CLASS		###############
@@ -35,14 +37,14 @@ void UI::init_menu(){
 	int c_page = 0;
 	int c_sub_page = 0;
 	// PAGE MENU
-		menu[c_page].num 			= c_page;
+		menu[c_page].num 			= MENU;
 		menu[c_page].title 			= "Menu";
 		menu[c_page].text 			= "";
 		c_page++;
 
 	// PAGE VALEURS
 		c_sub_page = 0;
-		menu[c_page].num 			= c_page;
+		menu[c_page].num 			= DONNEES;
 		menu[c_page].title 			= "Valeurs";
 		menu[c_page].text 			= "";
 		menu[c_page].nb_sub_page 	= 6;
@@ -95,7 +97,7 @@ void UI::init_menu(){
 
 	// PAGE ERROR
 		c_sub_page = 0;
-		menu[c_page].num 			= c_page;
+		menu[c_page].num 			= ERREUR;
 		menu[c_page].title 			= "Erreurs";
 		menu[c_page].text 			= "";
 		// TODO: do the sub pages with the different error
@@ -109,9 +111,16 @@ void UI::init_menu(){
  * @retval	: NONE
  */
 #define THRESHOLD_FAST_TURN		5
+#define THRESHOLD_LONG_CLICK	10
+unsigned int cp_click = 0;
 Action UI::computeButtonAction(){
 	if (button.isButtonPressed()){
-		return CLICK;
+		cp_click++;
+		if (cp_click > THRESHOLD_LONG_CLICK){
+			return LONG_CLICK;
+		}else{
+			return CLICK;
+		}
 	}
 
 	int nb_turn = button.getNbTurnEncoder();
@@ -145,7 +154,6 @@ void UI::print(){
 
 	// We print the page
 	display.set_cursor(1, 1);
-	// string to char *
 	display.print(p_actual_page->title);
 
 	// We print the number of the page
@@ -164,6 +172,21 @@ void UI::print(){
 		display.set_cursor(2, (p_actual_subpage->val_txt).length() + 1);
 		display.print(p_actual_subpage->val);
 	}
+}
+
+/* @brief 	: Find the sub_page corresponding to the wanted value and return a pointer onto it
+ * This function can be used in other class in order to update the value of the UI
+ * @args  	: the wanted value
+ * @retval	: a sub_page pointer
+ */
+Sub_Page* UI::find(Values w_val){
+	int i = 0;
+	for (i=0; i < menu[DONNEES].nb_sub_page; i++){
+		if (w_val == menu[DONNEES].sub->val){
+			return menu[DONNEES].sub;
+		}
+	}
+	return NULL;
 }
 
 

@@ -15,6 +15,22 @@ extern "C" {
 
 // ########### 	APPLICATION		###############
 
+// User interface construction
+	// The button
+	theEncoder button_main(GPIOEncoder, EncoderButtonPin, TIM_ENC);
+	//Display
+	Display screen(hspi1, PIN_LCD_RS, PORT_LCD_RS, PIN_LCD_CS, PORT_LCD_CS);
+	// UI
+	UI ui(screen,button_main);
+
+// Boost construction
+
+// Master construction
+	Master master();
+
+// Test hash
+	myHash<Values,float> table(6);
+
 void My_app(){
 	setup();
 

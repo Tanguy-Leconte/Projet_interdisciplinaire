@@ -47,6 +47,7 @@ typedef enum{
 
 // Type Enum with the different values that we can change dynamically
 // We want to display : SOC | voltages | error | power in the battery
+#define NB_OF_DISPLAYED_VALUES		6
 typedef enum {
 	NONE,
 	SOC,
@@ -112,6 +113,8 @@ class UI{
 			void init_menu();
 
 			void print();
+
+			Sub_Page* find(Values w_val);
 
 			void handler();
 };
