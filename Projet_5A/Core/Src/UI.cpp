@@ -16,6 +16,10 @@ using namespace std;
 extern UI ui;
 // ########### 		DEFINE		###############
 #define FAST_INC_VAL		10	// nb for the fast changes in the values
+// define the time for each type of click
+#define THRESHOLD_FAST_TURN		4 // must be under 2
+#define THRESHOLD_CLICK			5
+#define THRESHOLD_LONG_CLICK	50
 //############ 		TEST		###############
 void Test_UI(){
 	while(1){
@@ -110,9 +114,6 @@ void UI::init_menu(){
  * @args  	: NONE
  * @retval	: NONE
  */
-#define THRESHOLD_FAST_TURN		4 // must be under 2
-#define THRESHOLD_CLICK			5
-#define THRESHOLD_LONG_CLICK	80
 unsigned int cp_click = 0;
 Action UI::computeButtonAction(){
 	if (button.isButtonPressed() && (event == LONG_CLICK || event == CLICK)){
@@ -357,13 +358,28 @@ void UI::goClick(bool v_long){
 	if (v_long){
 		click_level = 0;
 	}else {
-		if (VALUE == array_level[click_level]){
+		bool next_level_ok = false;
+		switch(array_level[click_level]){
+		case(PAGE):
+			if (menu[num_on_page].nb_sub_page != 0){
+				next_level_ok = true;
+			}
+			break;
+		case(SUBPAGE):
+			if (menu[num_on_page].sub[num_on_subpage].is_val_W == true){
+				next_level_ok = true;
+			}
+			break;
+		case(VALUE):
+			break;
+		}
+		if (next_level_ok){
+			click_level = (click_level + 1)%(sizeof(array_level)); // we change the click level focus
+		}else{
 			click_level--;
 			if (click_level < 0){
 				click_level = 0;
 			}
-		}else{
-			click_level = (click_level + 1)%(sizeof(array_level)); // we change the click level focus
 		}
 	}
 
