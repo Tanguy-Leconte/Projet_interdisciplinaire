@@ -38,14 +38,14 @@ void setup(){
 	HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_1 | TIM_CHANNEL_2);
 	TIM_ENC -> CNT = 32768;
 	screen.init();
-	//ui.init_menu();
+	ui.init_menu();
+	ui.print();
 }
 
 void My_app(){
 	setup();
 
-	Test_display();
-	//Test_UI();
+	Test_UI();
 	while (1)
 	{
 

@@ -11,6 +11,7 @@
 // ###########		INCLUDE		###############
 #include "encoder.h"
 #include "display.h"
+//#include "hash.h";
 #include <string>
 #include <sstream>
 
@@ -29,10 +30,11 @@ enum Page_name{
 };
 
 typedef enum{
-	PAGE,
+	PAGE		= 0,
 	SUBPAGE,
 	VALUE
 }Click_level;
+const Click_level array_level[3] = {PAGE, SUBPAGE, VALUE};
 
 // Type enum representing the action
 typedef enum{
@@ -86,8 +88,7 @@ class UI{
 			int num_on_page = 0;		// number of the actual page
 			int num_on_subpage = 0; 	// number of the actual subpage
 			int num_tot_subpage = 0;	// number of total of subpages of the actual page
-			bool is_Clicked = false;	// inform if we have clicked before
-			Click_level click_level = PAGE;
+			int click_level = 0;
 			Action event = NOTHING;
 
 			// array containing the pages of the menu
@@ -98,6 +99,10 @@ class UI{
 			theEncoder button;
 		// FUNCTIONS
 			Action computeButtonAction();
+			// change the state of the menu
+			void goRight(bool fast);
+			void goLeft(bool fast);
+			void goClick(bool v_long);
 	public:
 		// VARS
 

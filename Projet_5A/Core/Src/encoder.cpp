@@ -14,7 +14,8 @@
 using namespace std;
 
 // ########### 		DEFINE		###############
-
+#define THRESHOLD_RESET_VAL			1000
+#define DEFAULT_VAL					32768
 // ########### FONCTIONS TEST ################
 
 // ########### 		CLASS		###############
@@ -25,7 +26,7 @@ theEncoder::theEncoder(GPIO_TypeDef* GPIOenc, uint16_t ButtonPin, TIM_TypeDef* T
 theEncoder::theEncoder(GPIO_TypeDef* GPIOenc, uint16_t ButtonPin, TIM_TypeDef* TIMER, int theValInit):\
 		compteurEncoder(theValInit), GPIOEncoder(GPIOenc), EncoderButtonPin(ButtonPin), TIM_ENC(TIMER)\
 {
-	TIM_ENC -> CNT = 32768;
+	TIM_ENC -> CNT = DEFAULT_VAL;
 }
 
 void theEncoder::computeSensRotation(int newCompteur){
@@ -43,10 +44,16 @@ void theEncoder::computeSensRotation(int newCompteur){
 int theEncoder::getNbTurnEncoder(){
 	int newCompteur = TIM_ENC -> CNT;
 
-	nbOfTurn = newCompteur - compteurEncoder;
+	nbOfTurn = abs(newCompteur - compteurEncoder);
 	computeSensRotation(newCompteur);
 
-	compteurEncoder = newCompteur;
+	// We reset the value of the encoder
+	if ((TIM_ENC -> CNT < THRESHOLD_RESET_VAL) || (TIM_ENC -> CNT > (DEFAULT_VAL*2 - THRESHOLD_RESET_VAL))){
+		TIM_ENC -> CNT = DEFAULT_VAL;
+		compteurEncoder = DEFAULT_VAL;
+	}else{
+		compteurEncoder = newCompteur;
+	}
 
 	return nbOfTurn*sensRotation;
 }

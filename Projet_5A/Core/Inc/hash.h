@@ -29,6 +29,11 @@ public:
 
 	// find with the key and change the value of that key
 	bool modify(K key, V new_value);
+
+	//find a value with a key
+	V find(K key);
+
+	V operator[](K const& key){return find(key);}
 };
 
 #include "hash.inl"

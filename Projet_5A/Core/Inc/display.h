@@ -52,7 +52,7 @@ class Display{
 		void print(string s);
 		void print(int number);
 		// start in 0 : 0
-		void set_cursor(int column,int line);
+		void set_cursor(int line, int column);
 
 };
 

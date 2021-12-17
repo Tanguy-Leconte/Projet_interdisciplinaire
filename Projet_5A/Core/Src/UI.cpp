@@ -15,11 +15,12 @@ using namespace std;
 // ########### 		VARS		###############
 extern UI ui;
 // ########### 		DEFINE		###############
-
+#define FAST_INC_VAL		10	// nb for the fast changes in the values
 //############ 		TEST		###############
 void Test_UI(){
 	while(1){
 		ui.handler();
+		HAL_Delay(20);
 	}
 }
 
@@ -55,6 +56,7 @@ void UI::init_menu(){
 			p_soc[c_sub_page].val_name	= SOC;
 			p_soc[c_sub_page].val_txt	= "SOC";
 			p_soc[c_sub_page].val		= 0.0;
+			p_soc[c_sub_page].is_val_W	= true;
 			c_sub_page++;
 			// CURRENT_BAT
 			p_soc[c_sub_page].num		= c_sub_page;
@@ -108,15 +110,22 @@ void UI::init_menu(){
  * @args  	: NONE
  * @retval	: NONE
  */
-#define THRESHOLD_FAST_TURN		5
-#define THRESHOLD_LONG_CLICK	10
+#define THRESHOLD_FAST_TURN		4 // must be under 2
+#define THRESHOLD_CLICK			5
+#define THRESHOLD_LONG_CLICK	80
 unsigned int cp_click = 0;
 Action UI::computeButtonAction(){
-	if (button.isButtonPressed()){
+	if (button.isButtonPressed() && (event == LONG_CLICK || event == CLICK)){
+		return LONG_CLICK;
+	}
+	if (button.isButtonPressed() && cp_click < (THRESHOLD_LONG_CLICK + 10) && event != LONG_CLICK){
 		cp_click++;
+	}else if (cp_click > 0){
 		if (cp_click > THRESHOLD_LONG_CLICK){
+			cp_click = 0;
 			return LONG_CLICK;
-		}else{
+		}else if (cp_click > THRESHOLD_CLICK){
+			cp_click = 0;
 			return CLICK;
 		}
 	}
@@ -151,7 +160,7 @@ void UI::print(){
 	}
 
 	// We print the page
-	display.set_cursor(1, 1);
+	display.set_cursor(0, 0);
 	display.print(p_actual_page->title);
 
 	// We print the number of the page
@@ -159,16 +168,32 @@ void UI::print(){
 	if (p_actual_page->num > 9){
 		length_nb++;
 	}
-	display.set_cursor(1, MAX_CHAR_PER_LINE - length_nb);
+	display.set_cursor(0, (MAX_CHAR_PER_LINE - length_nb));
 	display.print(p_actual_page->num);
 
 	// print now the subpage
 	if (p_actual_subpage != NULL){
-		display.set_cursor(2, 1);
+		display.set_cursor(1, 0);
 		display.print(p_actual_subpage->val_txt);
 		// We now print the value
-		display.set_cursor(2, (p_actual_subpage->val_txt).length() + 1);
+		display.set_cursor(1, (p_actual_subpage->val_txt).length() + 1);
 		display.print(p_actual_subpage->val);
+	}
+
+	// Where are we ? page, subpage or value ?
+	switch (array_level[click_level]){
+	case(SUBPAGE):
+		display.set_cursor(0, (MAX_CHAR_PER_LINE - 1));
+		display.print("<");
+		break;
+	case(VALUE):
+		display.set_cursor(0, (MAX_CHAR_PER_LINE - 1));
+		display.print("<");
+		display.set_cursor(1, (MAX_CHAR_PER_LINE - 1));
+		display.print("<");
+		break;
+	default:
+		break;
 	}
 }
 
@@ -196,60 +221,46 @@ Sub_Page* UI::find(Values w_val){
 // TODO : Next step is to use Click_level to have more pages
 // but it need an implementation of long click to go back to the general menu
 void UI::handler(){
-	event = computeButtonAction();
+	Action last_event = event;
+	if((event = computeButtonAction()) == last_event){
+		return;
+	}
 	switch (event){
 		case (CLICK):
-			is_Clicked = !is_Clicked; // we toogle the clicked state (focus or not)
-			break;
-		case (LONG_CLICK):
-			// Not implemented
-			break;
-	// TODO : check the direction
-		case (GO_LEFT):
-			// Increment
-			if (is_Clicked){
-				if (menu[num_on_page].sub->is_val_W){
-					menu[num_on_page].sub->val++;
-				}else{
-					is_Clicked = false;
-				}
-			}else{
-				if(num_on_subpage < menu[num_on_page].nb_sub_page - 1){
-					//there is another subpage
-					num_on_subpage++;
-				}else{
-					//we go on the new page
-					num_on_page = (num_on_page + 1)%(NB_PAGE_TOT);
-					num_on_subpage = 0;
-				}
-			}
+			goClick(false);
 			// we actualise the data on the screen
 			print();
 			break;
+		case (LONG_CLICK):
+			// Go back to the high page
+			goClick(true);
+			// we actualise the data on the screen
+			print();
+			break;
+	// TODO : check the direction
 		case (GO_RIGHT):
-			// Decrement
-			if (is_Clicked){
-				if (menu[num_on_page].sub->is_val_W){
-					menu[num_on_page].sub->val--;
-				}else{
-					is_Clicked = false;
-				}
-			}else{
-				if(num_on_subpage > 0){
-					//there is another subpage
-					num_on_subpage--;
-				}else{
-					//we go on the new page
-					num_on_page = (num_on_page - 1)%(NB_PAGE_TOT);
-					num_on_subpage = menu[num_on_page].nb_sub_page;
-				}
-			}
+			// Increment
+			goRight(false);
+			// we actualise the data on the screen
+			print();
+			break;
+		case (GO_LEFT):
+			//Decrement
+			goLeft(false);
+			// we actualise the data on the screen
+			print();
+			break;
+		case (FAST_RIGHT):
+			// fast Increment
+			goRight(true);
 			// we actualise the data on the screen
 			print();
 			break;
 		case (FAST_LEFT):
-			break;
-		case (FAST_RIGHT):
+			//fast Decrement
+			goLeft(true);
+			// we actualise the data on the screen
+			print();
 			break;
 		case (NOTHING):
 			break;
@@ -259,6 +270,101 @@ void UI::handler(){
 			stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in the action demanding :" << "bad value";
 			stream >> mes;
 			throw (mes);
+	}
+
+}
+
+
+// change the state of the menu
+void UI::goRight(bool fast){
+	if (fast){
+		// Increment
+		if (array_level[click_level] == PAGE){
+			//we go on the new page
+			num_on_page = (num_on_page + 1)%(NB_PAGE_TOT);
+			num_on_subpage = 0;
+		}else if (array_level[click_level] == SUBPAGE){
+			//we go on the next sub page
+			num_on_subpage = (num_on_subpage + 1)%(menu[num_on_page].nb_sub_page);
+		}else if (array_level[click_level] == VALUE){
+			if (menu[num_on_page].sub[num_on_subpage].is_val_W){
+				menu[num_on_page].sub[num_on_subpage].val+= FAST_INC_VAL;
+			}
+		}
+	}else{
+		// Increment
+		if (array_level[click_level] == PAGE){
+			//we go on the new page
+			num_on_page = (num_on_page + 1)%(NB_PAGE_TOT);
+			num_on_subpage = 0;
+		}else if (array_level[click_level] == SUBPAGE){
+			//we go on the next sub page
+			num_on_subpage = (num_on_subpage + 1)%(menu[num_on_page].nb_sub_page);
+		}else if (array_level[click_level] == VALUE){
+			if (menu[num_on_page].sub[num_on_subpage].is_val_W){
+				menu[num_on_page].sub[num_on_subpage].val++;
+			}
+		}
+	}
+}
+void UI::goLeft(bool fast){
+	// Decrement
+	if (fast){
+		if (array_level[click_level] == PAGE){
+			//we go on the new page
+			if ((num_on_page - 1) < 0){
+				num_on_page = NB_PAGE_TOT - 1;
+			}else{
+				num_on_page = (num_on_page - 1)%(NB_PAGE_TOT);
+			}
+			num_on_subpage = 0;
+		}else if (array_level[click_level] == SUBPAGE){
+			//we go on the previous sub page
+			if ((num_on_subpage - 1) < 0){
+				num_on_subpage = menu[num_on_page].nb_sub_page - 1;
+			}else{
+				num_on_subpage--;
+			}
+		}else if (array_level[click_level] == VALUE){
+			if (menu[num_on_page].sub[num_on_subpage].is_val_W){
+				menu[num_on_page].sub[num_on_subpage].val-= FAST_INC_VAL;
+			}
+		}
+	}else{
+		if (array_level[click_level] == PAGE){
+			//we go on the new page
+			if ((num_on_page - 1) < 0){
+				num_on_page = NB_PAGE_TOT - 1;
+			}else{
+				num_on_page = (num_on_page - 1)%(NB_PAGE_TOT);
+			}
+			num_on_subpage = 0;
+		}else if (array_level[click_level] == SUBPAGE){
+			//we go on the previous sub page
+			if ((num_on_subpage - 1) < 0){
+				num_on_subpage = menu[num_on_page].nb_sub_page - 1;
+			}else{
+				num_on_subpage--;
+			}
+		}else if (array_level[click_level] == VALUE){
+			if (menu[num_on_page].sub[num_on_subpage].is_val_W){
+				menu[num_on_page].sub[num_on_subpage].val--;
+			}
+		}
+	}
+}
+void UI::goClick(bool v_long){
+	if (v_long){
+		click_level = 0;
+	}else {
+		if (VALUE == array_level[click_level]){
+			click_level--;
+			if (click_level < 0){
+				click_level = 0;
+			}
+		}else{
+			click_level = (click_level + 1)%(sizeof(array_level)); // we change the click level focus
+		}
 	}
 
 }

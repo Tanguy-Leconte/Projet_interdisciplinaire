@@ -43,13 +43,13 @@ void Display::init(){
 	HAL_GPIO_WritePin(PORT_CS, PIN_CS, GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(PORT_RS, PIN_RS, GPIO_PIN_RESET);
 	write_cmd(cmd_mode);
-	HAL_Delay(100);
+	HAL_Delay(10);
 	write_cmd(cmd_display);
-	HAL_Delay(100);
+	HAL_Delay(10);
 	write_cmd(cmd_clear);
-	HAL_Delay(100);
+	HAL_Delay(10);
 	write_cmd(cmd_set);
-	HAL_Delay(100);
+	HAL_Delay(10);
 }
 
 void Display::write_data(uint8_t* data){
@@ -61,12 +61,15 @@ void Display::write_data(uint8_t* data){
 
 // Write a command through SPI
 void Display::write_cmd(uint8_t* cmd){
+	HAL_GPIO_WritePin(PORT_CS, PIN_CS, GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(PORT_RS, PIN_RS, GPIO_PIN_RESET);
 	HAL_SPI_Transmit(p_hspi,cmd,1,1000);
+	HAL_GPIO_WritePin(PORT_CS, PIN_CS, GPIO_PIN_SET);
 }
 
 void Display::clear(){
 	write_cmd(cmd_clear);
+	HAL_Delay(2);
 }
 
 void Display::print_char(uint8_t* s){
@@ -98,7 +101,7 @@ void Display::print(int number){
 	print(temp_str);
 }
 
-void Display::set_cursor(int column,int line){
+void Display::set_cursor(int line, int column){
 	uint8_t val_addr;
 	val_addr = (line * 0x40)+column;
 	val_addr = 0x80+(val_addr & 0x7F);

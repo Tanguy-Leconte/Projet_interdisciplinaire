@@ -32,4 +32,15 @@ bool myHash<K,V>::modify(K key, V new_value){
 	return false;
 }
 
+template <class K, class V>
+V myHash<K,V>::find(K key){
+	int i = 0;
+	for (i=0; i < size; i++){
+		if (key == p_table[i].key){
+			return p_table[i].value;
+		}
+	}
+	return false;
+}
+
 
