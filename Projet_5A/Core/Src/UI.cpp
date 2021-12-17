@@ -219,7 +219,7 @@ void UI::handler(){
 					num_on_subpage++;
 				}else{
 					//we go on the new page
-					num_on_page = (num_on_page + 1)%(num_tot_subpage);
+					num_on_page = (num_on_page + 1)%(NB_PAGE_TOT);
 					num_on_subpage = 0;
 				}
 			}
@@ -240,7 +240,7 @@ void UI::handler(){
 					num_on_subpage--;
 				}else{
 					//we go on the new page
-					num_on_page = (num_on_page - 1)%(num_tot_subpage);
+					num_on_page = (num_on_page - 1)%(NB_PAGE_TOT);
 					num_on_subpage = menu[num_on_page].nb_sub_page;
 				}
 			}

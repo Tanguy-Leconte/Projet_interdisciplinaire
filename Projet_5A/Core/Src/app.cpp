@@ -17,9 +17,10 @@ extern "C" {
 
 // User interface construction
 	// The button
+	extern TIM_HandleTypeDef htim3;
 	theEncoder button_main(GPIOEncoder, EncoderButtonPin, TIM_ENC);
 	//Display
-	Display screen(hspi1, PIN_LCD_RS, PORT_LCD_RS, PIN_LCD_CS, PORT_LCD_CS);
+	Display screen(&hspi1, PIN_LCD_RS, PORT_LCD_RS, PIN_LCD_CS, PORT_LCD_CS);
 	// UI
 	UI ui(screen,button_main);
 
@@ -33,14 +34,18 @@ extern "C" {
 
 
 void setup(){
+	// We start the encoder
+	HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_1 | TIM_CHANNEL_2);
+	TIM_ENC -> CNT = 32768;
 	screen.init();
-	ui.init_menu();
+	//ui.init_menu();
 }
 
 void My_app(){
 	setup();
 
-	Test_UI();
+	Test_display();
+	//Test_UI();
 	while (1)
 	{
 

@@ -27,7 +27,7 @@ using namespace std;
 class Display{
 	private:
 	// VARS
-		SPI_HandleTypeDef hspi;
+		SPI_HandleTypeDef* p_hspi;
 	// CST
 		// TODO: assign those values in the constructor
 		uint16_t PIN_RS;
@@ -42,19 +42,21 @@ class Display{
 
 	//CONSTRUCTORS
 		//TODO : more powerful constructor
-		Display(SPI_HandleTypeDef hspi, uint16_t PIN_RS, GPIO_TypeDef * PORT_RS, uint16_t PIN_CS, GPIO_TypeDef * PORT_CS);
+		Display(SPI_HandleTypeDef* p_hspi, uint16_t PIN_RS, GPIO_TypeDef * PORT_RS, uint16_t PIN_CS, GPIO_TypeDef * PORT_CS);
 	// FUNCTIONS
 		void init();
 		// clear the screen
 		void clear();
 		// Use set_cursor before print to select a location
-		void print(uint8_t* s);
+		void print_char(uint8_t* s);
 		void print(string s);
 		void print(int number);
+		// start in 0 : 0
 		void set_cursor(int column,int line);
 
 };
 
+void Test_display();
 
 
 

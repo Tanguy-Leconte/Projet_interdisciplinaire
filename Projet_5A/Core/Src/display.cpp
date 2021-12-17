@@ -22,10 +22,19 @@ uint8_t cmd_mode[1]		={0x38};
 uint8_t cmd_addr[1]		={0xC5};
 uint8_t cmd_data_1[1]	={0x59};
 
+extern Display screen;
+
 // ########### 		CLASS		###############
+void Test_display(){
+	string txt = "Youpi!";
+	screen.set_cursor(0, 0);
+	screen.print(txt);
+	while(1){}
+}
+
 // Initialisation procedure
-Display::Display(SPI_HandleTypeDef hspi, uint16_t PIN_RS, GPIO_TypeDef * PORT_RS, uint16_t PIN_CS, GPIO_TypeDef * PORT_CS):\
-		hspi(hspi), PIN_RS(PIN_RS), PORT_RS(PORT_RS), PIN_CS(PIN_CS), PORT_CS(PORT_CS)\
+Display::Display(SPI_HandleTypeDef* p_hspi, uint16_t PIN_RS, GPIO_TypeDef * PORT_RS, uint16_t PIN_CS, GPIO_TypeDef * PORT_CS):\
+		p_hspi(p_hspi), PIN_RS(PIN_RS), PORT_RS(PORT_RS), PIN_CS(PIN_CS), PORT_CS(PORT_CS)\
 {
 
 }
@@ -46,21 +55,21 @@ void Display::init(){
 void Display::write_data(uint8_t* data){
 	HAL_GPIO_WritePin(PORT_CS, PIN_CS, GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(PORT_RS, PIN_RS, GPIO_PIN_SET);
-	HAL_SPI_Transmit(&hspi,data,1,1000);
+	HAL_SPI_Transmit(p_hspi,data,1,1000);
 	HAL_GPIO_WritePin(PORT_CS, PIN_CS, GPIO_PIN_SET);
 }
 
 // Write a command through SPI
 void Display::write_cmd(uint8_t* cmd){
 	HAL_GPIO_WritePin(PORT_RS, PIN_RS, GPIO_PIN_RESET);
-	HAL_SPI_Transmit(&hspi,cmd,1,1000);
+	HAL_SPI_Transmit(p_hspi,cmd,1,1000);
 }
 
 void Display::clear(){
 	write_cmd(cmd_clear);
 }
 
-void Display::print(uint8_t* s){
+void Display::print_char(uint8_t* s){
 	uint8_t* ptrChaine;
 	ptrChaine=s;
 	while(*ptrChaine!=0){
@@ -78,7 +87,7 @@ void Display::print(string s){
     // string to char array
     strcpy(char_array, s.c_str());
     // we print the char*
-    print(char_array);
+    print_char((uint8_t*) char_array);
 }
 
 void Display::print(int number){
