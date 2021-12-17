@@ -44,6 +44,7 @@ class Display{
 		//TODO : more powerful constructor
 		Display(SPI_HandleTypeDef hspi, uint16_t PIN_RS, GPIO_TypeDef * PORT_RS, uint16_t PIN_CS, GPIO_TypeDef * PORT_CS);
 	// FUNCTIONS
+		void init();
 		// clear the screen
 		void clear();
 		// Use set_cursor before print to select a location

@@ -12,6 +12,8 @@
 extern "C" {
 #endif
 
+void setup();
+
 void My_app();
 
 #ifdef __cplusplus

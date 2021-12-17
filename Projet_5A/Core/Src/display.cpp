@@ -27,6 +27,10 @@ uint8_t cmd_data_1[1]	={0x59};
 Display::Display(SPI_HandleTypeDef hspi, uint16_t PIN_RS, GPIO_TypeDef * PORT_RS, uint16_t PIN_CS, GPIO_TypeDef * PORT_CS):\
 		hspi(hspi), PIN_RS(PIN_RS), PORT_RS(PORT_RS), PIN_CS(PIN_CS), PORT_CS(PORT_CS)\
 {
+
+}
+
+void Display::init(){
 	HAL_GPIO_WritePin(PORT_CS, PIN_CS, GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(PORT_RS, PIN_RS, GPIO_PIN_RESET);
 	write_cmd(cmd_mode);

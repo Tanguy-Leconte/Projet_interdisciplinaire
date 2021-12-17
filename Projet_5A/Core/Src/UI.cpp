@@ -26,7 +26,6 @@ void Test_UI(){
 // ########### 		CLASS		###############
 // ---- CONSTRUCTORS ------
 UI::UI(Display display,theEncoder button):display(display),button(button){
-	init_menu();
 }
 
 /* @brief 	: This function is called at the initialization to construct the different pages of the menu

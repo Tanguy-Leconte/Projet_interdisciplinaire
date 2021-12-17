@@ -31,9 +31,16 @@ extern "C" {
 // Test hash
 	myHash<Values,float> table(6);
 
+
+void setup(){
+	screen.init();
+	ui.init_menu();
+}
+
 void My_app(){
 	setup();
 
+	Test_UI();
 	while (1)
 	{
 
