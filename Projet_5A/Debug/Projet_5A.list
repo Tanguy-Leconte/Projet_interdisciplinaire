@@ -27,23 +27,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  00020094  2**0
                   CONTENTS, READONLY
- 12 .debug_info   0002c9aa  00000000  00000000  000200c4  2**0
+ 12 .debug_info   0002c9c1  00000000  00000000  000200c4  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 0000490a  00000000  00000000  0004ca6e  2**0
+ 13 .debug_abbrev 00004942  00000000  00000000  0004ca85  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 00000fc0  00000000  00000000  00051378  2**3
+ 14 .debug_aranges 00000fc0  00000000  00000000  000513c8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_ranges 00000eb0  00000000  00000000  00052338  2**3
+ 15 .debug_ranges 00000eb0  00000000  00000000  00052388  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  000066d5  00000000  00000000  000531e8  2**0
+ 16 .debug_macro  000066db  00000000  00000000  00053238  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   000168bc  00000000  00000000  000598bd  2**0
+ 17 .debug_line   000168c9  00000000  00000000  00059913  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000f8bbb  00000000  00000000  00070179  2**0
+ 18 .debug_str    000f8bdc  00000000  00000000  000701dc  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000053  00000000  00000000  00168d34  2**0
+ 19 .comment      00000053  00000000  00000000  00168db8  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  0000ec0c  00000000  00000000  00168d88  2**2
+ 20 .debug_frame  0000ec08  00000000  00000000  00168e0c  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -2010,7 +2010,7 @@ Disassembly of section .text:
  8001448:	bd80      	pop	{r7, pc}
 
 0800144a <_ZN2UIC1E7Display10theEncoder>:
-
+	}
 }
 
 // ########### 		CLASS		###############
