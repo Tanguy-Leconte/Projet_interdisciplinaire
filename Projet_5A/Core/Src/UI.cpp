@@ -47,7 +47,6 @@ void UI::init_menu(){
 		menu[c_page].title 			= "Valeurs";
 		menu[c_page].text 			= "";
 		menu[c_page].nb_sub_page 	= 6;
-		c_page++;
 		// SUB_PAGE for each possible value
 			// SOC
 			Sub_Page* p_soc				= new Sub_Page[menu[c_page].nb_sub_page];
@@ -124,13 +123,13 @@ Action UI::computeButtonAction(){
 
 	int nb_turn = button.getNbTurnEncoder();
 	if (nb_turn < -THRESHOLD_FAST_TURN){
-		return FAST_LEFT;
-	}else if (nb_turn < 0){
-		return GO_LEFT;
-	}else if (nb_turn > THRESHOLD_FAST_TURN){
 		return FAST_RIGHT;
-	}else if (nb_turn > 0){
+	}else if (nb_turn < 0){
 		return GO_RIGHT;
+	}else if (nb_turn > THRESHOLD_FAST_TURN){
+		return FAST_LEFT;
+	}else if (nb_turn > 0){
+		return GO_LEFT;
 	}else{
 		return NOTHING;
 	}
