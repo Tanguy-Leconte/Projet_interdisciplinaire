@@ -91,6 +91,11 @@ void Boost::MPPT(){
  * @param NONE
  * @retval NONE
  */
+// TODO : to test!!
 void Boost::ActualisePWM(){
+	// We find the duty cycle thanks to the setpoint => we use the last mppt_val
+	dutycycle = (mppt_val.bat_voltage - setpoint) / (mppt_val.bat_voltage); // between 0 and 1
+	uint32_t arr = __HAL_TIM_GET_AUTORELOAD(&htim_PWM);
+	__HAL_TIM_SET_COMPARE(&htim_PWM, channel_PWM, (uint32_t)(arr*dutycycle));
 
 }

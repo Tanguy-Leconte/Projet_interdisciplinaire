@@ -68,8 +68,8 @@ class Boost{
 
 		MPPT_val mppt_val		= {0,0,0,0,0,0};
 
-		float setpoint			= 0;
-
+		float setpoint			= 0.0;
+		float dutycycle			= 0.0;			// between 0 and 1
 	// FUNCTIONS
 
 	public:
