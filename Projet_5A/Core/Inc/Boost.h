@@ -7,7 +7,10 @@
 
 #ifndef INC_BOOST_H_
 #define INC_BOOST_H_
-
+/*
+ * This class handles the boost, operates the MPPT algorithm and actualize the PWM
+ * The frequency of the PWM is 150 kHz
+ */
 // ###########		INCLUDE		###############
 #include "Coulomb_meter.h"
 
@@ -51,14 +54,22 @@ typedef struct{
 class Boost{
 	private:
 	// VARS
+		// OBJ
 		Coulomb_meter sensor_charge;
-		PI pi_val 				= {0,0};	// PI values
-		T_Gain gain				= {0,0,0};	// gain for e(k) and e(k-1)
+
+		// PWM
+		TIM_HandleTypeDef htim_PWM;
+		uint32_t channel_PWM;			// can be from TIM_CHANNEL_1 to TIM_CHANNEL_6
+
+		// PI/MPPT PARAM
+		PI pi_val 				= {0,0};		// PI values
+		T_Gain gain				= {0,0,0};		// gain for e(k) and e(k-1)
 		Corr_in_out corrector	= {0,0,0,0};	// in out of the corrector
 
 		MPPT_val mppt_val		= {0,0,0,0,0,0};
 
 		float setpoint			= 0;
+
 	// FUNCTIONS
 
 	public:
@@ -68,14 +79,19 @@ class Boost{
 		/*
 		 * @brief Initialize the boost
 		 * @param  	hi2c a structure that define the I2C module, that part must be configured,
-		 * 			ADCmode : 0x0-0x3,
-		 * 			ALCC : 0x0-0x3 (define the alert configuration),
-		 * 			PowerDown : 0x0-0x1 (define the shutdown of the analog circuit to reduce the current consumption)
+		 * 			Coulomb_meter : an initialize object of the Coulomb meter class
 		 * @retval None
 		 */
-		Boost(I2C_HandleTypeDef hi2c_charge);
-		Boost(I2C_HandleTypeDef hi2c_charge, PI corr_val);
+		Boost(Coulomb_meter sensor_charge, TIM_HandleTypeDef htim_PWM, uint32_t channel_PWM);
+		Boost(Coulomb_meter sensor_charge, TIM_HandleTypeDef htim_PWM, uint32_t channel_PWM, PI corr_val);
 	// FUNCTIONS
+		/*
+		 * @brief function that initialize the PWM and all the boost instance
+		 * 			Call it in the setup function
+		 * @param None
+		 * @retval None
+		 */
+		void init();
 		/*
 		 * @brief Process the regulation of the boost
 		 * @param
@@ -95,6 +111,12 @@ class Boost{
 		 * @retval None
 		 */
 		void Set_setpoint(float order){setpoint = order;};
+		/*
+		 * @brief actualise the PWM value to reach the setpoint
+		 * @param NONE
+		 * @retval NONE
+		 */
+		void ActualisePWM();
 
 };
 

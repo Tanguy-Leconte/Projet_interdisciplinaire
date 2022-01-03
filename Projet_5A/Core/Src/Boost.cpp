@@ -16,19 +16,40 @@ using namespace std;
 // ########### 		DEFINE		###############
 #define MPPT_THRESHOLD			50	// in mW
 // ########### 		CLASS		###############
-Boost::Boost(I2C_HandleTypeDef hi2c_charge) : Boost(hi2c_charge, {BOOST_K,BOOST_Ki}) {}
+Boost::Boost(Coulomb_meter sensor_charge, TIM_HandleTypeDef htim_PWM, uint32_t channel_PWM) :\
+		Boost(sensor_charge, htim_PWM, channel_PWM, {BOOST_K,BOOST_Ki}) {}
 
 // using the Bilinear transform : p = (2/T)*(z-1)/(z+1)
-Boost::Boost(I2C_HandleTypeDef hi2c_charge, PI corr_val) : sensor_charge(hi2c_charge),pi_val(corr_val) {
+Boost::Boost(Coulomb_meter sensor_charge, TIM_HandleTypeDef htim_PWM, uint32_t channel_PWM, PI corr_val) : \
+		sensor_charge(sensor_charge), htim_PWM(htim_PWM), channel_PWM(channel_PWM), pi_val(corr_val) {
 	gain.in_actual = ((PERIOD*pi_val.K)+(2*pi_val.Ki))/(PERIOD);
 	gain.in_previous = ((PERIOD*pi_val.K)-(2*pi_val.Ki))/(PERIOD);
 	gain.out_previous = -1.0;
 }
 
 /*
+ * @brief function that initialize the PWM and all the boost instance
+ * 			Call it in the setup function
+ * @param None
+ * @retval None
+ */
+void Boost::init(){
+	if (HAL_OK != HAL_TIM_PWM_Start(htim_PWM, channel_PWM)){
+		return;
+	}else{
+		stringstream stream;
+		string mes;
+		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in the starting the PWM";
+		stream >> mes;
+		throw (mes);
+	}
+}
+
+/*
  * @brief Process the regulation of the boost
  * @param
  * @retval None
+ * TODO : Unused for now
  */
 float Boost::Regulate(){
 	// Mesure the voltage
@@ -64,4 +85,12 @@ void Boost::MPPT(){
 
 	mppt_val.previous_power = mppt_val.actual_power;
 	mppt_val.panel_voltage_prev = mppt_val.panel_voltage;
+}
+/*
+ * @brief actualise the PWM value to reach the setpoint
+ * @param NONE
+ * @retval NONE
+ */
+void Boost::ActualisePWM(){
+
 }
