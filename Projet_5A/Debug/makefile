@@ -77,7 +77,7 @@ main-build: Projet_5A.elf secondary-outputs
 
 # Tool invocations
 Projet_5A.elf: $(OBJS) $(USER_OBJS) C:\Users\rapha\OneDrive\0-Cours\INSA\5e\ A\Cours\Projet\ interdisciplinaire\Projet-git\Projet_5A\STM32L476RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "Projet_5A.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\rapha\OneDrive\0-Cours\INSA\5e A\Cours\Projet interdisciplinaire\Projet-git\Projet_5A\STM32L476RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Projet_5A.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+	arm-none-eabi-g++ -o "Projet_5A.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\rapha\OneDrive\0-Cours\INSA\5e A\Cours\Projet interdisciplinaire\Projet-git\Projet_5A\STM32L476RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Projet_5A.map" -Wl,--gc-sections -static  -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

@@ -107,7 +107,6 @@ class UI{
 		// VARS
 
 		//CONSTRUCTORS
-			// TODO : DO a generic constructor with all the pin for the encoder and the spi of the display
 			UI(\
 					//Display
 					Display display,\
