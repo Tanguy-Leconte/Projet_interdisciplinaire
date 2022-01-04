@@ -39,6 +39,7 @@ extern "C" {
 
 
 void setup(){
+	button_main.init();
 	// Start the PWM
 	boost.init();
 	screen.init();

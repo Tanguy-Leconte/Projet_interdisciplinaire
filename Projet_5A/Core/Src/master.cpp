@@ -23,6 +23,15 @@ Master::Master(Coulomb_meter Sensor_charge, Coulomb_meter Sensor_discharge, Boos
  * @retval 	: NONE
  */
 void Master::init(){
+	// Coulomb meter
+	Sensor_charge.init();
+	Sensor_discharge.init();
+
+	// Boost
+	boost.init();
+
+	// UI
+
 
 }
 

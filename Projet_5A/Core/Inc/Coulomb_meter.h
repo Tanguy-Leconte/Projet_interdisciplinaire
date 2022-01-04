@@ -110,7 +110,6 @@ class Coulomb_meter{
 		uint8_t ALCC;  				//see Control_ALCCConfigure_.. values
 		uint8_t PowerDown; 			//see Control_Control_PowerDown_.. values
 	// FUNCTIONS
-		void init();
 	public:
 	// VARS
 
@@ -126,6 +125,8 @@ class Coulomb_meter{
 		Coulomb_meter(I2C_HandleTypeDef hi2c);
 		Coulomb_meter(I2C_HandleTypeDef hi2c, uint8_t ADCmode, uint8_t ALCC, uint8_t PowerDown);
 	// FUNCTIONS
+		// Initialize the object
+		void init();
 		/**
 		 * @brief : Get the control register value
 		 */

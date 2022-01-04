@@ -38,6 +38,10 @@ UI::UI(Display display,theEncoder button):display(display),button(button){
  * @retval	: NONE
  */
 void UI::init_menu(){
+	// We init the display and the button
+	display.init();
+	button.init();
+
 	int c_page = 0;
 	int c_sub_page = 0;
 	// PAGE MENU

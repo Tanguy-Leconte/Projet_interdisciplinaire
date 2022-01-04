@@ -38,7 +38,7 @@ Boost::Boost(Coulomb_meter sensor_charge, TIM_HandleTypeDef htim_PWM, uint32_t c
 void Boost::init(){
 	// We calculate and set the arr
 	uint32_t arr = (HAL_RCC_GetSysClockFreq() - (frequency_kHz*1000)) / (frequency_kHz*1000);
-	__HAL_TIM_SET_AUTORELOAD(&htim_PWM, arr);
+	htim_PWM.Instance->ARR = arr;
 	// WE start the PWM
 	if (HAL_OK != HAL_TIM_PWM_Start(&htim_PWM, channel_PWM)){
 		return;
@@ -108,9 +108,20 @@ void Boost::ProcessDutycycle(){
  */
 // TODO : to test!!
 void Boost::ActualisePWM(){
-	uint32_t arr = __HAL_TIM_GET_AUTORELOAD(&htim_PWM);
-	__HAL_TIM_SET_COMPARE(&htim_PWM, channel_PWM, (uint32_t)(arr*dutycycle));
-
+	uint32_t arr = htim_PWM.Instance->ARR;
+	if (channel_PWM == TIM_CHANNEL_1){
+		htim_PWM.Instance->CCR1 = (uint32_t) (arr*dutycycle);
+	}else if (channel_PWM == TIM_CHANNEL_2){
+		htim_PWM.Instance->CCR2 = (uint32_t) (arr*dutycycle);
+	}else if (channel_PWM == TIM_CHANNEL_3){
+		htim_PWM.Instance->CCR3 = (uint32_t) (arr*dutycycle);
+	}else if (channel_PWM == TIM_CHANNEL_4){
+		htim_PWM.Instance->CCR4 = (uint32_t) (arr*dutycycle);
+	}else if (channel_PWM == TIM_CHANNEL_5){
+		htim_PWM.Instance->CCR5 = (uint32_t) (arr*dutycycle);
+	}else if (channel_PWM == TIM_CHANNEL_6){
+		htim_PWM.Instance->CCR6 = (uint32_t) (arr*dutycycle);
+	}
 }
 
 //############### TEST ##############
