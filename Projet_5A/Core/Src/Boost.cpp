@@ -97,7 +97,7 @@ void Boost::MPPT(){
  * @param NONE
  * @retval NONE
  */
-void ProcessDutycycle(){
+void Boost::ProcessDutycycle(){
 	// We find the duty cycle thanks to the setpoint => we use the last mppt_val
 	dutycycle = (mppt_val.bat_voltage - setpoint) / (mppt_val.bat_voltage); // between 0 and 1
 }

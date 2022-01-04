@@ -74,6 +74,8 @@ class Master{
 	//CONSTRUCTORS
 		Master(Coulomb_meter Sensor_charge, Coulomb_meter Sensor_discharge, Boost boost, UART_HandleTypeDef serial_com);
 	// FUNCTIONS
+		// This function initialize all the objects and the different periph used by tthis class
+		void init();
 		// Set the value of the maximum SOC
 		void Set_max_SOC (float val);
 		// Write log onto the UART (serial port COM)
