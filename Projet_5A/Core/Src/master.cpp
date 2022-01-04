@@ -12,8 +12,8 @@
 // ########### 		CLASS		###############
 // ---- CONSTRUCTORS ------
 
-Master::Master(Coulomb_meter Sensor_charge, Coulomb_meter Sensor_discharge, Boost boost, UI ui, UART_HandleTypeDef serial_com):\
-		Sensor_charge(Sensor_charge), Sensor_discharge(Sensor_discharge), boost(boost), ui(ui), serial_com(serial_com), table(NB_OF_DISPLAYED_VALUES)\
+Master::Master(Coulomb_meter Sensor_charge, Coulomb_meter Sensor_discharge, Boost boost, UI ui, UART_HandleTypeDef* serial_com, TIM_HandleTypeDef* real_time_timer):\
+		Sensor_charge(Sensor_charge), Sensor_discharge(Sensor_discharge), boost(boost), ui(ui), serial_com(serial_com), real_time_timer(real_time_timer), table(NB_OF_DISPLAYED_VALUES)\
 {}
 
 // ---- FUNCTIONS ------

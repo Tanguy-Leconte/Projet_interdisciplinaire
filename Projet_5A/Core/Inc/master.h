@@ -53,9 +53,9 @@ class Master{
 		Boost boost;
 		UI ui;
 
-		UART_HandleTypeDef serial_com;
+		UART_HandleTypeDef* serial_com;
 		// Timer used for the frequency of the regulation of the boost (MPPT)
-		TIM_HandleTypeDef real_time_timer;
+		TIM_HandleTypeDef* real_time_timer;
 	// VARS
 		float soc_max = 0.0; 	// in mAh
 		// Contain the different values such as the voltage, the current and so on
@@ -73,7 +73,7 @@ class Master{
 	// VARS
 
 	//CONSTRUCTORS
-		Master(Coulomb_meter Sensor_charge, Coulomb_meter Sensor_discharge, Boost boost, UI ui, UART_HandleTypeDef serial_com);
+		Master(Coulomb_meter Sensor_charge, Coulomb_meter Sensor_discharge, Boost boost, UI ui, UART_HandleTypeDef* serial_com, TIM_HandleTypeDef* real_time_timer);
 	// FUNCTIONS
 		// This function initialize all the objects and the different periph used by this class
 		void init();

@@ -41,7 +41,7 @@ extern I2C_HandleTypeDef hi2c1;
 // ########### FONCTIONS TEST ################
 void Test_coulomb_meter(){
 	try{
-		Coulomb_meter Explorateur(hi2c1);
+		Coulomb_meter Explorateur(&hi2c1);
 		LTC2944_AnalogVal_Typedef values;
 		float SOC = 3000;	// in mAh
 		Explorateur.Set_SOC_mAh(SOC);
@@ -68,8 +68,8 @@ void Test_coulomb_meter(){
 	 * 			PowerDown : 0x0-0x1 (define the shutdown of the analog circuit to reduce the current consumption)
 	 * @retval None
 	 */
-Coulomb_meter::Coulomb_meter(I2C_HandleTypeDef hi2c):Coulomb_meter(hi2c, DEFAULT_ADCmode, DEFAULT_ALCC, DEFAULT_PowerDown){}
-Coulomb_meter::Coulomb_meter(I2C_HandleTypeDef hi2c, uint8_t ADCmode, uint8_t ALCC, uint8_t PowerDown):hi2c(hi2c),Prescaler_M(DEFAULT_Prescaler){
+Coulomb_meter::Coulomb_meter(I2C_HandleTypeDef* p_hi2c):Coulomb_meter(p_hi2c, DEFAULT_ADCmode, DEFAULT_ALCC, DEFAULT_PowerDown){}
+Coulomb_meter::Coulomb_meter(I2C_HandleTypeDef* p_hi2c, uint8_t ADCmode, uint8_t ALCC, uint8_t PowerDown):p_hi2c(p_hi2c),Prescaler_M(DEFAULT_Prescaler){
 	// Verification that the value are in the right interval.
 	string err = "";
 	if (ADCmode <= MAX_VAL_ADCmode){
@@ -114,7 +114,7 @@ void Coulomb_meter::init(){
 	// Construction of the register Control
 	uint8_t reg = (ADCmode << OFFSET_ADCmode) | (ALCC << OFFSET_ALCC) | (Prescaler_M << OFFSET_Prescaler) | (PowerDown << OFFSET_PowerDown);
 	// Hal I2C handles the ack normally
-	if (HAL_I2C_Mem_Write(&hi2c,address_w,(uint16_t)num_register,1,&reg,1,TIMEOUT) != HAL_OK){
+	if (HAL_I2C_Mem_Write(p_hi2c,address_w,(uint16_t)num_register,1,&reg,1,TIMEOUT) != HAL_OK){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in initializing the device with the I2C bus";
@@ -128,7 +128,7 @@ void Coulomb_meter::init(){
 uint8_t Coulomb_meter::Get_Control_Register(){
 	uint8_t val=0;
 	// Get Control register
-	if (HAL_I2C_Mem_Read(&hi2c,address_r,B_Control,1,&val,1,TIMEOUT) != HAL_OK){
+	if (HAL_I2C_Mem_Read(p_hi2c,address_r,B_Control,1,&val,1,TIMEOUT) != HAL_OK){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting the B_Control with the I2C bus";
@@ -149,7 +149,7 @@ void Coulomb_meter::Set_SOC_mAh(float SOC_mAh){
 	uint8_t* pSOC = new (uint8_t);
 	*pSOC = (aux_SOC & 0xff00)>>8;
 	// Set the MSB for the SOC value
-	if (HAL_I2C_Mem_Write(&hi2c,address_w,C_AccumulateChargeMSB,1,pSOC,1,TIMEOUT) != HAL_OK){
+	if (HAL_I2C_Mem_Write(p_hi2c,address_w,C_AccumulateChargeMSB,1,pSOC,1,TIMEOUT) != HAL_OK){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in writing in the C_AccumulateChargeMSB register with the I2C bus";
@@ -158,7 +158,7 @@ void Coulomb_meter::Set_SOC_mAh(float SOC_mAh){
 	}
 	*pSOC = (aux_SOC & 0xff);
 	// Set the LSB for the SOC value
-	if (HAL_I2C_Mem_Write(&hi2c,address_w,D_AccumulateChargeLSB,1,pSOC,1,TIMEOUT) != HAL_OK){
+	if (HAL_I2C_Mem_Write(p_hi2c,address_w,D_AccumulateChargeLSB,1,pSOC,1,TIMEOUT) != HAL_OK){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in writing in the D_AccumulateChargeLSB register with the I2C bus";
@@ -176,7 +176,7 @@ float Coulomb_meter::Get_SOC_mAh(){
 	SOC_mAh=0;
 	uint8_t* pData = new uint8_t;
 	// Get MSB
-	if (HAL_I2C_Mem_Read(&hi2c,address_r,C_AccumulateChargeMSB,1,pData,1,TIMEOUT) != HAL_OK){
+	if (HAL_I2C_Mem_Read(p_hi2c,address_r,C_AccumulateChargeMSB,1,pData,1,TIMEOUT) != HAL_OK){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting the accumulated charge (MSB) with the I2C bus";
@@ -186,7 +186,7 @@ float Coulomb_meter::Get_SOC_mAh(){
 		SOC_mAh += (*pData)*(float)STEP_ACCUMULATED_CHARGE*256;
 	}
 	// Get LSB
-	if (HAL_I2C_Mem_Read(&hi2c,address_r,D_AccumulateChargeLSB,1,pData,1,TIMEOUT) != HAL_OK){
+	if (HAL_I2C_Mem_Read(p_hi2c,address_r,D_AccumulateChargeLSB,1,pData,1,TIMEOUT) != HAL_OK){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting the accumulated charge (LSB) with the I2C bus";
@@ -216,7 +216,7 @@ LTC2944_AnalogVal_Typedef Coulomb_meter::Get_AnalogVal(){
 	uint16_t result = 0;
 	//############# VOLTAGE ##############
 	// Get Voltage_MSB
-	if (HAL_I2C_Mem_Read(&hi2c,address_r,I_Voltage_MSB,1,pData,1,TIMEOUT) != HAL_OK){
+	if (HAL_I2C_Mem_Read(p_hi2c,address_r,I_Voltage_MSB,1,pData,1,TIMEOUT) != HAL_OK){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting I_Voltage_MSB with the I2C bus";
@@ -226,7 +226,7 @@ LTC2944_AnalogVal_Typedef Coulomb_meter::Get_AnalogVal(){
 		result = (*pData)<<8;
 	}
 	// Get Voltage_LSB
-	if (HAL_I2C_Mem_Read(&hi2c,address_r,J_Voltage_LSB,1,pData,1,TIMEOUT) != HAL_OK){
+	if (HAL_I2C_Mem_Read(p_hi2c,address_r,J_Voltage_LSB,1,pData,1,TIMEOUT) != HAL_OK){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting I_Voltage_MSB with the I2C bus";
@@ -239,7 +239,7 @@ LTC2944_AnalogVal_Typedef Coulomb_meter::Get_AnalogVal(){
 	values.Voltage_V = FSR_ADC_VOLTAGE*((float)result/(float)STEP_ADC_VOLTAGE);
 	//############# CURRENT ##############
 	// Get Voltage_MSB
-	if (HAL_I2C_Mem_Read(&hi2c,address_r,O_Current_MSB,1,pData,1,TIMEOUT) != HAL_OK){
+	if (HAL_I2C_Mem_Read(p_hi2c,address_r,O_Current_MSB,1,pData,1,TIMEOUT) != HAL_OK){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting I_Voltage_MSB with the I2C bus";
@@ -249,7 +249,7 @@ LTC2944_AnalogVal_Typedef Coulomb_meter::Get_AnalogVal(){
 		result = (*pData)<<8;
 	}
 	// Get Voltage_LSB
-	if (HAL_I2C_Mem_Read(&hi2c,address_r,P_Current_MSB,1,pData,1,TIMEOUT) != HAL_OK){
+	if (HAL_I2C_Mem_Read(p_hi2c,address_r,P_Current_MSB,1,pData,1,TIMEOUT) != HAL_OK){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting J_Voltage_LSB with the I2C bus";
@@ -263,7 +263,7 @@ LTC2944_AnalogVal_Typedef Coulomb_meter::Get_AnalogVal(){
 	//############# TEMPERATURE ##############
 	// Get Temperature_MSB
 	result = 0;
-	if (HAL_I2C_Mem_Read(&hi2c,address_r,U_Temperature_MSB,1,pData,1,TIMEOUT) != HAL_OK){
+	if (HAL_I2C_Mem_Read(p_hi2c,address_r,U_Temperature_MSB,1,pData,1,TIMEOUT) != HAL_OK){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting U_Temperature_MSB with the I2C bus";
@@ -273,7 +273,7 @@ LTC2944_AnalogVal_Typedef Coulomb_meter::Get_AnalogVal(){
 		result = (*pData)<<8;
 	}
 	// Get Temperature_LSB
-	if (HAL_I2C_Mem_Read(&hi2c,address_r,V_Temperature_LSB,1,pData,1,TIMEOUT) != HAL_OK){
+	if (HAL_I2C_Mem_Read(p_hi2c,address_r,V_Temperature_LSB,1,pData,1,TIMEOUT) != HAL_OK){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting V_Temperature_LSB with the I2C bus";
@@ -295,7 +295,7 @@ LTC2944_AnalogVal_Typedef Coulomb_meter::Get_AnalogVal(){
 void Coulomb_meter::Set_LowPowerMode(){
 	uint8_t reg = 0;
 	// we read the actual value of the control register to change the Power shutdown bit
-	if (HAL_I2C_Mem_Read(&hi2c,address_r,B_Control,1,&reg,1,TIMEOUT) != HAL_OK){
+	if (HAL_I2C_Mem_Read(p_hi2c,address_r,B_Control,1,&reg,1,TIMEOUT) != HAL_OK){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting B_Control with the I2C bus";
@@ -312,7 +312,7 @@ void Coulomb_meter::Set_LowPowerMode(){
 	}
 
 	// Hal I2C handles the ack normally
-	if (HAL_I2C_Mem_Write(&hi2c,address_w,B_Control,1,&reg,1,TIMEOUT) != HAL_OK){
+	if (HAL_I2C_Mem_Write(p_hi2c,address_w,B_Control,1,&reg,1,TIMEOUT) != HAL_OK){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in writing the control register of the device with the I2C bus";
@@ -329,7 +329,7 @@ void Coulomb_meter::Set_LowPowerMode(){
 void Coulomb_meter::Set_NormalMode(){
 	uint8_t reg = 0;
 	// we read the actual value of the control register to change the Power shutdown bit
-	if (HAL_I2C_Mem_Read(&hi2c,address_r,B_Control,1,&reg,1,TIMEOUT) != HAL_OK){
+	if (HAL_I2C_Mem_Read(p_hi2c,address_r,B_Control,1,&reg,1,TIMEOUT) != HAL_OK){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting B_Control with the I2C bus";
@@ -346,7 +346,7 @@ void Coulomb_meter::Set_NormalMode(){
 	}
 
 	// Hal I2C handles the ack normally
-	if (HAL_I2C_Mem_Write(&hi2c,address_w,B_Control,1,&reg,1,TIMEOUT) != HAL_OK){
+	if (HAL_I2C_Mem_Write(p_hi2c,address_w,B_Control,1,&reg,1,TIMEOUT) != HAL_OK){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in writing the control register of the device with the I2C bus";

@@ -20,10 +20,10 @@ using namespace std;
 
 // ########### 		CLASS		###############
 
-theEncoder::theEncoder(GPIO_TypeDef* GPIOenc, uint16_t ButtonPin, TIM_TypeDef* TIMER, TIM_HandleTypeDef htim):\
+theEncoder::theEncoder(GPIO_TypeDef* GPIOenc, uint16_t ButtonPin, TIM_TypeDef* TIMER, TIM_HandleTypeDef* htim):\
 		theEncoder(GPIOenc, ButtonPin, TIMER, htim, 32768){}
 
-theEncoder::theEncoder(GPIO_TypeDef* GPIOenc, uint16_t ButtonPin, TIM_TypeDef* TIMER, TIM_HandleTypeDef htim, int theValInit):\
+theEncoder::theEncoder(GPIO_TypeDef* GPIOenc, uint16_t ButtonPin, TIM_TypeDef* TIMER, TIM_HandleTypeDef* htim, int theValInit):\
 		compteurEncoder(theValInit), GPIOEncoder(GPIOenc), EncoderButtonPin(ButtonPin), TIM_ENC(TIMER), htim(htim)\
 {
 	TIM_ENC -> CNT = DEFAULT_VAL;
@@ -31,12 +31,11 @@ theEncoder::theEncoder(GPIO_TypeDef* GPIOenc, uint16_t ButtonPin, TIM_TypeDef* T
 
 void theEncoder::init(){
 	// We start the encoder
-	HAL_TIM_Encoder_Start(&htim, TIM_CHANNEL_1 | TIM_CHANNEL_2);
+	HAL_TIM_Encoder_Start(htim, TIM_CHANNEL_1 | TIM_CHANNEL_2);
 	TIM_ENC -> CNT = 32768;
 }
 
 void theEncoder::computeSensRotation(int newCompteur){
-
 	if(newCompteur > compteurEncoder){
 		sensRotation = 1;
 	} else if(newCompteur < compteurEncoder){
@@ -44,7 +43,6 @@ void theEncoder::computeSensRotation(int newCompteur){
 	} else {
 		sensRotation = 0;
 	}
-
 }
 
 int theEncoder::getNbTurnEncoder(){

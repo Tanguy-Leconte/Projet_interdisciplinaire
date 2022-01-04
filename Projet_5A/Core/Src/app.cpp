@@ -18,7 +18,7 @@ extern "C" {
 // User interface construction
 	// The button
 	extern TIM_HandleTypeDef htim3;
-	theEncoder button_main(GPIOEncoder, EncoderButtonPin, TIM_ENC, htim3);
+	theEncoder button_main(GPIOEncoder, EncoderButtonPin, TIM_ENC, &htim3);
 	//Display
 	Display screen(&hspi1, PIN_LCD_RS, PORT_LCD_RS, PIN_LCD_CS, PORT_LCD_CS);
 	// UI
@@ -26,17 +26,18 @@ extern "C" {
 
 // Coulomb meter
 	extern I2C_HandleTypeDef hi2c1;
-	Coulomb_meter sensor_charge(hi2c1);
+	Coulomb_meter sensor_charge(&hi2c1);
 
 	extern I2C_HandleTypeDef hi2c2;
-	Coulomb_meter sensor_discharge(hi2c2);
+	Coulomb_meter sensor_discharge(&hi2c2);
 
 // Boost construction
 	extern TIM_HandleTypeDef htim2;
 	Boost boost(sensor_charge, &htim2, TIM_CHANNEL_1);
 // Master construction
 	extern UART_HandleTypeDef huart2;
-	Master master(sensor_charge, sensor_discharge, boost, ui, huart2);
+	extern TIM_HandleTypeDef htim6;
+	Master master(sensor_charge, sensor_discharge, boost, ui, &huart2, &htim6);
 
 // Test hash
 	myHash<Values,float> table(6);

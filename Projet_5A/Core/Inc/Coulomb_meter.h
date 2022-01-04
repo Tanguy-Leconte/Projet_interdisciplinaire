@@ -100,7 +100,7 @@ class Coulomb_meter{
 	// VARS
 		uint8_t address_w = LTC2944_Slave7bitsAdr;
 		uint8_t address_r = LTC2944_Slave7bitsAdr; // | 0x01;
-		I2C_HandleTypeDef hi2c;
+		I2C_HandleTypeDef* p_hi2c;
 		LTC2944_AnalogVal_Typedef values = {0.0,0.0,25.0};
 		float R_sense 		= DEF_R_SENSE;
 		float M_value;
@@ -122,8 +122,8 @@ class Coulomb_meter{
 		 * 			PowerDown : 0x0-0x1 (define the shutdown of the analog circuit to reduce the current consumption)
 		 * @retval None
 		 */
-		Coulomb_meter(I2C_HandleTypeDef hi2c);
-		Coulomb_meter(I2C_HandleTypeDef hi2c, uint8_t ADCmode, uint8_t ALCC, uint8_t PowerDown);
+		Coulomb_meter(I2C_HandleTypeDef* p_hi2c);
+		Coulomb_meter(I2C_HandleTypeDef* p_hi2c, uint8_t ADCmode, uint8_t ALCC, uint8_t PowerDown);
 	// FUNCTIONS
 		// Initialize the object
 		void init();
