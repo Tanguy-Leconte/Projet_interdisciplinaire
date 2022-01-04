@@ -20,13 +20,19 @@ using namespace std;
 
 // ########### 		CLASS		###############
 
-theEncoder::theEncoder(GPIO_TypeDef* GPIOenc, uint16_t ButtonPin, TIM_TypeDef* TIMER):\
-		theEncoder(GPIOenc, ButtonPin, TIMER, 32768){}
+theEncoder::theEncoder(GPIO_TypeDef* GPIOenc, uint16_t ButtonPin, TIM_TypeDef* TIMER, TIM_HandleTypeDef htim):\
+		theEncoder(GPIOenc, ButtonPin, TIMER, htim, 32768){}
 
-theEncoder::theEncoder(GPIO_TypeDef* GPIOenc, uint16_t ButtonPin, TIM_TypeDef* TIMER, int theValInit):\
-		compteurEncoder(theValInit), GPIOEncoder(GPIOenc), EncoderButtonPin(ButtonPin), TIM_ENC(TIMER)\
+theEncoder::theEncoder(GPIO_TypeDef* GPIOenc, uint16_t ButtonPin, TIM_TypeDef* TIMER, TIM_HandleTypeDef htim, int theValInit):\
+		compteurEncoder(theValInit), GPIOEncoder(GPIOenc), EncoderButtonPin(ButtonPin), TIM_ENC(TIMER), htim(htim)\
 {
 	TIM_ENC -> CNT = DEFAULT_VAL;
+}
+
+void theEncoder::init(){
+	// We start the encoder
+	HAL_TIM_Encoder_Start(&htim, TIM_CHANNEL_1 | TIM_CHANNEL_2);
+	TIM_ENC -> CNT = 32768;
 }
 
 void theEncoder::computeSensRotation(int newCompteur){

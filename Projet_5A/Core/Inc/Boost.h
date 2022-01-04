@@ -107,18 +107,6 @@ class Boost{
 		 */
 		void MPPT();
 		/*
-		 * @brief set the setpoint manually
-		 * @param
-		 * @retval None
-		 */
-		void Set_setpoint(float order){setpoint = order;};
-		/*
-		 * @brief set the dutycycle manually
-		 * @param
-		 * @retval None
-		 */
-		void Set_dutycycle(float ratio){dutycycle = ratio;};
-		/*
 		 * @brief calculate the duty cycle using the setpoint
 		 * @param NONE
 		 * @retval NONE
@@ -130,6 +118,16 @@ class Boost{
 		 * @retval NONE
 		 */
 		void ActualisePWM();
+
+		//####### GETTER / SETTER ############
+		// Only for debug purpose!!
+		//@brief set the setpoint manually
+		void Set_setpoint(float order){setpoint = order;};
+		//@brief set the dutycycle manually
+		void Set_dutycycle(float ratio){dutycycle = ratio;};
+		//@brief get the value given by the coulomb meter
+		MPPT_val Get_values(){return mppt_val;};
+
 
 };
 

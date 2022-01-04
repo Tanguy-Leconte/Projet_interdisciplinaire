@@ -18,7 +18,7 @@ extern "C" {
 // User interface construction
 	// The button
 	extern TIM_HandleTypeDef htim3;
-	theEncoder button_main(GPIOEncoder, EncoderButtonPin, TIM_ENC);
+	theEncoder button_main(GPIOEncoder, EncoderButtonPin, TIM_ENC, htim3);
 	//Display
 	Display screen(&hspi1, PIN_LCD_RS, PORT_LCD_RS, PIN_LCD_CS, PORT_LCD_CS);
 	// UI
@@ -39,9 +39,6 @@ extern "C" {
 
 
 void setup(){
-	// We start the encoder
-	HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_1 | TIM_CHANNEL_2);
-	TIM_ENC -> CNT = 32768;
 	// Start the PWM
 	boost.init();
 	screen.init();

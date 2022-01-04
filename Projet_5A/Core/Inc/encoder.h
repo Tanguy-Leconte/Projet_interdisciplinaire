@@ -23,6 +23,7 @@ class theEncoder{
 		GPIO_TypeDef* GPIOEncoder;
 		uint16_t EncoderButtonPin;
 		TIM_TypeDef* TIM_ENC;
+		TIM_HandleTypeDef htim;
 
 	// FUNCTIONS
 	void computeSensRotation(int newCompteur);
@@ -31,10 +32,12 @@ class theEncoder{
 	// VARS
 
 	//CONSTRUCTORS
-	theEncoder(GPIO_TypeDef* GPIOenc, uint16_t ButtonPin, TIM_TypeDef* TIMER);
-	theEncoder(GPIO_TypeDef* GPIOenc, uint16_t ButtonPin, TIM_TypeDef* TIMER, int theValInit);
+	theEncoder(GPIO_TypeDef* GPIOenc, uint16_t ButtonPin, TIM_TypeDef* TIMER, TIM_HandleTypeDef htim);
+	theEncoder(GPIO_TypeDef* GPIOenc, uint16_t ButtonPin, TIM_TypeDef* TIMER, TIM_HandleTypeDef htim, int theValInit);
 
 	// FUNCTIONS
+	void init();
+
 	int getNbTurnEncoder();
 
 	bool isButtonPressed();

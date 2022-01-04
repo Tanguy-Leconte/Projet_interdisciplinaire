@@ -18,6 +18,14 @@ Master::Master(Coulomb_meter Sensor_charge, Coulomb_meter Sensor_discharge, Boos
 
 // ---- FUNCTIONS ------
 
+/* @brief 	: This function initialize all the objects and the different periph used by tthis class
+ * @param 	: The value of the Max SOC in float between 0 and 100
+ * @retval 	: NONE
+ */
+void Master::init(){
+
+}
+
 /* @brief 	: Setter for the max value of the soc
  * @param 	: The value of the Max SOC in float between 0 and 100
  * @retval 	: NONE
