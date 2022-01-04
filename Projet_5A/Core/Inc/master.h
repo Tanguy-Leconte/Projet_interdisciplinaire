@@ -51,6 +51,7 @@ class Master{
 		Coulomb_meter Sensor_charge;
 		Coulomb_meter Sensor_discharge;
 		Boost boost;
+		UI ui;
 
 		UART_HandleTypeDef serial_com;
 		// Timer used for the frequency of the regulation of the boost (MPPT)
@@ -72,9 +73,9 @@ class Master{
 	// VARS
 
 	//CONSTRUCTORS
-		Master(Coulomb_meter Sensor_charge, Coulomb_meter Sensor_discharge, Boost boost, UART_HandleTypeDef serial_com);
+		Master(Coulomb_meter Sensor_charge, Coulomb_meter Sensor_discharge, Boost boost, UI ui, UART_HandleTypeDef serial_com);
 	// FUNCTIONS
-		// This function initialize all the objects and the different periph used by tthis class
+		// This function initialize all the objects and the different periph used by this class
 		void init();
 		// Set the value of the maximum SOC
 		void Set_max_SOC (float val);

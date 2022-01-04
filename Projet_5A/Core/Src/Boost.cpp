@@ -17,12 +17,12 @@ using namespace std;
 #define MPPT_THRESHOLD			50	// in mW
 #define DEFAULT_VAL_DUTYCYCLE	0.5 // default value ratio Vo/Vi = 2
 // ########### 		CLASS		###############
-Boost::Boost(Coulomb_meter sensor_charge, TIM_HandleTypeDef htim_PWM, uint32_t channel_PWM) :\
-		Boost(sensor_charge, htim_PWM, channel_PWM, {BOOST_K,BOOST_Ki}) {}
+Boost::Boost(Coulomb_meter sensor_charge, TIM_HandleTypeDef* p_htim_PWM, uint32_t channel_PWM) :\
+		Boost(sensor_charge, p_htim_PWM, channel_PWM, {BOOST_K,BOOST_Ki}) {}
 
 // using the Bilinear transform : p = (2/T)*(z-1)/(z+1)
-Boost::Boost(Coulomb_meter sensor_charge, TIM_HandleTypeDef htim_PWM, uint32_t channel_PWM, PI corr_val) : \
-		sensor_charge(sensor_charge), htim_PWM(htim_PWM), channel_PWM(channel_PWM), pi_val(corr_val) {
+Boost::Boost(Coulomb_meter sensor_charge, TIM_HandleTypeDef* p_htim_PWM, uint32_t channel_PWM, PI corr_val) : \
+		sensor_charge(sensor_charge), p_htim_PWM(p_htim_PWM), channel_PWM(channel_PWM), pi_val(corr_val) {
 	gain.in_actual = ((PERIOD*pi_val.K)+(2*pi_val.Ki))/(PERIOD);
 	gain.in_previous = ((PERIOD*pi_val.K)-(2*pi_val.Ki))/(PERIOD);
 	gain.out_previous = -1.0;
@@ -38,9 +38,9 @@ Boost::Boost(Coulomb_meter sensor_charge, TIM_HandleTypeDef htim_PWM, uint32_t c
 void Boost::init(){
 	// We calculate and set the arr
 	uint32_t arr = (HAL_RCC_GetSysClockFreq() - (frequency_kHz*1000)) / (frequency_kHz*1000);
-	htim_PWM.Instance->ARR = arr;
+	p_htim_PWM->Instance->ARR = arr;
 	// WE start the PWM
-	if (HAL_OK != HAL_TIM_PWM_Start(&htim_PWM, channel_PWM)){
+	if (HAL_OK != HAL_TIM_PWM_Start(p_htim_PWM, channel_PWM)){
 		return;
 	}else{
 		stringstream stream;
@@ -108,19 +108,19 @@ void Boost::ProcessDutycycle(){
  */
 // TODO : to test!!
 void Boost::ActualisePWM(){
-	uint32_t arr = htim_PWM.Instance->ARR;
+	uint32_t arr = p_htim_PWM->Instance->ARR;
 	if (channel_PWM == TIM_CHANNEL_1){
-		htim_PWM.Instance->CCR1 = (uint32_t) (arr*dutycycle);
+		p_htim_PWM->Instance->CCR1 = (uint32_t) (arr*dutycycle);
 	}else if (channel_PWM == TIM_CHANNEL_2){
-		htim_PWM.Instance->CCR2 = (uint32_t) (arr*dutycycle);
+		p_htim_PWM->Instance->CCR2 = (uint32_t) (arr*dutycycle);
 	}else if (channel_PWM == TIM_CHANNEL_3){
-		htim_PWM.Instance->CCR3 = (uint32_t) (arr*dutycycle);
+		p_htim_PWM->Instance->CCR3 = (uint32_t) (arr*dutycycle);
 	}else if (channel_PWM == TIM_CHANNEL_4){
-		htim_PWM.Instance->CCR4 = (uint32_t) (arr*dutycycle);
+		p_htim_PWM->Instance->CCR4 = (uint32_t) (arr*dutycycle);
 	}else if (channel_PWM == TIM_CHANNEL_5){
-		htim_PWM.Instance->CCR5 = (uint32_t) (arr*dutycycle);
+		p_htim_PWM->Instance->CCR5 = (uint32_t) (arr*dutycycle);
 	}else if (channel_PWM == TIM_CHANNEL_6){
-		htim_PWM.Instance->CCR6 = (uint32_t) (arr*dutycycle);
+		p_htim_PWM->Instance->CCR6 = (uint32_t) (arr*dutycycle);
 	}
 }
 

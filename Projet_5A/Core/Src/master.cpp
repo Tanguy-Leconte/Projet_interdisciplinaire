@@ -12,8 +12,8 @@
 // ########### 		CLASS		###############
 // ---- CONSTRUCTORS ------
 
-Master::Master(Coulomb_meter Sensor_charge, Coulomb_meter Sensor_discharge, Boost boost, UART_HandleTypeDef serial_com):\
-		Sensor_charge(Sensor_charge), Sensor_discharge(Sensor_discharge), boost(boost), serial_com(serial_com), table(NB_OF_DISPLAYED_VALUES)\
+Master::Master(Coulomb_meter Sensor_charge, Coulomb_meter Sensor_discharge, Boost boost, UI ui, UART_HandleTypeDef serial_com):\
+		Sensor_charge(Sensor_charge), Sensor_discharge(Sensor_discharge), boost(boost), ui(ui), serial_com(serial_com), table(NB_OF_DISPLAYED_VALUES)\
 {}
 
 // ---- FUNCTIONS ------
@@ -31,7 +31,8 @@ void Master::init(){
 	boost.init();
 
 	// UI
-
+	ui.init_menu();
+	ui.print();
 
 }
 

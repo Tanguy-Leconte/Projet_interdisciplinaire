@@ -58,7 +58,7 @@ class Boost{
 		Coulomb_meter sensor_charge;
 
 		// PWM
-		TIM_HandleTypeDef htim_PWM;
+		TIM_HandleTypeDef* p_htim_PWM;
 		uint32_t channel_PWM;			// can be from TIM_CHANNEL_1 to TIM_CHANNEL_6
 		int frequency_kHz		= 150;  // frequency in kHz
 
@@ -83,8 +83,8 @@ class Boost{
 		 * 			Coulomb_meter : an initialize object of the Coulomb meter class
 		 * @retval None
 		 */
-		Boost(Coulomb_meter sensor_charge, TIM_HandleTypeDef htim_PWM, uint32_t channel_PWM);
-		Boost(Coulomb_meter sensor_charge, TIM_HandleTypeDef htim_PWM, uint32_t channel_PWM, PI corr_val);
+		Boost(Coulomb_meter sensor_charge, TIM_HandleTypeDef* p_htim_PWM, uint32_t channel_PWM);
+		Boost(Coulomb_meter sensor_charge, TIM_HandleTypeDef* p_htim_PWM, uint32_t channel_PWM, PI corr_val);
 	// FUNCTIONS
 		/*
 		 * @brief function that initialize the PWM and all the boost instance

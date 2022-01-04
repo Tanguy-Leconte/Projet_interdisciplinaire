@@ -28,23 +28,23 @@ extern "C" {
 	extern I2C_HandleTypeDef hi2c1;
 	Coulomb_meter sensor_charge(hi2c1);
 
+	extern I2C_HandleTypeDef hi2c2;
+	Coulomb_meter sensor_discharge(hi2c2);
+
 // Boost construction
 	extern TIM_HandleTypeDef htim2;
-	Boost boost(sensor_charge, htim2, TIM_CHANNEL_1);
+	Boost boost(sensor_charge, &htim2, TIM_CHANNEL_1);
 // Master construction
-	Master master();
+	extern UART_HandleTypeDef huart2;
+	Master master(sensor_charge, sensor_discharge, boost, ui, huart2);
 
 // Test hash
 	myHash<Values,float> table(6);
 
 
 void setup(){
-	button_main.init();
-	// Start the PWM
-	boost.init();
-	screen.init();
-	ui.init_menu();
-	ui.print();
+	// Init the master
+	master.init();
 }
 
 void My_app(){
