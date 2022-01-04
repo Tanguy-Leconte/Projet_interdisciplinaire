@@ -84,7 +84,7 @@ class Master{
 		void Write_log(string mes);
 		// Update the value of the UI with the values stored in "table"
 		void Update_UI();
-		// function that run the state machine
+		// function that run the state machine and update the value
 		void handler();
 };
 

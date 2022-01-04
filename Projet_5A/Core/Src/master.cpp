@@ -34,6 +34,18 @@ void Master::init(){
 	ui.init_menu();
 	ui.print();
 
+	// Init the table
+	int el = SOC;
+	do{
+		Values val = static_cast<Values>(el);
+		if (!(table.add(val, 0.0, 0))){
+			stringstream stream;
+			string mes;
+			stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in the initialization of the table";
+			stream >> mes;
+			throw (mes);
+		}
+	}while(el < POWER);
 }
 
 /* @brief 	: Setter for the max value of the soc
@@ -50,4 +62,18 @@ void Master::Set_max_SOC (float val){
 	}else{
 		soc_max = val;
 	}
+}
+
+/* @brief 	: Update the value of the UI with the values stored in "table"
+ * @param 	: NONE
+ * @retval 	: NONE
+ */
+void Master::Update_UI(){
+	Sub_Page* p_aux; // pointer over the different sub page to update the value
+	int el = SOC;
+	do{
+		Values val = static_cast<Values>(el);
+		p_aux = ui.find(val);
+		p_aux->val = table[val];
+	}while(el < POWER);
 }
