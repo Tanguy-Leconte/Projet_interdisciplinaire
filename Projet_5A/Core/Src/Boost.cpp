@@ -99,3 +99,8 @@ void Boost::ActualisePWM(){
 	__HAL_TIM_SET_COMPARE(&htim_PWM, channel_PWM, (uint32_t)(arr*dutycycle));
 
 }
+
+//############### TEST ##############
+void Test_Boost(){
+	while(1){}
+}

@@ -60,6 +60,7 @@ class Boost{
 		// PWM
 		TIM_HandleTypeDef htim_PWM;
 		uint32_t channel_PWM;			// can be from TIM_CHANNEL_1 to TIM_CHANNEL_6
+		int frequency_kHz		= 150;  // frequency in kHz
 
 		// PI/MPPT PARAM
 		PI pi_val 				= {0,0};		// PI values
@@ -119,5 +120,8 @@ class Boost{
 		void ActualisePWM();
 
 };
+
+// Test function for the boost
+void Test_Boost();
 
 #endif /* INC_BOOST_H_ */
