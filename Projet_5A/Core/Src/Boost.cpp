@@ -15,6 +15,7 @@ using namespace std;
 
 // ########### 		DEFINE		###############
 #define MPPT_THRESHOLD			50	// in mW
+#define DEFAULT_VAL_DUTYCYCLE	0.5 // default value ratio Vo/Vi = 2
 // ########### 		CLASS		###############
 Boost::Boost(Coulomb_meter sensor_charge, TIM_HandleTypeDef htim_PWM, uint32_t channel_PWM) :\
 		Boost(sensor_charge, htim_PWM, channel_PWM, {BOOST_K,BOOST_Ki}) {}
@@ -25,6 +26,7 @@ Boost::Boost(Coulomb_meter sensor_charge, TIM_HandleTypeDef htim_PWM, uint32_t c
 	gain.in_actual = ((PERIOD*pi_val.K)+(2*pi_val.Ki))/(PERIOD);
 	gain.in_previous = ((PERIOD*pi_val.K)-(2*pi_val.Ki))/(PERIOD);
 	gain.out_previous = -1.0;
+	dutycycle = DEFAULT_VAL_DUTYCYCLE; //
 }
 
 /*
@@ -34,7 +36,11 @@ Boost::Boost(Coulomb_meter sensor_charge, TIM_HandleTypeDef htim_PWM, uint32_t c
  * @retval None
  */
 void Boost::init(){
-	if (HAL_OK != HAL_TIM_PWM_Start(htim_PWM, channel_PWM)){
+	// We calculate and set the arr
+	uint32_t arr = (HAL_RCC_GetSysClockFreq() - (frequency_kHz*1000)) / (frequency_kHz*1000);
+	__HAL_TIM_SET_AUTORELOAD(&htim_PWM, arr);
+	// WE start the PWM
+	if (HAL_OK != HAL_TIM_PWM_Start(&htim_PWM, channel_PWM)){
 		return;
 	}else{
 		stringstream stream;
@@ -87,20 +93,30 @@ void Boost::MPPT(){
 	mppt_val.panel_voltage_prev = mppt_val.panel_voltage;
 }
 /*
- * @brief actualise the PWM value to reach the setpoint
+ * @brief calculate the duty cycle using the setpoint
+ * @param NONE
+ * @retval NONE
+ */
+void ProcessDutycycle(){
+	// We find the duty cycle thanks to the setpoint => we use the last mppt_val
+	dutycycle = (mppt_val.bat_voltage - setpoint) / (mppt_val.bat_voltage); // between 0 and 1
+}
+/*
+ * @brief actualize the PWM value using the value stored in "dutycycle"
  * @param NONE
  * @retval NONE
  */
 // TODO : to test!!
 void Boost::ActualisePWM(){
-	// We find the duty cycle thanks to the setpoint => we use the last mppt_val
-	dutycycle = (mppt_val.bat_voltage - setpoint) / (mppt_val.bat_voltage); // between 0 and 1
 	uint32_t arr = __HAL_TIM_GET_AUTORELOAD(&htim_PWM);
 	__HAL_TIM_SET_COMPARE(&htim_PWM, channel_PWM, (uint32_t)(arr*dutycycle));
 
 }
 
 //############### TEST ##############
+extern Boost boost;
 void Test_Boost(){
+	boost.Set_dutycycle(0.5); // ratio Vo/Vi = 2
+	boost.ActualisePWM();
 	while(1){}
 }

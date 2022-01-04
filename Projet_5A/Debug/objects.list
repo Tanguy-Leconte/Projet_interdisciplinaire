@@ -1,6 +1,5 @@
 "./Core/Src/Boost.o"
 "./Core/Src/Coulomb_meter.o"
-"./Core/Src/I2C.o"
 "./Core/Src/UI.o"
 "./Core/Src/app.o"
 "./Core/Src/display.o"

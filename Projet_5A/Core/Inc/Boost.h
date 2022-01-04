@@ -107,11 +107,23 @@ class Boost{
 		 */
 		void MPPT();
 		/*
-		 * @brief set the setpoint
+		 * @brief set the setpoint manually
 		 * @param
 		 * @retval None
 		 */
 		void Set_setpoint(float order){setpoint = order;};
+		/*
+		 * @brief set the dutycycle manually
+		 * @param
+		 * @retval None
+		 */
+		void Set_dutycycle(float ratio){dutycycle = ratio;};
+		/*
+		 * @brief calculate the duty cycle using the setpoint
+		 * @param NONE
+		 * @retval NONE
+		 */
+		void ProcessDutycycle();
 		/*
 		 * @brief actualise the PWM value to reach the setpoint
 		 * @param NONE
