@@ -10,6 +10,10 @@
 #include <sstream>
 
 // ########### 		CLASS		###############
+#define VOLTAGE_BAT				50
+#define VOLTAGE_BAT_GAP			5
+
+// ########### 		CLASS		###############
 // ---- CONSTRUCTORS ------
 
 Master::Master(Coulomb_meter Sensor_charge, Coulomb_meter Sensor_discharge, Boost boost, UI ui, UART_HandleTypeDef* serial_com, TIM_HandleTypeDef* real_time_timer):\
@@ -76,4 +80,66 @@ void Master::Update_UI(){
 		p_aux = ui.find(val);
 		p_aux->val = table[val];
 	}while(el < POWER);
+}
+
+/* @brief 	: function that run the state machine and update the value
+ * @param 	: NONE
+ * @retval 	: NONE
+ */
+void Master::handler(){
+	try {
+		switch(state){
+			case S_STOP:
+				HAL_GPIO_WritePin(PORT_BACKTOBACK, PIN_BACKTOBACK, GPIO_PIN_RESET);
+				// We shutdown the MOS driver
+				HAL_GPIO_WritePin(PORT_SHUTDOWN, PIN_SHUTDOWN, GPIO_PIN_RESET);
+				boost.Set_dutycycle(DEFAULT_VAL_DUTYCYCLE);
+				boost.ActualisePWM();
+				break;
+			case S_STARTING:
+				values = boost.Get_values();
+				// Are the capacities charged ?
+				if ((values.bat_voltage > VOLTAGE_BAT - VOLTAGE_BAT_GAP) && \
+						(values.bat_voltage < VOLTAGE_BAT + VOLTAGE_BAT_GAP)){
+					state = S_RUNNING;
+					HAL_GPIO_WritePin(PORT_BACKTOBACK, PIN_BACKTOBACK, GPIO_PIN_SET);
+				}
+				break;
+			case S_RUNNING:
+				// Boost normal sequence
+				boost.Get_values();
+				// is there an issue in the battery voltage ?
+				if ((values.bat_voltage < VOLTAGE_BAT - VOLTAGE_BAT_GAP) && \
+						(values.bat_voltage > VOLTAGE_BAT + VOLTAGE_BAT_GAP)){
+					state = S_ERROR;
+					// We shutdown the MOS driver
+					HAL_GPIO_WritePin(PORT_SHUTDOWN, PIN_SHUTDOWN, GPIO_PIN_RESET);
+				}else{
+					boost.MPPT();
+					boost.ProcessDutycycle();
+					boost.ActualisePWM();
+				}
+				break;
+			case S_ERROR:
+				// We shutdown the MOS driver
+				HAL_GPIO_WritePin(PORT_SHUTDOWN, PIN_SHUTDOWN, GPIO_PIN_RESET);
+				// TODO : send message to the UI
+				HAL_Delay(10*1000);
+				state = S_STOP;
+				break;
+			default:
+				break;
+		}
+	}catch (string mes){
+		state = S_ERROR;
+	}
+}
+
+/* @brief 	: function that run the UI
+ * @param 	: NONE
+ * @retval 	: NONE
+ */
+void Master::handlerUI(){
+	ui.handler();
+	HAL_Delay(20);
 }

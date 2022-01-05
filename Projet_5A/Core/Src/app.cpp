@@ -33,7 +33,9 @@ extern "C" {
 
 // Boost construction
 	extern TIM_HandleTypeDef htim2;
-	Boost boost(sensor_charge, &htim2, TIM_CHANNEL_1);
+	extern ADC_HandleTypeDef hadc1;
+	Boost boost(sensor_charge, &htim2, TIM_CHANNEL_1, &hadc1);
+
 // Master construction
 	extern UART_HandleTypeDef huart2;
 	extern TIM_HandleTypeDef htim6;
@@ -52,11 +54,18 @@ void My_app(){
 	setup();
 
 	//Test_UI();
-	Test_Boost();
+	//Test_Boost();
 	while (1)
 	{
-
+		master.handlerUI();
 	}
+}
+
+// Interrupt for the master handler 10 kHz :
+void TIM6_DAC_IRQHandler(void)
+{
+  HAL_TIM_IRQHandler(&htim6);
+  master.handler();
 }
 
 #ifdef __cplusplus

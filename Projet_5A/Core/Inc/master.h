@@ -14,6 +14,9 @@
  * 	-	updates the data contained in the UI object
  * 	-	monitored the security such as over voltage ...
  * 	- 	processes the start up sequence
+ *
+ * 	We use the TIM6 to run the handler and the state machine
+ * 	f = 10 kHz => change it in CubeMX if needed
  */
 
 
@@ -34,6 +37,13 @@
   	  	#define PORT_LCD_RS			GPIOA
 		#define PIN_LCD_CS			GPIO_PIN_9
 		#define PORT_LCD_CS			GPIOA
+
+	// Master & Boost
+		#define PIN_BOOST_SHUTDOWN		GPIO_PIN_8
+		#define PORT_BOOST_SHUTDOWN		GPIOC
+
+		#define PIN_BOOST_BACKTOBACK	GPIO_PIN_9
+		#define PORT_BOOST_BACKTOBACK	GPIOC
 
 // ########### 		STRUCTURE	###############
 enum StateSystem{
@@ -56,10 +66,22 @@ class Master{
 		UART_HandleTypeDef* serial_com;
 		// Timer used for the frequency of the regulation of the boost (MPPT)
 		TIM_HandleTypeDef* real_time_timer;
+
+		//GPIO for the shutdown and the activation of the back to back
+		// TODO : assign those values in the constructor for more flexibility
+		// TODO : Move the shutdown management in the boost class
+		//			and write a shutdown() function in that class
+		uint16_t PIN_SHUTDOWN			= PIN_BOOST_SHUTDOWN;
+		GPIO_TypeDef * PORT_SHUTDOWN 	= PORT_BOOST_SHUTDOWN;
+
+		uint16_t PIN_BACKTOBACK			= PIN_BOOST_BACKTOBACK;
+		GPIO_TypeDef * PORT_BACKTOBACK 	= PORT_BOOST_BACKTOBACK;
+
 	// VARS
 		float soc_max = 0.0; 	// in mAh
 		// Contain the different values such as the voltage, the current and so on
 		myHash<Values,float> table;
+		MPPT_val values; // values given by the boost object
 
 		// FREQUENCY
 		int f_update;
@@ -86,6 +108,8 @@ class Master{
 		void Update_UI();
 		// function that run the state machine and update the value
 		void handler();
+		// function that run the User interface. Called it in the while(1) loop
+		void handlerUI();
 };
 
 #endif /* INC_MASTER_H_ */

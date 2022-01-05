@@ -15,14 +15,14 @@ using namespace std;
 
 // ########### 		DEFINE		###############
 #define MPPT_THRESHOLD			50	// in mW
-#define DEFAULT_VAL_DUTYCYCLE	0.5 // default value ratio Vo/Vi = 2
+
 // ########### 		CLASS		###############
-Boost::Boost(Coulomb_meter sensor_charge, TIM_HandleTypeDef* p_htim_PWM, uint32_t channel_PWM) :\
-		Boost(sensor_charge, p_htim_PWM, channel_PWM, {BOOST_K,BOOST_Ki}) {}
+Boost::Boost(Coulomb_meter sensor_charge, TIM_HandleTypeDef* p_htim_PWM, uint32_t channel_PWM, ADC_HandleTypeDef* p_hadc) :\
+		Boost(sensor_charge, p_htim_PWM, channel_PWM, p_hadc, {BOOST_K,BOOST_Ki}) {}
 
 // using the Bilinear transform : p = (2/T)*(z-1)/(z+1)
-Boost::Boost(Coulomb_meter sensor_charge, TIM_HandleTypeDef* p_htim_PWM, uint32_t channel_PWM, PI corr_val) : \
-		sensor_charge(sensor_charge), p_htim_PWM(p_htim_PWM), channel_PWM(channel_PWM), pi_val(corr_val) {
+Boost::Boost(Coulomb_meter sensor_charge, TIM_HandleTypeDef* p_htim_PWM, uint32_t channel_PWM, ADC_HandleTypeDef* p_hadc, PI corr_val) : \
+		sensor_charge(sensor_charge), p_htim_PWM(p_htim_PWM), channel_PWM(channel_PWM), p_hadc(p_hadc), pi_val(corr_val) {
 	gain.in_actual = ((PERIOD*pi_val.K)+(2*pi_val.Ki))/(PERIOD);
 	gain.in_previous = ((PERIOD*pi_val.K)-(2*pi_val.Ki))/(PERIOD);
 	gain.out_previous = -1.0;
@@ -49,6 +49,17 @@ void Boost::init(){
 		stream >> mes;
 		throw (mes);
 	}
+
+	// We start the ADC
+	if (HAL_OK != HAL_ADC_Start(p_hadc)){
+		return;
+	}else{
+		stringstream stream;
+		string mes;
+		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in the starting the ADC";
+		stream >> mes;
+		throw (mes);
+	}
 }
 
 /*
@@ -68,17 +79,38 @@ float Boost::Regulate(){
 	return corrector.out_actual;
 }
 
+//@brief get the value given by the coulomb meter
+MPPT_val Boost::Get_values(){
+	// We update previous data
+	mppt_val.panel_voltage_prev = mppt_val.panel_voltage;
+	mppt_val.previous_power = mppt_val.actual_power;
+
+	// We ask the coulomb meter
+	LTC2944_AnalogVal_Typedef val = sensor_charge.Get_AnalogVal();
+	mppt_val.bat_voltage = val.Voltage_V;
+	mppt_val.current_mA = val.Current_mA;
+	// Calculate the power in mW
+	mppt_val.actual_power = mppt_val.bat_voltage * mppt_val.current_mA;
+
+	// We get the voltage of the solar panel thanks to the ADC
+	if (HAL_ADC_PollForConversion(p_hadc, 1000) == HAL_OK){
+		mppt_val.panel_voltage = HAL_ADC_GetValue(p_hadc);
+	}else{
+		stringstream stream;
+		string mes;
+		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting the value of ADC at the solar pannel";
+		stream >> mes;
+		throw (mes);
+	}
+	return mppt_val;
+}
+
 /*
  * @brief Porcess the MPPT algo
  * @param
  * @retval None
  */
 void Boost::MPPT(){
-	LTC2944_AnalogVal_Typedef val = sensor_charge.Get_AnalogVal();
-	mppt_val.bat_voltage = val.Voltage_V;
-	mppt_val.current_mA = val.Current_mA;
-	// Calculate the power in mW
-	mppt_val.actual_power = mppt_val.bat_voltage * mppt_val.current_mA;
 	float variation = 0.0;
 	if ((mppt_val.panel_voltage_prev - mppt_val.panel_voltage) != 0){
 		variation = (mppt_val.actual_power - mppt_val.previous_power) / (mppt_val.panel_voltage - mppt_val.panel_voltage_prev);
@@ -88,9 +120,6 @@ void Boost::MPPT(){
 	if (abs(mppt_val.actual_power - mppt_val.previous_power) > MPPT_THRESHOLD){
 		Set_setpoint(mppt_val.panel_voltage + variation);
 	}
-
-	mppt_val.previous_power = mppt_val.actual_power;
-	mppt_val.panel_voltage_prev = mppt_val.panel_voltage;
 }
 /*
  * @brief calculate the duty cycle using the setpoint
@@ -100,6 +129,13 @@ void Boost::MPPT(){
 void Boost::ProcessDutycycle(){
 	// We find the duty cycle thanks to the setpoint => we use the last mppt_val
 	dutycycle = (mppt_val.bat_voltage - setpoint) / (mppt_val.bat_voltage); // between 0 and 1
+	if (dutycycle < 0 || dutycycle > 1){
+		stringstream stream;
+		string mes;
+		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in processing the dutycycle";
+		stream >> mes;
+		throw (mes);
+	}
 }
 /*
  * @brief actualize the PWM value using the value stored in "dutycycle"

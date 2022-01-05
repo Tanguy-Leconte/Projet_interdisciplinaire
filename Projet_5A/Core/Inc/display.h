@@ -29,7 +29,6 @@ class Display{
 	// VARS
 		SPI_HandleTypeDef* p_hspi;
 	// CST
-		// TODO: assign those values in the constructor
 		uint16_t PIN_RS;
 		GPIO_TypeDef * PORT_RS;
 		uint16_t PIN_CS;
