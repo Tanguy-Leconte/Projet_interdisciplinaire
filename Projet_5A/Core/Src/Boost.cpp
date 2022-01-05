@@ -39,7 +39,17 @@ void Boost::init(){
 	// We calculate and set the arr
 	uint32_t arr = (HAL_RCC_GetSysClockFreq() - (frequency_kHz*1000)) / (frequency_kHz*1000);
 	p_htim_PWM->Instance->ARR = arr;
-	// WE start the PWM
+	// We start the timer
+	if (HAL_OK != HAL_TIM_Base_Start(p_htim_PWM)){
+		return;
+	}else{
+		stringstream stream;
+		string mes;
+		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in the starting the Timer of the PWM";
+		stream >> mes;
+		throw (mes);
+	}
+	// We start the PWM
 	if (HAL_OK != HAL_TIM_PWM_Start(p_htim_PWM, channel_PWM)){
 		return;
 	}else{
