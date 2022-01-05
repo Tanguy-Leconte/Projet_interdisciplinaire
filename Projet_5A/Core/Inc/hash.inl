@@ -22,7 +22,7 @@ bool myHash<K,V>::add(K key, V value, unsigned int pos){
 
 template <class K, class V>
 bool myHash<K,V>::modify(K key, V new_value){
-	int i = 0;
+	unsigned int i = 0;
 	for (i=0; i < size; i++){
 		if (key == p_table[i].key){
 			p_table[i].value = new_value;

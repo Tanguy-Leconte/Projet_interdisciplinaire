@@ -10,8 +10,8 @@
 #include <sstream>
 
 // ########### 		CLASS		###############
-#define VOLTAGE_BAT				50
-#define VOLTAGE_BAT_GAP			5
+#define DEFAULT_VOLTAGE_BAT				50
+#define DEFAULT_VOLTAGE_BAT_GAP			5
 
 // ########### 		CLASS		###############
 // ---- CONSTRUCTORS ------
@@ -28,8 +28,12 @@ Master::Master(Coulomb_meter sensor_charge, Coulomb_meter sensor_discharge, Boos
  */
 void Master::init(){
 	// Coulomb meter
-	sensor_charge.init();
-	sensor_discharge.init();
+	try{
+		//sensor_charge.init();
+		sensor_discharge.init();
+	}catch(string mes){
+		// The system can work even if the discharge sensor doesn't work
+	}
 
 	// Boost
 	boost.init();
@@ -50,6 +54,14 @@ void Master::init(){
 			throw (mes);
 		}
 	}while(el < POWER);
+
+	// Start the timer
+	HAL_TIM_Base_Start(real_time_timer);
+
+	//We start the system
+	boost.Set_dutycycle(DEFAULT_VAL_DUTYCYCLE);
+	boost.ActualisePWM();
+	state = S_STARTING;
 }
 
 /* @brief 	: Setter for the max value of the soc
@@ -66,6 +78,20 @@ void Master::Set_max_SOC (float val){
 	}else{
 		soc_max = val;
 	}
+}
+
+/* @brief 	: Get the value from the boost object and update the values in "table"
+ * @param 	: NONE
+ * @retval 	: NONE
+ */
+void Master::Get_values(){
+	values = boost.Get_values();
+	table.modify(SOC, boost.sensor_charge.Get_SOC_mAh());
+	table.modify(CURRENT_BAT, values.current_mA);
+	table.modify(VOLTAGE_BAT, values.bat_voltage);
+	table.modify(CURRENT_PANNEL, values.actual_power / values.panel_voltage);
+	table.modify(VOLTAGE_PANNEL, values.panel_voltage);
+	table.modify(POWER, values.actual_power);
 }
 
 /* @brief 	: Update the value of the UI with the values stored in "table"
@@ -97,20 +123,20 @@ void Master::handler(){
 				boost.ActualisePWM();
 				break;
 			case S_STARTING:
-				values = boost.Get_values();
+				Get_values();
 				// Are the capacities charged ?
-				if ((values.bat_voltage > VOLTAGE_BAT - VOLTAGE_BAT_GAP) && \
-						(values.bat_voltage < VOLTAGE_BAT + VOLTAGE_BAT_GAP)){
+				if ((table[VOLTAGE_BAT] > (DEFAULT_VOLTAGE_BAT - DEFAULT_VOLTAGE_BAT_GAP)) && \
+						(table[VOLTAGE_BAT] < (DEFAULT_VOLTAGE_BAT + DEFAULT_VOLTAGE_BAT_GAP))){
 					state = S_RUNNING;
 					HAL_GPIO_WritePin(PORT_BACKTOBACK, PIN_BACKTOBACK, GPIO_PIN_SET);
 				}
 				break;
 			case S_RUNNING:
 				// Boost normal sequence
-				boost.Get_values();
+				Get_values();
 				// is there an issue in the battery voltage ?
-				if ((values.bat_voltage < VOLTAGE_BAT - VOLTAGE_BAT_GAP) && \
-						(values.bat_voltage > VOLTAGE_BAT + VOLTAGE_BAT_GAP)){
+				if ((table[VOLTAGE_BAT] < (DEFAULT_VOLTAGE_BAT - DEFAULT_VOLTAGE_BAT_GAP)) && \
+						(table[VOLTAGE_BAT] > (DEFAULT_VOLTAGE_BAT + DEFAULT_VOLTAGE_BAT_GAP))){
 					state = S_ERROR;
 					// We shutdown the MOS driver
 					HAL_GPIO_WritePin(PORT_SHUTDOWN, PIN_SHUTDOWN, GPIO_PIN_RESET);

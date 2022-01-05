@@ -62,9 +62,6 @@ typedef struct{
 class Boost{
 	private:
 	// VARS
-		// OBJ
-		Coulomb_meter sensor_charge;
-
 		// PWM
 		TIM_HandleTypeDef* p_htim_PWM;
 		uint32_t channel_PWM;			// can be from TIM_CHANNEL_1 to TIM_CHANNEL_6
@@ -86,7 +83,8 @@ class Boost{
 
 	public:
 	// VARS
-
+		// OBJ
+		Coulomb_meter sensor_charge;
 	//CONSTRUCTORS
 		/*
 		 * @brief Initialize the boost

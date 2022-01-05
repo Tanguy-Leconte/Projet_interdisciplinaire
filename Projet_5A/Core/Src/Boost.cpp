@@ -36,6 +36,9 @@ Boost::Boost(Coulomb_meter sensor_charge, TIM_HandleTypeDef* p_htim_PWM, uint32_
  * @retval None
  */
 void Boost::init(){
+	// Init the Coulomb meter
+	sensor_charge.init();
+
 	// We calculate and set the arr
 	uint32_t arr = (HAL_RCC_GetSysClockFreq() - (frequency_kHz*1000)) / (frequency_kHz*1000);
 	p_htim_PWM->Instance->ARR = arr;
