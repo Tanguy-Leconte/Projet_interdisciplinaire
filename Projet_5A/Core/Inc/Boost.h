@@ -132,7 +132,7 @@ class Boost{
 		 * @param NONE
 		 * @retval NONE
 		 */
-		void ProcessDutycycle();
+		void Process_dutycycle();
 		/*
 		 * @brief actualise the PWM value to reach the setpoint
 		 * @param NONE

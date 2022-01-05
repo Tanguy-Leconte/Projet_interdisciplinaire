@@ -58,8 +58,8 @@ enum StateSystem{
 class Master{
 	private:
 	// OBJECT
-		Coulomb_meter Sensor_charge;
-		Coulomb_meter Sensor_discharge;
+		Coulomb_meter sensor_charge;
+		Coulomb_meter sensor_discharge;
 		Boost boost;
 		UI ui;
 
@@ -95,7 +95,7 @@ class Master{
 	// VARS
 
 	//CONSTRUCTORS
-		Master(Coulomb_meter Sensor_charge, Coulomb_meter Sensor_discharge, Boost boost, UI ui, UART_HandleTypeDef* serial_com, TIM_HandleTypeDef* real_time_timer);
+		Master(Coulomb_meter sensor_charge, Coulomb_meter sensor_discharge, Boost boost, UI ui, UART_HandleTypeDef* serial_com, TIM_HandleTypeDef* real_time_timer);
 	// FUNCTIONS
 		// This function initialize all the objects and the different periph used by this class
 		void init();

@@ -16,8 +16,8 @@
 // ########### 		CLASS		###############
 // ---- CONSTRUCTORS ------
 
-Master::Master(Coulomb_meter Sensor_charge, Coulomb_meter Sensor_discharge, Boost boost, UI ui, UART_HandleTypeDef* serial_com, TIM_HandleTypeDef* real_time_timer):\
-		Sensor_charge(Sensor_charge), Sensor_discharge(Sensor_discharge), boost(boost), ui(ui), serial_com(serial_com), real_time_timer(real_time_timer), table(NB_OF_DISPLAYED_VALUES)\
+Master::Master(Coulomb_meter sensor_charge, Coulomb_meter sensor_discharge, Boost boost, UI ui, UART_HandleTypeDef* serial_com, TIM_HandleTypeDef* real_time_timer):\
+		sensor_charge(sensor_charge), sensor_discharge(sensor_discharge), boost(boost), ui(ui), serial_com(serial_com), real_time_timer(real_time_timer), table(NB_OF_DISPLAYED_VALUES)\
 {}
 
 // ---- FUNCTIONS ------
@@ -28,8 +28,8 @@ Master::Master(Coulomb_meter Sensor_charge, Coulomb_meter Sensor_discharge, Boos
  */
 void Master::init(){
 	// Coulomb meter
-	Sensor_charge.init();
-	Sensor_discharge.init();
+	sensor_charge.init();
+	sensor_discharge.init();
 
 	// Boost
 	boost.init();
@@ -116,7 +116,7 @@ void Master::handler(){
 					HAL_GPIO_WritePin(PORT_SHUTDOWN, PIN_SHUTDOWN, GPIO_PIN_RESET);
 				}else{
 					boost.MPPT();
-					boost.ProcessDutycycle();
+					boost.Process_dutycycle();
 					boost.ActualisePWM();
 				}
 				break;
@@ -140,6 +140,7 @@ void Master::handler(){
  * @retval 	: NONE
  */
 void Master::handlerUI(){
+	Update_UI();
 	ui.handler();
 	HAL_Delay(20);
 }
