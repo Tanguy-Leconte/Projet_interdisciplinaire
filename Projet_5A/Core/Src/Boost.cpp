@@ -73,7 +73,7 @@ void Boost::init(){
 }
 
 /*
- * @brief Process the regulation of the boost
+ * @brief Process the regulation of the boost => PI corrector
  * @param
  * @retval None
  * TODO : Unused for now
@@ -121,13 +121,12 @@ MPPT_val Boost::Get_values(){
  * @retval None
  */
 void Boost::MPPT(){
-	float variation = 0.0;
-	if ((mppt_val.panel_voltage_prev - mppt_val.panel_voltage) != 0){
-		variation = (mppt_val.actual_power - mppt_val.previous_power) / (mppt_val.panel_voltage - mppt_val.panel_voltage_prev);
-	}
-
 	// Set the new point of working (variation is the derivative of : f(Voltage) = Power
 	if (abs(mppt_val.actual_power - mppt_val.previous_power) > MPPT_THRESHOLD){
+		float variation = 0.0;
+		if ((mppt_val.panel_voltage_prev - mppt_val.panel_voltage) != 0){
+			variation = (mppt_val.actual_power - mppt_val.previous_power) / (mppt_val.panel_voltage - mppt_val.panel_voltage_prev);
+		}
 		Set_setpoint(mppt_val.panel_voltage + variation);
 	}
 }
