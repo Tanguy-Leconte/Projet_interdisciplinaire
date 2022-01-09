@@ -115,6 +115,7 @@ void Master::Update_UI(){
 void Master::handler(){
 	try {
 		switch(state){
+		// ##################### 	STOP SEQUENCE 		#########################
 			case S_STOP:
 				HAL_GPIO_WritePin(PORT_BACKTOBACK, PIN_BACKTOBACK, GPIO_PIN_RESET);
 				// We shutdown the MOS driver
@@ -122,6 +123,8 @@ void Master::handler(){
 				boost.Set_dutycycle(DEFAULT_VAL_DUTYCYCLE);
 				boost.ActualisePWM();
 				break;
+
+		// ##################### 	START SEQUENCE 		#########################
 			case S_STARTING:
 				Get_values();
 				// Are the capacities charged ?
@@ -131,8 +134,10 @@ void Master::handler(){
 					HAL_GPIO_WritePin(PORT_BACKTOBACK, PIN_BACKTOBACK, GPIO_PIN_SET);
 				}
 				break;
+
+		// ##################### 	NORMAL SEQUENCE 	#########################
 			case S_RUNNING:
-				// Boost normal sequence
+				// Do the measurements
 				Get_values();
 				// is there an issue in the battery voltage ?
 				if ((table[VOLTAGE_BAT] < (DEFAULT_VOLTAGE_BAT - DEFAULT_VOLTAGE_BAT_GAP)) && \
@@ -140,12 +145,20 @@ void Master::handler(){
 					state = S_ERROR;
 					// We shutdown the MOS driver
 					HAL_GPIO_WritePin(PORT_SHUTDOWN, PIN_SHUTDOWN, GPIO_PIN_RESET);
+				// Do we have reached the maximum SOC
+				}else if (table[SOC] > soc_max){
+					// We shutdown the MOS driver
+					HAL_GPIO_WritePin(PORT_SHUTDOWN, PIN_SHUTDOWN, GPIO_PIN_RESET);
+					state = S_WAIT_SOC;
 				}else{
+					// Normal sequence
 					boost.MPPT();
 					boost.Process_dutycycle();
 					boost.ActualisePWM();
 				}
 				break;
+
+		// ##################### 	ERROR  SEQUENCE 	#########################
 			case S_ERROR:
 				// We shutdown the MOS driver
 				HAL_GPIO_WritePin(PORT_SHUTDOWN, PIN_SHUTDOWN, GPIO_PIN_RESET);
@@ -153,6 +166,24 @@ void Master::handler(){
 				HAL_Delay(10*1000);
 				state = S_STOP;
 				break;
+
+		// ##################### 	WAIT SOC SEQUENCE 	#########################
+			case S_WAIT_SOC:
+				// Do the measurements
+				Get_values();
+				// is there an issue in the battery voltage ?
+				if ((table[VOLTAGE_BAT] < (DEFAULT_VOLTAGE_BAT - DEFAULT_VOLTAGE_BAT_GAP)) && \
+						(table[VOLTAGE_BAT] > (DEFAULT_VOLTAGE_BAT + DEFAULT_VOLTAGE_BAT_GAP))){
+					state = S_ERROR;
+					// We shutdown the MOS driver
+					HAL_GPIO_WritePin(PORT_SHUTDOWN, PIN_SHUTDOWN, GPIO_PIN_RESET);
+				// Do we have reached the maximum SOC
+				}else if (table[SOC] < soc_max){
+					// We go in the start sequence
+					state = S_STARTING;
+				}
+				break;
+
 			default:
 				break;
 		}

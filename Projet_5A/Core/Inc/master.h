@@ -47,10 +47,11 @@
 
 // ########### 		STRUCTURE	###############
 enum StateSystem{
-	S_STOP,		// the system is off
+	S_STOP,			// the system is off
 	S_STARTING, 	// initialization phase
-	S_RUNNING,	// operating normally
+	S_RUNNING,		// operating normally
 	S_ERROR,		// an error occurred => user action needed
+	S_WAIT_SOC,		// Wait until the SOC is under the maximum SOC
 };
 // ########### 		FUNCTION	###############
 
