@@ -170,6 +170,9 @@ void Master::handler(){
 		// ##################### 	WAIT SOC SEQUENCE 	#########################
 			case S_WAIT_SOC:
 				// TODO : implement the reading of the sensor_discharge here and update the soc !
+				// We stop the timer while reading the sensor discharge values because the communication is very slow
+				// Stop  the timer
+				HAL_TIM_Base_Stop(real_time_timer);
 				// Do the measurements
 				Get_values();
 				// is there an issue in the battery voltage ?
@@ -183,6 +186,8 @@ void Master::handler(){
 					// We go in the start sequence
 					state = S_STARTING;
 				}
+				// Restart  the timer
+				HAL_TIM_Base_Start(real_time_timer);
 				break;
 
 			default:
