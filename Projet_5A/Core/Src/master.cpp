@@ -169,6 +169,7 @@ void Master::handler(){
 
 		// ##################### 	WAIT SOC SEQUENCE 	#########################
 			case S_WAIT_SOC:
+				// TODO : implement the reading of the sensor_discharge here and update the soc !
 				// Do the measurements
 				Get_values();
 				// is there an issue in the battery voltage ?
@@ -177,7 +178,7 @@ void Master::handler(){
 					state = S_ERROR;
 					// We shutdown the MOS driver
 					HAL_GPIO_WritePin(PORT_SHUTDOWN, PIN_SHUTDOWN, GPIO_PIN_RESET);
-				// Do we have reached the maximum SOC
+				// Do we need to charge the battery ?
 				}else if (table[SOC] < soc_max){
 					// We go in the start sequence
 					state = S_STARTING;
