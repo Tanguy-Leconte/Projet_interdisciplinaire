@@ -21,6 +21,7 @@ using namespace std;
 // ########### 		DEFINE		###############
 // Number total of pages in the menu
 #define NB_PAGE_TOT		3
+#define MAX_SOC_BATTERY 17500	// in mAh
 
 // ########### 		ENUM		###############
 enum Page_name{
@@ -70,6 +71,8 @@ typedef struct {
 	bool is_val_W 	= false;		// is the value changeable?
 	string val_txt;
 	float val		= 0.0;
+	float min_val	= 0.0;
+	float max_val	= 100.0;
 }Sub_Page;
 
 // Page strucutre with all the wanted informations => 1st row

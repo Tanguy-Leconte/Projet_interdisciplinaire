@@ -195,7 +195,7 @@ void UI::print(){
 		// We notice the user that the value is writtable
 		if (p_actual_subpage->is_val_W){
 			display.set_cursor(1, (MAX_CHAR_PER_LINE - 1));
-			display.print("W");
+			display.print("#");
 		}
 	}
 
@@ -307,7 +307,12 @@ void UI::goRight(bool fast){
 			num_on_subpage = (num_on_subpage + 1)%(menu[num_on_page].nb_sub_page);
 		}else if (array_level[click_level] == VALUE){
 			if (menu[num_on_page].sub[num_on_subpage].is_val_W){
-				menu[num_on_page].sub[num_on_subpage].val+= FAST_INC_VAL;
+				// Are we in the range of the value?
+				if (menu[num_on_page].sub[num_on_subpage].val + FAST_INC_VAL < menu[num_on_page].sub[num_on_subpage].max_val){
+					menu[num_on_page].sub[num_on_subpage].val+= FAST_INC_VAL;
+				}else{
+					menu[num_on_page].sub[num_on_subpage].val = menu[num_on_page].sub[num_on_subpage].max_val;
+				}
 			}
 		}
 	}else{
@@ -321,7 +326,12 @@ void UI::goRight(bool fast){
 			num_on_subpage = (num_on_subpage + 1)%(menu[num_on_page].nb_sub_page);
 		}else if (array_level[click_level] == VALUE){
 			if (menu[num_on_page].sub[num_on_subpage].is_val_W){
-				menu[num_on_page].sub[num_on_subpage].val++;
+				// Are we in the range of the value?
+				if (menu[num_on_page].sub[num_on_subpage].val + 1 < menu[num_on_page].sub[num_on_subpage].max_val){
+					menu[num_on_page].sub[num_on_subpage].val++;
+				}else{
+					menu[num_on_page].sub[num_on_subpage].val = menu[num_on_page].sub[num_on_subpage].max_val;
+				}
 			}
 		}
 	}
@@ -346,7 +356,12 @@ void UI::goLeft(bool fast){
 			}
 		}else if (array_level[click_level] == VALUE){
 			if (menu[num_on_page].sub[num_on_subpage].is_val_W){
-				menu[num_on_page].sub[num_on_subpage].val-= FAST_INC_VAL;
+				// Are we in the range of the value?
+				if (menu[num_on_page].sub[num_on_subpage].val - FAST_INC_VAL > menu[num_on_page].sub[num_on_subpage].min_val){
+					menu[num_on_page].sub[num_on_subpage].val-= FAST_INC_VAL;
+				}else{
+					menu[num_on_page].sub[num_on_subpage].val = menu[num_on_page].sub[num_on_subpage].min_val;
+				}
 			}
 		}
 	}else{
@@ -367,7 +382,12 @@ void UI::goLeft(bool fast){
 			}
 		}else if (array_level[click_level] == VALUE){
 			if (menu[num_on_page].sub[num_on_subpage].is_val_W){
-				menu[num_on_page].sub[num_on_subpage].val--;
+				// Are we in the range of the value?
+				if (menu[num_on_page].sub[num_on_subpage].val - 1 > menu[num_on_page].sub[num_on_subpage].min_val){
+					menu[num_on_page].sub[num_on_subpage].val--;
+				}else{
+					menu[num_on_page].sub[num_on_subpage].val = menu[num_on_page].sub[num_on_subpage].min_val;
+				}
 			}
 		}
 	}

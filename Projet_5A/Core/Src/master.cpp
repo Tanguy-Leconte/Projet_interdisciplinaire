@@ -81,7 +81,7 @@ void Master::init(){
 void Master::Get_values(){
 	values = boost.Get_values();
 	table.modify(SOC, boost.sensor_charge.Get_SOC_mAh());
-	table.modify(SOC_MAX, ui.find(SOC_MAX)->val);
+	table.modify(SOC_MAX, (ui.find(SOC_MAX)->val)*MAX_SOC_BATTERY/100); // value in percentage in the user interface
 	table.modify(CURRENT_BAT, values.current_mA);
 	table.modify(VOLTAGE_BAT, values.bat_voltage);
 	table.modify(CURRENT_PANNEL, values.actual_power / values.panel_voltage);
@@ -102,8 +102,16 @@ void Master::Update_UI(){
 	int el = SOC;
 	do{
 		Values val = static_cast<Values>(el);
-		p_aux = ui.find(val);
-		p_aux->val = table[val];
+		if (SOC_MAX != val){
+			// we don't want to change the SOC MAX set by the user
+			if (SOC == val){
+				p_aux = ui.find(val);
+				p_aux->val = 100*table[val]/MAX_SOC_BATTERY; // in percentage
+			}else{
+				p_aux = ui.find(val);
+				p_aux->val = table[val];
+			}
+		}
 		el ++;
 	}while(el <= POWER);
 }
