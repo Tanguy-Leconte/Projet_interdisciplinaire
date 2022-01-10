@@ -13,6 +13,7 @@
 #include "display.h"
 //#include "hash.h";
 #include <string>
+#include <vector>
 #include <sstream>
 
 using namespace std;
@@ -81,7 +82,7 @@ typedef struct {
 	string title 	= "";
 	string text 	= "";
 	int nb_sub_page	= 0;
-	Sub_Page* sub;
+	vector<Sub_Page> sub;
 }Page;
 
 // ########### 		CLASS		###############

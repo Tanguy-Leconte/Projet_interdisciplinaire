@@ -79,9 +79,17 @@ void Master::init(){
  * @retval 	: NONE
  */
 void Master::Get_values(){
-	values = boost.Get_values();
-	table.modify(SOC, boost.sensor_charge.Get_SOC_mAh());
-	table.modify(SOC_MAX, (ui.find(SOC_MAX)->val)*MAX_SOC_BATTERY/100); // value in percentage in the user interface
+	// TODO : REMOVE COMMENT
+	// values = boost.Get_values();
+	// temporary for test
+	values.actual_power = 100;
+	values.current_mA = 2000;
+	values.bat_voltage = 50;
+	values.panel_voltage = 25;
+	table.modify(SOC, 12000);//boost.sensor_charge.Get_SOC_mAh());
+	Sub_Page* sub = ui.find(SOC_MAX);
+	float max_soc_percent = (sub->val)*MAX_SOC_BATTERY/100;
+	table.modify(SOC_MAX, max_soc_percent); // value in percentage in the user interface
 	table.modify(CURRENT_BAT, values.current_mA);
 	table.modify(VOLTAGE_BAT, values.bat_voltage);
 	table.modify(CURRENT_PANNEL, values.actual_power / values.panel_voltage);
@@ -104,12 +112,16 @@ void Master::Update_UI(){
 		Values val = static_cast<Values>(el);
 		if (SOC_MAX != val){
 			// we don't want to change the SOC MAX set by the user
-			if (SOC == val){
-				p_aux = ui.find(val);
-				p_aux->val = 100*table[val]/MAX_SOC_BATTERY; // in percentage
+			p_aux = ui.find(val);
+			if (p_aux == NULL){
+				throw ("error");
 			}else{
-				p_aux = ui.find(val);
-				p_aux->val = table[val];
+				if (SOC == val){
+					float num = 100*table[val]/MAX_SOC_BATTERY;
+					p_aux->val = 100*table[val]/MAX_SOC_BATTERY; // in percentage
+				}else{
+					p_aux->val = table[val];
+				}
 			}
 		}
 		el ++;

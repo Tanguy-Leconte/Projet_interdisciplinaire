@@ -59,57 +59,69 @@ void UI::init_menu(){
 		menu[c_page].nb_sub_page 	= NB_OF_DISPLAYED_VALUES;
 		// SUB_PAGE for each possible value
 			// SOC
-			Sub_Page* p_soc				= new Sub_Page[menu[c_page].nb_sub_page];
-			p_soc[c_sub_page].num		= c_sub_page;
-			p_soc[c_sub_page].num_page	= c_page;
-			p_soc[c_sub_page].val_name	= SOC;
-			p_soc[c_sub_page].val_txt	= "SOC";
-			p_soc[c_sub_page].val		= 0.0;
-			p_soc[c_sub_page].is_val_W	= false;
+			Sub_Page* p_sub_page = new Sub_Page();
+			p_sub_page->num			= c_sub_page;
+			p_sub_page->num_page	= c_page;
+			p_sub_page->val_name	= SOC;
+			p_sub_page->val_txt		= "SOC";
+			p_sub_page->val			= 0.0;
+			p_sub_page->is_val_W	= false;
+			menu[c_page].sub.push_back(*p_sub_page);
 			c_sub_page++;
 			// MAXIMUM SOC
-			p_soc[c_sub_page].num		= c_sub_page;
-			p_soc[c_sub_page].num_page	= c_page;
-			p_soc[c_sub_page].val_name	= SOC;
-			p_soc[c_sub_page].val_txt	= "MAX SOC SET";
-			p_soc[c_sub_page].val		= 0.0;
-			p_soc[c_sub_page].is_val_W	= true;
+			p_sub_page->num			= c_sub_page;
+			p_sub_page->num_page	= c_page;
+			p_sub_page->val_name	= SOC_MAX;
+			p_sub_page->val_txt		= "MAX SOC SET";
+			p_sub_page->val			= 0.0;
+			p_sub_page->is_val_W	= true;
+			menu[c_page].sub.push_back(*p_sub_page);
 			c_sub_page++;
 			// CURRENT_BAT
-			p_soc[c_sub_page].num		= c_sub_page;
-			p_soc[c_sub_page].num_page	= c_page;
-			p_soc[c_sub_page].val_name	= CURRENT_BAT;
-			p_soc[c_sub_page].val_txt	= "I_bat";
-			p_soc[c_sub_page].val		= 0.0;
+			p_sub_page->num			= c_sub_page;
+			p_sub_page->num_page	= c_page;
+			p_sub_page->val_name	= CURRENT_BAT;
+			p_sub_page->val_txt		= "I_bat";
+			p_sub_page->val			= 0.0;
+			p_sub_page->is_val_W	= false;
+			menu[c_page].sub.push_back(*p_sub_page);
 			c_sub_page++;
 			// VOLTAGE_BAT
-			p_soc[c_sub_page].num		= c_sub_page;
-			p_soc[c_sub_page].num_page	= c_page;
-			p_soc[c_sub_page].val_name	= VOLTAGE_BAT;
-			p_soc[c_sub_page].val_txt	= "V_bat";
-			p_soc[c_sub_page].val		= 0.0;
+			p_sub_page->num			= c_sub_page;
+			p_sub_page->num_page	= c_page;
+			p_sub_page->val_name	= VOLTAGE_BAT;
+			p_sub_page->val_txt		= "V_bat";
+			p_sub_page->val			= 0.0;
+			p_sub_page->is_val_W	= false;
+			menu[c_page].sub.push_back(*p_sub_page);
 			c_sub_page++;
 			// CURRENT_PANNEL
-			p_soc[c_sub_page].num		= c_sub_page;
-			p_soc[c_sub_page].num_page	= c_page;
-			p_soc[c_sub_page].val_name	= CURRENT_PANNEL;
-			p_soc[c_sub_page].val_txt	= "I_panel";
-			p_soc[c_sub_page].val		= 0.0;
+			p_sub_page->num			= c_sub_page;
+			p_sub_page->num_page	= c_page;
+			p_sub_page->val_name	= CURRENT_PANNEL;
+			p_sub_page->val_txt		= "I_panel";
+			p_sub_page->val			= 0.0;
+			p_sub_page->is_val_W	= false;
+			menu[c_page].sub.push_back(*p_sub_page);
 			c_sub_page++;
 			// POWER
-			p_soc[c_sub_page].num		= c_sub_page;
-			p_soc[c_sub_page].num_page	= c_page;
-			p_soc[c_sub_page].val_name	= VOLTAGE_PANNEL;
-			p_soc[c_sub_page].val_txt	= "V_panel";
-			p_soc[c_sub_page].val		= 0.0;
+			p_sub_page->num			= c_sub_page;
+			p_sub_page->num_page	= c_page;
+			p_sub_page->val_name	= VOLTAGE_PANNEL;
+			p_sub_page->val_txt		= "V_panel";
+			p_sub_page->val			= 0.0;
+			p_sub_page->is_val_W	= false;
+			menu[c_page].sub.push_back(*p_sub_page);
 			c_sub_page++;
 			// CURRENT_PANNEL
-			p_soc[c_sub_page].num		= c_sub_page;
-			p_soc[c_sub_page].num_page	= c_page;
-			p_soc[c_sub_page].val_name	= POWER;
-			p_soc[c_sub_page].val_txt	= "Power";
-			p_soc[c_sub_page].val		= 0.0;
-		menu[c_page].sub=p_soc;
+			p_sub_page->num			= c_sub_page;
+			p_sub_page->num_page	= c_page;
+			p_sub_page->val_name	= POWER;
+			p_sub_page->val_txt		= "Power";
+			p_sub_page->val			= 0.0;
+			p_sub_page->is_val_W	= false;
+			menu[c_page].sub.push_back(*p_sub_page);
+			c_sub_page++;
 		c_page++;
 
 	// PAGE ERROR
@@ -222,10 +234,12 @@ void UI::print(){
  * @retval	: a sub_page pointer
  */
 Sub_Page* UI::find(Values w_val){
-	int i = 0;
-	for (i=0; i < menu[DONNEES].nb_sub_page; i++){
-		if (w_val == menu[DONNEES].sub->val){
-			return menu[DONNEES].sub;
+	size_t i = 0;
+	Sub_Page subpage;
+	for (i=0; i < menu[DONNEES].sub.size(); i++){
+		subpage = menu[DONNEES].sub[i];
+		if (w_val == subpage.val_name){
+			return &(menu[DONNEES].sub[i]);
 		}
 	}
 	return NULL;
