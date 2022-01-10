@@ -45,6 +45,8 @@
 		#define PIN_BOOST_BACKTOBACK	GPIO_PIN_9
 		#define PORT_BOOST_BACKTOBACK	GPIOC
 
+#define DEFAULT_MAX_SOC_PERCENT			80
+
 // ########### 		STRUCTURE	###############
 enum StateSystem{
 	S_STOP,			// the system is off

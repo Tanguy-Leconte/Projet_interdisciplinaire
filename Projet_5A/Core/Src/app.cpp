@@ -67,7 +67,6 @@ void My_app(){
 void TIM5_IRQHandler(void)
 {
 	HAL_TIM_IRQHandler(&htim5);
-	// TODO : remove comment
 	master.handler();
 }
 

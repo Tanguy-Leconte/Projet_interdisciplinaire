@@ -58,6 +58,8 @@ void Master::init(){
 		pos ++;
 	}while(el <= POWER);
 
+	table.modify(SOC_MAX, DEFAULT_MAX_SOC_PERCENT*MAX_SOC_BATTERY/100);
+
 	// Start the timer
 	if (HAL_OK != HAL_TIM_Base_Start_IT(real_time_timer)){
 		stringstream stream;
@@ -79,14 +81,8 @@ void Master::init(){
  * @retval 	: NONE
  */
 void Master::Get_values(){
-	// TODO : REMOVE COMMENT
-	// values = boost.Get_values();
-	// temporary for test
-	values.actual_power = 100;
-	values.current_mA = 2000;
-	values.bat_voltage = 50;
-	values.panel_voltage = 25;
-	table.modify(SOC, 12000);//boost.sensor_charge.Get_SOC_mAh());
+	values = boost.Get_values();
+	table.modify(SOC, boost.sensor_charge.Get_SOC_mAh());
 	table.modify(SOC_MAX, (((ui.find(SOC_MAX))->val)*MAX_SOC_BATTERY/100)); // value in percentage in the user interface
 	table.modify(CURRENT_BAT, values.current_mA);
 	table.modify(VOLTAGE_BAT, values.bat_voltage);
@@ -96,6 +92,7 @@ void Master::Get_values(){
 }
 
 void Master::Write_log(string mes){
+	// TODO : Send a message through the UART
 	asm("nop");
 }
 
@@ -115,7 +112,6 @@ void Master::Update_UI(){
 				throw ("error");
 			}else{
 				if (SOC == val){
-					float num = 100*table[val]/MAX_SOC_BATTERY;
 					p_aux->val = 100*table[val]/MAX_SOC_BATTERY; // in percentage
 				}else{
 					p_aux->val = table[val];

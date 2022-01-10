@@ -40,7 +40,6 @@ class Display{
 	// VARS
 
 	//CONSTRUCTORS
-		//TODO : more powerful constructor
 		Display(SPI_HandleTypeDef* p_hspi, uint16_t PIN_RS, GPIO_TypeDef * PORT_RS, uint16_t PIN_CS, GPIO_TypeDef * PORT_CS);
 	// FUNCTIONS
 		void init();
