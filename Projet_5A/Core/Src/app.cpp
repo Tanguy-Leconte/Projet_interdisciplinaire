@@ -51,13 +51,17 @@ void setup(){
 }
 
 void My_app(){
-	setup();
+	try {
+		setup();
 
-	//Test_UI();
-	//Test_Boost();
-	while (1)
-	{
-		master.handlerUI();
+		//Test_UI();
+		//Test_Boost();
+		while (1)
+		{
+			master.handlerUI();
+		}
+	}catch(string mes){
+		master.Write_log(mes);
 	}
 }
 

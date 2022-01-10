@@ -29,8 +29,8 @@ Master::Master(Coulomb_meter sensor_charge, Coulomb_meter sensor_discharge, Boos
 void Master::init(){
 	// Coulomb meter
 	try{
-		//sensor_charge.init();
-		sensor_discharge.init();
+		// TODO : REMOVE COMMENT
+		//sensor_discharge.init();
 	}catch(string mes){
 		// The system can work even if the discharge sensor doesn't work
 	}
@@ -92,6 +92,10 @@ void Master::Get_values(){
 	table.modify(CURRENT_PANNEL, values.actual_power / values.panel_voltage);
 	table.modify(VOLTAGE_PANNEL, values.panel_voltage);
 	table.modify(POWER, values.actual_power);
+}
+
+void Master::Write_log(string mes){
+	asm("nop");
 }
 
 /* @brief 	: Update the value of the UI with the values stored in "table"
