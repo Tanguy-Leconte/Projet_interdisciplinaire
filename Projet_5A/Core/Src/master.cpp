@@ -87,9 +87,7 @@ void Master::Get_values(){
 	values.bat_voltage = 50;
 	values.panel_voltage = 25;
 	table.modify(SOC, 12000);//boost.sensor_charge.Get_SOC_mAh());
-	Sub_Page* sub = ui.find(SOC_MAX);
-	float max_soc_percent = (sub->val)*MAX_SOC_BATTERY/100;
-	table.modify(SOC_MAX, max_soc_percent); // value in percentage in the user interface
+	table.modify(SOC_MAX, (((ui.find(SOC_MAX))->val)*MAX_SOC_BATTERY/100)); // value in percentage in the user interface
 	table.modify(CURRENT_BAT, values.current_mA);
 	table.modify(VOLTAGE_BAT, values.bat_voltage);
 	table.modify(CURRENT_PANNEL, values.actual_power / values.panel_voltage);
