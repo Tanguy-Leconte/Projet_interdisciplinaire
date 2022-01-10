@@ -47,10 +47,7 @@ extern "C" {
 
 void setup(){
 	// Init the master
-	//master.init();
-	screen.init();
-	ui.init_menu();
-	ui.print();
+	master.init();
 }
 
 void My_app(){

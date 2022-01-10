@@ -156,6 +156,7 @@ Action UI::computeButtonAction(){
 void UI::print(){
 	// We clear the screen
 	display.clear();
+	HAL_Delay(2);
 	// Select the right page with the given number in num_on_page and nb_sub_page
 	Page* p_actual_page = &(menu[num_on_page]);
 	num_tot_subpage = p_actual_page->nb_sub_page;
