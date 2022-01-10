@@ -44,16 +44,19 @@ void Master::init(){
 
 	// Init the table
 	int el = SOC;
+	unsigned int pos = 0;
 	do{
 		Values val = static_cast<Values>(el);
-		if (!(table.add(val, 0.0, 0))){
+		if (!(table.add(val, 0.0, pos))){
 			stringstream stream;
 			string mes;
 			stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in the initialization of the table";
 			stream >> mes;
 			throw (mes);
 		}
-	}while(el < POWER);
+		el ++;
+		pos ++;
+	}while(el <= POWER);
 
 	// Start the timer
 	HAL_TIM_Base_Start(real_time_timer);
@@ -109,7 +112,8 @@ void Master::Update_UI(){
 		Values val = static_cast<Values>(el);
 		p_aux = ui.find(val);
 		p_aux->val = table[val];
-	}while(el < POWER);
+		el ++;
+	}while(el <= POWER);
 }
 
 /* @brief 	: function that run the state machine and update the value

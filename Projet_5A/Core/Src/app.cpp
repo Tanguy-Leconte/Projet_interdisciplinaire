@@ -47,14 +47,16 @@ extern "C" {
 
 void setup(){
 	// Init the master
-	master.init();
+	//master.init();
+	screen.init();
+	ui.init_menu();
 }
 
 void My_app(){
 	try {
 		setup();
 
-		//Test_UI();
+		Test_UI();
 		//Test_Boost();
 		while (1)
 		{
