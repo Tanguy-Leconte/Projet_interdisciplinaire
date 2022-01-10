@@ -60,6 +60,10 @@ typedef struct{
 
 // ###########		CLASS		###############
 class Boost{
+	public:
+	// VARS
+		// OBJ
+		Coulomb_meter sensor_charge;
 	private:
 	// VARS
 		// PWM
@@ -82,9 +86,6 @@ class Boost{
 	// FUNCTIONS
 
 	public:
-	// VARS
-		// OBJ
-		Coulomb_meter sensor_charge;
 	//CONSTRUCTORS
 		/*
 		 * @brief Initialize the boost

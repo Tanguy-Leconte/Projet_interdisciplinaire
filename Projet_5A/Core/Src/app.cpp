@@ -50,6 +50,7 @@ void setup(){
 	//master.init();
 	screen.init();
 	ui.init_menu();
+	ui.print();
 }
 
 void My_app(){
