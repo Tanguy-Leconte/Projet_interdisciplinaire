@@ -79,7 +79,6 @@ class Master{
 		GPIO_TypeDef * PORT_BACKTOBACK 	= PORT_BOOST_BACKTOBACK;
 
 	// VARS
-		float soc_max = 0.0; 	// in mAh
 		// Contain the different values such as the voltage, the current and so on
 		myHash<Values,float> table;
 		MPPT_val values; // values given by the boost object
@@ -100,8 +99,6 @@ class Master{
 	// FUNCTIONS
 		// This function initialize all the objects and the different periph used by this class
 		void init();
-		// Set the value of the maximum SOC
-		void Set_max_SOC (float val);
 		// Write log onto the UART (serial port COM)
 		// We can read it with a PC and store it
 		void Write_log(string mes);

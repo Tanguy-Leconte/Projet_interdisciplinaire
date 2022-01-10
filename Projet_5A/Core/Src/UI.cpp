@@ -42,6 +42,7 @@ void UI::init_menu(){
 	display.init();
 	button.init();
 
+	// TODO : change this array for a vector (if we have enough space in FLASH) to handle more easily the sub pages
 	int c_page = 0;
 	int c_sub_page = 0;
 	// PAGE MENU
@@ -55,7 +56,7 @@ void UI::init_menu(){
 		menu[c_page].num 			= DONNEES;
 		menu[c_page].title 			= "Valeurs";
 		menu[c_page].text 			= "";
-		menu[c_page].nb_sub_page 	= 6;
+		menu[c_page].nb_sub_page 	= NB_OF_DISPLAYED_VALUES;
 		// SUB_PAGE for each possible value
 			// SOC
 			Sub_Page* p_soc				= new Sub_Page[menu[c_page].nb_sub_page];
@@ -63,6 +64,14 @@ void UI::init_menu(){
 			p_soc[c_sub_page].num_page	= c_page;
 			p_soc[c_sub_page].val_name	= SOC;
 			p_soc[c_sub_page].val_txt	= "SOC";
+			p_soc[c_sub_page].val		= 0.0;
+			p_soc[c_sub_page].is_val_W	= false;
+			c_sub_page++;
+			// MAXIMUM SOC
+			p_soc[c_sub_page].num		= c_sub_page;
+			p_soc[c_sub_page].num_page	= c_page;
+			p_soc[c_sub_page].val_name	= SOC;
+			p_soc[c_sub_page].val_txt	= "MAX SOC SET";
 			p_soc[c_sub_page].val		= 0.0;
 			p_soc[c_sub_page].is_val_W	= true;
 			c_sub_page++;
@@ -183,6 +192,11 @@ void UI::print(){
 		// We now print the value
 		display.set_cursor(1, (p_actual_subpage->val_txt).length() + 1);
 		display.print(p_actual_subpage->val);
+		// We notice the user that the value is writtable
+		if (p_actual_subpage->is_val_W){
+			display.set_cursor(1, (MAX_CHAR_PER_LINE - 1));
+			display.print("W");
+		}
 	}
 
 	// Where are we ? page, subpage or value ?

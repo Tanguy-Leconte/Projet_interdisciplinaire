@@ -28,12 +28,12 @@ Master::Master(Coulomb_meter sensor_charge, Coulomb_meter sensor_discharge, Boos
  */
 void Master::init(){
 	// Coulomb meter
-	try{
+	//try{
 		// TODO : REMOVE COMMENT
 		//sensor_discharge.init();
-	}catch(string mes){
+	//}catch(string mes){
 		// The system can work even if the discharge sensor doesn't work
-	}
+	//}
 
 	// Boost
 	boost.init();
@@ -59,28 +59,19 @@ void Master::init(){
 	}while(el <= POWER);
 
 	// Start the timer
-	HAL_TIM_Base_Start(real_time_timer);
+	if (HAL_OK != HAL_TIM_Base_Start_IT(real_time_timer)){
+		stringstream stream;
+		string mes;
+		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in the starting the real time Timer";
+		stream >> mes;
+		throw (mes);
+	}
 
 	//We start the system
 	boost.Set_dutycycle(DEFAULT_VAL_DUTYCYCLE);
 	boost.ActualisePWM();
+	// We start the system
 	state = S_STARTING;
-}
-
-/* @brief 	: Setter for the max value of the soc
- * @param 	: The value of the Max SOC in float between 0 and 100
- * @retval 	: NONE
- */
-void Master::Set_max_SOC (float val){
-	if (val < 0 || val > 100){
-		stringstream stream;
-		string mes;
-		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in the action demanding :" << "bad value";
-		stream >> mes;
-		throw (mes);
-	}else{
-		soc_max = val;
-	}
 }
 
 /* @brief 	: Get the value from the boost object and update the values in "table"
@@ -90,6 +81,7 @@ void Master::Set_max_SOC (float val){
 void Master::Get_values(){
 	values = boost.Get_values();
 	table.modify(SOC, boost.sensor_charge.Get_SOC_mAh());
+	table.modify(SOC_MAX, ui.find(SOC_MAX)->val);
 	table.modify(CURRENT_BAT, values.current_mA);
 	table.modify(VOLTAGE_BAT, values.bat_voltage);
 	table.modify(CURRENT_PANNEL, values.actual_power / values.panel_voltage);
@@ -154,7 +146,7 @@ void Master::handler(){
 					// We shutdown the MOS driver
 					HAL_GPIO_WritePin(PORT_SHUTDOWN, PIN_SHUTDOWN, GPIO_PIN_RESET);
 				// Do we have reached the maximum SOC
-				}else if (table[SOC] > soc_max){
+				}else if (table[SOC] > table[SOC_MAX]){
 					// We shutdown the MOS driver
 					HAL_GPIO_WritePin(PORT_SHUTDOWN, PIN_SHUTDOWN, GPIO_PIN_RESET);
 					state = S_WAIT_SOC;
@@ -190,7 +182,7 @@ void Master::handler(){
 					// We shutdown the MOS driver
 					HAL_GPIO_WritePin(PORT_SHUTDOWN, PIN_SHUTDOWN, GPIO_PIN_RESET);
 				// Do we need to charge the battery ?
-				}else if (table[SOC] < soc_max){
+				}else if (table[SOC] < table[SOC_MAX]){
 					// We go in the start sequence
 					state = S_STARTING;
 				}

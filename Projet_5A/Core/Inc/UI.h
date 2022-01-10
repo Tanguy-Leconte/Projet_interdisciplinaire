@@ -49,10 +49,11 @@ typedef enum{
 
 // Type Enum with the different values that we can change dynamically
 // We want to display : SOC | voltages | error | power in the battery
-#define NB_OF_DISPLAYED_VALUES		6
+#define NB_OF_DISPLAYED_VALUES		7
 typedef enum {
 	NONE,
 	SOC,
+	SOC_MAX,
 	CURRENT_BAT,
 	VOLTAGE_BAT,
 	CURRENT_PANNEL,
@@ -66,7 +67,7 @@ typedef struct {
 	int num_page	= 0;
 	int num 		= -1;
 	Values val_name = NONE;
-	bool is_val_W = false;		// is the value changeable?
+	bool is_val_W 	= false;		// is the value changeable?
 	string val_txt;
 	float val		= 0.0;
 }Sub_Page;

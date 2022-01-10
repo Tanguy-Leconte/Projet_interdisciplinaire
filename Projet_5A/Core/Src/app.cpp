@@ -38,11 +38,11 @@ extern "C" {
 
 // Master construction
 	extern UART_HandleTypeDef huart2;
-	extern TIM_HandleTypeDef htim6;
-	Master master(sensor_charge, sensor_discharge, boost, ui, &huart2, &htim6);
+	extern TIM_HandleTypeDef htim5;
+	Master master(sensor_charge, sensor_discharge, boost, ui, &huart2, &htim5);
 
 // Test hash
-	myHash<Values,float> table(6);
+	myHash<Values,float> table(NB_OF_DISPLAYED_VALUES);
 
 
 void setup(){
@@ -63,11 +63,12 @@ void My_app(){
 	}
 }
 
-// Interrupt for the master handler 10 kHz :
-void TIM6_DAC_IRQHandler(void)
+// Interrupt for the master handler 1 kHz :
+void TIM5_IRQHandler(void)
 {
-  HAL_TIM_IRQHandler(&htim6);
-  master.handler();
+	HAL_TIM_IRQHandler(&htim5);
+	// TODO : remove comment
+	// master.handler();
 }
 
 #ifdef __cplusplus
