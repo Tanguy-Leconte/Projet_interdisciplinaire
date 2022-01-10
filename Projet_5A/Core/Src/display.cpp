@@ -57,6 +57,7 @@ void Display::write_data(uint8_t* data){
 	HAL_GPIO_WritePin(PORT_RS, PIN_RS, GPIO_PIN_SET);
 	HAL_SPI_Transmit(p_hspi,data,1,1000);
 	HAL_GPIO_WritePin(PORT_CS, PIN_CS, GPIO_PIN_SET);
+	HAL_Delay(1);
 }
 
 // Write a command through SPI
@@ -65,11 +66,12 @@ void Display::write_cmd(uint8_t* cmd){
 	HAL_GPIO_WritePin(PORT_RS, PIN_RS, GPIO_PIN_RESET);
 	HAL_SPI_Transmit(p_hspi,cmd,1,1000);
 	HAL_GPIO_WritePin(PORT_CS, PIN_CS, GPIO_PIN_SET);
+	HAL_Delay(1);
 }
 
 void Display::clear(){
 	write_cmd(cmd_clear);
-	HAL_Delay(2);
+	HAL_Delay(1);
 }
 
 void Display::print_char(uint8_t* s){

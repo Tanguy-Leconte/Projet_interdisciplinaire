@@ -54,8 +54,6 @@ void My_app(){
 	try {
 		setup();
 
-		Test_UI();
-		//Test_Boost();
 		while (1)
 		{
 			master.handlerUI();
