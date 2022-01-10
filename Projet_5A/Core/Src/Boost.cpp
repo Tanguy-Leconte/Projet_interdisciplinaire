@@ -62,8 +62,6 @@ void Boost::init(){
 
 	// We start the ADC
 	if (HAL_OK != HAL_ADC_Start(p_hadc)){
-		return;
-	}else{
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in the starting the ADC";
