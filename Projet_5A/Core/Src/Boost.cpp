@@ -151,6 +151,14 @@ void Boost::Process_dutycycle(){
 // TODO : to test!!
 void Boost::ActualisePWM(){
 	uint32_t arr = p_htim_PWM->Instance->ARR;
+
+	// Saturate the PWM duty cycle
+	if (dutycycle > MAX_DUTYCYCLE){
+		dutycycle = MAX_DUTYCYCLE;
+	}else if (dutycycle < MIN_DUTYCYCLE){
+		dutycycle = MIN_DUTYCYCLE;
+	}
+
 	if (channel_PWM == TIM_CHANNEL_1){
 		p_htim_PWM->Instance->CCR1 = (uint32_t) (arr*dutycycle);
 	}else if (channel_PWM == TIM_CHANNEL_2){

@@ -28,6 +28,8 @@
 #define BOOST_Ki			1.0 	//
 
 #define DEFAULT_VAL_DUTYCYCLE	0.5 // default value ratio Vo/Vi = 2
+#define MAX_DUTYCYCLE			0.7
+#define MIN_DUTYCYCLE			0.3
 // ########### 		STRUCTURE	###############
 typedef struct{
 	float K; 		// proportionnal gain
