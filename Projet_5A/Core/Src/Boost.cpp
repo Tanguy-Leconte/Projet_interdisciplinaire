@@ -37,6 +37,7 @@ Boost::Boost(Coulomb_meter sensor_charge, TIM_HandleTypeDef* p_htim_PWM, uint32_
  */
 void Boost::init(){
 	// Init the Coulomb meter
+	// TODO : Remove comment
 	sensor_charge.init();
 
 	// We calculate and set the arr
@@ -160,24 +161,24 @@ void Boost::ActualisePWM(){
 	}
 
 	if (channel_PWM == TIM_CHANNEL_1){
-		p_htim_PWM->Instance->CCR1 = (uint32_t) (arr*dutycycle);
+		p_htim_PWM->Instance->CCR1 = (uint32_t) (arr*(1-dutycycle));
 	}else if (channel_PWM == TIM_CHANNEL_2){
-		p_htim_PWM->Instance->CCR2 = (uint32_t) (arr*dutycycle);
+		p_htim_PWM->Instance->CCR2 = (uint32_t) (arr*(1-dutycycle));
 	}else if (channel_PWM == TIM_CHANNEL_3){
-		p_htim_PWM->Instance->CCR3 = (uint32_t) (arr*dutycycle);
+		p_htim_PWM->Instance->CCR3 = (uint32_t) (arr*(1-dutycycle));
 	}else if (channel_PWM == TIM_CHANNEL_4){
-		p_htim_PWM->Instance->CCR4 = (uint32_t) (arr*dutycycle);
+		p_htim_PWM->Instance->CCR4 = (uint32_t) (arr*(1-dutycycle));
 	}else if (channel_PWM == TIM_CHANNEL_5){
-		p_htim_PWM->Instance->CCR5 = (uint32_t) (arr*dutycycle);
+		p_htim_PWM->Instance->CCR5 = (uint32_t) (arr*(1-dutycycle));
 	}else if (channel_PWM == TIM_CHANNEL_6){
-		p_htim_PWM->Instance->CCR6 = (uint32_t) (arr*dutycycle);
+		p_htim_PWM->Instance->CCR6 = (uint32_t) (arr*(1-dutycycle));
 	}
 }
 
 //############### TEST ##############
 extern Boost boost;
 void Test_Boost(){
-	boost.Set_dutycycle(0.5); // ratio Vo/Vi = 2
+	boost.Set_dutycycle(0.4); // ratio Vo/Vi = 2
 	boost.ActualisePWM();
 	while(1){}
 }

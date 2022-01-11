@@ -73,7 +73,9 @@ void Master::init(){
 	boost.Set_dutycycle(DEFAULT_VAL_DUTYCYCLE);
 	boost.ActualisePWM();
 	// We start the system
-	state = S_STARTING;
+	// TODO : REMOVE COMMENT
+	//state = S_STARTING;
+	state = S_RUNNING;
 }
 
 /* @brief 	: Get the value from the boost object and update the values in "table"
@@ -154,7 +156,8 @@ void Master::handler(){
 				// Do the measurements
 				Get_values();
 				// is there an issue in the battery voltage ?
-				if ((table[VOLTAGE_BAT] < (DEFAULT_VOLTAGE_BAT - DEFAULT_VOLTAGE_BAT_GAP)) && \
+				//TODO : REMOVE COMMENT
+				/*if ((table[VOLTAGE_BAT] < (DEFAULT_VOLTAGE_BAT - DEFAULT_VOLTAGE_BAT_GAP)) && \
 						(table[VOLTAGE_BAT] > (DEFAULT_VOLTAGE_BAT + DEFAULT_VOLTAGE_BAT_GAP))){
 					state = S_ERROR;
 					// We shutdown the MOS driver
@@ -165,11 +168,12 @@ void Master::handler(){
 					HAL_GPIO_WritePin(PORT_SHUTDOWN, PIN_SHUTDOWN, GPIO_PIN_RESET);
 					state = S_WAIT_SOC;
 				}else{
+				*/
 					// Normal sequence
 					boost.MPPT();
 					boost.Process_dutycycle();
 					boost.ActualisePWM();
-				}
+				//}
 				break;
 
 		// ##################### 	ERROR  SEQUENCE 	#########################
