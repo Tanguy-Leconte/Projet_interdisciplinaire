@@ -24,6 +24,13 @@
 #define FREQUENCY_KHZ		150								// Frequency of the regulation loop
 #define PERIOD				(1.0/(1000.0*FREQUENCY_KHZ))
 
+//ADC Ratio
+#define ADC_CONVERT_RATIO	(8.2/108.2)
+#define ADC_RESOLUTION		(3.3/(2^12))
+
+// MPPT
+#define INCREMENT_RATIO_PWM	0.003
+
 #define BOOST_K				1.0 	//
 #define BOOST_Ki			1.0 	//
 
@@ -51,9 +58,9 @@ typedef struct{
 
 typedef struct{
 	float panel_voltage; 	// voltage at the solar panel
-	float panel_voltage_prev; // previous voltage at the solar panel
 	float bat_voltage; 		// voltage at the battery panel
 	float current_mA; 		// current
+	float previous_current_mA; // previous current at the battery
 	float previous_power;	// previous calculated power
 	float actual_power;		// actual power
 }MPPT_val;

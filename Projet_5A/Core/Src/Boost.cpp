@@ -90,7 +90,7 @@ float Boost::Regulate(){
 //@brief get the value given by the coulomb meter
 MPPT_val Boost::Get_values(){
 	// We update previous data
-	mppt_val.panel_voltage_prev = mppt_val.panel_voltage;
+	mppt_val.previous_current_mA = mppt_val.current_mA;
 	mppt_val.previous_power = mppt_val.actual_power;
 
 	// We ask the coulomb meter
@@ -101,15 +101,16 @@ MPPT_val Boost::Get_values(){
 	mppt_val.actual_power = mppt_val.bat_voltage * mppt_val.current_mA;
 
 	// We get the voltage of the solar panel thanks to the ADC
-	if (HAL_ADC_PollForConversion(p_hadc, 1000) == HAL_OK){
-		mppt_val.panel_voltage = HAL_ADC_GetValue(p_hadc);
+	// TODO : Implement the ADC
+	/*if (HAL_ADC_PollForConversion(p_hadc, 1000) == HAL_OK){
+		mppt_val.panel_voltage = HAL_ADC_GetValue(p_hadc)/(ADC_RESOLUTION*ADC_CONVERT_RATIO);
 	}else{
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting the value of ADC at the solar pannel";
 		stream >> mes;
 		throw (mes);
-	}
+	}*/
 	return mppt_val;
 }
 
@@ -120,12 +121,13 @@ MPPT_val Boost::Get_values(){
  */
 void Boost::MPPT(){
 	// Set the new point of working (variation is the derivative of : f(Voltage) = Power
-	if (abs(mppt_val.actual_power - mppt_val.previous_power) > MPPT_THRESHOLD){
-		float variation = 0.0;
-		if ((mppt_val.panel_voltage_prev - mppt_val.panel_voltage) != 0){
-			variation = (mppt_val.actual_power - mppt_val.previous_power) / (mppt_val.panel_voltage - mppt_val.panel_voltage_prev);
-		}
-		Set_setpoint(mppt_val.panel_voltage + variation);
+	if (mppt_val.actual_power - mppt_val.previous_power > MPPT_THRESHOLD){
+		// TODO : implement the variation
+		//float variation = 0.0;
+		//variation = (mppt_val.actual_power - mppt_val.previous_power) / (mppt_val.current_mA - mppt_val.current_mA);
+		dutycycle -= INCREMENT_RATIO_PWM;
+	}else if (mppt_val.actual_power - mppt_val.previous_power < -MPPT_THRESHOLD){
+		dutycycle += INCREMENT_RATIO_PWM;
 	}
 }
 /*

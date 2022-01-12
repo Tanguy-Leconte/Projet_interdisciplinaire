@@ -170,8 +170,10 @@ void Master::handler(){
 				}else{
 				*/
 					// Normal sequence
+					// Do the MPPT algorithm and update the dutycycle variable
 					boost.MPPT();
-					boost.Process_dutycycle();
+					// TODO : implement the ADC if wanted
+					//boost.Process_dutycycle();
 					boost.ActualisePWM();
 				//}
 				break;

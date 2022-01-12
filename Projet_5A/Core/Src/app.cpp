@@ -47,15 +47,12 @@ extern "C" {
 
 void setup(){
 	// Init the master
-	//master.init();
-	sensor_charge.init();
+	master.init();
 }
 
 void My_app(){
 	try {
 		setup();
-
-		Test_coulomb_meter();
 
 		while (1)
 		{
