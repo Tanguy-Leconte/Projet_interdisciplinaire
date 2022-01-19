@@ -132,6 +132,7 @@ void Master::handler(){
 	try {
 		switch(state){
 		// ##################### 	STOP SEQUENCE 		#########################
+			// TODO : Improve or delete this mode (not so useful)
 			case S_STOP:
 				HAL_GPIO_WritePin(PORT_BACKTOBACK, PIN_BACKTOBACK, GPIO_PIN_RESET);
 				// We shutdown the MOS driver
@@ -157,33 +158,43 @@ void Master::handler(){
 				Get_values();
 				// is there an issue in the battery voltage ?
 				//TODO : REMOVE COMMENT
-				/*if ((table[VOLTAGE_BAT] < (DEFAULT_VOLTAGE_BAT - DEFAULT_VOLTAGE_BAT_GAP)) && \
-						(table[VOLTAGE_BAT] > (DEFAULT_VOLTAGE_BAT + DEFAULT_VOLTAGE_BAT_GAP))){
+				// UNDER Voltage
+				if (table[VOLTAGE_BAT] < (DEFAULT_VOLTAGE_BAT - DEFAULT_VOLTAGE_BAT_GAP)){
 					state = S_ERROR;
+					stringstream stream;
+					stream << "Over Voltage : " << table[VOLTAGE_BAT];
+					stream >> err;
 					// We shutdown the MOS driver
 					HAL_GPIO_WritePin(PORT_SHUTDOWN, PIN_SHUTDOWN, GPIO_PIN_RESET);
-				// Do we have reached the maximum SOC
+				// OVER Voltage
+				}else if (table[VOLTAGE_BAT] > (DEFAULT_VOLTAGE_BAT + DEFAULT_VOLTAGE_BAT_GAP)){
+					state = S_ERROR;
+					stringstream stream;
+					stream << "Over Voltage : " << table[VOLTAGE_BAT];
+					stream >> err;
+					// We shutdown the MOS driver
+					HAL_GPIO_WritePin(PORT_SHUTDOWN, PIN_SHUTDOWN, GPIO_PIN_RESET);
+				// Do we have reached the maximum SOC ?
 				}else if (table[SOC] > table[SOC_MAX]){
 					// We shutdown the MOS driver
 					HAL_GPIO_WritePin(PORT_SHUTDOWN, PIN_SHUTDOWN, GPIO_PIN_RESET);
 					state = S_WAIT_SOC;
 				}else{
-				*/
+
 					// Normal sequence
 					// Do the MPPT algorithm and update the dutycycle variable
 					boost.MPPT();
-					// TODO : implement the ADC if wanted
+					// TODO : implement the ADC you want to get the voltage at the solar panel
 					//boost.Process_dutycycle();
 					boost.ActualisePWM();
-				//}
+				}
 				break;
 
 		// ##################### 	ERROR  SEQUENCE 	#########################
 			case S_ERROR:
 				// We shutdown the MOS driver
 				HAL_GPIO_WritePin(PORT_SHUTDOWN, PIN_SHUTDOWN, GPIO_PIN_RESET);
-				// TODO : send message to the UI
-				HAL_Delay(10*1000);
+				ui.print_error(err, CLICK);
 				state = S_STOP;
 				break;
 
@@ -211,9 +222,13 @@ void Master::handler(){
 				break;
 
 			default:
+				// It's not normal we stop the boost
+				HAL_GPIO_WritePin(PORT_SHUTDOWN, PIN_SHUTDOWN, GPIO_PIN_RESET);
+				state = S_ERROR;
 				break;
 		}
 	}catch (string mes){
+		err = mes;
 		state = S_ERROR;
 	}
 }

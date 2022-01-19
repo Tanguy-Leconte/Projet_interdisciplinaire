@@ -179,7 +179,7 @@ void UI::print(){
 	display.clear();
 	// Select the right page with the given number in num_on_page and nb_sub_page
 	Page* p_actual_page = &(menu[num_on_page]);
-	num_tot_subpage = p_actual_page->nb_sub_page;
+	num_tot_subpage = p_actual_page->sub.size();
 	Sub_Page* p_actual_subpage = NULL;
 	if (num_tot_subpage > num_on_subpage){
 		p_actual_subpage = &(p_actual_page->sub[num_on_subpage]);
@@ -203,7 +203,9 @@ void UI::print(){
 		display.print(p_actual_subpage->val_txt);
 		// We now print the value
 		display.set_cursor(1, (p_actual_subpage->val_txt).length() + 1);
-		display.print(p_actual_subpage->val);
+		if (num_on_page == (int) DONNEES){
+			display.print(p_actual_subpage->val);
+		}
 		// We notice the user that the value is writtable
 		if (p_actual_subpage->is_val_W){
 			display.set_cursor(1, (MAX_CHAR_PER_LINE - 1));
@@ -243,6 +245,48 @@ Sub_Page* UI::find(Values w_val){
 		}
 	}
 	return NULL;
+}
+
+/* @brief 	: Add a subpage to a given page
+ * @args  	: n_page 	: the number of the page in which we want to add the subpage (cf Page_name enum strucutre)
+ * 			  sub		: the sub page that we want to add
+ */
+void UI::add_subpage(Page_name n_page, Sub_Page sub){
+	menu[n_page].sub.push_back(sub);
+}
+
+/* @brief 	: Wait for a specific action from the user
+ * @args  	: action	: The wanted action to unlock the system
+ */
+void UI::wait_for_user_action(Action action){
+	Action last_event;
+	do{
+		last_event = event;
+		event = computeButtonAction();
+	}while(event != last_event && event == action);
+}
+
+/* @brief 	: Display an error, tell if the error is blocing or not
+ * @args  	: err : the error message
+ * 			action	: The wanted action to unlock the system
+ * 			If Action == NOTHING, the function is not blocking
+ */
+void UI::print_error(string err, Action action){
+	num_on_page = (int) ERREUR;
+	Sub_Page sub;
+	sub.num = menu[ERREUR].sub.size();
+	sub.num_page = (int) ERREUR;
+	sub.val_txt = err;
+	if (NOTHING != action){
+		wait_for_user_action(action);
+	}
+}
+
+/* @brief 	: Display an error, tell if the error is blocing or not
+ * @args  	: err : the error message
+ */
+void UI::print_error(string err){
+	print_error(err, NOTHING);
 }
 
 

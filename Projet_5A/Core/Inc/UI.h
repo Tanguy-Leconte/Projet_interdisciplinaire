@@ -119,12 +119,48 @@ class UI{
 					theEncoder button\
 				);
 		// FUNCTIONS
+			/* @brief 	: This function is called at the initialization to construct the different pages of the menu
+			 */
 			void init_menu();
 
+			/* @brief 	: This print the actual page and subpage
+			 * @retval	: Values on the screen
+			 */
 			void print();
 
+
+			/* @brief 	: Find the sub_page corresponding to the wanted value and return a pointer onto it
+			 * This function can be used in other class in order to update the value of the UI
+			 * @args  	: the wanted value
+			 * @retval	: a sub_page pointer
+			 */
 			Sub_Page* find(Values w_val);
 
+			/* @brief 	: Add a subpage to a given page
+			 * @args  	: n_page 	: the number of the page in which we want to add the subpage (cf Page_name enum strucutre)
+			 * 			  sub		: the sub page that we want to add
+			 */
+			void add_subpage(Page_name n_page, Sub_Page sub);
+
+			/* @brief 	: Wait for a specific action from the user
+			 * @args  	: action	: The wanted action to unlock the system
+			 */
+			void wait_for_user_action(Action action);
+
+			/* @brief 	: Display an error, tell if the error is blocing or not
+			 * @args  	: err 	: the error message
+			 * 			action	: The wanted action to unlock the system
+			 * 			If Action == NOTHING, the function is not blocking
+			 */
+			void print_error(string err, Action action);
+			/* @brief 	: Display an error, tell if the error is blocing or not
+			 * @args  	: err : the error message
+			 */
+			void print_error(string err);
+
+
+			/* @brief 	: Manage the user interface
+			*/
 			void handler();
 };
 

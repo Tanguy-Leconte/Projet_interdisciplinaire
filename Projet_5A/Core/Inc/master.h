@@ -90,6 +90,7 @@ class Master{
 		int f_regulation;
 
 		// STATE
+		string err;
 		StateSystem state = S_STOP;
 	// FUNCTIONS
 
