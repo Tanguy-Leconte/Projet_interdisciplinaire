@@ -81,7 +81,6 @@ typedef struct {
 	int num 		= -1;
 	string title 	= "";
 	string text 	= "";
-	int nb_sub_page	= 0;
 	vector<Sub_Page> sub;
 }Page;
 

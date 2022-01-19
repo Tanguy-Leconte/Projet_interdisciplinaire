@@ -56,7 +56,6 @@ void UI::init_menu(){
 		menu[c_page].num 			= DONNEES;
 		menu[c_page].title 			= "Valeurs";
 		menu[c_page].text 			= "";
-		menu[c_page].nb_sub_page 	= NB_OF_DISPLAYED_VALUES;
 		// SUB_PAGE for each possible value
 			// SOC
 			Sub_Page* p_sub_page = new Sub_Page();
@@ -364,7 +363,7 @@ void UI::goRight(bool fast){
 			num_on_subpage = 0;
 		}else if (array_level[click_level] == SUBPAGE){
 			//we go on the next sub page
-			num_on_subpage = (num_on_subpage + 1)%(menu[num_on_page].nb_sub_page);
+			num_on_subpage = (num_on_subpage + 1)%(menu[num_on_page].sub.size());
 		}else if (array_level[click_level] == VALUE){
 			if (menu[num_on_page].sub[num_on_subpage].is_val_W){
 				// Are we in the range of the value?
@@ -383,7 +382,7 @@ void UI::goRight(bool fast){
 			num_on_subpage = 0;
 		}else if (array_level[click_level] == SUBPAGE){
 			//we go on the next sub page
-			num_on_subpage = (num_on_subpage + 1)%(menu[num_on_page].nb_sub_page);
+			num_on_subpage = (num_on_subpage + 1)%(menu[num_on_page].sub.size());
 		}else if (array_level[click_level] == VALUE){
 			if (menu[num_on_page].sub[num_on_subpage].is_val_W){
 				// Are we in the range of the value?
@@ -410,7 +409,7 @@ void UI::goLeft(bool fast){
 		}else if (array_level[click_level] == SUBPAGE){
 			//we go on the previous sub page
 			if ((num_on_subpage - 1) < 0){
-				num_on_subpage = menu[num_on_page].nb_sub_page - 1;
+				num_on_subpage = menu[num_on_page].sub.size() - 1;
 			}else{
 				num_on_subpage--;
 			}
@@ -436,7 +435,7 @@ void UI::goLeft(bool fast){
 		}else if (array_level[click_level] == SUBPAGE){
 			//we go on the previous sub page
 			if ((num_on_subpage - 1) < 0){
-				num_on_subpage = menu[num_on_page].nb_sub_page - 1;
+				num_on_subpage = menu[num_on_page].sub.size() - 1;
 			}else{
 				num_on_subpage--;
 			}
@@ -459,7 +458,7 @@ void UI::goClick(bool v_long){
 		bool next_level_ok = false;
 		switch(array_level[click_level]){
 		case(PAGE):
-			if (menu[num_on_page].nb_sub_page != 0){
+			if (menu[num_on_page].sub.size() != 0){
 				next_level_ok = true;
 			}
 			break;
