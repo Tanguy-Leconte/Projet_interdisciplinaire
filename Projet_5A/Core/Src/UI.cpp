@@ -277,6 +277,8 @@ void UI::print_error(string err, Action action){
 	sub.num = menu[ERREUR].sub.size();
 	sub.num_page = (int) ERREUR;
 	sub.val_txt = err;
+	// We print the message and fix the screen if we wait for an action
+	print();
 	if (NOTHING != action){
 		wait_for_user_action(action);
 	}

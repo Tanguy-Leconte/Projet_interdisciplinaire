@@ -13,6 +13,14 @@
 extern "C" {
 #endif
 
+// ########### 		NOTES		###############
+/* This file is the equivalent of our main file. In fact, as we use C++ language and CubeMX only generate C file, we decided to run our main program here.
+ * We call My_app() in the main() as it is declared as an extern "C" which create a link between the C program and the C++ one.
+ *
+ *	NB : Don't forget to delete the TIM5 ISR in stm32l4xx_it.c file when you generate code with CubeMX because it is also declared here.
+ *	(To be able to use C++ objects)
+ */
+
 // ########### 	APPLICATION		###############
 
 // User interface construction
@@ -53,14 +61,21 @@ void setup(){
 void My_app(){
 	try {
 		setup();
-
-		while (1)
-		{
-			master.handlerUI();
-		}
 	}catch(string mes){
-		master.Write_log(mes);
+			master.Write_log(mes);
+			master.Set_state(S_ERROR);
 	}
+
+	while (1)
+	{
+		try {
+			master.handlerUI();
+		}catch(string mes){
+				master.Write_log(mes);
+				master.Set_state(S_ERROR);
+		}
+	}
+
 }
 
 // Interrupt for the master handler 1 kHz :

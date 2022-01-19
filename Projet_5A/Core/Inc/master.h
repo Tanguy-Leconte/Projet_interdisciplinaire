@@ -105,6 +105,8 @@ class Master{
 		// Write log onto the UART (serial port COM)
 		// We can read it with a PC and store it
 		void Write_log(string mes);
+		// State manually the state of the system (Must be use carefully)
+		void Set_state(StateSystem s){state = s;}
 		// Get the value from the boost object and update the values in "table"
 		void Get_values();
 		// Update the value of the UI with the values stored in "table"

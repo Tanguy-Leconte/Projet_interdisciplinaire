@@ -94,8 +94,9 @@ void Master::Get_values(){
 }
 
 void Master::Write_log(string mes){
+	// We set the error message
+	err = mes;
 	// TODO : Send a message through the UART
-	asm("nop");
 }
 
 /* @brief 	: Update the value of the UI with the values stored in "table"
@@ -194,6 +195,9 @@ void Master::handler(){
 			case S_ERROR:
 				// We shutdown the MOS driver
 				HAL_GPIO_WritePin(PORT_SHUTDOWN, PIN_SHUTDOWN, GPIO_PIN_RESET);
+				// We shutdown the Back2Back
+				HAL_GPIO_WritePin(PORT_BACKTOBACK, PIN_BACKTOBACK, GPIO_PIN_RESET);
+				// We print the error and wait for a click by the user
 				ui.print_error(err, CLICK);
 				state = S_STOP;
 				break;
