@@ -54,21 +54,22 @@ extern "C" {
 
 
 void setup(){
-	// Init the master
-	master.init();
+	// Init the master and all the
+	try {
+		master.init();
+	}catch(string mes){
+		master.Write_log(mes);
+		master.Set_state(S_ERROR);
+	}
 }
 
 void My_app(){
-	try {
-		setup();
-	}catch(string mes){
-			master.Write_log(mes);
-			master.Set_state(S_ERROR);
-	}
+	setup();
 
 	while (1)
 	{
 		try {
+			// Main program
 			master.handlerUI();
 		}catch(string mes){
 				master.Write_log(mes);
