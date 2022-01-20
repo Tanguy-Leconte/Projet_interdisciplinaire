@@ -36,7 +36,7 @@ void Master::init(){
 	//}
 
 	// Boost
-	boost.init();
+	// boost.init();
 
 	// UI
 	ui.init_menu();
@@ -70,8 +70,9 @@ void Master::init(){
 	}
 
 	//We start the system
-	boost.Set_dutycycle(DEFAULT_VAL_DUTYCYCLE);
-	boost.ActualisePWM();
+	// boost.Set_dutycycle(DEFAULT_VAL_DUTYCYCLE);
+	// boost.ActualisePWM();
+
 	// We start the system
 	// TODO : REMOVE COMMENT
 	//state = S_STARTING;
