@@ -87,6 +87,7 @@ void Master::init(){
  */
 void Master::Get_values(){
 	values = boost.Get_values();
+	//HAL_Delay(1);
 	table.modify(SOC, boost.sensor_charge.Get_SOC_mAh());
 	table.modify(SOC_MAX, (((ui.find(SOC_MAX))->val)*MAX_SOC_BATTERY/100)); // value in percentage in the user interface
 	table.modify(CURRENT_BAT, values.current_mA);
@@ -147,6 +148,10 @@ void Master::handler(){
 				HAL_GPIO_WritePin(PORT_SHUTDOWN, PIN_SHUTDOWN, GPIO_PIN_RESET);
 				boost.Set_dutycycle(DEFAULT_VAL_DUTYCYCLE);
 				boost.ActualisePWM();
+
+				// TODO : remove those lines or implement it in a better way
+				ui.wait_for_starting(CLICK);
+				state = S_STARTING;
 				break;
 
 		// ##################### 	START SEQUENCE 		#########################

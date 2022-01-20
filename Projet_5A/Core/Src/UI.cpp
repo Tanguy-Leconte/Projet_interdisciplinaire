@@ -266,6 +266,32 @@ void UI::wait_for_user_action(Action action){
 	}while(event == last_event || event != action);
 }
 
+/* @brief 	: Wait for a specific action from the user before start the system
+ * @args  	: action	: The wanted action to unlock the system
+ */
+void UI::wait_for_starting(Action action){
+	num_on_page = (int) MENU;
+	Sub_Page sub;
+	sub.num = menu[MENU].sub.size();
+	sub.num_page = (int) MENU;
+	sub.is_val_W = true;
+	sub.val_txt = "Click to start";
+	add_subpage(MENU, sub);
+	// We print the message and fix the screen if we wait for an action
+	print();
+	if (NOTHING != action){
+		wait_for_user_action(action);
+		menu[MENU].sub.clear();
+		Sub_Page sub;
+		sub.num = menu[MENU].sub.size();
+		sub.num_page = (int) MENU;
+		sub.val_txt = "GO !";
+		add_subpage(MENU, sub);
+		num_on_page = (int) MENU;
+		print();
+	}
+}
+
 /* @brief 	: Display an error, tell if the error is blocing or not
  * @args  	: err : the error message
  * 			action	: The wanted action to unlock the system

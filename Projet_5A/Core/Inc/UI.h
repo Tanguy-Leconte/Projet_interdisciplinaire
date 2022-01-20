@@ -150,6 +150,11 @@ class UI{
 			 */
 			void wait_for_user_action(Action action);
 
+			/* @brief 	: Wait for a specific action from the user before start the system
+			 * @args  	: action	: The wanted action to unlock the system
+			 */
+			void wait_for_starting(Action action);
+
 			/* @brief 	: Display an error, tell if the error is blocing or not
 			 * @args  	: err 	: the error message
 			 * 			action	: The wanted action to unlock the system

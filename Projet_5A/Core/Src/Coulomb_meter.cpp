@@ -174,26 +174,26 @@ void Coulomb_meter::Set_SOC_mAh(float SOC_mAh){
   */
 float Coulomb_meter::Get_SOC_mAh(){
 	SOC_mAh=0;
-	uint8_t* pData = new uint8_t;
+	uint8_t Data;
 	// Get MSB
-	if (HAL_I2C_Mem_Read(p_hi2c,address_r,C_AccumulateChargeMSB,1,pData,1,TIMEOUT) != HAL_OK){
+	if (HAL_I2C_Mem_Read(p_hi2c,address_r,C_AccumulateChargeMSB,1,&Data,1,TIMEOUT) != HAL_OK){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting the accumulated charge (MSB) with the I2C bus";
 		mes = stream.str();
 		throw (mes);
 	}else{
-		SOC_mAh += (*pData)*(float)STEP_ACCUMULATED_CHARGE*256;
+		SOC_mAh += (Data)*(float)STEP_ACCUMULATED_CHARGE*256;
 	}
 	// Get LSB
-	if (HAL_I2C_Mem_Read(p_hi2c,address_r,D_AccumulateChargeLSB,1,pData,1,TIMEOUT) != HAL_OK){
+	if (HAL_I2C_Mem_Read(p_hi2c,address_r,D_AccumulateChargeLSB,1,&Data,1,TIMEOUT) != HAL_OK){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting the accumulated charge (LSB) with the I2C bus";
 		mes = stream.str();
 		throw (mes);
 	}else{
-		SOC_mAh += (*pData)*STEP_ACCUMULATED_CHARGE;
+		SOC_mAh += (Data)*STEP_ACCUMULATED_CHARGE;
 	}
 	return SOC_mAh;
 }
@@ -212,75 +212,75 @@ float Coulomb_meter::Get_SOC_mAh(){
   * @retval Structure LTC2944_AnalogVal_Typedef
   */
 LTC2944_AnalogVal_Typedef Coulomb_meter::Get_AnalogVal(){
-	uint8_t* pData = new uint8_t;
+	uint8_t Data;
 	uint16_t result = 0;
 	//############# VOLTAGE ##############
 	// Get Voltage_MSB
-	if (HAL_I2C_Mem_Read(p_hi2c,address_r,I_Voltage_MSB,1,pData,1,TIMEOUT) != HAL_OK){
+	if (HAL_I2C_Mem_Read(p_hi2c,address_r,I_Voltage_MSB,1,&Data,1,TIMEOUT) != HAL_OK){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting I_Voltage_MSB with the I2C bus";
 		mes = stream.str();
 		throw (mes);
 	}else{
-		result = (*pData)<<8;
+		result = (Data)<<8;
 	}
 	// Get Voltage_LSB
-	if (HAL_I2C_Mem_Read(p_hi2c,address_r,J_Voltage_LSB,1,pData,1,TIMEOUT) != HAL_OK){
+	if (HAL_I2C_Mem_Read(p_hi2c,address_r,J_Voltage_LSB,1,&Data,1,TIMEOUT) != HAL_OK){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting I_Voltage_MSB with the I2C bus";
 		mes = stream.str();
 		throw (mes);
 	}else{
-		result |= (*pData);
+		result |= (Data);
 
 	}
 	values.Voltage_V = FSR_ADC_VOLTAGE*((float)result/(float)STEP_ADC_VOLTAGE);
 	//############# CURRENT ##############
 	// Get Voltage_MSB
-	if (HAL_I2C_Mem_Read(p_hi2c,address_r,O_Current_MSB,1,pData,1,TIMEOUT) != HAL_OK){
+	if (HAL_I2C_Mem_Read(p_hi2c,address_r,O_Current_MSB,1,&Data,1,TIMEOUT) != HAL_OK){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting I_Voltage_MSB with the I2C bus";
 		mes = stream.str();
 		throw (mes);
 	}else{
-		result = (*pData)<<8;
+		result = (Data)<<8;
 	}
 	// Get Voltage_LSB
-	if (HAL_I2C_Mem_Read(p_hi2c,address_r,P_Current_MSB,1,pData,1,TIMEOUT) != HAL_OK){
+	if (HAL_I2C_Mem_Read(p_hi2c,address_r,P_Current_MSB,1,&Data,1,TIMEOUT) != HAL_OK){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting J_Voltage_LSB with the I2C bus";
 		mes = stream.str();
 		throw (mes);
 	}else{
-		result |= (*pData);
+		result |= (Data);
 	}
 	values.Current_mA = ((float)FSR_ADC_CURRENT/R_sense)*(((float)result-(float)STEP_ADC_CURRENT)/(float)STEP_ADC_CURRENT);
 
 	//############# TEMPERATURE ##############
 	// Get Temperature_MSB
 	result = 0;
-	if (HAL_I2C_Mem_Read(p_hi2c,address_r,U_Temperature_MSB,1,pData,1,TIMEOUT) != HAL_OK){
+	if (HAL_I2C_Mem_Read(p_hi2c,address_r,U_Temperature_MSB,1,&Data,1,TIMEOUT) != HAL_OK){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting U_Temperature_MSB with the I2C bus";
 		mes = stream.str();
 		throw (mes);
 	}else{
-		result = (*pData)<<8;
+		result = (Data)<<8;
 	}
 	// Get Temperature_LSB
-	if (HAL_I2C_Mem_Read(p_hi2c,address_r,V_Temperature_LSB,1,pData,1,TIMEOUT) != HAL_OK){
+	if (HAL_I2C_Mem_Read(p_hi2c,address_r,V_Temperature_LSB,1,&Data,1,TIMEOUT) != HAL_OK){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting V_Temperature_LSB with the I2C bus";
 		mes = stream.str();
 		throw (mes);
 	}else{
-		result |= (*pData);
+		result |= (Data);
 	}
 	values.Temperature_Celsius = ((float)FSR_ADC_TEMP*((float)result/(float)STEP_ADC_TEMP)) - KELVIN_TO_CELCIUS;
 
