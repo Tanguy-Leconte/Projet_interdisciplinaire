@@ -17,10 +17,19 @@ extern "C" {
 /* This file is the equivalent of our main file. In fact, as we use C++ language and CubeMX only generate C file, we decided to run our main program here.
  * We call My_app() in the main() as it is declared as an extern "C" which create a link between the C program and the C++ one.
  *
- *	NB : Don't forget to delete the TIM5 ISR in stm32l4xx_it.c file when you generate code with CubeMX because it is also declared here.
+ * NB : Don't forget to delete the TIM5 ISR in stm32l4xx_it.c file when you generate code with CubeMX because it is also declared here.
  *	(To be able to use C++ objects)
  *
- *	TODO : Improve the management of errors !
+ *	TODO 	: Improve the management of errors !
+ *			: Implement the use of real time (with TIM5) and protect the "table" variable
+ *			  (Perhaps use an RT OS such as FREE-RTOS to create threads and mutex)
+ *			: Test and adjust the MPPT algorithm
+ *			: Implement the reading of the voltage at the solar panel to show it to the user
+ *			  (the ADC is already configured)
+ *			: Try to define with the starting voltage the value of the initial SOC of the battery.
+ *			  (Normally the characteristic is linear must of the time)
+ *			: Implement the communication with the discharge Coulomb meter
+ *			  (The value of Rsense must be put into the Coulomb_meter class and given through the constructor)
  */
 
 // ########### 	APPLICATION		###############
@@ -50,10 +59,6 @@ extern "C" {
 	extern UART_HandleTypeDef huart2;
 	extern TIM_HandleTypeDef htim5;
 	Master master(sensor_charge, sensor_discharge, boost, ui, &huart2, &htim5);
-
-// Test hash
-	myHash<Values,float> table(NB_OF_DISPLAYED_VALUES);
-
 
 void setup(){
 	// Init the master and all the
