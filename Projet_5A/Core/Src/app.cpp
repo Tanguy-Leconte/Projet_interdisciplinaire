@@ -19,6 +19,8 @@ extern "C" {
  *
  *	NB : Don't forget to delete the TIM5 ISR in stm32l4xx_it.c file when you generate code with CubeMX because it is also declared here.
  *	(To be able to use C++ objects)
+ *
+ *	TODO : Improve the management of errors !
  */
 
 // ########### 	APPLICATION		###############
