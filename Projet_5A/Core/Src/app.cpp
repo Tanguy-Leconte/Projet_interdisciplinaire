@@ -20,7 +20,11 @@ extern "C" {
  * NB : Don't forget to delete the TIM5 ISR in stm32l4xx_it.c file when you generate code with CubeMX because it is also declared here.
  *	(To be able to use C++ objects)
  *
- *	TODO 	: Improve the management of errors !
+ *	TODO 	: cf: all the TODO labels to see improvement or things that we put for debug purpose
+ *			  (We need to remove some things to test everything for now we have :
+ *			  the user interface, the boost (refresh the PWM but we haven't test the MPPT)
+ *			  and the charge sensor working in this version of software commit : 79140c6 branch master)
+ *			: Improve the management of errors !
  *			: Implement the use of real time (with TIM5) and protect the "table" variable
  *			  (Perhaps use an RT OS such as FREE-RTOS to create threads and mutex)
  *			: Test and adjust the MPPT algorithm
@@ -44,9 +48,11 @@ extern "C" {
 	UI ui(screen,button_main);
 
 // Coulomb meter
+	// set up in Fast mode at 400 kHz
 	extern I2C_HandleTypeDef hi2c1;
 	Coulomb_meter sensor_charge(&hi2c1);
 
+	// set up in Normal mode at 10 kHz
 	extern I2C_HandleTypeDef hi2c2;
 	Coulomb_meter sensor_discharge(&hi2c2);
 
