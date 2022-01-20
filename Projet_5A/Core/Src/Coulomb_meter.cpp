@@ -96,7 +96,7 @@ Coulomb_meter::Coulomb_meter(I2C_HandleTypeDef* p_hi2c, uint8_t ADCmode, uint8_t
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in creating the coulomb_meter object :" << err << "bad value";
-		stream >> mes;
+		mes = stream.str();
 		throw (mes);
 	}
 }
@@ -118,7 +118,7 @@ void Coulomb_meter::init(){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in initializing the device with the I2C bus";
-		stream >> mes;
+		mes = stream.str();
 		throw (mes);
 	}
 }
@@ -132,7 +132,7 @@ uint8_t Coulomb_meter::Get_Control_Register(){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting the B_Control with the I2C bus";
-		stream >> mes;
+		mes = stream.str();
 		throw (mes);
 	}
 	return val;
@@ -153,7 +153,7 @@ void Coulomb_meter::Set_SOC_mAh(float SOC_mAh){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in writing in the C_AccumulateChargeMSB register with the I2C bus";
-		stream >> mes;
+		mes = stream.str();
 		throw (mes);
 	}
 	*pSOC = (aux_SOC & 0xff);
@@ -162,7 +162,7 @@ void Coulomb_meter::Set_SOC_mAh(float SOC_mAh){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in writing in the D_AccumulateChargeLSB register with the I2C bus";
-		stream >> mes;
+		mes = stream.str();
 		throw (mes);
 	}
 }
@@ -180,7 +180,7 @@ float Coulomb_meter::Get_SOC_mAh(){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting the accumulated charge (MSB) with the I2C bus";
-		stream >> mes;
+		mes = stream.str();
 		throw (mes);
 	}else{
 		SOC_mAh += (*pData)*(float)STEP_ACCUMULATED_CHARGE*256;
@@ -190,7 +190,7 @@ float Coulomb_meter::Get_SOC_mAh(){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting the accumulated charge (LSB) with the I2C bus";
-		stream >> mes;
+		mes = stream.str();
 		throw (mes);
 	}else{
 		SOC_mAh += (*pData)*STEP_ACCUMULATED_CHARGE;
@@ -220,7 +220,7 @@ LTC2944_AnalogVal_Typedef Coulomb_meter::Get_AnalogVal(){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting I_Voltage_MSB with the I2C bus";
-		stream >> mes;
+		mes = stream.str();
 		throw (mes);
 	}else{
 		result = (*pData)<<8;
@@ -230,7 +230,7 @@ LTC2944_AnalogVal_Typedef Coulomb_meter::Get_AnalogVal(){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting I_Voltage_MSB with the I2C bus";
-		stream >> mes;
+		mes = stream.str();
 		throw (mes);
 	}else{
 		result |= (*pData);
@@ -243,7 +243,7 @@ LTC2944_AnalogVal_Typedef Coulomb_meter::Get_AnalogVal(){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting I_Voltage_MSB with the I2C bus";
-		stream >> mes;
+		mes = stream.str();
 		throw (mes);
 	}else{
 		result = (*pData)<<8;
@@ -253,7 +253,7 @@ LTC2944_AnalogVal_Typedef Coulomb_meter::Get_AnalogVal(){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting J_Voltage_LSB with the I2C bus";
-		stream >> mes;
+		mes = stream.str();
 		throw (mes);
 	}else{
 		result |= (*pData);
@@ -267,7 +267,7 @@ LTC2944_AnalogVal_Typedef Coulomb_meter::Get_AnalogVal(){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting U_Temperature_MSB with the I2C bus";
-		stream >> mes;
+		mes = stream.str();
 		throw (mes);
 	}else{
 		result = (*pData)<<8;
@@ -277,7 +277,7 @@ LTC2944_AnalogVal_Typedef Coulomb_meter::Get_AnalogVal(){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting V_Temperature_LSB with the I2C bus";
-		stream >> mes;
+		mes = stream.str();
 		throw (mes);
 	}else{
 		result |= (*pData);
@@ -299,7 +299,7 @@ void Coulomb_meter::Set_LowPowerMode(){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting B_Control with the I2C bus";
-		stream >> mes;
+		mes = stream.str();
 		throw (mes);
 	}
 
@@ -316,7 +316,7 @@ void Coulomb_meter::Set_LowPowerMode(){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in writing the control register of the device with the I2C bus";
-		stream >> mes;
+		mes = stream.str();
 		throw (mes);
 	}
 }
@@ -333,7 +333,7 @@ void Coulomb_meter::Set_NormalMode(){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting B_Control with the I2C bus";
-		stream >> mes;
+		mes = stream.str();
 		throw (mes);
 	}
 
@@ -350,7 +350,7 @@ void Coulomb_meter::Set_NormalMode(){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in writing the control register of the device with the I2C bus";
-		stream >> mes;
+		mes = stream.str();
 		throw (mes);
 	}
 }

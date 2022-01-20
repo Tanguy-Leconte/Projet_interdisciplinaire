@@ -49,6 +49,7 @@ class Display{
 		void print_char(uint8_t* s);
 		void print(string s);
 		void print(int number);
+		void print(float number);
 		// start in 0 : 0
 		void set_cursor(int line, int column);
 

@@ -48,7 +48,7 @@ void Boost::init(){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in the starting the Timer of the PWM";
-		stream >> mes;
+		mes = stream.str();
 		throw (mes);
 	}
 	// We start the PWM
@@ -56,7 +56,7 @@ void Boost::init(){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in the starting the PWM";
-		stream >> mes;
+		mes = stream.str();
 		throw (mes);
 	}
 
@@ -65,7 +65,7 @@ void Boost::init(){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in the starting the ADC";
-		stream >> mes;
+		mes = stream.str();
 		throw (mes);
 	}
 }
@@ -108,7 +108,7 @@ MPPT_val Boost::Get_values(){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in getting the value of ADC at the solar pannel";
-		stream >> mes;
+		mes = stream.str();
 		throw (mes);
 	}*/
 	return mppt_val;
@@ -142,7 +142,7 @@ void Boost::Process_dutycycle(){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in processing the dutycycle";
-		stream >> mes;
+		mes = stream.str();
 		throw (mes);
 	}
 }

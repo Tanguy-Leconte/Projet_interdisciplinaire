@@ -21,8 +21,12 @@ using namespace std;
 
 // ########### 		DEFINE		###############
 // Number total of pages in the menu
-#define NB_PAGE_TOT		3
-#define MAX_SOC_BATTERY 17500	// in mAh
+#define NB_PAGE_TOT			3
+#define MAX_SOC_BATTERY 	17500	// in mAh
+#define DELAY_UI_MS			20
+#define CST_REFRESH_SCREEN	600	// correspond to CST_REFRESH_SCREEN*DELAY_UI_MS in ms
+#define CHAR_SELECTION		"<"
+#define CHAR_EDITABLE		"#"
 
 // ########### 		ENUM		###############
 enum Page_name{

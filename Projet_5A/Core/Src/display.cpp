@@ -11,6 +11,7 @@
 #include "display.h"
 #include <cstring>
 #include <sstream>
+#include <iomanip>
 
 using namespace std;
 
@@ -98,6 +99,15 @@ void Display::print(string s){
 void Display::print(int number){
 	// int to string
 	stringstream strs;
+	strs << number;
+	string temp_str = strs.str();
+	print(temp_str);
+}
+
+void Display::print(float number){
+	// int to string
+	stringstream strs;
+	strs << fixed << setprecision(2);
 	strs << number;
 	string temp_str = strs.str();
 	print(temp_str);

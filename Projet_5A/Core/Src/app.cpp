@@ -70,6 +70,7 @@ void My_app(){
 	{
 		try {
 			// Main program
+			master.handler();
 			master.handlerUI();
 		}catch(string mes){
 			master.Write_log(mes);
@@ -83,7 +84,7 @@ void My_app(){
 void TIM5_IRQHandler(void)
 {
 	HAL_TIM_IRQHandler(&htim5);
-	//master.handler();
+	//
 }
 
 #ifdef __cplusplus

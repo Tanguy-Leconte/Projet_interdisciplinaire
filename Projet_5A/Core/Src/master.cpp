@@ -8,6 +8,7 @@
 #include "master.h"
 #include <string>
 #include <sstream>
+#include <iomanip>
 
 // ########### 		CLASS		###############
 #define DEFAULT_VOLTAGE_BAT				50
@@ -36,7 +37,7 @@ void Master::init(){
 	//}
 
 	// Boost
-	// boost.init();
+	boost.init();
 
 	// UI
 	ui.init_menu();
@@ -51,7 +52,7 @@ void Master::init(){
 			stringstream stream;
 			string mes;
 			stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in the initialization of the table";
-			stream >> mes;
+			mes = stream.str();
 			throw (mes);
 		}
 		el ++;
@@ -65,17 +66,18 @@ void Master::init(){
 		stringstream stream;
 		string mes;
 		stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in the starting the real time Timer";
-		stream >> mes;
+		mes = stream.str();
 		throw (mes);
 	}
 
 	//We start the system
-	// boost.Set_dutycycle(DEFAULT_VAL_DUTYCYCLE);
-	// boost.ActualisePWM();
+	boost.Set_dutycycle(DEFAULT_VAL_DUTYCYCLE);
+	boost.ActualisePWM();
 
 	// We start the system
 	// TODO : REMOVE COMMENT
 	//state = S_STARTING;
+	// TODO : Remove this line : it's to test the Error page
 	state = S_RUNNING;
 }
 
@@ -89,7 +91,11 @@ void Master::Get_values(){
 	table.modify(SOC_MAX, (((ui.find(SOC_MAX))->val)*MAX_SOC_BATTERY/100)); // value in percentage in the user interface
 	table.modify(CURRENT_BAT, values.current_mA);
 	table.modify(VOLTAGE_BAT, values.bat_voltage);
-	table.modify(CURRENT_PANNEL, values.actual_power / values.panel_voltage);
+	if (values.panel_voltage != 0){
+		table.modify(CURRENT_PANNEL, values.actual_power / values.panel_voltage);
+	}else{
+		table.modify(CURRENT_PANNEL, 0.0);
+	}
 	table.modify(VOLTAGE_PANNEL, values.panel_voltage);
 	table.modify(POWER, values.actual_power);
 }
@@ -164,16 +170,18 @@ void Master::handler(){
 				if (table[VOLTAGE_BAT] < (DEFAULT_VOLTAGE_BAT - DEFAULT_VOLTAGE_BAT_GAP)){
 					state = S_ERROR;
 					stringstream stream;
-					stream << "Over Voltage : " << table[VOLTAGE_BAT];
-					stream >> err;
+					stream << "Under V : ";
+					stream << fixed << setprecision(2) << table[VOLTAGE_BAT];
+					err = stream.str();
 					// We shutdown the MOS driver
 					HAL_GPIO_WritePin(PORT_SHUTDOWN, PIN_SHUTDOWN, GPIO_PIN_RESET);
 				// OVER Voltage
 				}else if (table[VOLTAGE_BAT] > (DEFAULT_VOLTAGE_BAT + DEFAULT_VOLTAGE_BAT_GAP)){
 					state = S_ERROR;
 					stringstream stream;
-					stream << "Over Voltage : " << table[VOLTAGE_BAT];
-					stream >> err;
+					stream << "Over V : ";
+					stream << fixed << setprecision(2) << table[VOLTAGE_BAT];
+					err = stream.str();
 					// We shutdown the MOS driver
 					HAL_GPIO_WritePin(PORT_SHUTDOWN, PIN_SHUTDOWN, GPIO_PIN_RESET);
 				// Do we have reached the maximum SOC ?
@@ -245,5 +253,5 @@ void Master::handler(){
 void Master::handlerUI(){
 	Update_UI();
 	ui.handler();
-	HAL_Delay(20);
+	HAL_Delay(DELAY_UI_MS);
 }

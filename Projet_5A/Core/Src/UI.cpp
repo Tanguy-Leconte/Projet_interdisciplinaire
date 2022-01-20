@@ -208,7 +208,7 @@ void UI::print(){
 		// We notice the user that the value is writtable
 		if (p_actual_subpage->is_val_W){
 			display.set_cursor(1, (MAX_CHAR_PER_LINE - 1));
-			display.print("#");
+			display.print(CHAR_EDITABLE);
 		}
 	}
 
@@ -216,13 +216,13 @@ void UI::print(){
 	switch (array_level[click_level]){
 	case(SUBPAGE):
 		display.set_cursor(0, (MAX_CHAR_PER_LINE - 1));
-		display.print("<");
+		display.print(CHAR_SELECTION);
 		break;
 	case(VALUE):
 		display.set_cursor(0, (MAX_CHAR_PER_LINE - 1));
-		display.print("<");
+		display.print(CHAR_SELECTION);
 		display.set_cursor(1, (MAX_CHAR_PER_LINE - 1));
-		display.print("<");
+		display.print(CHAR_SELECTION);
 		break;
 	default:
 		break;
@@ -262,7 +262,8 @@ void UI::wait_for_user_action(Action action){
 	do{
 		last_event = event;
 		event = computeButtonAction();
-	}while(event != last_event && event == action);
+		HAL_Delay(DELAY_UI_MS);
+	}while(event == last_event || event != action);
 }
 
 /* @brief 	: Display an error, tell if the error is blocing or not
@@ -275,11 +276,15 @@ void UI::print_error(string err, Action action){
 	Sub_Page sub;
 	sub.num = menu[ERREUR].sub.size();
 	sub.num_page = (int) ERREUR;
+	sub.is_val_W = true;
 	sub.val_txt = err;
+	add_subpage(ERREUR, sub);
 	// We print the message and fix the screen if we wait for an action
 	print();
 	if (NOTHING != action){
 		wait_for_user_action(action);
+		num_on_page = (int) MENU;
+		print();
 	}
 }
 
@@ -298,9 +303,11 @@ void UI::print_error(string err){
  */
 // TODO : Next step is to use Click_level to have more pages
 // but it need an implementation of long click to go back to the general menu
+// global var to count and update the screen every ten times if we stay on the same page
+int cp = 0;
 void UI::handler(){
 	Action last_event = event;
-	if((event = computeButtonAction()) == last_event){
+	if((event = computeButtonAction()) == last_event && last_event != NOTHING ){
 		return;
 	}
 	switch (event){
@@ -341,12 +348,17 @@ void UI::handler(){
 			print();
 			break;
 		case (NOTHING):
+			cp++;
+			if (cp > CST_REFRESH_SCREEN){
+				cp = 0;
+				print();
+			}
 			break;
 		default:
 			stringstream stream;
 			string mes;
 			stream << "File=" << __FILE__ << " | Line=" << __LINE__ << " | Error in the action demanding :" << "bad value";
-			stream >> mes;
+			mes = stream.str();
 			throw (mes);
 	}
 
@@ -464,7 +476,14 @@ void UI::goClick(bool v_long){
 			break;
 		case(SUBPAGE):
 			if (menu[num_on_page].sub[num_on_subpage].is_val_W == true){
-				next_level_ok = true;
+				// We implement a different behaviour depending on the page
+				if (num_on_page == (int) DONNEES){
+					next_level_ok = true;
+				}else if (num_on_page == (int) ERREUR){
+					vector<Sub_Page>::iterator it;
+					it = menu[num_on_page].sub.begin() + num_on_subpage;
+					menu[num_on_page].sub.erase(it);
+				}
 			}
 			break;
 		case(VALUE):
